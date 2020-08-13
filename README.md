@@ -23,7 +23,7 @@ Due to the postponement of the release of the woodscape dataset, I plan to creat
   - 其实最后导出来的图片挺多的，只是手动标注太费时间和精力了，最后dataset里面只有184张照片
 
 ## 1.3 标注数据
-labelme我是在[anaconda][df3]上面运行的，添加了一个虚拟环境（做deep learning的人最方便就是用anaconda，下载各种包，备份工作环境都很方便）
+labelme我是在[anaconda][df3]上面运行的，添加了一个虚拟环境（强烈建议用anaconda，下载各种包，备份工作环境都很方便）
 ```sh
 #在anaconda下建立一个labelme的环境
 # python2
