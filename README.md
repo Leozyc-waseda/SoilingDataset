@@ -4,8 +4,11 @@ Due to the postponement of the release of the woodscape dataset, I plan to creat
 #  1 数据集
 ## 1.1 取得数据
   - 将摄像头装到toyota coms车的后方位置，四个摄像头并排，一起取得图像。其中3个脏的摄像头，一个干净的摄像头（干净的镜头是为了方便以后desoiling，或者用CycleGAN来生成假数据的情况下，需要一个完全干净的图片） 
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/IMG_4905.jpeg)
   - 脏污是由我自己手动弄脏并且涂抹在摄像头的镜头上，用泥土+水+牙刷去制造Soiling的数据 
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/IMG_4912.jpeg)
   - 录制的软件都是由MacBook Pro(2020)完成，其中使用了两个type-c hub防止供电不足导致不能录影，录影软件使用的是Camera Record-Camera Recorder 付费在AppStore里面下载，非常小巧以及稳定，同时录制4个视频画面没有卡顿
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/%E6%88%AA%E5%B1%8F2020-07-12%20%E4%B8%8B%E5%8D%886.11.18.png)
   -  录影规格：30FPS，分辨率是1920，1080
   -  分三天不同的天气和时间点，驾驶toyota coms，时速大约30km/h; coms饶学校附近一圈，起点：北九工大车库，终点：北九工大车库；每段时间时间约为6分钟左右（绕一圈的时间），每天两次，每次4个视频，最后得到32个视频，每个视频6分钟
  
@@ -59,6 +62,7 @@ pip install labelme  # both python2/3 should work
 
   - 标注主要分了两个类，一个是opaque，一个是transparent，background是clean
   - 标注异常费力，几乎每张图片都需要花费我解决1个小时去标注，细分透明和不透明的部分，最终得到了184张图片
+  ![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/labelme.png)
   - 其实有大牛已经在研究这个领域，并在去年的ICCV上发表了paper介绍了自己的数据集，只是由于新冠病毒的影响，以及欧洲对数据的新规定（公共数据集必须给人脸和车牌马赛克，不然不允许发布），所以推迟了一年，虽然目前为止2020年8月13日都还没有发布。我也问过作者他说他将会在今年Q3，Q4的时候发布，但是现在看来情势也不容乐观。最迟推断大概明天就会有soiling相关的dataset，大约接近5000张的数据，那么就不用辛苦的做数据集了
   - 由于数据集的稀少和环境相似，其实数据集多样性和鲁棒性都不是很好，测试集和训练集也是高度相似，这点如何解决我还没有任何头绪
   - 在Deep Learning中，数据集起码要有3000~5000张，才会有不错的效果，所以语义分割的数据集是非常昂贵和难以获取的。我也想去淘宝上花钱雇人帮我标注，只是15RMB一张的图片让我望而却步，其他研究者都是委托专门的数据公司进行标注，所以我的小研究就靠184张图片来搞吧
