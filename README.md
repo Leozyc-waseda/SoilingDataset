@@ -192,11 +192,17 @@ $ python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py -- original_g
 
 ### 2.2.2 汇总制作tfrecord文件
 数据集的文件夹结构为:
+
 ├── test
+
 ├── testannot
+
 ├── train
+
 ├── trainannot
+
 ├── val
+
 └── valannot 由上到下分别是测试集、测试集标签、训练集、训练集标签、验证集、验证集标签。
 
 制作tfrecord的文件
