@@ -318,8 +318,8 @@ def ENet_weighing(image_files=image_files, num_classes=12):
     return class_weights
 ```
 #自己的笔记
-![Image text]()
-
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/UNet1.png)
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/UNet2.png)
 
 2. Median frequency balancing 计算idea，来自[SegNet paper](https://arxiv.org/abs/1511.00561)
 
@@ -379,7 +379,8 @@ if __name__ == "__main__":
     ENet_weighing(image_files, num_classes=4)
 ```
 #自己的笔记
-![Image text]()
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/segnet_media.png)
+
 3. 调整class weights
 
 最后```media_frequency_balancing class_weights:[0.012739 , 0.0207334,, 0.0541833 ]```
