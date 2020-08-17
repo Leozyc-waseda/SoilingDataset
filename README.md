@@ -438,3 +438,88 @@ python train.py \
 
 Q: 如何设置train_crop_size的值?
 A: output_stride * k + 1, where k is an integer. For example, we have 321x321，513x513 
+
+
+## 2.4 训练结果可视化
+
+```sh
+python3 ~/models/research/deeplab/vis.py \ 
+--logtostderr \
+--vis_split="val" \
+--model_variant="xception_65" \
+--atrous_rates=6 \
+--atrous_rates=12 \
+--atrous_rates=18 \
+--output_stride=16 \
+--decoder_output_stride=4 \
+--vis_crop_size=1080,1920\
+--dataset="soiling_dataset" \
+--colormap_type="pascal" \ 
+--checkpoint_dir='/home/user/models/research/deeplab/exp/soiling_train/train'\
+--vis_logdir='/home/user/models/research/deeplab/exp/soiling_train/vis' \
+--dataset_dir='/home/user/dataset/Soiling_dataset/tfrecord'
+```
+* vis_split:设置为测试集 
+* vis_crop_size:设置1080,1920为图片的大小 
+* dataset:设置为我们在
+* data_generator.py文件设置的数据集名称 
+* dataset_dir:设置为创建的TFRecord 
+* colormap_type:可视化标注的颜色可到目录deeplab/exp/soiling_train/vis下查看可视化结果
+
+## 2.5 性能评估
+
+```sh
+python3 ~/models/research/deeplab/eval.py \ 
+--logtostderr \
+--eval_split="val" \
+--model_variant="xception_65" \
+--atrous_rates=6 \
+--atrous_rates=12 \
+--atrous_rates=18 \
+--output_stride=16 \
+--decoder_output_stride=4 \
+--eval_crop_size=1080,1920\
+--dataset="soiling_dataset" \ 
+--checkpoint_dir='/home/user/models/research/deeplab/exp/soiling_train/train'\
+--eval_logdir='/home/user/models/research/deeplab/exp/soiling_train/eval' \
+--dataset_dir='/home/user/Desktop/Soiling_dataset/tfrecord' \ 
+--max_number_of_evaluations=1
+```
+
+* eval_split:设置为测试集 
+* crop_size:同样设置为1080和1920 
+* dataset:设置为soiling_dataset
+* dataset_dir:设置为我们创建的数据集
+
+查看mIoU值:
+```sh
+tensorboard --logdir /home/user/models/research/deeplab/exp/soiling_train/eval --host=127.0.0.1 #解决打开6006的问题
+```
+查看训练过程的loss:
+```sh
+tensorboard --logdir /home/user/models/research/deeplab/exp/soiling_train/train
+```
+# 3 导出网络
+
+```sh
+python3 ~/models/research/deeplab/export_model.py \ 
+--checkpoint_path='/home/user/models/research/deeplab/exp/soiling_train/model.ckpt-200967' \ #选择训练后的ckpt文件，后面的数字代码训练次数
+--export_path='/home/user/Desktop/labeled_ubuntu/output_model/frozen_inference_graph_20w_5_30.pb' \
+--model_variant="xception_65" \
+--atrous_rates=6 \
+--atrous_rates=12 \
+--atrous_rates=18 \
+--output_stride=16 \
+--decoder_output_stride=4 \
+--eval_crop_size=1080,1920\
+--dataset="soiling_dataset" \ 
+--inference_scales=1.0
+```
+ 
+* 导出后在那个文件下压缩一下
+```
+tar -zvcf pb2.tar.gz frozen_inference_graph_20w_5_30.pb
+```
+
+* 测试图片
+``` python3 '/home/user/Desktop/labeled_ubuntu/dataset_train/test_picture.py'```
