@@ -523,3 +523,10 @@ tar -zvcf pb2.tar.gz frozen_inference_graph_20w_5_30.pb
 
 * 测试图片
 ``` python3 '/home/user/Desktop/labeled_ubuntu/dataset_train/test_picture.py'```
+
+# 4 结果
+
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/results.png)
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/results2.png)
+
+
