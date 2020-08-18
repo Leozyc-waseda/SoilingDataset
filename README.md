@@ -497,6 +497,8 @@ tensorboard --logdir /home/user/models/research/deeplab/exp/soiling_train/eval -
 ```
 
 ![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/miou_5;25_28w.png)
+
+
 查看训练过程的loss:
 ```sh
 tensorboard --logdir /home/user/models/research/deeplab/exp/soiling_train/train
