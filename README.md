@@ -495,10 +495,14 @@ python3 ~/models/research/deeplab/eval.py \
 ```sh
 tensorboard --logdir /home/user/models/research/deeplab/exp/soiling_train/eval --host=127.0.0.1 #解决打开6006的问题
 ```
+
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/miou_5;25_28w.png)
 查看训练过程的loss:
 ```sh
 tensorboard --logdir /home/user/models/research/deeplab/exp/soiling_train/train
 ```
+
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/loss.png)
 # 3 导出网络
 
 ```sh
