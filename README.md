@@ -1,6 +1,7 @@
-# SoilingDataset
+# SoilingDataset 
 Due to the postponement of the release of the woodscape dataset, I plan to create a soiling dataset myself for research.
 
+# Deeplabv3+ train your own dataset
 
 #  1 数据集
 ## 1.1 取得数据
