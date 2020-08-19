@@ -1,6 +1,7 @@
 # SoilingDataset
 Due to the postponement of the release of the woodscape dataset, I plan to create a soiling dataset myself for research.
-# Deeplabv3+ train your own dataset
+
+
 #  1 数据集
 ## 1.1 取得数据
   - 将摄像头装到toyota coms车的后方位置，四个摄像头并排，一起取得图像。其中3个脏的摄像头，一个干净的摄像头（干净的镜头是为了方便以后desoiling，或者用CycleGAN来生成假数据的情况下，需要一个完全干净的图片） 
