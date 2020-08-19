@@ -97,3 +97,5 @@ if __name__ == "__main__":
     print('median_frequency_balancing class_weights:', class_weights)
     class_weights = ENet_weighing(image_files, num_classes=4)
     print('ENet_weighing class_weights:', class_weights)
+
+    
