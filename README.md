@@ -466,6 +466,10 @@ python3 ~/models/research/deeplab/vis.py \
 * dataset_dir:设置为创建的TFRecord 
 * colormap_type:可视化标注的颜色可到目录deeplab/exp/soiling_train/vis下查看可视化结果
 
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/000032_image.png)
+
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/000032_prediction.png)
+
 ## 2.5 性能评估
 
 ```sh
