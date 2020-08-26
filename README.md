@@ -188,7 +188,21 @@ deeplab的官方给出了去掉```colormap```的程序，在```~/models/research
 #在自己的dataset文件下
 $ cd `~/Desktop/Soiling_dataset/
 #SegmentationClassPNG-raw文件夹下面就是我们训练需要用上的灰度图
-$ python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py -- original_gt_folder dataset_train/data_dataset_voc/SegmentationClassPNG -- output_dir dataset_train/data_dataset_voc/SegmentationClassPNG-raw
+$ cd ~/Desktop/labeled_ubuntu/dataset_train
+1
+python3 labelme2voc.py train_annotated train_dataset_voc --labels labels.txt
+
+2
+python3 labelme2voc.py val_annotated val_dataset_voc --labels labels.txt
+
+3
+python3 labelme2voc.py test_annotated test_dataset_voc --labels labels.txt
+
+   python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py --original_gt_folder train_dataset_voc/SegmentationClassPNG --output_dir train_dataset_voc/SegmentationClassPNG-raw
+
+    python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py --original_gt_folder val_dataset_voc/SegmentationClassPNG --output_dir val_dataset_voc/SegmentationClassPNG-raw
+
+    python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py --original_gt_folder test_dataset_voc/SegmentationClassPNG --output_dir test_dataset_voc/SegmentationClassPNG-raw
 ```
 2. 同理对测试集的图片也去除```colormap```
 
