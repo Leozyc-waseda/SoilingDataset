@@ -198,11 +198,11 @@ python3 labelme2voc.py val_annotated val_dataset_voc --labels labels.txt
 3
 python3 labelme2voc.py test_annotated test_dataset_voc --labels labels.txt
 
-   python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py --original_gt_folder train_dataset_voc/SegmentationClassPNG --output_dir train_dataset_voc/SegmentationClassPNG-raw
+python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py --original_gt_folder train_dataset_voc/SegmentationClassPNG --output_dir train_dataset_voc/SegmentationClassPNG-raw
 
-    python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py --original_gt_folder val_dataset_voc/SegmentationClassPNG --output_dir val_dataset_voc/SegmentationClassPNG-raw
+python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py --original_gt_folder val_dataset_voc/SegmentationClassPNG --output_dir val_dataset_voc/SegmentationClassPNG-raw
 
-    python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py --original_gt_folder test_dataset_voc/SegmentationClassPNG --output_dir test_dataset_voc/SegmentationClassPNG-raw
+python3 ~/models/research/deeplab/datasets/remove_gt_colormap.py --original_gt_folder test_dataset_voc/SegmentationClassPNG --output_dir test_dataset_voc/SegmentationClassPNG-raw
 ```
 2. 同理对测试集的图片也去除```colormap```
 
