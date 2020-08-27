@@ -603,7 +603,7 @@ cv2.waitKey(0)
 
 ```
 测试图片
-![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/soiling1_10.png.png)
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/soiling1_10.png)
 
 先将图片转换成灰度图片
 ![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/mask_processed.png)
