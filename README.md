@@ -614,5 +614,17 @@ cv2.waitKey(0)
 结合展示,用```test_picture.py```
 ![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/results_draft1.png)
 
-用```test_picture2.py```
+
+用 ```test_picture2.py```
+
+划分成mask结果，
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/mask_resultspng)
+
+
+
+计算结果，
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/soiling_results.png)
+
+
+
 ![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/results_draft2.png)
