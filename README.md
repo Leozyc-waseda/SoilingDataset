@@ -611,3 +611,5 @@ cv2.waitKey(0)
 最后将统计到的像素除以总的像素即得到遮挡率
 ![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/coverage_of_soiling_part.png)
 
+结合展示
+![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/results_draft1.png)
