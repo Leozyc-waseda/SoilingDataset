@@ -16,7 +16,7 @@ For clean image : https://drive.google.com/file/d/1SDPz4WkOex70rRfkQvPiRuDxUPHE6
   - 录制的软件都是由MacBook Pro(2020)完成，其中使用了两个type-c hub防止供电不足导致不能录影，录影软件使用的是Camera Record-Camera Recorder 付费在AppStore里面下载，非常小巧以及稳定，同时录制4个视频画面没有卡顿
 ![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/%E6%88%AA%E5%B1%8F2020-07-12%20%E4%B8%8B%E5%8D%886.11.18.png)
   -  录影规格：30FPS，分辨率是1920，1080
-  -  分三天不同的天气和时间点，驾驶toyota coms，时速大约30km/h; coms绕学校附近一圈，起点：北九工大车库，终点：北九工大车库；每段时间时间约为6分钟左右（绕一圈的时间），每天两次，每次4个视频，最后得到32个视频，每个视频6分钟
+  -  分三天不同的天气和时间点，驾驶toyota coms，时速大约30km/h; coms绕学校附近一圈，起点：车库，终点：车库；每段时间时间约为6分钟左右（绕一圈的时间），每天两次，每次4个视频，最后得到32个视频，每个视频6分钟
  
 ## 1.2 处理数据
 
