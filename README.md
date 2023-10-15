@@ -1,4 +1,6 @@
 # SoilingDataset 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FLeozyc-waseda%2FSoilingDataset&label=VISITORS&countColor=%23263759)
+
 Due to the postponement of the release of the woodscape dataset, I plan to create a soiling dataset myself for research.
 
 For Download SoilingDataset: https://drive.google.com/file/d/1CyVRUuH2HZiozxNh1NllUPgyGjI8O2iY/view?usp=sharing 
@@ -629,7 +631,6 @@ cv2.waitKey(0)
 计算结果，
 ![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/soiling_results.png)
 
-![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FLeozyc-waseda%2FSoilingDataset&label=VISITORS&countColor=%23263759)
 
 
 ![Image text](https://github.com/Leozyc-waseda/SoilingDataset/blob/master/github_images/results_draft2.png)
