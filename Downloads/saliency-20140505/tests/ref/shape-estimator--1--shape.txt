@@ -1,0 +1,13 @@
+0000000.00ms FOAradius            21
+0000000.00ms FoveaRadius          21
+0000000.00ms InputDims            384x256
+0000000.00ms ReadFrame            ../inputs/aircrafts.ppm
+0000000.00ms InputFrameSeries     frame 0
+0000082.90ms CovertShift          (304,112) 5.944mV
+0000082.90ms ShapeEstimator       (304,112) RawVisualCortex:orientation:ori_3(3,6) [Shape]
+0000082.90ms OutputFrameSeries    frame 0
+0000082.90ms WriteRGB             T000000.pnm
+0000132.10ms CovertShift          (96,112) 8.120mV
+0000132.10ms ShapeEstimator       (96,112) RawVisualCortex:orientation:ori_1(3,7) [Shape]
+0000132.10ms OutputFrameSeries    frame 1
+0000132.10ms WriteRGB             T000001.pnm

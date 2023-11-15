@@ -1,0 +1,599 @@
+//      -*- mode: text; fill-column: 70; indent-tabs-mode: nil -*-
+// //////////////////////////////////////////////////////////////////// //
+// The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2001 by the //
+// University of Southern California (USC) and the iLab at USC.         //
+// See http://iLab.usc.edu for information about this project.          //
+// //////////////////////////////////////////////////////////////////// //
+// Major portions of the iLab Neuromorphic Vision Toolkit are protected //
+// under the U.S. patent ``Computation of Intrinsic Perceptual Saliency //
+// in Visual Environments, and Applications'' by Christof Koch and      //
+// Laurent Itti, California Institute of Technology, 2001 (patent       //
+// pending; filed July 23, 2001, following provisional applications     //
+// No. 60/274,674 filed March 8, 2001 and 60/288,724 filed May 4, 2001).//
+// //////////////////////////////////////////////////////////////////// //
+// This file is part of the iLab Neuromorphic Vision C++ Toolkit.       //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is free software; you can   //
+// redistribute it and/or modify it under the terms of the GNU General  //
+// Public License as published by the Free Software Foundation; either  //
+// version 2 of the License, or (at your option) any later version.     //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope  //
+// that it will be useful, but WITHOUT ANY WARRANTY; without even the   //
+// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      //
+// PURPOSE.  See the GNU General Public License for more details.       //
+//                                                                      //
+// You should have received a copy of the GNU General Public License    //
+// along with the iLab Neuromorphic Vision C++ Toolkit; if not, write   //
+// to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,   //
+// Boston, MA 02111-1307 USA.                                           //
+// //////////////////////////////////////////////////////////////////// //
+//
+// Primary maintainer for this file: Rob Peters <rjpeters@klab.caltech.edu>
+// $Id: about-image.dxy 6359 2006-03-13 01:47:10Z rjpeters $
+//
+
+// ######################################################################
+// ######################################################################
+
+/*!
+
+\page about-image About the Image class
+
+\note Some of this documentation was originally written at the time
+that we converted the Image class to have a ref-counted interface and
+moved functionality from member functions to free functions; this is
+the source of references to "new" and "old" styles.
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section refcounting Ref-counting and copy-on-write
+
+\subsection refcounting-overview How ref-counting works, in four parts:
+
+- <tt>Dims</tt> represents the width and height dimensions:
+\code
+struct Dims
+{
+  int const ww; // the width
+  int const hh; // the height
+};
+\endcode
+
+- <tt>ArrayData</tt> encapsulates the management of a 2-D data array
+\code
+template <class T>
+class ArrayData
+{
+  long       itsRefCount; // reference count, is managed by ArrayHandle
+  Dims const itsDims;     // the width and height, fixed at construction
+  T*   const itsData;     // the data array, fixed at construction
+
+public:
+  // ... constructors/destructor omitted
+
+  const T* data()  const { return itsData; } // const version
+        T* dataw()       { return itsData; } // non-const version
+
+  ArrayData* clone() const  { return new ArrayData(*this); }
+
+  void incrRefCount() const { ++itsRefCount; }
+
+  long decrRefCount() const { return (--itsRefCount); }
+
+  bool isShared() const     { return (itsRefCount > 1); }
+};
+\endcode
+
+- <tt>ArrayHandle</tt> offers ref-counted, copy-on-write access to ArrayData
+\code
+template <class T>
+class ArrayHandle
+{
+  ArrayData<T>* px; // pointer to our data
+
+public:
+  // ... constructors/destructor omitted
+
+  // REF-COUNTING:
+
+  ArrayHandle(const ArrayHandle& other) :
+    px(other.px)
+  {
+    px->incrRefCount(); // just share other's data, and bump the ref-count
+  }
+
+  ~ArrayHandle()
+  {
+    if (px->decrRefCount() == 0) // drop the ref-count, and if we were the
+                                 // last user, then delete the ArrayData
+      delete px;
+  }
+
+  // COPY-ON-WRITE:
+
+  const ArrayData<T>& get() const
+  {
+    return *px;                  // const version just returns the ArrayData
+  }
+
+  ArrayData<T>& uniq()
+  {
+    if (px->isShared())         // non-const version checks if the ArrayData
+                                // is shared, and makes a fresh copy if needed
+      {
+        *this = ArrayHandle(px->clone());
+      }
+
+    return *px;
+  }
+};
+\endcode
+
+- Image wraps an ArrayHandle, and offers an expanded interface:
+\code
+template <class T>
+class Image
+{
+  ArrayHandle<T> itsHdl;
+
+  const ArrayData<T>& impl() const { return itsHdl.get(); }
+        ArrayData<T>& uniq()       { return itsHdl.uniq(); }
+
+public:
+  int getWidth() const { return impl().w(); }
+  int getHeight() const { return impl().h(); }
+
+  void setVal(int index, const T value)
+  {
+    uniq().dataw()[index] = value;
+  }
+};
+\endcode
+
+\subsection refcounting-syntax Ref-counting usage syntax
+
+- Since copying is cheap, an Image<T> can be the return value of a
+  function...
+\code
+template <class T>void coolFilter(const Image<T>& src, Image<T>& result);
+
+template <class T>
+Image<T> hotFilter(const Image<T>& src);
+
+template <class T>
+void foo(const Image<T>& x)
+{
+  Image<T> coolResult;
+  coolFilter(x, coolResult);
+
+  Image<T> hotResult = hotFilter(x);
+}
+\endcode
+
+- ...and chaining operations is easier:
+\code
+template <class T>
+void foo(const Image<T>& x)
+{
+  Image<T> tmpResult, coolResult;
+  coolFilter1(x, tmpResult);
+  coolFilter2(tmpResult, coolResult);
+
+  Image<T> hotResult = hotFilter2(hotFilter1(x));
+}
+
+\endcode
+
+\subsection refcounting-avoid-copies Ref-counting helps avoid copies
+- We only have to deep copy the data when absolutely necessary.
+  For instance, if we are converting an Image<T> of unknown type to Image<byte>:
+\code
+template <class T>
+void process(const Image<T>& x)
+{
+  Image<byte> xbyte = x; // without ref-counting, this always does a deep copy
+                         // with ref-counting, avoids copying if T is byte
+}
+\endcode
+
+\subsection refcounting-reduce-bugs Ref-counting helps reduce bugs
+- Since memory management is encapsulated
+  within ArrayData and ArrayHandle, "ordinary" functions should not have
+  to call <tt>new[]</tt>/<tt>delete[]</tt> to manage temporary storage
+\code
+template <class T>
+void Image<T>::coolDraw()
+{
+  T* buf = new T[w*h]; // get temporary storage
+
+  // ... fill in buf ...
+
+  T* old = a;          // clean up
+  a = buf;
+  delete [] old;
+}
+
+template <class T>
+void Image<T>::hotDraw()
+{
+  Image<T> tmp;
+
+  // ... fill in tmp ...
+
+  this->swap(tmp);
+  // or
+  *this = tmp;
+}
+
+\endcode
+
+\subsection refcounting-exception-safety Ref-counting helps with exception safety
+- if an exception is thrown while filling in <tt>buf</tt> in
+  <tt>coolDraw()</tt>, then we leak memory
+- but if an exception is thrown while filling in <tt>tmp</tt> in
+  <tt>hotDraw()</tt>, then <tt>~Image()</tt> will clean up <tt>tmp</tt> for us
+
+\subsection refcounting-gotchas Ref-counting "gotchas"
+- non-const functions must check uniqueness each time they are called
+- in particular, it is not especially efficient to call Image::setVal() in
+  the middle of some inner loop, since
+  - Image::setVal() must check Image::coordsOk() each time it is called, and
+  - Image::setVal() must check uniqueness each time it is called
+- therefore, in time-critical loops, instead of this:
+\code
+Image<float> a;
+for (int y = 0; y < a.getHeight(); ++y)
+  for (int x = 0; x < a.getWidth(); ++x)
+    a.setVal(x,y,42);
+\endcode
+- try this if you like <tt>while</tt> loops:
+\code
+Image<float>::iterator itr = a.beginw(), stop = a.endw();
+while (itr != stop)
+  *itr++ = 42;
+\endcode
+- or this if you like <tt>for</tt> loops:
+\code
+for(Image<float>::iterator itr = a.beginw(), stop = a.endw();
+    itr != stop;
+    ++itr)
+  {
+    *itr = 42;
+  }
+\endcode
+
+
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section iterators Image iterators
+
+\subsection iterators-review Quick iterator review
+
+- Iterators act like pointers
+- All standard library containers provide iterators
+\code
+#include <vector>
+#include <iostream>
+
+void foo()
+{
+  std::vector<int> myvec;
+
+  // fill in with some data
+  for (int i = 0; i < 10; ++i)
+    myvec.push_back(i);
+
+  // print out the contents using iterators
+  for (std::vector<int>::const_iterator
+         itr = myvec.begin(),
+         stop = myvec.end();
+       itr != stop;
+       ++itr)
+    {
+      std::cout << *itr << std::endl;
+    }
+}
+\endcode
+
+- Iterators can be used with generic algorithms:
+\code
+template <class Iterator>
+void printContents(Iterator itr, Iterator stop)
+{
+  while (itr != stop)
+    std::cout << *itr++ << std::endl;
+}
+
+void foo()
+{
+  std::vector<int> myvec;
+
+  // ... fill in with some data ...
+
+  // print the contents
+  printContents(myvec.begin(), myvec.end());
+}
+
+\endcode
+
+\subsection image-iterators-version Image iterators: normal and debug versions
+
+- Normal (non-debug) iterators are just pointers:
+\code
+template <class T>
+class Image
+{
+public:
+#ifndef INVT_MEM_DEBUG
+
+  typedef       T*       iterator;
+  typedef const T* const_iterator;
+
+  const_iterator begin() const { return impl().data(); }
+  const_iterator end()   const { return impl().end(); }
+
+        iterator beginw()      { return uniq().dataw(); }
+        iterator endw()        { return uniq().endw(); }
+#endif
+};
+\endcode
+
+- Debug iterators are objects that act like pointers, but check that the
+  pointer is in bounds every time it is dereferenced.
+- To use debug iterators, first <tt>make clean</tt>, then re-run
+  <tt>./configure</tt> with <tt>--enable-mem-debug</tt>, then re-run
+  <tt>make all</tt>.
+
+\code
+template <class T>
+class CheckedIterator                 // a checked iterator class
+{
+  TT* ptr;
+  TT* start;
+  TT* stop;
+
+  // ... ++, --, <, >, <=, >=, +=, -=, all those goodies ...
+
+  TT* operator->() const
+    {
+      CheckedIteratorAux::ck_range_helper(ptr, start, stop);
+      return ptr;
+    }
+  TT& operator*() const
+    {
+      CheckedIteratorAux::ck_range_helper(ptr, start, stop);
+      return *ptr;
+    }
+  TT& operator[](diff_t d) const
+    {
+      CheckedIteratorAux::ck_range_helper(ptr+d, start, stop);
+      return ptr[d];
+    }
+};
+
+template <class T>
+class Image
+{
+public:
+#ifndef INVT_MEM_DEBUG
+  // ... normal iterators ...
+#else
+
+  typedef CheckedIterator<T>             iterator;
+  typedef CheckedIterator<const T> const_iterator;
+
+  const_iterator begin()  const
+    { return const_iterator(impl().data(), impl().end()); }
+
+  const_iterator end()    const
+    { return const_iterator(impl().end(), impl().end()); }
+
+  iterator beginw() { return iterator(uniq().dataw(), uniq().endw()); }
+  iterator endw()   { return iterator(uniq().endw(), uniq().endw()); }
+
+#endif
+}
+\endcode
+
+- Iterators in use with handmade loops:
+\code
+template<class T>
+void Image<T>::clear(const T& val)
+{
+  for (Image<T>::iterator itr = this->beginw(), stop = this->endw();
+       itr != stop; ++itr)
+    {
+      *itr = val;
+    }
+}
+\endcode
+
+- Iterators in use with STL algorithms:
+\code
+#include <algorithm> // for std::count(), etc.
+#include <numeric> // for std::accumulate(), etc.
+
+template <class T>
+int emptyArea(const Image<T>& img)
+{
+  return std::count(img.begin(), img.end(), T());
+}
+
+template<class T>
+double getMean(const Image<T>& img)
+{
+  const double sum = std::accumulate(img.begin(), img.end(), 0.0);
+
+  return sum / double(img.getSize());
+}
+
+\endcode
+
+
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section free-functions Free functions for image operations
+
+- Almost all image-related functions are free functions, rather than
+  member functions, defined in separate <tt>.H</tt> files. Why do
+  this?
+
+  - The best example is to see the Image class in analogy to the
+    std::vector class. The std::vector class defines only the complete
+    but minimal set of operations needed to use std::vector as a
+    container. Any functions for application-specific <i>uses</i> of
+    the std::vector class would be written as free functions. Likewise,
+    the Image class provides the complete but minimal set of
+    operations needed to use Image as a two-dimensional array of
+    values; any domain-specific <i>uses</i> of the Image class (such
+    as filtering, rescaling, concatenating, arithmetic) are written as
+    free functions.
+  - Since all operations can be coded in terms of iterators, most Image
+    algorithms do not need access to the <tt>private</tt> parts of Image.
+  - In some cases free functions offer a more natural mathematical syntax than
+    member functions.
+  - Keeping unrelated functions in separate files improves logical
+    encapsulation and decreases compile-time dependencies.
+
+<table>
+<tr> <td> <b>File name</b>            <td><b>Contents</b>
+<tr> <td> <tt>Image/All.H</tt>        <td> <tt>\#include</tt>s all other Image-related files
+<tr> <td> <tt>Image/ColorOps.H</tt>   <td> color operations: get/set components, luminance, RGB-YIQ conversions, etc.
+<tr> <td> <tt>Image/FilterOps.H</tt>  <td> <tt>lowPass*(), convolve*(), sepFilter*(),</tt> etc.
+<tr> <td> <tt>Image/MathOps.H</tt>    <td> <tt>absDiff(), average(), takeMax(), RMSerr(),</tt> etc.
+<tr> <td> <tt>Image/Omni.H</tt>       <td> all omni-directional related operations
+<tr> <td> <tt>Image/ShapeOps.H</tt>   <td> <tt>rescale(), downSize(), concat*(), dec*(), int*(), crop()</tt>
+<tr> <td> <tt>Image/Transforms.H</tt> <td> <tt>segmentObject(), dct(), infoFFT(),</tt> etc.
+</table>
+
+\subsection free-functions-syntax Free function syntax examples
+
+\code
+void oldFoo(const Image<float>& x)
+{
+  Image<float> filtered = x;
+  filtered.lowPass3(true, true);
+}
+
+#include "Image/FilterOps.H"
+
+void newFoo(const Image<float>& x)
+{
+  Image<float> filtered = lowPass3(x, true, true);
+}
+\endcode
+
+\code
+void oldFoo(const Image<PixRGB<byte> >& x)
+{
+  Image<float> lum;
+  x.luminance(lum);
+}
+
+#include "Image/ColorOps.H"
+
+void newFoo(const Image<PixRGB<byte> >& x)
+{
+  Image<float> lum = luminance(x);
+}
+\endcode
+
+\code
+void oldFoo(const Image<byte>& x)
+{
+  Image<float> smaller = x;
+  smaller.rescale(x.getWidth()/2, x.getHeight()/2);
+}
+
+#include "Image/ShapeOps.H"
+
+void newFoo(const Image<byte>& x)
+{
+  Image<float> smaller = rescale(x, x.getWidth()/2, x.getHeight()/2);
+}
+
+\endcode
+
+
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section numericlimits Use of std::numeric_limits
+
+- old:
+\code
+#define BYTEMIN 0
+#define BYTEMAX 255
+#define INT16MIN (-32768)
+#define INT16MAX 32767
+#define INT32MIN (-2147483647)
+#define INT32MAX 2147483647
+#define FLOATMIN -3.40e+38F
+#define FLOATMAX 3.40282347e+38F
+
+void foo(Image<float>& x)
+{
+  x.normalize(BYTEMIN, BYTEMAX);
+}
+\endcode
+
+- new:
+\code
+#include <limits>
+
+void foo(Image<float>& x)
+{
+  x.normalize(std::numeric_limits<byte>::max(),
+              std::numeric_limits<byte>::min());
+}
+\endcode
+
+- Why? It's standard, it's portable, it offers more
+  - <i>can be specialized for user-defined types</i>
+  - get the number of bits used to represent the type
+  - get the range of the exponent for floating-point types
+\code
+#include <limits>
+
+template <class T>
+void foo(const Image<T>& x)
+{
+  if (std::numeric_limits<T>::is_signed)
+    {
+      // do something for a signed type
+    }
+  else
+    {
+      // do something for an unsigned type
+    }
+}
+
+template <class T>
+void bar(const Image<T>& x)
+{
+  if (std::numeric_limits<T>::is_integer)
+    {
+      // do something for an integral type
+    }
+  else
+    {
+      // do something for a floating-point type
+    }
+}
+\endcode
+
+ */

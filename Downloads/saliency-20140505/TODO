@@ -1,0 +1,530 @@
+      -*- mode: outline; fill-column: 70; indent-tabs-mode: nil -*-
+             $Id: TODO 9041 2007-11-24 18:11:28Z rjpeters $
+            $HeadURL: svn://isvn.usc.edu/software/invt/trunk/saliency/TODO $
+
+======================================================================
+
+    This is a temporary holding space for ideas for improving the
+    toolkit. The file is freeform, except it helps keep things looking
+    nice in emacs's outline mode if each entry starts with
+
+        "\n\n* [YYYY-MM-DD] <one-line description of item>"
+
+    If you implement a proposed improvement, just go ahead and delete
+    the entry from this TODO file and commit that change along with
+    the implementation itself.
+
+    If you're adding a new item here, maybe take a look through the
+    existing items and see if there's already one similar to your plan
+    so that you can merge the ideas together.
+
+    If you have a comment or new idea to add to an existing item, just
+    go ahead and add it.
+
+======================================================================
+
+* [2007-11-05] implement fliplr() for Layout
+
+* [2007-11-05] implement VCXNORM_FANCY in integer math
+
+* [2005-11-01] regexp filters for log messages (LINFO, LDEBUG, etc.)
+
+  Allow filters to be applied to filter in, filter out log messages
+
+  Or allow messages to be selected on the basis of their source
+  filename -- that would make it easy to get LDEBUG from only a single
+  source file, without being swamped by lots of irrelevant LDEBUG()s
+  from elsewhere
+
+* [2005-11-01] allow log messages (LINFO, LDEBUG, etc.) to be redirected
+
+  e.g. so we could have log messages going into a status line in a GUI
+  window
+
+* [2008-05-04] Fix lurking crash from late use of OptionManager* in ModelComponent
+
+  ModelComponent is supposed to receive a managerDestroyed() signal
+  from its OptionManager when that manager is destroyed, so that
+  ModelComponent knows to set its rep->mgr = 0 and not use that mgr
+  anymore. But, if somebody forgets to call addSubComponent() on a
+  particular ModelComponent, then that component will not receive the
+  managerDestroyed() call and thus will crash during destruction when
+  it tries to call rep->mgr->unregisterParam().
+
+* [2006-11-14] Merge floating-point and integer channel code
+
+  Issues:
+
+  Do we support both modes within a single class? So that the
+  getOutput() function returns a variant type that might hold either
+  an Image<int> or an Image<float>? Or do we have parallel
+  hierarchies, maybe represented by a template parameter,
+  e.g. ChannelBase<float> and ChannelBase<int>? But even then we still
+  need to be able to select between the two modes at runtime at some
+  point... where is that point? The easiest point would be Brain... so
+  that Brain could hold either a VisualCortex<int> or a
+  VisualCortex<float>, but in that case we still need to access those
+  through some common base class. So maybe ChannelBase stays as a
+  non-template class... in that case, what is its input/output
+  interface?
+
+  Putting the choice of int/float as a template parameter would let us
+  share some of the non-arithmetic source code between the int and
+  float classes, while specializing only the math functions for the
+  two template types.
+
+  Should the template parameters be bare 'int' and 'float', or rather
+  something like 'IntPolicy' and 'FloatPolicy', where the channel
+  would inherit from the policy type and e.g. the IntPolicy type could
+  include the number of precision bits, the scaling factor, etc.
+
+* [2006-09-14] Fix ReichardtPyrBuilder for angle=-M_PI
+
+  somehow the bottom two rows of pyramid data are lost, because
+  sin(angle) has a small negative value (-1e-16), whereas the rows are
+  not lost for angle=M_PI, where sin(angle) is small and positive
+  (1e-16)
+
+  this is an issue with shiftImage()
+
+* [2006-09-14] Move state out of ReichardtPyrBuilder and into DirectionChannel
+
+* [2006-09-06] change getMinMax() to return a Range<T>
+
+* [2006-09-01] setSubmapAlgorithmBiased()
+
+  need to allow OModelParam to change after start()
+
+* [2006-08-25] dependency cycles
+
+  Neuro <-> VFAT due to WinnerTakeAllTempNote
+
+* [2006-08-24] add ParamMap::loadString() and formatString()
+
+* [2006-08-22] clean up SingleChannel
+
+** SingleChannel
+
+   getMean()    Sbqa/ObjectBase.C, Channels/FeatureBiaser.C
+   getSigma()   Channels/FeatureBiaser.C
+   setMean()    Channels/FeatureBiaser.C
+   setSigma()   Channels/FeatureBiaser.C
+
+   getMean()    Channels/SubmapAlgorithmBiased.C
+   getSigmaSq() Channels/SubmapAlgorithmBiased.C
+   setMean()    ObjRec/BayesianBiaser.C
+   setSigmaSq() ObjRec/BayesianBiaser.C
+
+   itsMean        clampCoeffs
+   itsSigma       clampCoeffs
+   itsSigmaSq     clampCoeffs
+
+   itsDMean       clampCoeffs
+   itsDSigmaSq    clampCoeffs
+
+** template matching
+
+   itsTempl; getTempl()
+
+
+* [2006-08-22] clean up ChannelBase
+
+   visualFeature() VisualCortex (channel sorting), ComplexChannel::isHomogeneous()
+   isHomogeneous() used only by Channels/JetFiller with ComplexChannel
+
+** sub-indexing
+
+   getSubmap()  ShapeEstimator, DescriptorVec
+
+   getRawCSmap()  DescriptorVec
+
+   numSubmaps()
+
+** feature biasing
+
+   getFeatures()   many
+
+   getFeaturesBatch()
+
+* [2006-08-10] merge SimTime and rutz::time
+
+* [2006-05-04] avoid all those SingleChannel subclasses
+
+  just use a factory to create the appropriate channel objects
+  instead, since we don't actually override any virtual functions in
+  most of the SingleChannel classes
+
+  src/Channels/BlueChannel.H:class BlueChannel : public SingleChannel
+  src/Channels/BlueYellowChannel.H:class BlueYellowChannel : public SingleChannel
+  src/Channels/ColorBandChannel.H:class ColorBandChannel : public SingleChannel
+  src/Channels/GreenChannel.H:class GreenChannel : public SingleChannel
+  src/Channels/IntensityChannel.H:class IntensityChannel : public SingleChannel
+  src/Channels/RedChannel.H:class RedChannel : public SingleChannel
+  src/Channels/RedGreenChannel.H:class RedGreenChannel : public SingleChannel
+  src/Channels/SOBlueYellowChannel.H:class SOBlueYellowChannel : public SingleChannel
+  src/Channels/SOGreenRedChannel.H:class SOGreenRedChannel : public SingleChannel
+  src/Channels/SORedGreenChannel.H:class SORedGreenChannel : public SingleChannel
+  src/Channels/SOYellowBlueChannel.H:class SOYellowBlueChannel : public SingleChannel
+  src/Channels/YellowChannel.H:class YellowChannel : public SingleChannel
+
+  src/Channels/ConvolveChannel.H:class ConvolveChannel : public SingleChannel
+  src/Channels/DirectionChannel.H:class DirectionChannel : public SingleChannel
+  src/Channels/DisparityChannel.H:class DisparityChannel : public SingleChannel
+  src/Channels/DummyChannel.H:class DummyChannel : public SingleChannel
+  src/Channels/EntropyChannel.H:class EntropyChannel : public SingleChannel
+  src/Channels/FlickerChannel.H:class FlickerChannel : public SingleChannel
+  src/Channels/GaborChannel.H:class GaborChannel : public SingleChannel
+  src/Channels/HueChannel.H:class HueChannel : public SingleChannel
+  src/Channels/InformationChannel.H:class InformationChannel : public SingleChannel
+  src/Channels/JunctionChannel.H:class JunctionChannel : public SingleChannel
+  src/Channels/PN03contrastChannel.H:class PN03contrastChannel : public SingleChannel
+  src/Channels/RGBConvolveChannel.H:class RGBConvolveChannel : public SingleChannel
+  src/Channels/ScorrChannel.H:class ScorrChannel : public SingleChannel
+  src/Channels/TcorrChannel.H:class TcorrChannel : public SingleChannel
+  src/Channels/TemplateMatchChannel.H:class TemplateMatchChannel : public SingleChannel
+  src/Channels/VarianceChannel.H:class VarianceChannel : public SingleChannel
+
+* [2006-03-17] Add OptionManager::setOptionVal<T>() and getOptionVal<T>()
+
+  as convenience functions to call convertFromString or
+  convertToString, followed by setOptionValString or
+  getOptionValString
+
+* [2006-03-02] make src/Image/MorphOps.[HC] from dilate/erode/close
+
+* [2006-02-07] make a type of OModelParam that is also a subcomponent
+
+  this would avoid the need for configurators
+
+  e.g. OModelParamComponent<FrameIstream> for --in
+
+  then rather than having special handling code for --in, we'd just
+  have a convertFromString<FrameIstream> function that parses the
+  string and returns a nub::soft_ref<FrameIstream>
+
+  but inside ModelComponent we'd want these things to be treated as
+  subcomponents, not as parameters
+
+* [2006-02-07] better --help system where we have a single point of documentation for the various convertToString functions
+
+* [2006-02-01] replace sprintf(c,"00000%d") with sprintf(c,"%06d")
+
+* [2005-12-22] Get rid of the 'xv' part of the Raster interface
+
+  Users of that could easily use XWindow, XWinManaged,
+  ImageDisplayStream, or QtDisplayStream instead
+
+  Raster::NoXV()
+  Raster::Display()
+  Raster::waitForKey()
+  Raster::VisuRGB()
+  Raster::VisuGray()
+  Raster::VisuFloat()
+
+* [2005-12-21] Allow 'quietcompile' to specified with 'make all quietcompile=yes'
+
+  I.e., move the final decision from the configure script into the
+  makefile. This allows the user to switch settings without having to
+  re-run the configure script.
+
+* [2005-12-21] Get rid of 'byteswap' parameters, use dedicated VideoFormat values instead
+
+  That way, all relevant information is carried by the VideoFormat
+  value, instead of needing to know a VideoFormat and a separate
+  byteswap flag.
+
+* [2005-12-11] extended command-line option syntax
+
+  Implement a system to allow command-line options to be applied only
+  to a subset of objects. Two ideas:
+
+  (1) Allow --option[tagname]=value, where the option=value would only
+      be applied to the ModelComponent(s) that match 'tagname'. We
+      could allow tagname to be a glob expression or a regular
+      expression. This way you could, from the command-line, specify
+      different parameter values for different objects of the same
+      class.
+
+  (2) Allow --obj-type=SomeType[param1=value1,param2=value2] for the
+      command-line options that control configurators/factories. Those
+      command-line options generally specify a type of object to be
+      constructed. In the extended syntax, we could specify some
+      additional parameter settings that should be immediately applied
+      to the newly-created object (but not to other objects that
+      happen to be of the same type). This could be implemented as a
+      thin wrapper around a new ModelComponent function, setParams(),
+      which would allow for setParams("param1=value1,param2=value2")
+      and would do the appropriate parsing to find the ModelParam for
+      "param1", then call setValString("value1") on it, etc.
+
+  Also, how to handle command-line options for multiple objects of the
+  same type?
+
+    E.g. currently the Serial class can't really usefully use
+    OModelParam's to allow command-line control, because the param
+    names are unique per object, because they incorporate the object's
+    tag name. This allows mulitple Serial objects to coexist, all with
+    different param names.
+
+    We could allow the param names to be fixed, but still uniquely
+    addressable, by allowing the params to be addressed by a dot
+    syntax, e.g. "tagname.paramname"
+
+    This becomes a bit like CSS, where nodes can be selected according
+    to their position within the document object hierarchy.
+
+* [2005-12-11] Should we enforce that "tag names" be unique?
+
+* [2005-12-01] Get rid of ModelOptionDef::exportFlag?
+
+  Can we just use ModelOptionDef::categ instead, to control which
+  options should (not) be exported?
+
+* [2005-11-18] add more GVX_ERR_CONTEXT() calls to provide context for error messages
+
+  see e.g. calls already in Component/ModelManager.C,
+  Component/ModelComponent.C, and Neuro/Brain.C
+
+* [2005-11-15] more screenshot demos
+
+  add more demos to screenshots/defs.txt to illustrate other
+  capabilities of ezvision, e.g.:
+
+  --rescale-input
+  --in=random, --in=colorbars
+  --in-echo
+  --out=hash
+  --out=qt
+  --out=pnm, --out=png
+  update README file
+
+* [2005-11-15] change isSameSize() to use getDims() instead of width,height
+
+  that way classes don't have to always have getWidth() and
+  getHeight() in addition to getDims()
+
+* [2005-11-15] double-check "IGNORED" error messages
+
+  do we really want to be ignoring the error
+
+  or, have a command-line flag to turn LERROR()s into LFATAL()s --
+  sort of like -Werror for gcc
+
+* [2005-11-15] a BEFORE_TIME SimTime constant?
+
+  to replace usages where we use -1 as an ad-hoc indicator for "some
+  time before zero"
+
+* [2005-11-15] check users' ~/.subversion/config
+
+  check if the [auto-props] section is configured to automatically add
+  svn:keywords and svn:eol-style properties to new files that are
+  added to the repository
+
+* [2005-11-15] represent covert/overt positions in floating-point or rational numbers
+
+  scaled to the range [0,1], so that the same coords can apply to any
+  map scale
+
+* [2005-11-15] unified random seed system, for totally reproducible program runs
+
+  all the places that need a random number generator would start from
+  something based off the global seed... e.g. class A could use
+  seed+1, class B could use seed+2
+
+* [2005-11-13] Qt 4 porting is going to be a major headache
+
+  no QApplication::lock() and unlock() functions -- OK, we can get
+  around that with the following approach: wherever we currently need
+  a lock()/unlock(), we instead post an event into the QApplication's
+  event loop, and then wait on a QWaitCondition, and have the event
+  object wake the QWaitCondition when it triggers
+
+  poor source-level compatibility with Qt 3 (lots of things either
+  have to renamed e.g. from QVBox to Q3VBox, or else ported to a
+  similar, but different, class, such as QVBoxLayout)
+
+* [2005-11-11] Fix rgb24_to_yv12_c() to handle odd heights
+
+  see Image/color_conversions.C
+
+* [2005-11-11] Fix yv12_to_rgb24_c() to handle odd widths+heights
+
+  see Image/color_conversions.C
+
+* [2005-11-11] Use mmap() in OutputMPEGStream for avcodec_encode_video()
+
+  see Media/MpegOutputStream.C, specifically writeFrame() -- if we
+  used mmap(), then we'd write the data directly to disk, rather than
+  first to memory and then to disk -- this would especially help in
+  that (1) we wouldn't have to allocate/deallocate buffers for every
+  frame, and (2) we wouldn't have to worry about choosing too small of
+  a buffer size
+
+  issues:
+
+  we'd need to do an lseek() (man 2 lseek) for each writeFrame() to
+  make sure that we have enough room in the file -- so, in theory we
+  still have the buffer size issue, however in practice I think the
+  operating system is smart enough that you can do an lseek() to give
+  yourself 100MB of space in the file, yet the OS doesn't actually use
+  100MB of space on the disk until you actually write something into
+  that space
+
+  at the end, we'd need to do an ftruncate() (man 2 ftruncate) to
+  bring the file back down to its proper size -- chopping off any
+  extra unused space that we'd previously allocated with lseek()
+
+* [2005-10-28] add __attribute__() visibility support for g++ 4.0
+
+  visibility support with g++ 4.0 to improve dynamic load times
+
+  http://gcc.gnu.org/wiki/Visibility
+
+* [2005-10-26] replace sprintf() and snprintf() with sformat()
+
+  avoid potential memory bugs
+
+* [2005-10-26] minimize dependencies in VisualCortexConfigurator
+
+  Change VisualCortexConfigurator to not hold a Beowulf; instead the
+  Beowulf should go in VisualCortexBeo itself.
+
+* [2005-10-11] make flags in Util/log be thread-safe/thread-local
+
+  Should the Util/log flags be thread-local? And/or should they exist
+  in a stack so that the log state can be saved+restored?
+
+* [2005-10-11] fix lurking crashes in ~ModelComponent()
+
+  We have a mess waiting to happen in ~ModelComponent(), where we call
+  stop() which in turn calls virtual functions. Calling virtual
+  functions from within a destructor won't have the desired behavior,
+  since by the time we get into the base class dtor, we've already
+  lost all "derived-ness".
+
+  Usually we get away with this by virtue of the fact that everything
+  is owned by a ModelManager, which sits on the stack in main(), and
+  whose destructor calls stop() on the entire ModelComponent object
+  tree before any of those objects' destructors are called.
+
+* [2005-10-10] don't do threads in constructors/destructors
+
+  Don't call pthread_create() in constructors, nor pthread_join() in
+  destructors. Here's why: http://www.lambdacs.com/cpt/FAQ.html#Q249
+
+  XWinManaged
+  Gyro
+
+  good -- most pthread_create() calls are in start1() or start2()
+
+* [2005-10-10] add missing pthread_join() calls
+
+  bad? -- most places never call pthread_join()
+
+* [2005-09-19] standardize time handling
+
+  Clean up time handling in a few executables to match the std
+  behavior of FrameRange::update()
+
+    beobot-Gist-Sal-Nav
+    test-Gist-Sal-Nav
+    extractMPEGgist
+    test-GistCompare
+
+* [2005-09-19] generic image-stream-processing abstraction
+
+  Make a Processor abstraction, of which Brain would be a subclass, so
+  that we could have a completely generic cmdline like the following
+
+  ./bin/process --in=foo.mpg --processor=StdBrain --out=display
+
+  Or maybe it's more of a "generic image-stream-processing
+  application" class, that would take care of putting a PauseWaiter in
+  the main loop, catching signals, etc., and just feed input frames to
+  a Processor. Also then need to give the Processor a way to send
+  output to an OutputFrameSeries.
+
+* [2005-09-19] "plugin" components
+
+  We have a plugin system in place now; the next step would be to use
+  it more -- e.g., change the configurator classes to use factories,
+  which would then allow them to use plugins. For an example of how
+  plugins and factories can be used, see Media/FrameSeries.C,
+  Component/ComponentFactory.H, Component/Plugin.H, and
+  plugins/FrameOstream/debug.C; all of the above facilitate an
+  --out=debug plugin, in which when the --out=debug is first seen, the
+  factory doesn't know anything about a 'debug' FrameOstream, so it
+  looks for a plugin in lib/invt/plugins/FrameOstream/debug.so,
+  initializes the plugin which in turn registers a 'debug'
+  FrameOstream with the factory, so that we can ultimately return an
+  DebugOstream object from the factory.
+
+  One issue: in order for the plugin sytem to work, we need to always
+  use dynamic-linking (i.e., always use --enable-shlibs). That's
+  because the plugins and the main programs need to link against some
+  of the same code (e.g. the ModelComponent code, the Image code), and
+  we don't want to have two copies of that code loaded in memory, one
+  from the main program and one from the plugin. Note that we aren't
+  strictly dependent on the current form of dynamic linking, where we
+  have one .so file per .C file; we could just as well have one .so
+  file per src subdirectory, and install them as libraries (e.g.,
+  libinvt-Image.so, libinvt-Component.so, etc.).
+
+* [2005-09-19] fix float->byte normalization
+
+  Change float->byte normalization so that we normalize into the range
+  [0..256] instead of [0..255]. As is, with [0..255], the 255 bin is
+  under-filled because it a narrower range of float values feed into
+  it than feed into the 0-254 bins.
+
+* [2005-09-19] support a .txt format for raster files
+
+  Support a .txt format for raster files, which would be like the
+  ascii pnm formats, but without any header material. This would be
+  like matlab's ascii format, where the files just contain the data
+  values, with one row of the matrix per line of the file.
+
+* [2005-09-19] implement Raster read/write operations for .mat files
+
+  Support reading/writing .mat files for matlab interchange.
+
+  Sample code here which could either be linked as an external library
+  or imported into our source tree:
+
+  http://sourceforge.net/projects/jmatio/ (Java, BSD license)
+  http://sourceforge.net/projects/matio/ (C, LGPL license)
+
+* [2005-09-19] more elegant way of populating object factories
+
+  Implement a more elegant way of populating the FrameIstream and
+  FrameOstream factories that are used by InputFrameSeries and
+  OutputFrameSeries. These factories set up the associations between
+  frame series types on the command line and concrete classes (i.e.,
+  so we know that --out=display should construct an
+  ImageDisplayStream, and --in=raster should construct a
+  RasterInputSerires), as well as the associations between file
+  extensions and concrete classes (i.e., so we know that --in=foo.mpg
+  implies an InputMPEGStream).
+
+  Right now all those associations are hard-coded in
+  src/Media/FrameSeries.C. That's a bit ugly since it creates an
+  unneeded dependency from {Input,Output}FrameSeries onto ALL of the
+  concrete subclasses of FrameIstream and FrameOstream.
+
+* [2005-09-19] use package init functions?
+
+  Related to the FrameIstream/FrameOstream factory issue above -- we
+  could be more flexible and have less dependency in certain pieces of
+  code, if we moved the dependencies into the main functions. We could
+  do that by requiring main() functions to call an init
+  function. E.g., rather than hard-coding all the factory types in
+  FrameSeries.C, and hard-coded all of the VisualCortex types in
+  VisualCortexConfigurator, we could have init functions that would
+  populate those factories at run-time. E.g. functions like
+  Media_Init() or Neuro_Init().
+
+* [2005-09-19] write test suite code for the mpeg stream classes
+
+  Add some testsuite code to exercise InputMPEGStream and
+  OutputMPEGStream.

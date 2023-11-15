@@ -1,0 +1,45 @@
+% $Id: Stats.txt 4791 2005-07-04 03:59:10Z itti $
+
+% This is a simple historical record of some of the project statistics.
+
+% Use '%'-style comments so we can load the data array into matlab.
+
+% All execution times are reported in user-seconds of CPU time.
+% For now, CPU times are from a PIII/1GHz/512MB-RAM Linux box
+
+% Legend:
+
+% yyyy mm dd hh    ..  year, month, day-of-month, hour-of-day (24hr-format)
+% wc -l            ..  number of lines of source code from 'wc -l *.[CHch]'
+% ncsl             ..  number of non-blank, non-commented lines of source code
+% make all time    ..  cpu time to execute 'make all'
+% make vision time ..  cpu time to execute 'make ../bin/vision'
+% bbox             ..  number of black-box tests in test suite
+% wbox             ..  number of white-box tests in test suite
+% make test time   ..  cpu time to run test suite with 'make test'
+
+
+%                               make    make   |  number of  make  |                                           |
+%                               all     vision |    tests    test  |         executables sizes (bytes)         |
+% yyyy mm dd hh  wc -l   ncsl   time    time   | bbox  wbox  time  |  vision  pvisionTCP2  beograb  CINNICtest |
+% -------------  -----  -----  -------  ------ | ----  ----  ----- | -------  -----------  -------  ---------- |
+  2001 12 04 17  22930  10912   170.92    0        0     0    0.00    838833       530870   574083     1168489
+  2001 12 05 16  22966  10927   172.97    0       17     0   17.30    840792       530870   575717     1170135
+  2001 12 06 13  23240  11045   126.47    0       17     0   18.58    665220       600215   598544      735525   % changed to separate compilation of templates
+  2001 12 07 11  23591  11294   190.20    0       17     0   17.16    630463       573206   574246      725054   % changed ImageData to use mem functions
+  2001 12 07 19  23825  11377   188.34    0       17     0   18.67    669226       603841   603877      753585   % put copy-on-write in place
+  2001 12 10 17  24396  11495   156.65    0       17     0   15.00    686872       616986   616112      768777   % optimizing for ref-counting
+  2001 12 11 15  24882  11785   153.30    0       17    10   14.64    584732       520814   520916      673101   % moved funcs to FilterOps
+  2001 12 12 15  25508  12034   153.80    0       17    10   14.60    597392       529823   529540      683324
+  2001 12 13 14  25332  11935   152.43    0       17    13   13.96    602466       528451   533022      686771
+  2001 12 13 18  25336  11952   152.43    0       17    13   12.83    603241       528451   533022      686771   % optimized hotspots from profiling
+  2002 01 07 17  29803  13708   174.31    0       17    13   13.05    613121       531263   535866      701427   % merged in new code from src2
+  2002 05 09 13  46422  19717   315.37    0       18    64   13.32    904618       682257   721415      821394
+  2002 05 09 17  46454  19741   301.37    0       18    64   13.40    901218       678561   717271      817538
+  2002 05 23 15  48330  20539   342.42    0       28    75   17.45   1071979       833093   875737      975823   % new test suites, more PixRGB instantiations
+  2003 01 30 11  78605  37006   614.60  215.82    28    84   15.84   1363239      1004144   960639     1102486
+
+%%% So things look consistent in everyone's emacs... %%%
+%%% Local Variables: %%%
+%%% indent-tabs-mode: nil %%%
+%%% End: %%%

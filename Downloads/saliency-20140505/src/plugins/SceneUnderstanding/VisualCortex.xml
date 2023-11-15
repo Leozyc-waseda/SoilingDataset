@@ -1,0 +1,131 @@
+<SimModules>
+
+  <Module>
+    <Name>SimInputFrameSeries</Name>
+    <Location>build/obj/Media/SimFrameSeries.so</Location>
+    <Args>
+      <arg name="timestep" value="1" />
+      <!-- <arg name="in" value="xmlFile:/home/elazary/Images/ETHZShapeClasses-V1.2/XMLFiles/Applelogos.xml" /> -->
+      <!-- <arg name="in" value="xmlFile:/lab/raid/imagedb/ETHZ/ETHZShapeClasses-V1.2/XMLFiles/Applelogos.xml" /> -->
+      
+      <!--     <arg name="in" value="tests/inputs/mpegclip2.mpg" /> -->
+      <!-- <arg name="in" value="ieee1394" />    -->
+
+      <!--
+      <arg name="in" value="V4L" />  
+      <arg name="framegrabber-chan" value="0" />  
+      -->
+
+      <!--     <arg name="in" value="World2D" />  -->
+
+
+      <!-- <arg name="in" value="/home/elazary/Images/ETHZShapeClasses-V1.2/Mugs/wood.jpg" />  -->
+      <!-- <arg name="in" value="/lab/raid/imagedb/ETHZ/ETHZShapeClasses-V1.2/Mugs/witch.jpg" />   -->
+
+      <!-- <arg name="in" value="air2.pnm" />   
+
+      <arg name="input-frames-wrap" value="true" /> 
+      <arg name="input-frames" value="1-1@33" />  -->
+
+    </Args>
+  </Module>
+
+  <!--
+  <Module>
+    <Name>SMap</Name>
+    <Location>lib/invt/plugins/SceneUnderstanding/SMap.so</Location>
+    <Args>
+      <arg name="SMap-debug" value="false" />
+    </Args>
+  </Module>
+  -->
+
+  <Module>
+    <Name>LGN</Name>
+    <Location>lib/invt/plugins/SceneUnderstanding/LGN.so</Location>
+    <Args>
+      <arg name="lgn-debug" value="false" />
+    </Args>
+  </Module>
+
+  <Module>
+    <Name>V1</Name>
+    <Location>lib/invt/plugins/SceneUnderstanding/V1.so</Location>
+    <Args>
+      <arg name="v1-debug" value="false" />
+    </Args>
+  </Module>
+
+  <Module>
+    <Name>V2</Name>
+    <Location>lib/invt/plugins/SceneUnderstanding/V2.so</Location>
+    <Args>
+      <arg name="v2-debug" value="true" />
+    </Args>
+  </Module>
+
+  <!--
+  <Module>
+    <Name>LineFitting</Name>
+    <Location>lib/invt/plugins/SceneUnderstanding/LineFitting.so</Location>
+  </Module>
+  -->
+
+  <!--
+
+  <Module>
+    <Name>Contours</Name>
+    <Location>lib/invt/plugins/SceneUnderstanding/Contours.so</Location>
+    <Args>
+      <arg name="contours-debug" value="false" />
+    </Args>
+  </Module> 
+
+ -->
+
+ <!--
+  <Module>
+    <Name>LineGrouping</Name>
+    <Location>lib/invt/plugins/SceneUnderstanding/LineGrouping.so</Location>
+    <Args>
+      <arg name="linegrouping-debug" value="true" />
+    </Args>
+  </Module> 
+
+  <Module>
+    <Name>TwoHalfDSketch</Name>
+    <Location>lib/invt/plugins/SceneUnderstanding/TwoHalfDSketch.so</Location>
+    <Args>
+      <arg name="twohalfdsketch-debug" value="false" />
+    </Args>
+  </Module> 
+  -->
+
+  <!--
+  <Module>
+    <Name>CornersFeatures</Name>
+    <Location>lib/invt/plugins/SceneUnderstanding/CornersFeatures.so</Location>
+    <Args>
+      <arg name="corners-debug" value="true" />
+    </Args>
+  </Module> 
+
+
+  <Module>
+    <Name>Geons3D</Name>
+    <Location>lib/invt/plugins/SceneUnderstanding/Geons3D.so</Location>
+    <Args>
+      <arg name="geons3d-debug" value="true" />
+    </Args>
+  </Module> 
+  -->
+
+  <Module>
+    <Name>SimOutputFrameSeries</Name>
+    <Location>build/obj/Media/SimFrameSeries.so</Location>
+    <Args>
+      <arg name="out" value="display" />
+    </Args>
+  </Module>
+
+</SimModules>

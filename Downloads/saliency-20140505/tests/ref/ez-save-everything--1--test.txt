@@ -1,0 +1,119 @@
+0000000.00ms FOAradius            20
+0000000.00ms FoveaRadius          20
+0000000.00ms InputDims            320x240
+0000000.00ms ReadFrame            ../inputs/ezframe000000.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000030.00ms ReadFrame            ../inputs/ezframe000001.pnm
+0000030.00ms InputFrameSeries     frame 1
+0000040.00ms OutputFrameSeries    frame 100
+0000040.00ms WriteGray            OBJ000100.pnm
+0000040.00ms WriteRGB             RETIN-000100.pnm
+0000040.00ms WriteRGB             RETOUT-000100.pnm
+0000040.00ms WriteFloat           VCO000100.pfm
+0000040.00ms WriteFloat           COcolor-000100.pnm
+0000040.00ms WriteFloat           SOrg-000100.pnm
+0000040.00ms WriteFloat           SOby-000100.pnm
+0000040.00ms WriteFloat           SOflicker-000100.pnm
+0000040.00ms WriteFloat           SOintensity-000100.pnm
+0000040.00ms WriteFloat           COorientation-000100.pnm
+0000040.00ms WriteFloat           SOori_0-000100.pnm
+0000040.00ms WriteFloat           SOori_1-000100.pnm
+0000040.00ms WriteFloat           SOori_2-000100.pnm
+0000040.00ms WriteFloat           SOori_3-000100.pnm
+0000040.00ms WriteFloat           COmotion-000100.pnm
+0000040.00ms WriteFloat           SOdir_0-000100.pnm
+0000040.00ms WriteFloat           SOdir_1-000100.pnm
+0000040.00ms WriteFloat           SOdir_2-000100.pnm
+0000040.00ms WriteFloat           SOdir_3-000100.pnm
+0000040.00ms WriteFloat           SM000100.pfm
+0000040.00ms WriteFloat           CUMSM000100.pfm
+0000040.00ms WriteFloat           TRM000100.pfm
+0000040.00ms WriteFloat           AGM000100.pfm
+0000040.00ms WriteFloat           WTA000100.pfm
+0000060.00ms ReadFrame            ../inputs/ezframe000002.pnm
+0000060.00ms InputFrameSeries     frame 2
+0000079.40ms CovertShift          (80,112) 5.999mV
+0000079.40ms ShapeEstimator       (80,112) RawVisualCortex:orientation [Shape]
+0000080.00ms OutputFrameSeries    frame 101
+0000080.00ms WriteGray            OBJ000101.pnm
+0000080.00ms WriteRGB             RETIN-000101.pnm
+0000080.00ms WriteRGB             RETOUT-000101.pnm
+0000080.00ms WriteFloat           VCO000101.pfm
+0000080.00ms WriteFloat           COcolor-000101.pnm
+0000080.00ms WriteFloat           SOrg-000101.pnm
+0000080.00ms WriteFloat           SOby-000101.pnm
+0000080.00ms WriteFloat           SOflicker-000101.pnm
+0000080.00ms WriteFloat           SOintensity-000101.pnm
+0000080.00ms WriteFloat           COorientation-000101.pnm
+0000080.00ms WriteFloat           SOori_0-000101.pnm
+0000080.00ms WriteFloat           SOori_1-000101.pnm
+0000080.00ms WriteFloat           SOori_2-000101.pnm
+0000080.00ms WriteFloat           SOori_3-000101.pnm
+0000080.00ms WriteFloat           COmotion-000101.pnm
+0000080.00ms WriteFloat           SOdir_0-000101.pnm
+0000080.00ms WriteFloat           SOdir_1-000101.pnm
+0000080.00ms WriteFloat           SOdir_2-000101.pnm
+0000080.00ms WriteFloat           SOdir_3-000101.pnm
+0000080.00ms WriteFloat           SM000101.pfm
+0000080.00ms WriteFloat           CUMSM000101.pfm
+0000080.00ms WriteFloat           TRM000101.pfm
+0000080.00ms WriteFloat           AGM000101.pfm
+0000080.00ms WriteFloat           WTA000101.pfm
+0000090.00ms ReadFrame            ../inputs/ezframe000003.pnm
+0000090.00ms InputFrameSeries     frame 3
+0000120.00ms OutputFrameSeries    frame 102
+0000120.00ms WriteGray            OBJ000102.pnm
+0000120.00ms WriteRGB             RETIN-000102.pnm
+0000120.00ms WriteRGB             RETOUT-000102.pnm
+0000120.00ms WriteFloat           VCO000102.pfm
+0000120.00ms WriteFloat           COcolor-000102.pnm
+0000120.00ms WriteFloat           SOrg-000102.pnm
+0000120.00ms WriteFloat           SOby-000102.pnm
+0000120.00ms WriteFloat           SOflicker-000102.pnm
+0000120.00ms WriteFloat           SOintensity-000102.pnm
+0000120.00ms WriteFloat           COorientation-000102.pnm
+0000120.00ms WriteFloat           SOori_0-000102.pnm
+0000120.00ms WriteFloat           SOori_1-000102.pnm
+0000120.00ms WriteFloat           SOori_2-000102.pnm
+0000120.00ms WriteFloat           SOori_3-000102.pnm
+0000120.00ms WriteFloat           COmotion-000102.pnm
+0000120.00ms WriteFloat           SOdir_0-000102.pnm
+0000120.00ms WriteFloat           SOdir_1-000102.pnm
+0000120.00ms WriteFloat           SOdir_2-000102.pnm
+0000120.00ms WriteFloat           SOdir_3-000102.pnm
+0000120.00ms WriteFloat           SM000102.pfm
+0000120.00ms WriteFloat           CUMSM000102.pfm
+0000120.00ms WriteFloat           TRM000102.pfm
+0000120.00ms WriteFloat           AGM000102.pfm
+0000120.00ms WriteFloat           WTA000102.pfm
+0000120.00ms ReadFrame            ../inputs/ezframe000004.pnm
+0000120.00ms InputFrameSeries     frame 4
+0000150.00ms ReadFrame            ../inputs/ezframe000005.pnm
+0000150.00ms InputFrameSeries     frame 5
+0000153.60ms CovertShift          (288,144) 3.961mV
+0000153.60ms ShapeEstimator       (288,144) RawVisualCortex:orientation [Shape]
+0000160.00ms OutputFrameSeries    frame 103
+0000160.00ms WriteGray            OBJ000103.pnm
+0000160.00ms WriteRGB             RETIN-000103.pnm
+0000160.00ms WriteRGB             RETOUT-000103.pnm
+0000160.00ms WriteFloat           VCO000103.pfm
+0000160.00ms WriteFloat           COcolor-000103.pnm
+0000160.00ms WriteFloat           SOrg-000103.pnm
+0000160.00ms WriteFloat           SOby-000103.pnm
+0000160.00ms WriteFloat           SOflicker-000103.pnm
+0000160.00ms WriteFloat           SOintensity-000103.pnm
+0000160.00ms WriteFloat           COorientation-000103.pnm
+0000160.00ms WriteFloat           SOori_0-000103.pnm
+0000160.00ms WriteFloat           SOori_1-000103.pnm
+0000160.00ms WriteFloat           SOori_2-000103.pnm
+0000160.00ms WriteFloat           SOori_3-000103.pnm
+0000160.00ms WriteFloat           COmotion-000103.pnm
+0000160.00ms WriteFloat           SOdir_0-000103.pnm
+0000160.00ms WriteFloat           SOdir_1-000103.pnm
+0000160.00ms WriteFloat           SOdir_2-000103.pnm
+0000160.00ms WriteFloat           SOdir_3-000103.pnm
+0000160.00ms WriteFloat           SM000103.pfm
+0000160.00ms WriteFloat           CUMSM000103.pfm
+0000160.00ms WriteFloat           TRM000103.pfm
+0000160.00ms WriteFloat           AGM000103.pfm
+0000160.00ms WriteFloat           WTA000103.pfm

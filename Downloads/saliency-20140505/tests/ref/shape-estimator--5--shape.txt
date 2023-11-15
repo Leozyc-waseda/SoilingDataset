@@ -1,0 +1,17 @@
+0000000.00ms FOAradius            21
+0000000.00ms FoveaRadius          21
+0000000.00ms InputDims            384x256
+0000000.00ms ReadFrame            ../inputs/faces.ppm
+0000000.00ms InputFrameSeries     frame 0
+0000081.80ms CovertShift          (112,80) 6.052mV
+0000081.80ms ShapeEstimator       (112,80) SaliencyMap [Shape]
+0000081.80ms OutputFrameSeries    frame 0
+0000081.80ms WriteRGB             T000000.pnm
+0000148.30ms CovertShift          (288,112) 5.650mV
+0000148.30ms ShapeEstimator       (288,112) SaliencyMap [Shape]
+0000148.30ms OutputFrameSeries    frame 1
+0000148.30ms WriteRGB             T000001.pnm
+0000434.90ms CovertShift          (272,160) 0.510mV
+0000434.90ms ShapeEstimator       (272,160) SaliencyMap [Shape]
+0000434.90ms OutputFrameSeries    frame 2
+0000434.90ms WriteRGB             T000002.pnm

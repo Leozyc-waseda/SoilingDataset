@@ -1,0 +1,36 @@
+The data structures for SIFT keypoints are slightly different between
+CPU SIFT and CUDA SIFT.  The orientation vector is bytes in CPU SIFT
+and floats in CUDA SIFT.  Right now I'm setting itsM = score.  I'm not
+sure if that is right.
+
+In CPU SIFT:
+
+  float itsX;                        //!< our x coordinate
+  float itsY;                        //!< our y coordinate
+  float itsS;                        //!< our scale coordinate
+  float itsO;                        //!< our orientation
+  float itsM;                        //!< our DoG magnitude, for sorting
+  std::vector<byte> itsOriFV;        //!< our Ori feature vector
+  std::vector<byte> itsColFV;        //!< our color feature vector
+  float itsOriWeight;                //!< The weight for ori
+  float itsColWeight;                //!< The weight for col
+
+In CUDA SIFT:
+
+typedef struct {
+  float xpos;
+  float ypos;
+  float scale;
+  float sharpness;
+  float edgeness;
+  float orientation;
+  float score;
+  float ambiguity;
+  int match;
+  float match_xpos;
+  float match_ypos;
+  float match_error;
+  float empty[4];
+  float data[128];
+} SiftPoint;
+

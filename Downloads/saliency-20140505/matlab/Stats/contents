@@ -1,0 +1,42 @@
+Added a new directory for statistics programs in matlab. Added all of
+your favorite statistical tests in non-parametric, permutation test
+style. This proceduce removes the need for assumptions of normality,
+equal variance, and balnced designes; however, there is still the
+assumption of independent experimental units. It is faily intuitive,
+and allows for easy construction of different null hypothesis. Only a
+subset of possible tests (those usually performed by parametric
+methods) are performed in these scripts. Reference sets for computing
+P-values are obtained through monte-carlo sampling of possible
+permutations. This is over kill for small sample sizes but is still a
+valid procedure.
+The user can supply a their own test statistic(s) which does not
+invalidate any of these designs, however the null hypothesis will be
+different with different test statitistics and hence the
+interpretation. These test statistics have been chosen because they
+are equivalant statistics (meaning they will give the same p-value) to
+parametric test statistics like 't' and 'F'. 
+
+All concepts in these scripts are from:
+Edington, ES. (1995). Randomization tests. New York, NY:Marcel Dekker inc.
+
+Content: permtest.m : permutation equivalant to a t-test - tested
+against matlab's ttest2 function. Supports tests of direction.
+
+anova1perm.m permutation equivalant to a single factor (1-way) ANOVA -
+tested against matlab anova1.m
+
+anova1repperm.m permutation equivalant to a repeated measures ANOVA -
+verified with a function form the matlab central file exchange
+
+anova2perm.m permutation equivalant to a two factor (2-way) ANOVA,
+with a possible repeated measure in one factor. This scripts returns
+main effects for each factor. As of the time of this text book no
+satisfactory method has been determined for computing an interaction,
+except in the case of a repeated measure, then a P-value for the
+interaction is returned. The two way anova repeated anova was tested
+with a function from the matlab central file exchange, but the unequal
+sizes want to able to be tested. The main effects for the two factor
+anova were tested against matlab anova2 function, however the unequal
+group sizes was not able to be tested.
+
+

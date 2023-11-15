@@ -1,0 +1,236 @@
+
+-XX means individual XX recommends removal
++XX means XX recommends we keep it
+?XX means XX is confused after looking at the source
+
+
+Generally speaking: anything other than ezvision that implements an
+StdBrain should disappear and the functionality should instead be
+moved to various Brain modules so that ezvision would be the
+executable providing this functionality.
+
+The column in brackets just after the filename shows the author who
+originally added the file, along with the revision in which the file
+was added, and a "src2" or "src3" indicating where the file was
+originally added.
+
+AppDevices/app-cam-saccades.C            [   walther@src3-r949 ] -LI [merge with other pan/tilt camera code?]
+AppDevices/test-HSV.C                    [  mundhenk@src3-r2760] -LI [segfaults?] +NM [I'll check this, keep it for now. If I can't make it work I'll chop it off]
+AppDevices/test-ParPort.C                [ kopanathi@src3-r6849] +LI [needs major cleanup]
+AppDevices/test-gyro.C                   [    beobot@src3-r1950] +LI [but where is our gyromouse???]
+AppMedia/app-thumbnail-movies.C          [  rjpeters@src3-r6462] +LI [RJP: also could be merged into a new 'multistream' program]
+AppMedia/test-KalmanFilter.C             [   walther@src3-r2739] +LI [should be in testsuite]
+AppNeuro/app-perceptual-grouping.C       [    vidhya@src3-r4229] ?LI [there is potential here but needs to be followed-up]
+AppNeuro/app-show-filters.C              [   walther@src3-r3063] +LI [or could be made an option of ezvision? move to src/Demo?]
+AppNeuro/test-BPnnet.C                   [      beo1@src3-r1337] +LI [though quite old...]
+AppNeuro/test-SoxChannel.C               [  rjpeters@src3-r1030] +LI [but LFATAL()s]
+
+AppNeuro/test-raomodel.C                 [      itti@src3-r3120] +LI
+
+AppPsycho/runStimMaker.C                 [  mundhenk@src3-r6401] +LI [consolidate with stim-XXX programs]
+AppPsycho/saliencyPath.C                 [  mundhenk@src3-r6382] +LI [move to AppNeuro?]
+AppPsycho/sdlgrab.C                      [      itti@src3-r4098] +LI [move to AppDevices or AppGUI?] [RJP: this could be rolled into 'stream'... I added an SDLdisplayStream class so that we could replace sdlgrab.C with a --sdlgrab option to stream; before that would work we need a mechanism for communicating the framerate/syncing information from the input source to the output destination... we already have FrameIstream::getNaturalFrameTime() but we need an analogous FrameOstream::setDesiredFrameTime()]
+AppPsycho/searcharray.C                  [      itti@src3-r1516] [need to consolidate those]
+AppPsycho/searcharray2.C                 [      itti@src3-r2670]
+AppPsycho/searcharray2d.C                [    vidhya@src3-r2944]
+AppPsycho/searcharray2d_lumin.C          [    vidhya@src3-r4226]
+AppPsycho/videograb.C                    [    beobot@src3-r3202] +LI [move to AppGUI?] [RJP: looks like this is similar to psycho-video in that frames are sent to disk in a separate thread a la Devices/DiskDataStream, so it could be merged into 'stream' with the new --out=bkg-rawvideo option that uses DiskDataStream]
+
+BeoSub/Stereo.C                          [    beobot@src3-r7170] +LI [the whole BeoSub folder is messy but work in progress; I'll see what can be done]
+BeoSub/getH2SV2.C                        [    beobot@src3-r5544]
+BeoSub/test-BeoMap.C                     [    beobot@src3-r6087]
+BeoSub/test-BeoSub.C                     [    beobot@src3-r3435]
+BeoSub/test-BeoSubBallast.C              [    beobot@src3-r4097]
+BeoSub/test-BeoSubBin.C                  [    beobot@src3-r7145]
+BeoSub/test-BeoSubCanny.C                [    beobot@src3-r5097]
+BeoSub/test-BeoSubDB.C                   [    beobot@src3-r5353]
+BeoSub/test-BeoSubDecoder.C              [    beobot@src3-r4850]
+BeoSub/test-BeoSubIMU.C                  [    beobot@src3-r4840]
+BeoSub/test-BeoSubIMUFilter.C            [    beobot@src3-r5544]
+BeoSub/test-BeoSubIMUGravity.C           [    beobot@src3-r5302]
+BeoSub/test-BeoSubMotor.C                [      itti@src3-r3443]
+BeoSub/test-BeoSubPIDRot.C               [    beobot@src3-r5544]
+BeoSub/test-BeoSubPipe.C                 [    beobot@src3-r7146]
+BeoSub/test-BeoSubSaliency.C             [    beobot@src3-r5978]
+BeoSub/test-BeoSubSimulator.C            [    beobot@src3-r4480]
+BeoSub/test-BeoSubTaskDecoder.C          [    beobot@src3-r5124]
+BeoSub/test-ColorTracker.C               [    beobot@src3-r5144]
+BeoSub/test-ComplexObject.C              [    beobot@src3-r6042]
+BeoSub/test-Direction.C                  [    beobot@src3-r5441]
+BeoSub/test-EdgeDetect.C                 [    beobot@src3-r6162]
+BeoSub/test-KillSwitch.C                 [    beobot@src3-r5542]
+BeoSub/test-LeakDetector.C               [    beobot@src3-r5435]
+BeoSub/test-MarkerDropper.C              [    beobot@src3-r5544]
+BeoSub/test-SeaBee.C                     [    beobot@src3-r7170]
+BeoSub/test-Skeleton.C                   [    ilab13@src3-r7722]
+BeoSub/test-canny.C                      [    beobot@src3-r3466]
+BeoSub/test-hough.C                      [    beobot@src3-r5985]
+BeoSub/test-sampleH2SV2.C                [    beobot@src3-r4839]
+
+Beobot/BeobotLauncher.C                  [      itti@src3-r4063] [Christian?]
+Beobot/app-build-salObjDB.C              [   siagian@src3-r5892]
+Beobot/app-egomotion.C                   [   siagian@src3-r6316]
+Beobot/beobot-BeobotControl.C            [    beobot@src3-r7068]
+Beobot/beobot-GSnav-dorsal.C             [    beobot@src3-r7671]
+Beobot/beobot-GSnav-master.C             [    beobot@src3-r6890]
+Beobot/beobot-GSnav.C                    [    beobot@src3-r6890]
+Beobot/beobot-Gist-Sal-Nav-master.C      [    beobot@src3-r5504]
+Beobot/beobot-calibrate.C                [    beobot@src3-r5502]
+Beobot/beobot-collectFrames-master.C     [    beobot@src3-r5655]
+Beobot/beobot-collectFrames.C            [    beobot@src3-r5504]
+Beobot/beobot-driveStraight-master.C     [    beobot@src3-r7056]
+Beobot/beobot-followColor-master.C       [    beobot@src3-r7056]
+Beobot/beobot-followColor.C              [    beobot@src3-r7056]
+Beobot/beobot-master.C                   [    beobot@src2-r634 ]
+Beobot/beobot-remote.C                   [    beobot@src3-r5503]
+Beobot/beobot-slave.C                    [    beobot@src2-r634 ]
+Beobot/test-Beobot.C                     [      eric@src2-r418 ]
+Beobot/test-BeobotControl.C              [    beobot@src2-r660 ]
+Beobot/test-Jet.C                        [      eric@src2-r286 ]
+Beobot/test-followColor-master.C         [   zhanshi@src3-r2688]
+Beobot/test-followColor.C                [   zhanshi@src3-r2688]
+Beobot/test-gistNav-lcd.C                [      beo2@src3-r2765]
+Beobot/test-gistNav-master.C             [      beo2@src3-r2765]
+Beobot/test-gistNav.C                    [      beo2@src3-r2765]
+Beobot/test-keyboardGrab.C               [   zhanshi@src3-r2783]
+Beobot/test-roadShape.C                  [     daesu@src3-r2588]
+
+CINNIC/CINNICanova.C                     [  mundhenk@src3-r1904] [Nathan?] +NM [This shouldn't take too long to compile. I can look at chopping off some dead limbs]
+CINNIC/CINNICinteract.C                  [  mundhenk@src3-r1572]
+CINNIC/CINNICstats.C                     [  mundhenk@src3-r820 ]
+CINNIC/CINNICtest.C                      [  mundhenk@src2-r60  ]
+CINNIC/MrGabor.C                         [  mundhenk@src3-r1572]
+CINNIC/MrGabor2.C                        [  mundhenk@src3-r1904]
+CINNIC/PolatSagiTest.C                   [  mundhenk@src3-r1745]
+CINNIC/pointAndFlood.C                   [  mundhenk@src3-r2971]
+CINNIC/runCINNIC2.C                      [  mundhenk@src3-r4528]
+
+CMapDemo/test-SaliencyCMapMT.C           [      lior@src3-r5775] +LI +LE [why not in src/Corba/?] [This should be (and it was), but it created cycles in the dependency due to two directory levels.]
+
+Demo/app-chimpanzee.C                    [      itti@src3-r6808] +LI [may need cleanup?]
+
+Foveator/test-Foveator.C                 [   zhanshi@src3-r2439] +LI [not used now but educational value] [RJP: OK, so should be moved to test suite?]
+
+GA/GAMPIvision.C                         [      bosa@src3-r3550] +LI [not used now but educational value]
+
+GUI/test-ImageDisplay.C                  [   zhanshi@src3-r2803] +LI [RJP: actually, I think we could probable remove ImageDisplay itself... the only place ImageDisplay is used is in Beobot/test-followColor-master.C where we could just use XWinManaged instead]
+
+Gist/extractGist.C                       [   siagian@src3-r4207] +LI [but many of these programs share substantial code which should be consolidated]
+Gist/faceRecognition.C                   [      ilab@src3-r3337]
+Gist/test-FFN.C                          [      ilab@src3-r3337]
+Gist/test-Gist-Sal-Nav.C                 [   siagian@src3-r3898]
+Gist/test-GistCompare.C                  [   siagian@src3-r4965]
+Gist/test-gist.C                         [   siagian@src3-r3874]
+Gist/train-FFN.C                         [   siagian@src3-r4207]
+Gist/train-gist-scenes.C                 [   siagian@src3-r3874]
+Gist/train-gist_headSize.C               [      ilab@src3-r3337]
+Gist/train-gist_headSize2.C              [   siagian@src3-r3898]
+
+HMAX/test-hmax.C                         [     daesu@src2-r177 ] -LI [consolidate all into 1 program]
+HMAX/test-hmax2.C                        [      itti@src3-r871 ] -LI
+HMAX/test-hmax3.C                        [     daesu@src3-r1561] -LI
+HMAX/test-hmax4.C                        [      itti@src3-r2502] -LI
+HMAX/test-hmaxRec.C                      [      lior@src3-r7607] +LI
+
+INVT/MPIopenvision.C                     [      bosa@src3-r3276] +LI [consolidate]
+INVT/MPIopenvision2.C                    [      bosa@src3-r3292] -LI
+INVT/MPIopenvision3.C                    [      bosa@src3-r3444] -LI
+INVT/StereoVision.C                      [      ilab@src3-r3337] +LI [but does it work? generalize to a dual-input-stream ezvision] [RJP: re: multiple input streams, it would be nice to have a way to address individual objects with command-line options so that we could configure the streams separately; one way would be to clone the ModelOptionDef objects to give a different prefix or suffix to each command-line option; another way would be to have a generic syntax for restricting a command-line option to objects with a given tagname, e.g. --in[stream1]=file1.mpg, --in[stream2]=v4l]
+INVT/openvision.C                        [      itti@src3-r2713] +LI [consolidate]
+INVT/openvision3.C                       [      bosa@src3-r3507] -LI
+
+Landmark/test-segmentLandmark.C          [    vidhya@src3-r1766] +LI [but looks like it should be updated]
+
+MBARI/test-mbari.C                       [   walther@src3-r1945] +LI [but developing a SimulationViewerMBARI could do the trick it seems]
+
+Matlab/mexSaliencySkin.C                 [   walther@src3-r3709] -LI [consolidate??]
+
+Media/videodiff.C                        [      itti@src3-r3499] +LI [ok but we may want to consider writing a 'multistream' util that would take several streams and apply various operations to them] [RJP: actually it looks like this program 'videodiff' just reads a single stream and computes stats between current+previous frame; this could be implemented as an --out=videodiff option which would accumulate stats and then print info to stdout in stop()]
+
+Nerdcam/lumin.C                          [      itti@src3-r1630] +LI [i think it is being used but could be done in 2 instructions (luminance, average) instead of all that code]
+Nerdcam/nerd-cam-wan.C                   [  mundhenk@src3-r1614] +LI [is that the production code?]
+Nerdcam/nerd-camTCP2-master.C            [  mundhenk@src3-r1731] +LI [but does it work??]
+Nerdcam/nerd-camTCP2.C                   [  mundhenk@src3-r1731] +LI
+
+Parallel/pvision.C                       [      itti@src2-r49  ] -LI
+Parallel/pvisionTCP-master.C             [      itti@src2-r86  ] +LI [but consolidate]
+Parallel/pvisionTCP.C                    [      itti@src2-r86  ]
+Parallel/pvisionTCP2-master.C            [      itti@src2-r180 ]
+Parallel/pvisionTCP2.C                   [      itti@src2-r180 ]
+Parallel/pvisionTCP3-master.C            [      itti@src3-r2862]
+Parallel/pvisionTCP3-nerdcam.C           [      itti@src3-r4153]
+Parallel/pvisionTCP3.C                   [      itti@src3-r2862]
+Parallel/test-beoGrab-master.C           [  mundhenk@src3-r2779] +LI [but does it work? why only 4 cams?]
+Parallel/test-beoGrab.C                  [  mundhenk@src3-r2779] +LI
+
+Qt/app-videoAnnotateQt.cpp               [      itti@src3-r7117] +LI [unfinished but maybe will work some day]
+Qt/test-BeoBotQt.cpp                     [    beobot@src3-r5626] ?LI [does it work?]
+Qt/test-BeoChipQt.cpp                    [      itti@src3-r6496] +LI [unfinished but maybe will work some day]
+Qt/test-BeoSubJoyQt.cpp                  [    beobot@src3-r5228] -LI [obsolete?]
+Qt/test-BeoSubMappingQt.cpp              [    beobot@src3-r5252] -LI [obsolete?]
+Qt/test-BeoSubQt.cpp                     [    beobot@src3-r5080] -LI [obsolete?]
+Qt/test-BeoSubSimuQt.cpp                 [    beobot@src3-r6004] -LI [obsolete?]
+Qt/test-GrabQt.cpp                       [   zhanshi@src3-r4918] ?LI
+Qt/test-ImageQt.cpp                      [   zhanshi@src3-r2849] +LI [semi-educational]
+Qt/test-ModelManagerQt.cpp               [   zhanshi@src3-r3085] +LI [but should be fixed]
+
+RCBot/Motion/test-motion.C               [      lior@src3-r5668] ?LI +LE [Lior? anything not needed?] (need to be moved to FilterOps with no test).
+
+SIFT/test-SIFT.C                         [      lior@src3-r6307] +LI +LE [but may need cleanup? Agreed]
+
+VFAT/NPclassify-test.C                   [  mundhenk@src3-r2349] ?LI [Nathan, could we consolidate?] +NM [ I'll see about consolidating, but there are a whole lot of nifty things here]
+VFAT/fzvision.C                          [  mundhenk@src3-r3243]
+VFAT/fzvision2.C                         [  mundhenk@src3-r5073]
+VFAT/fzvisionTCP3-master.C               [  mundhenk@src3-r4208]
+VFAT/getImageStats.C                     [  mundhenk@src3-r4194]
+VFAT/szvision.C                          [  mundhenk@src3-r4160]
+VFAT/test-NPclassify.C                   [  mundhenk@src3-r2355]
+VFAT/test-NPclassify2.C                  [  mundhenk@src3-r3035]
+VFAT/test-colorSegment.C                 [  mundhenk@src3-r2094]
+VFAT/test-colorSegment2.C                [  mundhenk@src3-r3328]
+VFAT/test-covEstimate.C                  [  mundhenk@src3-r3176]
+VFAT/test-featureNPC.C                   [  mundhenk@src3-r2519]
+VFAT/test-multiTrack.C                   [  mundhenk@src3-r2983]
+VFAT/test-segmentImageMC.C               [  mundhenk@src3-r3434]
+
+ALSO NOTE: These individual source files are not referenced, either
+directly or indirectly, by any programs in depoptions.in, so they
+represent potentially orphaned code.
+
+ArmControl/SaliencyMT.C                  [      lior@src3-r7963] +LE (need cleanup)
+ArmControl/SaliencyMT.H                  [      lior@src3-r7963] +LE
+
+Audio/AudioWavFile.C                     [      itti@src3-r7117] +LI [some day it will be completed]
+
+BeoSub/BeoSubAction.C                    [      itti@src3-r3430]
+BeoSub/BeoSubDepthSensor.C               [      itti@src3-r3433]
+BeoSub/BeoSubTwoBal.C                    [    beobot@src3-r5279]
+
+Beobot/Localizer.C                       [    beobot@src3-r7568]
+Beobot/TopologicalMap.C                  [   siagian@src3-r6949]
+
+CINNIC/ImageMap.H                        [  mundhenk@src2-r202 ]
+
+Channels/DirectFeedChannel.C		 [   walther@src3-r3795] (RJP: this became orphaned after recent removal of some of the matlab code)
+Channels/MultiConvolveChannel.C          [  rjpeters@src3-r4701] -RJP (looks like this was originally added in r2713 to support openvision, but now openvision uses RGBConvolveChannel so nobody is using MultiConvolveChannel at all)
+Channels/SobelChannel.C                  [      lior@src3-r7161] +LE (need to finish) 
+Channels/SobelChannel.H                  [      lior@src3-r7161] +LE (need to finish)
+
+Matlab/MexModelManager.C		 [   walther@src3-r3739] (RJP: this became orphaned after recent removal of some of the matlab code)
+
+Neuro/getSaliency.C			 [   walther@src3-r798 ] (RJP: this became orphaned after recent removal of some of the matlab code -- should we add a test for it in the test suite, or is it superseded by ezvision + various option aliases?)
+
+ObjRec/get-obj.C                         [      lior@src3-r7163] +LE (Simple test)
+
+Psycho/EyeData.H                         [      itti@src3-r7412] +LI [WIP]
+
+Simulation/Simulation.C                  [  rjpeters@src3-r7534] +LI [WIP]
+
+TIGS/BackpropLearner.C                   [  rjpeters@src3-r6105]
+
+Util/mmx-sse-opteron.C                   [  mundhenk@src3-r4147] +LI [can be activated by configure option?] [RJP: not currently; the AC_DEFINE()'s for INVT_USE_MMX, INVT_USE_SSE, and INVT_USE_SSE2 are used to bring in "Util/mmx-sse.H" inside "Image/MathOps.C", but not "Util/mmx-sse-opteron.H"]
+Util/mmx-sse-opteron.H                   [  mundhenk@src3-r4147]
+
+VFAT/TNOobject.C                         [  mundhenk@src3-r4130]
+VFAT/TNOobject.H                         [  mundhenk@src3-r4130]
+VFAT/fCV_STM.C                           [  mundhenk@src3-r3413]

@@ -1,0 +1,307 @@
+
+// //////////////////////////////////////////////////////////////////// //
+// The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2000-2002   //
+// by the University of Southern California (USC) and the iLab at USC.  //
+// See http://iLab.usc.edu for information about this project.          //
+// //////////////////////////////////////////////////////////////////// //
+// Major portions of the iLab Neuromorphic Vision Toolkit are protected //
+// under the U.S. patent ``Computation of Intrinsic Perceptual Saliency //
+// in Visual Environments, and Applications'' by Christof Koch and      //
+// Laurent Itti, California Institute of Technology, 2001 (patent       //
+// pending; application number 09/912,225 filed July 23, 2001; see      //
+// http://pair.uspto.gov/cgi-bin/final/home.pl for current status).     //
+// //////////////////////////////////////////////////////////////////// //
+// This file is part of the iLab Neuromorphic Vision C++ Toolkit.       //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is free software; you can   //
+// redistribute it and/or modify it under the terms of the GNU General  //
+// Public License as published by the Free Software Foundation; either  //
+// version 2 of the License, or (at your option) any later version.     //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope  //
+// that it will be useful, but WITHOUT ANY WARRANTY; without even the   //
+// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      //
+// PURPOSE.  See the GNU General Public License for more details.       //
+//                                                                      //
+// You should have received a copy of the GNU General Public License    //
+// along with the iLab Neuromorphic Vision C++ Toolkit; if not, write   //
+// to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,   //
+// Boston, MA 02111-1307 USA.                                           //
+// //////////////////////////////////////////////////////////////////// //
+//
+// Primary maintainer for this file: Laurent Itti <itti@usc.edu>
+// $Id: modelbuilding.dxy 11684 2009-09-10 22:52:30Z beobot $
+//
+
+
+// ######################################################################
+// ######################################################################
+
+
+/*! \page modelbuilding Building models using the toolkit
+
+<h1>Overview</h1>
+
+A number of facilities are provided to allow easy creation of new
+models. These off-load most of the work involved in having tunable
+persistent parameters in your models and in being able to generate and
+parse command-line options in your executables.
+
+To allow this, a computational model is defined as a managed
+collection of ModelComponent derivative objects. These objects are
+instantiated as a hierachical collection that varies from model to
+model and may also vary within one model through run-time selection of
+certain components or behaviors. ModelComponent provides a basic
+facility for building such hierarchies. In addition, it provides
+facilities for holding a number of ModelParam data members. These are
+persistent parameters, in the sense that their values can be saved to
+a file and later re-loaded from that file (using a ParamMap
+structure).  ModelParam objects typically are private to a model
+component and the hierarchical file format used to store them ensures
+that no conflict between identical parameters across several
+components should occur.  Finally, ModelComponent objects may request
+that some command-line option be created for some of their ModelParam
+members, so that the ModelParam values may be set via the
+command-line. Because typically those options may be shared among a
+variety of ModelComponents (e.g., radius of the focus of attention, or
+verbosity level), there is a single namespace for all the ModelParam
+names that may become valid command-line options (see
+ModelOptionDef.C). So, in order to be exportable as a command-line
+option, a ModelParam should have its name registered in a global list
+of all possible command-line options. When the command-line is parsed,
+all ModelParam objects with maching name will be updated to the value
+supplied in the command-line.
+
+<h1>The bottom-up view</h1>
+
+The following classes are available to implement the above
+functionality.
+
+- ModelParamBase is a base class (that cannot be instantiated directly
+  because it has some virtual methods) for a persistent model
+  parameter. At the base level, such parameter is just defined by its
+  name and the base does not yet hold any data. However, it provides
+  an interface for name access, registration of the parameter with its
+  parent component, and other functionality.
+
+- ModelParam<T> is a template class that derives from
+  ModelParamBase. It adds the actual parameter data as a single
+  instance of a value of type T. When the parameter is saved to a
+  ParamMap, it will appear as a "name value" pair in the file.
+
+- ModelComponent is a base class that facilitates building hierarchies
+  of objects that may hold ModelParam<T> parameters, that may request
+  command-line options, and that may have other ModelComponent
+  derivatives as sub-components.
+
+- ModelManager is a class that facilitates loading/saving of
+  ModelParam values to a config file, run-time generation of a set of
+  command-line options that depends on which options have been
+  requested by the particular collection of ModelComponent objects
+  currently instantiated, parsing of the command-line options and
+  automatic update of the ModelParam<T> contents for those parameters
+  that have been associated with the option, and saving of config
+  files (plus some added functionality).
+
+- ModelOptionDef.C contains a global, shared list of all possible
+  command-line options that may be used by any model in our source
+  tree. When ModelComponent objects request an option to be added to
+  the command-line, it must exist in this list. There are at least
+  three reasons for having such global shared list rather than having
+  each component fully specify all the characteristics of some
+  command-line option it may wish to instantiate:
+    -# it is easier to ensure that two option names will not be used
+       in two different parts of the codebase with different meanings
+    -# it allows several unrelated components to easily share the
+       value specified at the command-line (both components just need
+       to request the correct option name; in comparison, realizing
+       that two options are equal although they have been fully
+       defined in two different objects would require that all
+       meta-information (name, long option name, short option name,
+       description, valid values) match. This would make updates a
+       nightmare (e.g., updating the description of an option that has
+       been used by 25 differnt components defined in 25 separate
+       source files)).
+    -# When you wish to create a new command-line option, it would be
+       nearly impossible to check whether a similar one does not
+       already exist if all the definitions were spread out all over
+       the code.
+
+Below we walk through a typical use of these facilities to build and
+run a computational model that is composed of a run-rime selectable
+collection of ModelComponent derivatives.
+
+<h1>The top-down view and building models</h1>
+
+Typically, building a new model entails the following sequence of
+actions (for a fuller yet simple example, see test-audioGrab.C):
+
+- start a main() function
+
+\code
+int main(const int argc, const char **argv)
+{
+\endcode
+
+- instantiate a ModelManager object. It will be in charge of managing
+  a collection of ModelComponent objects, of loading/saving their
+  persistent data, and of creating and parsing the command-line
+  options depending on the requests of the current collection of
+  components:
+
+\code
+ModelManager manager("My cool model");
+\endcode
+
+- Instantiate a hierarchy of ModelComponent objects. The natural way
+  to do that in this framework is to immediately attach the objects to
+  a SharedPtr. Typically, each ModelComponent object will hold a
+  number of ModelParam persistent data members. In addition,
+  ModelComponent may request that certain command-line options be
+  added to the command-line. This is done by calling
+  ModelManager::requestOption(this, param) where the name of the param
+  must correspond to one of the possible command-line option names
+  defined in the global list in ModelOptionDef.C:
+
+\code
+SharedPtr<MyComponent> mycomp(new MyComponent(manager));
+\endcode
+
+- Register the top-level components with the manager. Upon load/save
+  of parameter files, the manager will invoke the corresponding
+  load/save functions on all its registered components. Those
+  functions are recursive. so that each component will invoke the same
+  function in all of its subcomponents:
+
+\code
+manager.registerComponent(mycomp);
+\endcode
+
+- Once you have registered your hierarchy of components, you may
+  optionally decide which of their internal parameters you wish to
+  export as command-line options; you may do that in batch style using
+  (see ModelOptionDef.H for possible values to use here):
+
+\code
+// Note: this is optional; if you don't do this call explicitly, it
+// will be made automatically (exporting ALL options) just before
+// we start parsing the command line:
+manager.exportOptions(OPTEXP_ALL);
+\endcode
+
+- In addition, if you wish to explicitly export a ModelParam from one
+  of your components as a command-line option (assuming the component
+  has not already done so), you can do that using
+  ModelComponent::doRequestOption() here (this is a recursive call so
+  that it can also turn on option export in deeply nested
+  sub-components that you may not have direct access to):
+
+\code
+mycomp->doRequestOption("MyParamName", true, true, true);
+\endcode
+
+- Parse the command-line, using the ModelManager built-in mechanism.
+  This will update the values of all the requested model options,
+  depending on which ones are specified on the command-line.  The
+  min/max number of expected non-option arguments are passed, along
+  with a text description of what those are, to parseCommandLine(). If
+  an incorrect number of arguments is found, or bogus options are
+  specified, parseCommandLine() will print a usage message and return
+  false. There are several special command-line options that are
+  implemented by the manager itself, including --debug, --test-mode,
+  --load-config-from=file and --save-config-to=file. If the
+  --load-config-from option is encountered during parsing, the config
+  file is loaded and all ModelParam values are updated immediately. So
+  any command-line option specified before the --load-config-file is
+  likely to be overwritten by the values in the config file. Any
+  command-line option specified afterwards, however, will be applied
+  after the config file has been loaded. --save-config-to has no
+  immediate effect. Rather, one should call manager::saveConfig() at
+  some appropriate time (for example, after a successful run of the
+  model), which will automatically save the config file if the option
+  was specified, or be a no-op if the option was not
+  specified. Finally, one last feature is that the manager may attempt
+  to automatically load a config file named "~/.executablename" just
+  before parsing the first option, if it was instructed to do so at
+  construction (by default, all three of these features are on. See
+  the ModelManager constructor for details):
+
+\code
+if (manager.parseCommandLine(argc, argv, "<input.ppm> <output.ppm>",
+                               2, 2) == false) return(1);
+\endcode
+
+- Get the extra non-option arguments:
+
+\code
+int numargs = manager.numExtraArgs();
+std::string infilename = manager.getExtraArg(0);
+std::string outfilename = manager.getExtraArg(1);
+\endcode
+
+- If any additional configuration needs to be made now that the
+  command-line options have been parsed, they should be made
+  here. This may for instance include instantiation of components
+  whose nature is defined at run-time through some command-line
+  option.
+
+- The configuration may be automatically saved if --save-config-to was
+  specified on the command-line (the call below will be a no-op
+  otherwise). The call below is optional, and will be made as part of
+  start() below if it has not been made explicitly:
+
+\code
+// Note: This call is optinal too, and if you don't make it
+// explicitly, it will be made from within start():
+manager.saveConfig();
+\endcode
+
+- Start all the components through a single recursive call. Typically
+  each component will then perform any additional setup that could not
+  be done in its constructor because it depended on command-line or
+  persistent parameter values:
+
+\code
+manager.start();
+\endcode
+
+- Use the model and get some interesting results. Once the model has
+  started, all functions that modify ModelParam<T> values will throw a
+  fatal error if used, so that external people cannot mess with the
+  guts of a ModelComponent once it has started.
+
+- If you need to revert your model to its initial state (e.g., your
+  program runs three independent simulations between the start() and
+  stop() calls), try a:
+
+\code
+manager.reset();
+\endcode
+
+  to reset your model. But check that your various model components
+  indeed do implement reset(), as reset() has been implemented only on
+  a few components to date (since most programs run only one
+  simulation and hence to not need any reset() capability).
+
+- Once done with a simulation, proper termination of the executable
+  starts by recursively stopping all components.
+
+\code
+manager.stop();
+\endcode
+
+- We are now ready for an exit that will destroy the manager and the
+  hierarchy of components.
+
+\code
+return 0;
+}
+\endcode
+
+ */
+
+// ######################################################################
+/* So things look consistent in everyone's emacs... */
+/* Local Variables: */
+/* indent-tabs-mode: nil */
+/* End: */

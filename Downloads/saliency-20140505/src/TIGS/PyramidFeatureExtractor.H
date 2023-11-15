@@ -1,0 +1,76 @@
+/*!@file TIGS/PyramidFeatureExtractor.H Extract topdown features from dyadic pyramids */
+
+// //////////////////////////////////////////////////////////////////// //
+// The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2000-2005   //
+// by the University of Southern California (USC) and the iLab at USC.  //
+// See http://iLab.usc.edu for information about this project.          //
+// //////////////////////////////////////////////////////////////////// //
+// Major portions of the iLab Neuromorphic Vision Toolkit are protected //
+// under the U.S. patent ``Computation of Intrinsic Perceptual Saliency //
+// in Visual Environments, and Applications'' by Christof Koch and      //
+// Laurent Itti, California Institute of Technology, 2001 (patent       //
+// pending; application number 09/912,225 filed July 23, 2001; see      //
+// http://pair.uspto.gov/cgi-bin/final/home.pl for current status).     //
+// //////////////////////////////////////////////////////////////////// //
+// This file is part of the iLab Neuromorphic Vision C++ Toolkit.       //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is free software; you can   //
+// redistribute it and/or modify it under the terms of the GNU General  //
+// Public License as published by the Free Software Foundation; either  //
+// version 2 of the License, or (at your option) any later version.     //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope  //
+// that it will be useful, but WITHOUT ANY WARRANTY; without even the   //
+// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      //
+// PURPOSE.  See the GNU General Public License for more details.       //
+//                                                                      //
+// You should have received a copy of the GNU General Public License    //
+// along with the iLab Neuromorphic Vision C++ Toolkit; if not, write   //
+// to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,   //
+// Boston, MA 02111-1307 USA.                                           //
+// //////////////////////////////////////////////////////////////////// //
+//
+// Primary maintainer for this file: Rob Peters <rjpeters at usc dot edu>
+// $HeadURL: svn://isvn.usc.edu/software/invt/trunk/saliency/src/TIGS/PyramidFeatureExtractor.H $
+// $Id: PyramidFeatureExtractor.H 8295 2007-04-24 21:24:46Z rjpeters $
+//
+
+#ifndef TIGS_PYRAMIDFEATUREEXTRACTOR_H_DEFINED
+#define TIGS_PYRAMIDFEATUREEXTRACTOR_H_DEFINED
+
+#include "Component/ModelParam.H"
+#include "TIGS/FeatureExtractor.H"
+
+class FrameOstream;
+
+/// Extract topdown features from dyadic pyramids
+class PyramidFeatureExtractor : public FeatureExtractor
+{
+public:
+  PyramidFeatureExtractor(OptionManager& mgr);
+
+  virtual ~PyramidFeatureExtractor();
+
+  Image<PixRGB<byte> > illustrate(const TigsInputFrame& fin) const;
+
+  void saveRawIllustrationParts(const TigsInputFrame& fin,
+                                FrameOstream& ofs) const;
+
+  void saveResults(const TigsInputFrame& fin,
+                   FrameOstream& ofs) const;
+
+private:
+  virtual Image<float> doExtract(const TigsInputFrame& fin);
+
+  OModelParam<bool> itsSaveIllustrations;
+  OModelParam<bool> itsSaveRawMaps;
+};
+
+// ######################################################################
+/* So things look consistent in everyone's emacs... */
+/* Local Variables: */
+/* mode: c++ */
+/* indent-tabs-mode: nil */
+/* End: */
+
+#endif // TIGS_PYRAMIDFEATUREEXTRACTOR_H_DEFINED

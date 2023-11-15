@@ -1,0 +1,104 @@
+/** \dir src/Corba
+
+    \brief Classes for Corba functionality
+
+    This is the implementations of Corba for the saliency code.
+
+    What is Corba?
+
+    CORBA is the acronym for Common Object Request Broker
+    Architecture, OMG's open, vendor-independent architecture and
+    infrastructure that computer applications use to work together
+    over networks. Using the standard protocol IIOP, a CORBA-based
+    program from any vendor, on almost any computer, operating system,
+    programming language, and network, can interoperate with a
+    CORBA-based program from the same or another vendor, on almost any
+    other computer, operating system, programming language, and
+    network.
+
+    For more info see 
+    http://www.omg.org/gettingstarted/corbafaq.htm 
+
+    This implementation of corba is called omniorb and was obtained
+    from http://omniorb.sourceforge.net/
+
+src/Corba:  Main directory contains various 
+            utility to deal with corba object as well 
+            as Image functions for transfer.
+
+            MakeIdl: will make the stubs for various idl files
+
+            ImageOrb.idl: idl file to handle the Image class
+
+            ImageOrbUtil.H: utility to convert from an Image class to corba
+               type and vice versa
+
+src/Corba/Objects: Contains the various corba objects
+
+src/tests:   tests the corba objects
+    EchoImage: simple test to echo an image over the network
+
+
+
+for a simple test see Objects/EchoImageServer and
+test/EchoImageClient
+
+after compiling by
+make corba
+
+
+Note that for this example to work the onminames needs to be running and
+configured properly. That is, the /etc/omniORB.cfg needs to be pointing 
+to the same server.
+
+
+
+How To Run The Tests:
+To Run the EchoImage
+
+To run type bin/EchoImageServer on any server (even on the local
+server): The EchoImageServer will register itself with the corba name
+server and then go into daemon mode by detaching from the terminal.
+However if --debug is passed then the server would not detach from the terminal
+and would echo any info messages. 
+
+
+To send the image type EchoImageClinet <image> (where <image> is
+an image file like test.ppm)
+
+for dependency graphs:
+rankdir: TB
+ */
+
+// $HeadURL: svn://iLab.usc.edu/trunk/saliency/src/Component/README.dxy $
+// $Id: README.dxy 5058 2005-07-07 00:00:18Z rjpeters $
+
+// //////////////////////////////////////////////////////////////////// //
+// The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2001 by the //
+// University of Southern California (USC) and the iLab at USC.         //
+// See http://iLab.usc.edu for information about this project.          //
+// //////////////////////////////////////////////////////////////////// //
+// Major portions of the iLab Neuromorphic Vision Toolkit are protected //
+// under the U.S. patent ``Computation of Intrinsic Perceptual Saliency //
+// in Visual Environments, and Applications'' by Christof Koch and      //
+// Laurent Itti, California Institute of Technology, 2001 (patent       //
+// pending; application number 09/912,225 filed July 23, 2001; see      //
+// http://pair.uspto.gov/cgi-bin/final/home.pl for current status).     //
+// //////////////////////////////////////////////////////////////////// //
+// This file is part of the iLab Neuromorphic Vision C++ Toolkit.       //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is free software; you can   //
+// redistribute it and/or modify it under the terms of the GNU General  //
+// Public License as published by the Free Software Foundation; either  //
+// version 2 of the License, or (at your option) any later version.     //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope  //
+// that it will be useful, but WITHOUT ANY WARRANTY; without even the   //
+// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      //
+// PURPOSE.  See the GNU General Public License for more details.       //
+//                                                                      //
+// You should have received a copy of the GNU General Public License    //
+// along with the iLab Neuromorphic Vision C++ Toolkit; if not, write   //
+// to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,   //
+// Boston, MA 02111-1307 USA.                                           //
+// //////////////////////////////////////////////////////////////////// //

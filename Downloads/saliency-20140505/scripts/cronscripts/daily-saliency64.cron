@@ -1,0 +1,86 @@
+#!/bin/sh
+export TDIR=/home/tmp/saliency-$$
+export DOTFONTPATH=.
+export PATH=${PATH}:/usr/bin/X11
+
+mkdir -p $TDIR
+cd $TDIR
+
+# get the code:
+/usr/bin/svn checkout --username anonsvn --password itRocks \
+  svn://isvn.usc.edu/software/invt/trunk/saliency
+
+# go to the active directory:
+cd saliency
+
+# do a configure:
+err=0
+
+ok="OK"
+bad="<EM>BROKEN!</EM>"
+
+echo "<P class=\"sm\">Automatic build started: " `date` "</P><UL>" > BUILD64.inc
+
+echo "<LI><A HREF=\"documentation-dailyconfig64.shtml\">./configure \
+--enable-quietcompile --enable-shlibs</A> -- " >> BUILD64.inc
+echo `date` > CONFIGURE64.inc
+/usr/bin/time ./configure --enable-quietcompile --enable-shlibs >> CONFIGURE64.inc 2>&1
+if [ "0$?" -ne 0 ]; then err=1; msg=$bad; else msg=$ok; fi
+echo "$msg</LI>" >> BUILD64.inc
+
+# do a make all:
+echo "<LI><A HREF=\"documentation-dailymake64.shtml\">make all</A> -- " >> BUILD64.inc
+echo `date` > MAKEALL64.inc
+/usr/bin/time make all >> MAKEALL64.inc 2>&1
+if [ "0$?" -ne 0 ]; then err=1; msg=$bad; else msg=$ok; fi
+echo "$msg</LI>" >> BUILD64.inc
+
+# just in case, do a make test-execs before running the test suite:
+make test-execs
+
+# do a make test: (note: we actually run the test suite directly so that we
+# can get an output in terms of number of tests that failed):
+echo "<LI><A HREF=\"documentation-dailytest64.shtml\">make test</A> -- " >> BUILD64.inc
+echo `date` > MAKETEST64.inc
+cd tests; /usr/bin/time ./run_test_suite.pl >> ../MAKETEST64.inc 2>&1
+ret=$?; cd ..
+if [ "0$ret" -ne 0 ]; then err=1; msg="$bad -- $ret tests failed"; else msg=$ok; fi
+echo "$msg</LI>" >> BUILD64.inc
+
+# do a make testlong:
+echo "<LI><A HREF=\"documentation-dailytestlong64.shtml\">make testlong</A> -- " >> BUILD64.inc
+echo `date` > MAKETESTLONG64.inc
+cd tests; /usr/bin/time ./run_test_suite.pl --long >> ../MAKETESTLONG64.inc 2>&1
+ret=$?; cd ..
+if [ "0$ret" -ne 0 ]; then err=1; msg="$bad -- $ret tests failed"; else msg=$ok; fi
+echo "$msg</LI></UL>" >> BUILD64.inc
+
+# that's it for our nightly build:
+echo "<P class=\"sm\">Automatic build finished: " `date` "</P>" >> BUILD64.inc
+
+# keep a copy of these outputs:
+FILES="CONFIGURE64.inc MAKEALL64.inc MAKETEST64.inc MAKETESTLONG64.inc BUILD64.inc"
+dat=`/bin/date +%y%m%d`
+tar jcvf /lab/packages/logs/compile64.${dat}.tbz $FILES
+/bin/cp /lab/packages/logs/compile64.${dat}.tbz /lab/ilab/7/build64.tbz
+
+# send an email if there was some error:
+if [ "0$err" -ne 0 ]; then
+/bin/mail -s "Error in 64-bit toolkit build - $dat" cvslog@iLab.usc.edu <<EOF
+Greetings -
+
+There was some error in the iLab Neuromorphic Vision C++ Toolkit build
+process on our 64-bit server tonight.  If you get a chance, please see
+the logs at http://ilab.usc.edu/toolkit/documentation.shtml in the
+section on daily diagnostics. If you need to possibly trace back to
+earlier days, please see the archive at http://ilab.usc.edu/packages/logs/
+
+Thanks,
+
+  -- the iLab.usc.edu server
+EOF
+fi
+
+# cleanup:
+cd
+/bin/rm -rf $TDIR

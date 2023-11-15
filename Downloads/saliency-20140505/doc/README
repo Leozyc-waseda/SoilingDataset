@@ -1,0 +1,29 @@
+$HeadURL: svn://isvn.usc.edu/software/invt/trunk/saliency/doc/README $
+$Id: README 4799 2005-07-05 03:23:29Z rjpeters $
+
+This directory is nearly empty by default.
+
+To fill it up, you need to have doxygen and graphviz installed, after
+which you should type:
+
+  make doc
+
+from within saliency/
+
+You can also try:
+
+  make doc-latex
+
+to get a PDF version of the documentation, which will end up in
+saliency/doc/latex/refman.pdf
+
+Once you have completed a 'make doc', you can use saliency/bin/mn to
+get our custom man pages. For example,
+
+  mn Brain
+
+see saliency/README for more information.
+
+
+To get doxygen,  see http://www.doxygen.org
+To get graphviz, see http://www.graphviz.org/

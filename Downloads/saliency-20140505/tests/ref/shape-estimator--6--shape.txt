@@ -1,0 +1,29 @@
+0000000.00ms FOAradius            21
+0000000.00ms FoveaRadius          21
+0000000.00ms InputDims            384x256
+0000000.00ms ReadFrame            ../inputs/sailboats.ppm
+0000000.00ms InputFrameSeries     frame 0
+0000087.70ms CovertShift          (288,128) 5.444mV
+0000087.70ms ShapeEstimator       (288,128) RawVisualCortex:orientation:ori_0(3,7) [Shape]
+0000087.70ms OutputFrameSeries    frame 0
+0000087.70ms WriteRGB             T000000.pnm
+0000088.00ms CovertShift          (272,144) 4.950mV
+0000088.00ms ShapeEstimator       (272,144) RawVisualCortex:orientation:ori_3(4,7) [Shape]
+0000088.00ms OutputFrameSeries    frame 1
+0000088.00ms WriteRGB             T000001.pnm
+0000161.60ms CovertShift          (64,48) 4.943mV
+0000161.60ms ShapeEstimator       (64,48) RawVisualCortex:orientation:ori_2(2,6) [Shape]
+0000161.60ms OutputFrameSeries    frame 2
+0000161.60ms WriteRGB             T000002.pnm
+0000267.10ms CovertShift          (112,96) 2.796mV
+0000267.10ms ShapeEstimator       (112,96) RawVisualCortex:intensity(3,7) [Shape]
+0000267.10ms OutputFrameSeries    frame 3
+0000267.10ms WriteRGB             T000003.pnm
+0000382.10ms CovertShift          (80,144) 2.340mV
+0000382.10ms ShapeEstimator       (80,144) RawVisualCortex:orientation:ori_0(4,7) [Shape]
+0000382.10ms OutputFrameSeries    frame 4
+0000382.10ms WriteRGB             T000004.pnm
+0000650.20ms CovertShift          (240,192) 0.545mV
+0000650.20ms ShapeEstimator       (240,192) RawVisualCortex:color:rg(4,7) [Shape]
+0000650.20ms OutputFrameSeries    frame 5
+0000650.20ms WriteRGB             T000005.pnm

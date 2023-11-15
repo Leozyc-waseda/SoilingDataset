@@ -1,0 +1,25 @@
+The operating system principally used for development of the iLab
+Neuromorphic Vision C++ Toolkit is Mandriva Linux.
+
+The Toolkit also compiles on Mac OS X and on Windows. See the
+programmer-notes (in saliency/doc) for this.
+
+Under Mandriva Linux, a number of packages need to be installed for
+all of the functionality to be available. The package install script 
+is available in this directory with "mandriva<version>_install.sh".
+See programmer-notes in saliency/doc for the basic packages.
+
+There is also a setup script("mandriva<version>_setup.sh") for 
+new Mandriva machine. It will prepare all necessary configuration 
+for Mandriva OS such as setup NIS server and fix some knowing bugs.
+
+In this directory, .spec files are provided to build your own RPMs
+when they are not readily available in mainstream distribution
+sources.
+
+Under Debian run 
+dpkg --set-selections < debian.pkgs
+apt-get dselect-upgrade
+
+Under Ubuntu run
+ubuntu<version>_install.sh

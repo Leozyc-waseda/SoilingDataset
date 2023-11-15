@@ -1,0 +1,1171 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>SSCMainForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>SSCMainForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>617</width>
+            <height>440</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Serial Servo Controller (Mini-SSC II) Interface</string>
+    </property>
+    <widget class="QLayoutWidget">
+        <property name="name">
+            <cstring>layoutBottomBar</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>380</y>
+                <width>598</width>
+                <height>50</height>
+            </rect>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>labelSerDev</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>5</hsizetype>
+                        <vsizetype>0</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>0</width>
+                        <height>30</height>
+                    </size>
+                </property>
+                <property name="text">
+                    <string>Serial Dev</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>lineEditSerDev</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>5</hsizetype>
+                        <vsizetype>0</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>0</width>
+                        <height>30</height>
+                    </size>
+                </property>
+                <property name="text">
+                    <string>/dev/ttyS0</string>
+                </property>
+                <property name="toolTip" stdset="0">
+                    <string>Device used to communicate with SSC</string>
+                </property>
+            </widget>
+            <spacer>
+                <property name="name">
+                    <cstring>spacerSerDev</cstring>
+                </property>
+                <property name="orientation">
+                    <enum>Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                    <enum>Expanding</enum>
+                </property>
+                <property name="sizeHint">
+                    <size>
+                        <width>16</width>
+                        <height>20</height>
+                    </size>
+                </property>
+            </spacer>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>labelBaudrate</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>5</hsizetype>
+                        <vsizetype>0</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>0</width>
+                        <height>30</height>
+                    </size>
+                </property>
+                <property name="text">
+                    <string>BaudRate</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>lineEditBaudrate</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>0</hsizetype>
+                        <vsizetype>0</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>50</width>
+                        <height>30</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>50</width>
+                        <height>32767</height>
+                    </size>
+                </property>
+                <property name="text">
+                    <string>9600</string>
+                </property>
+                <property name="toolTip" stdset="0">
+                    <string>Baudrate used to communicate with SSC, typically 2400 or 9600</string>
+                </property>
+            </widget>
+            <spacer>
+                <property name="name">
+                    <cstring>spacerBaud</cstring>
+                </property>
+                <property name="orientation">
+                    <enum>Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                    <enum>Expanding</enum>
+                </property>
+                <property name="sizeHint">
+                    <size>
+                        <width>16</width>
+                        <height>20</height>
+                    </size>
+                </property>
+            </spacer>
+            <widget class="QRadioButton">
+                <property name="name">
+                    <cstring>radioButtonDec</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>5</hsizetype>
+                        <vsizetype>0</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>0</width>
+                        <height>30</height>
+                    </size>
+                </property>
+                <property name="text">
+                    <string>Dec</string>
+                </property>
+                <property name="checked">
+                    <bool>true</bool>
+                </property>
+                <property name="toolTip" stdset="0">
+                    <string>Click for decimal displays</string>
+                </property>
+            </widget>
+            <widget class="QRadioButton">
+                <property name="name">
+                    <cstring>radioButtonHex</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>5</hsizetype>
+                        <vsizetype>0</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>0</width>
+                        <height>30</height>
+                    </size>
+                </property>
+                <property name="text">
+                    <string>Hex</string>
+                </property>
+                <property name="toolTip" stdset="0">
+                    <string>Click for hexadecimal displays</string>
+                </property>
+            </widget>
+            <spacer>
+                <property name="name">
+                    <cstring>spacerHex</cstring>
+                </property>
+                <property name="orientation">
+                    <enum>Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                    <enum>Expanding</enum>
+                </property>
+                <property name="sizeHint">
+                    <size>
+                        <width>16</width>
+                        <height>20</height>
+                    </size>
+                </property>
+            </spacer>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>pushButtonQuit</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>5</hsizetype>
+                        <vsizetype>0</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>0</width>
+                        <height>30</height>
+                    </size>
+                </property>
+                <property name="cursor">
+                    <cursor>13</cursor>
+                </property>
+                <property name="focusPolicy">
+                    <enum>ClickFocus</enum>
+                </property>
+                <property name="text">
+                    <string>Quit</string>
+                </property>
+                <property name="autoDefault">
+                    <bool>false</bool>
+                </property>
+                <property name="default">
+                    <bool>false</bool>
+                </property>
+                <property name="toolTip" stdset="0">
+                    <string>Click to quit!</string>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBoxAllSSC</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>600</width>
+                <height>370</height>
+            </rect>
+        </property>
+        <property name="sizePolicy">
+            <sizepolicy>
+                <hsizetype>7</hsizetype>
+                <vsizetype>7</vsizetype>
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+            </sizepolicy>
+        </property>
+        <property name="title">
+            <string>Mini-SSC II Controls</string>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layoutAllSSC</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>580</width>
+                    <height>341</height>
+                </rect>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layoutSSC1</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabelSSC1</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>1</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>SSC #1</string>
+                            </property>
+                        </widget>
+                        <widget class="QSlider">
+                            <property name="name">
+                                <cstring>sliderSSC1</cstring>
+                            </property>
+                            <property name="maxValue">
+                                <number>255</number>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="tickmarks">
+                                <enum>Right</enum>
+                            </property>
+                            <property name="tickInterval">
+                                <number>5</number>
+                            </property>
+                        </widget>
+                        <widget class="QLCDNumber">
+                            <property name="name">
+                                <cstring>lCDNumberSSC1</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="margin">
+                                <number>1</number>
+                            </property>
+                            <property name="numDigits">
+                                <number>3</number>
+                            </property>
+                            <property name="segmentStyle">
+                                <enum>Flat</enum>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer1_2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>16</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layoutSSC2</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabelSSC2</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>1</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>SSC #2</string>
+                            </property>
+                        </widget>
+                        <widget class="QSlider">
+                            <property name="name">
+                                <cstring>sliderSSC2</cstring>
+                            </property>
+                            <property name="maxValue">
+                                <number>255</number>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="tickmarks">
+                                <enum>Right</enum>
+                            </property>
+                            <property name="tickInterval">
+                                <number>5</number>
+                            </property>
+                        </widget>
+                        <widget class="QLCDNumber">
+                            <property name="name">
+                                <cstring>lCDNumberSSC2</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="margin">
+                                <number>1</number>
+                            </property>
+                            <property name="numDigits">
+                                <number>3</number>
+                            </property>
+                            <property name="segmentStyle">
+                                <enum>Flat</enum>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer2_3</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>16</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layoutSSC3</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabelSSC3</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>1</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>SSC #3</string>
+                            </property>
+                        </widget>
+                        <widget class="QSlider">
+                            <property name="name">
+                                <cstring>sliderSSC3</cstring>
+                            </property>
+                            <property name="maxValue">
+                                <number>255</number>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="tickmarks">
+                                <enum>Right</enum>
+                            </property>
+                            <property name="tickInterval">
+                                <number>5</number>
+                            </property>
+                        </widget>
+                        <widget class="QLCDNumber">
+                            <property name="name">
+                                <cstring>lCDNumberSSC3</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="margin">
+                                <number>1</number>
+                            </property>
+                            <property name="numDigits">
+                                <number>3</number>
+                            </property>
+                            <property name="segmentStyle">
+                                <enum>Flat</enum>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer3_4</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>16</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layoutSSC4</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabelSSC4</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>1</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>SSC #4</string>
+                            </property>
+                        </widget>
+                        <widget class="QSlider">
+                            <property name="name">
+                                <cstring>sliderSSC4</cstring>
+                            </property>
+                            <property name="maxValue">
+                                <number>255</number>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="tickmarks">
+                                <enum>Right</enum>
+                            </property>
+                            <property name="tickInterval">
+                                <number>5</number>
+                            </property>
+                        </widget>
+                        <widget class="QLCDNumber">
+                            <property name="name">
+                                <cstring>lCDNumberSSC4</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="margin">
+                                <number>1</number>
+                            </property>
+                            <property name="numDigits">
+                                <number>3</number>
+                            </property>
+                            <property name="segmentStyle">
+                                <enum>Flat</enum>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer4_5</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>16</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layoutSSC5</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabelSSC5</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>1</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>SSC #5</string>
+                            </property>
+                        </widget>
+                        <widget class="QSlider">
+                            <property name="name">
+                                <cstring>sliderSSC5</cstring>
+                            </property>
+                            <property name="maxValue">
+                                <number>255</number>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="tickmarks">
+                                <enum>Right</enum>
+                            </property>
+                            <property name="tickInterval">
+                                <number>5</number>
+                            </property>
+                        </widget>
+                        <widget class="QLCDNumber">
+                            <property name="name">
+                                <cstring>lCDNumberSSC5</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="margin">
+                                <number>1</number>
+                            </property>
+                            <property name="numDigits">
+                                <number>3</number>
+                            </property>
+                            <property name="segmentStyle">
+                                <enum>Flat</enum>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer5_6</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>16</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layoutSSC6</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabelSSC6</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>1</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>SSC #6</string>
+                            </property>
+                        </widget>
+                        <widget class="QSlider">
+                            <property name="name">
+                                <cstring>sliderSSC6</cstring>
+                            </property>
+                            <property name="maxValue">
+                                <number>255</number>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="tickmarks">
+                                <enum>Right</enum>
+                            </property>
+                            <property name="tickInterval">
+                                <number>5</number>
+                            </property>
+                        </widget>
+                        <widget class="QLCDNumber">
+                            <property name="name">
+                                <cstring>lCDNumberSSC6</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="margin">
+                                <number>1</number>
+                            </property>
+                            <property name="numDigits">
+                                <number>3</number>
+                            </property>
+                            <property name="segmentStyle">
+                                <enum>Flat</enum>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer6_7</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>16</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layoutSSC7</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabelSSC7</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>1</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>SSC #7</string>
+                            </property>
+                        </widget>
+                        <widget class="QSlider">
+                            <property name="name">
+                                <cstring>sliderSSC7</cstring>
+                            </property>
+                            <property name="maxValue">
+                                <number>255</number>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="tickmarks">
+                                <enum>Right</enum>
+                            </property>
+                            <property name="tickInterval">
+                                <number>5</number>
+                            </property>
+                        </widget>
+                        <widget class="QLCDNumber">
+                            <property name="name">
+                                <cstring>lCDNumberSSC7</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="margin">
+                                <number>1</number>
+                            </property>
+                            <property name="numDigits">
+                                <number>3</number>
+                            </property>
+                            <property name="segmentStyle">
+                                <enum>Flat</enum>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer7_8</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>16</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layoutSSC8</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabelSSC8</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>1</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>SSC #8</string>
+                            </property>
+                        </widget>
+                        <widget class="QSlider">
+                            <property name="name">
+                                <cstring>sliderSSC8</cstring>
+                            </property>
+                            <property name="maxValue">
+                                <number>255</number>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="tickmarks">
+                                <enum>Right</enum>
+                            </property>
+                            <property name="tickInterval">
+                                <number>5</number>
+                            </property>
+                        </widget>
+                        <widget class="QLCDNumber">
+                            <property name="name">
+                                <cstring>lCDNumberSSC8</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="margin">
+                                <number>1</number>
+                            </property>
+                            <property name="numDigits">
+                                <number>3</number>
+                            </property>
+                            <property name="segmentStyle">
+                                <enum>Flat</enum>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </vbox>
+        </widget>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>sliderSSC1</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>lCDNumberSSC1</receiver>
+        <slot>display(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC2</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>lCDNumberSSC2</receiver>
+        <slot>display(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC3</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>lCDNumberSSC3</receiver>
+        <slot>display(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC4</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>lCDNumberSSC4</receiver>
+        <slot>display(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC5</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>lCDNumberSSC5</receiver>
+        <slot>display(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC6</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>lCDNumberSSC6</receiver>
+        <slot>display(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC7</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>lCDNumberSSC7</receiver>
+        <slot>display(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC8</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>lCDNumberSSC8</receiver>
+        <slot>display(int)</slot>
+    </connection>
+    <connection>
+        <sender>pushButtonQuit</sender>
+        <signal>clicked()</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>close()</slot>
+    </connection>
+    <connection>
+        <sender>lineEditBaudrate</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>lineEditBaudrate_textChanged(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC1</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>sliderSSC1_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC2</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>sliderSSC2_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC3</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>sliderSSC3_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC4</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>sliderSSC4_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC5</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>sliderSSC5_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC6</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>sliderSSC6_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC7</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>sliderSSC7_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>sliderSSC8</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>sliderSSC8_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>radioButtonDec</sender>
+        <signal>clicked()</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>radioButtonDec_clicked()</slot>
+    </connection>
+    <connection>
+        <sender>radioButtonHex</sender>
+        <signal>clicked()</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>radioButtonHex_clicked()</slot>
+    </connection>
+    <connection>
+        <sender>lineEditSerDev</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>lineEditSerDev_returnPressed()</slot>
+    </connection>
+    <connection>
+        <sender>lineEditBaudrate</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>lineEditBaudrate_returnPressed()</slot>
+    </connection>
+    <connection>
+        <sender>lineEditSerDev</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>SSCMainForm</receiver>
+        <slot>lineEditSerDev_textChanged(const QString&amp;)</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in declaration">Component/ModelManager.H</include>
+    <include location="local" impldecl="in declaration">Devices/ssc.H</include>
+    <include location="local" impldecl="in implementation">SSCMainForm.ui.h</include>
+</includes>
+<variables>
+    <variable>nub::soft_ref&lt;SSC&gt; ssc;</variable>
+    <variable>ModelManager *manager;</variable>
+    <variable access="private">QString devname;</variable>
+    <variable access="private">QString baud;</variable>
+</variables>
+<slots>
+    <slot>lineEditSerDev_textChanged( const QString &amp; newdevname )</slot>
+    <slot>lineEditBaudrate_textChanged( const QString &amp; newbaud )</slot>
+    <slot>sliderSSC1_valueChanged( int val )</slot>
+    <slot>sliderSSC2_valueChanged( int val )</slot>
+    <slot>sliderSSC3_valueChanged( int val )</slot>
+    <slot>sliderSSC4_valueChanged( int val )</slot>
+    <slot>sliderSSC5_valueChanged( int val )</slot>
+    <slot>sliderSSC6_valueChanged( int val )</slot>
+    <slot>sliderSSC7_valueChanged( int val )</slot>
+    <slot>sliderSSC8_valueChanged( int val )</slot>
+    <slot>radioButtonDec_clicked()</slot>
+    <slot>radioButtonHex_clicked()</slot>
+    <slot>lineEditSerDev_returnPressed()</slot>
+    <slot>lineEditBaudrate_returnPressed()</slot>
+</slots>
+<functions>
+    <function>init( ModelManager * mgr, nub::soft_ref&lt;SSC&gt; thessc )</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

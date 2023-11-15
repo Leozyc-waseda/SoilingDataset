@@ -1,0 +1,4 @@
+#<ModuleName>  <Module> <Extra params>
+Color build/obj/NeovisionII/ObjRec/ColorObjRecBrain.so 
+random build/obj/NeovisionII/ObjRec/RandomObjRecBrain.so 
+hmax build/obj/NeovisionII/ObjRec/HMaxObjRecBrain.so 

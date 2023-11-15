@@ -1,0 +1,1607 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>RT100ControlForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>RT100ControlForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>813</width>
+            <height>725</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>RT100 Arm Control</string>
+    </property>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>12</x>
+                <y>12</y>
+                <width>124</width>
+                <height>410</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Arm Control</string>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout5</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Zed:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>zedVal</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>0</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-3300</number>
+                        </property>
+                        <property name="lineStep">
+                            <number>100</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout6</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Sholder:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>sholderVal</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>2663</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-2773</number>
+                        </property>
+                        <property name="lineStep">
+                            <number>100</number>
+                        </property>
+                        <property name="value">
+                            <number>0</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout7</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Elbow</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>elbowVal</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>2500</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-2900</number>
+                        </property>
+                        <property name="lineStep">
+                            <number>100</number>
+                        </property>
+                        <property name="value">
+                            <number>0</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout8</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_4</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Yaw:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>yawVal</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>1088</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-1104</number>
+                        </property>
+                        <property name="lineStep">
+                            <number>100</number>
+                        </property>
+                        <property name="value">
+                            <number>0</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout9</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_5</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Wrist1:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>wrist1Val</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>4000</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-4000</number>
+                        </property>
+                        <property name="lineStep">
+                            <number>100</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout10</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_6</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Wrist2:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>wrist2Val</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>4000</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-4000</number>
+                        </property>
+                        <property name="lineStep">
+                            <number>100</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout11</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_6_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Gripper:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>gripperVal</cstring>
+                        </property>
+                        <property name="specialValueText">
+                            <string></string>
+                        </property>
+                        <property name="maxValue">
+                            <number>1183</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-500</number>
+                        </property>
+                        <property name="lineStep">
+                            <number>100</number>
+                        </property>
+                        <property name="value">
+                            <number>0</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout12</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_7</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Wrist Tilt:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>wristTiltVal</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>4000</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-4000</number>
+                        </property>
+                        <property name="lineStep">
+                            <number>100</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout11</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel2_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Wrist Roll:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>wristRollVal</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>4000</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-4000</number>
+                        </property>
+                        <property name="lineStep">
+                            <number>100</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>moveMode</cstring>
+                </property>
+                <property name="text">
+                    <string>Move Immediatly</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>moveArmButton</cstring>
+                </property>
+                <property name="text">
+                    <string>Move Arm</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>getJointsPositionButton</cstring>
+                </property>
+                <property name="text">
+                    <string>Get Joint Positions</string>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>140</x>
+                <y>10</y>
+                <width>124</width>
+                <height>410</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Interpolation Move</string>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout22</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_8</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Zed:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>zedInterpolation</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>7</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-8</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout23</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_2_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Sholder:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>sholderInterpolation</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>7</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-8</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout24</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_3_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Elbow</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>elbowInterpolation</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>7</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-8</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout25</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_4_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Yaw:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>yawInterpolation</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>7</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-8</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout26</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_5_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Wrist1:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>wrist1Interpolation</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>7</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-8</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout27</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_6_4</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Wrist2:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>wrist2Interpolation</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>7</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-8</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout28</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_6_2_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Gripper:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>gripperInterpolation</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>7</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-8</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout29</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_7_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Wrist Tilt:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>wristTiltInterpolation</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>7</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-8</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout30</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel2_2_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Wrist Roll:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>wristRollInterpolation</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>7</number>
+                        </property>
+                        <property name="minValue">
+                            <number>-8</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>doInterpolationButton</cstring>
+                </property>
+                <property name="text">
+                    <string>Interpolation Move</string>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox7</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>270</x>
+                <y>10</y>
+                <width>267</width>
+                <height>297</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Manual Move</string>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout34</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <spacer>
+                        <property name="name">
+                            <cstring>spacer3</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>20</width>
+                                <height>21</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel2_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Stop
+(motors
+powered)</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel2_3_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Forward</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel2_3_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Backward</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel2_3_4</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Stop
+(motors 
+unpowered)</string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout33</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_9</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Zed:</string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_4</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout35</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_9_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Sholder:</string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_5</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_2_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_3_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_4_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout36</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_9_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Elbow:</string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_6</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_2_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_3_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_4_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout37</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_9_4</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Yaw:</string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_7</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_2_4</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_3_4</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_4_4</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout38</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_9_5</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Wrist1:</string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_8</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_2_5</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_3_5</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_4_5</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout39</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_9_6</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Wrist2:</string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_9</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_2_6</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_3_6</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_4_6</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout40</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_9_7</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Gripper:</string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_10</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_2_7</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_3_7</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="QRadioButton">
+                        <property name="name">
+                            <cstring>radioButton40_4_7</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout41</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QPushButton">
+                        <property name="name">
+                            <cstring>manualMoveBtn</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Move</string>
+                        </property>
+                    </widget>
+                    <widget class="QPushButton">
+                        <property name="name">
+                            <cstring>allStopBtn</cstring>
+                        </property>
+                        <property name="text">
+                            <string>All Stop</string>
+                        </property>
+                    </widget>
+                    <spacer>
+                        <property name="name">
+                            <cstring>spacer4</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>71</width>
+                                <height>21</height>
+                            </size>
+                        </property>
+                    </spacer>
+                </hbox>
+            </widget>
+        </vbox>
+    </widget>
+    <widget class="QLayoutWidget">
+        <property name="name">
+            <cstring>layout11</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>660</y>
+                <width>616</width>
+                <height>34</height>
+            </rect>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>initArmButton</cstring>
+                </property>
+                <property name="text">
+                    <string>Initalize Arm</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>homeArmButton</cstring>
+                </property>
+                <property name="text">
+                    <string>Home arm</string>
+                </property>
+            </widget>
+            <spacer>
+                <property name="name">
+                    <cstring>spacer7</cstring>
+                </property>
+                <property name="orientation">
+                    <enum>Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                    <enum>Expanding</enum>
+                </property>
+                <property name="sizeHint">
+                    <size>
+                        <width>190</width>
+                        <height>20</height>
+                    </size>
+                </property>
+            </spacer>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>quitButton</cstring>
+                </property>
+                <property name="text">
+                    <string>Quit</string>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QLayoutWidget">
+        <property name="name">
+            <cstring>layout12</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>640</y>
+                <width>616</width>
+                <height>18</height>
+            </rect>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>0</hsizetype>
+                        <vsizetype>0</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="text">
+                    <string>Arm Status:</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>armStatusMsg</cstring>
+                </property>
+                <property name="text">
+                    <string>Not initalized</string>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox4</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>330</y>
+                <width>500</width>
+                <height>191</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Parameters</string>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout32</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>70</y>
+                    <width>410</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>0</number>
+                </property>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parErr</cstring>
+                    </property>
+                    <property name="inputMask">
+                        <string></string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parCuPos</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parErrLimit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parNewPos</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parSpeed</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parKP</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parKI</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parKD</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parDeadBand</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parOffset</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parMaxForce</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parCurrForce</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parAccTime</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>parUserIO</cstring>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout31</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>30</y>
+                    <width>410</width>
+                    <height>35</height>
+                </rect>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Error</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel3_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>CU 
+Pos</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel3_3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Err
+Limit</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel3_4</cstring>
+                    </property>
+                    <property name="text">
+                        <string>New
+Pos</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel3_5</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Speed</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel3_6</cstring>
+                    </property>
+                    <property name="text">
+                        <string>KP</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel3_7</cstring>
+                    </property>
+                    <property name="text">
+                        <string>KI</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel3_8</cstring>
+                    </property>
+                    <property name="text">
+                        <string>KD</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel3_9</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Dead
+Band</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_10_3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Offset</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_10_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Max
+Force</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_10</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Curr
+Force</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_10_4</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Acc
+Time</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_10_5</cstring>
+                    </property>
+                    <property name="text">
+                        <string>User
+IO</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>initArmButton</sender>
+        <signal>clicked()</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>initArm()</slot>
+    </connection>
+    <connection>
+        <sender>homeArmButton</sender>
+        <signal>clicked()</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>homeArm()</slot>
+    </connection>
+    <connection>
+        <sender>moveArmButton</sender>
+        <signal>clicked()</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>moveArm()</slot>
+    </connection>
+    <connection>
+        <sender>zedVal</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>moveZed(int)</slot>
+    </connection>
+    <connection>
+        <sender>sholderVal</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>moveSholder(int)</slot>
+    </connection>
+    <connection>
+        <sender>elbowVal</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>moveElbow(int)</slot>
+    </connection>
+    <connection>
+        <sender>yawVal</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>moveYaw(int)</slot>
+    </connection>
+    <connection>
+        <sender>wrist1Val</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>moveWrist1(int)</slot>
+    </connection>
+    <connection>
+        <sender>wrist2Val</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>moveWrist2(int)</slot>
+    </connection>
+    <connection>
+        <sender>gripperVal</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>moveGripper(int)</slot>
+    </connection>
+    <connection>
+        <sender>getJointsPositionButton</sender>
+        <signal>clicked()</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>getCurrentJointPositions()</slot>
+    </connection>
+    <connection>
+        <sender>quitButton</sender>
+        <signal>clicked()</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>close()</slot>
+    </connection>
+    <connection>
+        <sender>wristRollVal</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>wristRoll(int)</slot>
+    </connection>
+    <connection>
+        <sender>wristTiltVal</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>wristTilt(int)</slot>
+    </connection>
+    <connection>
+        <sender>doInterpolationButton</sender>
+        <signal>clicked()</signal>
+        <receiver>RT100ControlForm</receiver>
+        <slot>doInterpolation()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in declaration">Component/ModelManager.H</include>
+    <include location="local" impldecl="in declaration">Devices/rt100.H</include>
+    <include location="local" impldecl="in implementation">rt100controlForm.ui.h</include>
+</includes>
+<variables>
+    <variable>nub::soft_ref&lt;RT100&gt; itsRT100;</variable>
+    <variable>ModelManager* itsMgr;</variable>
+</variables>
+<slots>
+    <slot>initArm()</slot>
+    <slot>homeArm()</slot>
+    <slot>moveArm()</slot>
+    <slot>moveZed( int val )</slot>
+    <slot>moveSholder( int val )</slot>
+    <slot>moveElbow( int val )</slot>
+    <slot>moveYaw( int val )</slot>
+    <slot>moveWrist1( int val )</slot>
+    <slot>moveWrist2( int val )</slot>
+    <slot>moveGripper( int val )</slot>
+    <slot>getCurrentJointPositions()</slot>
+    <slot>wristRoll( int val )</slot>
+    <slot>wristTilt( int val )</slot>
+    <slot>doInterpolation()</slot>
+</slots>
+<functions>
+    <function>init( ModelManager * mgr, nub::soft_ref&lt;RT100&gt; rt100 )</function>
+</functions>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

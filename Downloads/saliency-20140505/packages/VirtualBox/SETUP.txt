@@ -1,0 +1,55 @@
+Setting up your VirtualBox:
+---------------------------
+
+- Download the VirtualBox program from virtualbox.org and install it
+  on your machine. Different versions of VirtualBox are available
+  which work on Windows, Mac, Linux, etc
+
+- Download the saliency virtual disk image. It contains a full
+  Mandriva 2009 installation plus the pre-compiled and configured
+  saliency software. This image is based on the Mandriva 2009 image
+  found at virtualbox.wordpress.com
+
+- Unpack the saliency virtual image using 7-Zip or similar
+  program. You should now have a single file:
+  saliency-mandriva-2009-x86.vdi
+
+- Start VirtualBox. First go to "File -> Virtual Media Manager"
+
+- Click "Add"
+
+- Select the file saliency-mandriva-2009-x86.vdi that you downloaded
+  and unpacked. Click "Ok".
+
+- Click "New" to create a new virtual machine.
+
+- Pick any name you like, e.g., "Saliency Machine". Select "Operating
+  System: Linux" and "Version: Mandriva". Click "Next".
+
+- Pick your base memory size (512MB should be ok) and click "Next".
+
+- Make sure that saliency-mandriva-2009-x86.vdi is selected as boot
+  hard disk. Click "Next".
+
+- Click "Finish".
+
+- Your Saliency Machine has been created. Depending on your host
+  system, you may now be able to turn additional things on, like audio
+  support, USB support, etc. See the VirtualBox manual for more info.
+
+- Select the Virtual Machine and click the "start" green arrow to
+  start it.
+
+- Once you are booted up, double-click the "saliency-demo.sh" icon to
+  give it a try. 
+
+- Enjoy!
+
+NOTE: I found that when creating a new virtualbox in this way,
+sometimes the network does not work properly upon the first
+boot-up. To correct this, just open up the Mandriva Control Center: go
+to "System -> Administration -> Configure your Computer'. Enter
+'toortoor' for the password. Then, under "Network and Internet", go to
+the "Network Center". Adjust your network settings; often it is
+sufficient to just look at them and click ok, which will restart the
+network.

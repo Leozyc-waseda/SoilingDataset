@@ -1,0 +1,1098 @@
+/*      -*- mode: text; fill-column: 70; indent-tabs-mode: nil -*-
+
+                   ------------------------------------
+                   iLab Neuromorphic Vision C++ Toolkit
+                   ------------------------------------
+
+                             Simulation Events
+                             ----------------
+
+*/
+
+/*! \page simevents Simulation Events
+
+The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2001-2005 by
+the University of Southern California (USC) and iLab at USC.
+
+Major portions of the iLab Neuromorphic Vision C++ Toolkit are
+protected under the U.S. patent ``Computation of Intrinsic Perceptual
+Saliency in Visual Environments, and Applications'' by Christof Koch
+and Laurent Itti, California Institute of Technology, 2001 (patent
+pending; application number 09/912,225 filed July 23, 2001; see
+http://pair.uspto.gov/cgi-bin/final/home.pl for current status)
+
+This file is part of the iLab Neuromorphic Vision C++ Toolkit.
+
+The iLab Neuromorphic Vision C++ Toolkit is free software; you can
+redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation; either
+version 2 of the License, or (at your option) any later version.
+
+The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope
+that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with the iLab Neuromorphic Vision C++ Toolkit; if not, write to
+the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+Boston, MA 02111-1307 USA.
+
+Table of contents:
+
+- \ref Introduction
+- \ref SimEvents 
+- \ref NeuroEvents
+- \ref MediaSimEvents 
+- \ref VisualTracker
+- \ref NeoIISimEvents 
+
+<!--############################################################-->
+
+\section Introduction 1. Introduction
+The purpose of this page is to gather all the SimEvents' definitions
+and usages.
+
+<!--############################################################-->
+
+\section SimEvents 2. Generic Simulation Events 
+Only declare very generic SimEvent derivatives here (basically,
+which may be used by many modules and depend only on very low-level
+things). For more specialized SimEvent derivatives, declare them in
+corresponding files in the appropriate directories. For example,
+Neuro/NeuroSimEvents.H
+
+\subsection SimEventBreak 2.1. SimEventBreak
+Purpose:
+\par
+  Request to break the simulation
+\par
+  Post this and the next SimEventQueue::evolve() we will return with a
+  break status, usually resulting in terminating the simulation.
+
+Defined in:
+\par
+ src/Simulation/SimEvents.H
+
+Handlers in:
+- src/Apps/neo2/ExportPascal.C [127]
+- src/Apps/neo2/KeypointPlugin.C [415]
+- src/Apps/neo2/Validator.C [98]
+
+Posted from:
+- src/Apps/neo2/DBStorage.C [247,306,406,432]
+- src/Apps/neo2/ExtractCudaHMaxPlugin.C [174]
+- src/Apps/neo2/ExtractHMaxPlugin.C [153]
+- src/Media/SimFrameSeries.C [103,228]
+- src/Neuro/TargetChecker.C [119]
+- src/Neuro/WinnerTakeAll.C [203]
+- src/Simulation/SimEventOS.C [231]
+
+Checked from:
+- src/Apps/neo2/NeoAnnotate/GUIAdapter.qt.C [72]
+- src/Simulation/SimEventQueue.C [138]
+
+\subsection SimEventUserWait 2.2. SimEventUserWait
+Purpose:
+\par
+  Wait until user presses RETURN key
+\par
+  A SimModule may post this to request that the simulation be paused
+  until the user presses the RETURN key. For example, this may be used
+  after a bunch of images have been displayed, to give the user the
+  time to examine them before continuing with the simulation. This
+  event is handled directly at the very beginning of
+  SimEventQueue::evolve(), just before we increment the clock. The
+  event is displayed, plus a message to invite the user to press RETURN
+  to continue.
+
+Defined in:
+\par
+  src/Simulation/SimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Media/SimFrameSeries.C [111,221]
+
+Checked from:
+- src/Simulation/SimEventQueue.C [122]
+
+\subsection SimEventShowMemStats 2.3. SimEventShowMemStats
+Purpose:
+\par
+  Requests that memory stats be shown now
+\par
+  A SimModule may post this to request that statistics about memory
+  usage be displayed now. This requires that the user specified
+  --mem-stats on the command-line, otherwise this event will be
+  ignored. A frame number is optional, as well as an allocation unit to
+  show the stats in.
+
+Defined in:
+\par
+  src/Simulation/SimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Media/SimFrameSeries.C [92]
+
+Checked from:
+- src/Simulation/SimEventQueue.C [108,114]
+
+\subsection SimEventSaveOutput 2.4. SimEventSaveOutput
+Purpose:
+\par
+  Save your outputs
+\par
+  SimOutputFrameSeries (or others) may post this when it is time to
+  save the next round of outputs. SimModule objects may want to catch
+  this if they have possible outputs to save. They should then use the
+  ModelComponentSaveInfo data contained here in the event to decide how
+  and where to save their stuff.
+
+Defined in:
+\par
+  src/Simulation/SimEvents.H
+
+Handlers in:
+- src/Apps/neo2/BlobSegmenter.C [525]
+- src/Apps/neo2/BlobSegmenterAuto.C [160]
+- src/Apps/neo2/ColorHistPlugin.C [279]
+- src/Apps/neo2/CudaHMaxPlugin.C [155]
+- src/Apps/neo2/DBStorage.C [559]
+- src/Apps/neo2/DBWriter.C [220]
+- src/Apps/neo2/ExportPascal.C [113]
+- src/Apps/neo2/ExtractCudaHMaxPlugin.C [180]
+- src/Apps/neo2/ExtractHMaxPlugin.C [158]
+- src/Apps/neo2/FeatureMatchingPlugin.C [142]
+- src/Apps/neo2/GPSExtract.C [238]
+- src/Apps/neo2/HMaxPlugin.C [149]
+- src/Apps/neo2/INTTracker.C [239]
+- src/Apps/neo2/KeypointPlugin.C [382]
+- src/Apps/neo2/OpenSURFPlugin.C [180]
+- src/Apps/neo2/SIFTPlugin.C [86]
+- src/Apps/neo2/SVMClassifierPlugin.C [168]
+- src/Apps/neo2/THMaxPlugin.C [307]
+- src/Apps/neo2/Validator.C [84]
+- src/Apps/neo2/VideoXMLReader.C [200]
+- src/Apps/neo2/VisualTracker.C [388]
+- src/Neuro/AttentionGate.C [168]
+- src/Neuro/AttentionGuidanceMap.C [78]
+- src/Neuro/GistEstimator.C [86]
+- src/Neuro/Retina.C [257]
+- src/Neuro/SaliencyMap.C [242]
+- src/Neuro/ShapeEstimator.C [329]
+- src/Neuro/SimulationViewerCompress.C [688]
+- src/Neuro/SimulationViewerEyeHand.C [885]
+- src/Neuro/SimulationViewerEyeMvt.C [755]
+- src/Neuro/SimulationViewerEyeMvt2.C [361]
+- src/Neuro/SimulationViewerEyeMvtNeuro.C [620]
+- src/Neuro/SimulationViewerHand.C [328]
+- src/Neuro/SimulationViewerNerdCam.C [471]
+- src/Neuro/SimulationViewerStats.C [160]
+- src/Neuro/SimulationViewerStd.C [545]
+- src/Neuro/SimulationViewerSurpCont.C [331]
+- src/Neuro/TaskRelevanceMap.C [255]
+- src/Neuro/VisualCortex.C [157,263,332]
+- src/Neuro/VisualCortexEyeMvt.C [241]
+- src/Neuro/WinnerTakeAll.C [233]
+
+Posted from:
+- src/Apps/neo2/GUI.C [293]
+- src/Media/SimFrameSeries.C [206]
+
+Checked from:
+- No reference found
+
+\subsection SimEventClockTick 2.5. SimEventClockTick
+Purpose:
+\par
+  Posted by SimEventQueue at the beginning of each clock tick
+\par
+  A SimModule that registers a callback for this event type will have
+  its callback triggered at every clock tick.
+
+Defined in:
+\par
+  src/Simulation/SimEvents.H
+
+Handlers in:
+- src/Apps/neo2/DBStorage.C [223]
+- src/Apps/neo2/DumpChips.C [127]
+- src/Apps/neo2/GUI.C [259]
+- src/Apps/neo2/NeoAnnotate/GUIAdapter.qt.C [67]
+- src/Media/SimFrameSeries.C [73,160]
+- src/Neuro/AttentionGuidanceMap.C [116]
+- src/Neuro/EyeHeadControllers.C [98,174,255]
+- src/Neuro/HandControllers.C [117]
+- src/Neuro/SaliencyMap.C [353]
+- src/Neuro/SaliencyMapStdOptim.C [224]
+- src/Neuro/SimulationViewerEyeHand.C [189]
+- src/Neuro/SimulationViewerEyeMvt.C [189]
+- src/Neuro/SimulationViewerEyeMvtNeuro.C [241]
+- src/Neuro/SimulationViewerHand.C [122]
+- src/Neuro/SimulationViewerNerdCam.C [223]
+- src/Neuro/SimulationViewerSurpCont.C [134]
+- src/Neuro/TaskRelevanceMap.C [239]
+- src/Neuro/VisualCortexEyeMvt.C [111]
+- src/Simulation/SimEventBuffer.C [73]
+
+Posted from:
+- src/Simulation/SimEventQueue.C [102]
+
+Checked from:
+- No reference found
+
+\section NeuroEvents 3. Neuro Events
+\subsection SimEventWTAwinner 3.1. SimEventWTAwinner
+Purpose:
+\par
+  The WinnerTakeAll selected a winner
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- src/Neuro/InferoTemporal.C [85]
+- src/Neuro/SaliencyMap.C [157]
+- src/Neuro/ShapeEstimator.C [104]
+- src/Neuro/SimulationViewerEyeMvt2.C [141]
+- src/Neuro/SimulationViewerEyeSim.C [102]
+- src/Neuro/SimulationViewerNerdCam.C [248]
+- src/Neuro/SimulationViewerRecStats.C [152]
+- src/Neuro/SimulationViewerStd.C [245]
+- src/Neuro/TargetChecker.C [87]
+- src/Neuro/getSaliency.C [75]
+
+Posted from:
+- src/Demo/app-chimpanzee.C [247]
+- src/Neuro/WinnerTakeAll.C [190]
+
+Checked from:
+- src/AppDevices/app-cam-saccades.C [223]
+- src/AppNeuro/test-BPnnet.C [255]
+- src/Beobot/app-build-salObjDB.C [303]
+- src/Beobot/app-egomotion.C [336]
+- src/Beobot/beobot-Gist-Sal-Nav-master.C [274]
+- src/Gist/faceDetection.C [389]
+- src/Gist/test-Gist-Sal-Nav.C [371]
+- src/MBARI/mbariFunctions.C [158]
+- src/Matlab/mexSaliency.C [295]
+- src/Matlab/mexSaliencySkin.C [311]
+- src/Neuro/EyeHeadControllers.C [101,260]
+- src/Neuro/VisualBuffer.C [193]
+- src/ObjRec/ObjRecSalBayes.C [279]
+- src/ObjRec/test-LabelMeSaliency.C [310]
+- src/ObjRec/test-ObjSearch.C [301]
+- src/Script/NeuroScript.C [72]
+
+\subsection SimEventTargetsHit 3.2. SimEventTargetsHit
+Purpose:
+\par
+  The TargetChecker hit a one or more targets
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Neuro/TargetChecker.C [110]
+
+Checked from:
+- No reference found
+
+\subsection SimEventRetinaImage 3.3. SimEventRetinaImage
+Purpose:
+\par
+  A new image is available from the retina
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- src/Neuro/GistEstimatorBeyondBoF.C [250]
+- src/Neuro/GistEstimatorFFT.C [90]
+- src/Neuro/GistEstimatorSurfPMK.C [194]
+- src/Neuro/SimulationViewerCompress.C [186]
+- src/Neuro/SimulationViewerEyeMvt2.C [133]
+- src/Neuro/SimulationViewerStd.C [225]
+- src/Neuro/TargetChecker.C [130]
+- src/Neuro/TaskRelevanceMap.C [211]
+- src/Neuro/VisualBuffer.C [175]
+- src/Neuro/VisualCortex.C [126,228,296]
+- src/Neuro/VisualCortexEyeMvt.C [179]
+
+Posted from:
+- src/Apps/BorderWatch/ImageInfo.C [108]
+- src/Apps/neo2/GistPlugin.C [76]
+- src/Neuro/Retina.C [209,462]
+- src/Neuro/getSaliency.C [153]
+
+Checked from:
+- src/Neuro/EyeHeadControllers.C [212]
+- src/Neuro/InferoTemporal.C [153]
+- src/Neuro/InferoTemporalHmax.C [186]
+- src/Neuro/InferoTemporalSalBayes.C [179]
+- src/Neuro/SaccadeController.C [137]
+- src/Neuro/SaccadeControllers.C [562]
+- src/Neuro/ShapeEstimator.C [119,344]
+- src/Neuro/SimulationViewerCompress.C [373]
+- src/Neuro/SimulationViewerEyeHand.C [196,234,829]
+- src/Neuro/SimulationViewerEyeMvt.C [196,234,699]
+- src/Neuro/SimulationViewerEyeMvt2.C [160]
+- src/Neuro/SimulationViewerEyeMvtNeuro.C [245,282,504]
+- src/Neuro/SimulationViewerEyeRegion.C [683]
+- src/Neuro/SimulationViewerHand.C [129,141,294]
+- src/Neuro/SimulationViewerStats.C [248]
+
+\subsection SimEventRetinaCTImage 3.4. SimEventRetinaCTImage
+Purpose:
+\par
+  A new image is available from the a retina ct
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Neuro/Retina.C [512]
+
+Checked from:
+- No reference found
+
+\subsection SimEventVisualCortexOutput 3.5. SimEventVisualCortexOutput
+Purpose:
+\par
+  A new output is available from the VisualCortex
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- src/Neuro/GistEstimatorContextBased.C [132]
+- src/Neuro/GistEstimatorGen.C [167]
+- src/Neuro/GistEstimatorStd.C [283]
+- src/Neuro/GistEstimatorTexton.C [159]
+- src/Neuro/PrefrontalCortex.C [286]
+- src/Neuro/SaliencyMap.C [213]
+
+Posted from:
+- src/Neuro/VisualCortex.C [132,236,302]
+- src/Neuro/VisualCortexEyeMvt.C [198]
+
+Checked from:
+- src/Apps/BorderWatch/ImageInfo.C [112]
+- src/Neuro/SimulationViewer.C [106]
+- src/Neuro/getSaliency.C [100,164]
+
+\subsection SimEventSaliencyMapOutput 3.6. SimEventSaliencyMapOutput
+Purpose:
+\par
+  A new output is available from the SaliencyMap
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- src/Neuro/AttentionGuidanceMap.C [100]
+
+Posted from:
+- src/Neuro/SaliencyMap.C [362,470,498,512,527,542,606,638,655,687,705]
+- src/Neuro/SaliencyMapStdOptim.C [266]
+
+Checked from:
+- src/Neuro/SimulationViewer.C [85]
+- src/Neuro/SimulationViewerCompress.C [300]
+- src/Neuro/SimulationViewerStd.C [503]
+- src/ObjRec/ObjRecSalBayes.C [287]
+- src/ObjRec/test-LabelMeSaliency.C [321]
+- src/ObjRec/test-ObjSearch.C [306]
+
+\subsection SimEventGistOutput 3.7. SimEventGistOutput
+Purpose:
+\par
+  A new output is available from the GistEstimator
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Neuro/GistEstimatorBeyondBoF.C [273]
+- src/Neuro/GistEstimatorContextBased.C [167]
+- src/Neuro/GistEstimatorFFT.C [98]
+- src/Neuro/GistEstimatorGen.C [179]
+- src/Neuro/GistEstimatorStd.C [295]
+- src/Neuro/GistEstimatorSurfPMK.C [215]
+- src/Neuro/GistEstimatorTexton.C [189]
+
+Checked from:
+- src/Apps/neo2/GistPlugin.C [86]
+- src/Beobot/beobot-Gist-Sal-Nav-master.C [224]
+- src/Gist/train-bbof.C [1009,1209]
+- src/Gist/train-gecb.C [550,619,722]
+- src/Gist/train-surfpmk.C [845,1046]
+- src/Gist/train-texton.C [966,1017]
+- src/Neuro/TaskRelevanceMap.C [849,1050]
+
+\subsection SimEventTaskRelevanceMapOutput 3.8. SimEventTaskRelevanceMapOutput
+Purpose:
+\par
+  A new output is available from the TaskRelevanceMap
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- src/Neuro/AttentionGuidanceMap.C [108]
+
+Posted from:
+- src/Neuro/TaskRelevanceMap.C [248]
+
+Checked from:
+- src/Neuro/SimulationViewer.C [92]
+- src/Neuro/SimulationViewerCompress.C [244]
+- src/Neuro/SimulationViewerNerdCam.C [1019]
+- src/Neuro/SimulationViewerStd.C [514,729]
+
+\subsection SimEventAttentionGuidanceMapOutput 3.9. SimEventAttentionGuidanceMapOutput
+Purpose:
+\par
+  A new output is available from the AttentionGuidanceMap
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- src/Neuro/AttentionGate.C [256]
+- src/Neuro/VisualBuffer.C [183]
+- src/Neuro/WinnerTakeAll.C [155]
+
+Posted from:
+- src/Neuro/AttentionGuidanceMap.C [127,503]
+
+Checked from:
+- src/Neuro/SimulationViewer.C [99]
+- src/Neuro/SimulationViewerStats.C [263]
+- src/Neuro/SimulationViewerStd.C [523,717]
+
+\subsection SimEventAttentionGateOutput 3.10. SimEventAttentionGateOutput
+Purpose:
+\par
+  A new output is available from the AttentionGate
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Neuro/AttentionGate.C [190]
+
+Checked from:
+- src/Neuro/SimulationViewerStats.C [434,479]
+
+\subsection SimEventAttentionGateStageTwoSegments 3.11. SimEventAttentionGateStageTwoSegments
+Purpose:
+\par
+  What was the frame number on our last attention gate;
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Neuro/AttentionGate.C [447]
+
+Checked from:
+- src/Neuro/SimulationViewerStats.C [598]
+
+\subsection SimEventShapeEstimatorOutput 3.12. SimEventShapeEstimatorOutput
+Purpose:
+\par
+  A new output is available from the ShapeEstimator
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Neuro/ShapeEstimator.C [286]
+
+Checked from:
+- src/Apps/neo2/BlobSegmenter.C [479]
+- src/Beobot/app-build-salObjDB.C [312]
+- src/Beobot/app-egomotion.C [342]
+- src/Beobot/beobot-Gist-Sal-Nav-master.C [280]
+- src/Gist/faceDetection.C [406]
+- src/Gist/test-Gist-Sal-Nav.C [378]
+- src/Matlab/mexSaliency.C [308]
+- src/Matlab/mexSaliencySkin.C [324]
+- src/Neuro/InferoTemporal.C [160]
+- src/Neuro/InferoTemporalHmax.C [193]
+- src/Neuro/SaliencyMap.C [186]
+- src/Neuro/SimulationViewerNerdCam.C [252]
+- src/Neuro/SimulationViewerStd.C [249]
+- src/Neuro/TaskRelevanceMap.C [515]
+- src/Neuro/VisualBuffer.C [199]
+
+\subsection SimEventSaccadeStatus 3.13. SimEventSaccadeStatus
+Purpose:
+\par
+  A SaccadeController may post this at every evolve
+\par
+  Note how you cannot implement an object of this type, since it
+  contains a pure virtual function. Use SimEventSaccadeStatusEye or
+  SimEventSaccadeStatusHead instead.
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Neuro/EyeHeadControllers.C [215]
+- src/Neuro/SaccadeController.C [191,199]
+
+Checked from:
+- No reference found
+
+\subsection SimEventSaccadeStatusEye 3.14. SimEventSaccadeStatusEye
+Purpose:
+\par
+  An Eye SaccadeController may post this at every evolve
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- src/Neuro/Retina.C [144]
+- src/Neuro/SaliencyMap.C [221]
+- src/Neuro/SimulationViewerCompress.C [198]
+- src/Neuro/SimulationViewerEyeMvt2.C [152]
+- src/Neuro/SimulationViewerStd.C [290]
+- src/Neuro/TaskRelevanceMap.C [231]
+- src/Neuro/WinnerTakeAll.C [209]
+
+Posted from:
+- src/Neuro/EyeHeadControllers.C [215]
+- src/Neuro/SaccadeController.C [191]
+
+Checked from:
+- src/Demo/app-chimpanzee.C [211]
+- src/Neuro/EyeHeadControllers.C [105]
+
+\subsection SimEventSaccadeStatusHead 3.15. SimEventSaccadeStatusHead
+Purpose:
+\par
+  An Head SaccadeController may post this at every evolve
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- src/Neuro/SimulationViewerStd.C [329]
+
+Posted from:
+- src/Neuro/SaccadeController.C [199]
+
+Checked from:
+- src/Demo/app-chimpanzee.C [213]
+
+\subsection SimEventEyeTrackerData 3.16. SimEventEyeTrackerData
+Purpose:
+\par
+  An EyeTrackerSaccadeController may post this
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Neuro/EyeHeadControllers.C [199]
+
+Checked from:
+- src/Neuro/SimulationViewerEyeHand.C [286]
+- src/Neuro/SimulationViewerEyeMvt.C [241]
+- src/Neuro/SimulationViewerEyeMvt2.C [177]
+- src/Neuro/SimulationViewerEyeMvtNeuro.C [297]
+
+\subsection SimEventHandTrackerData 3.17. SimEventHandTrackerData
+Purpose:
+\par
+  An TrackerHandController may post this
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Neuro/HandControllers.C [141]
+
+Checked from:
+- src/Neuro/SimulationViewerEyeHand.C [244]
+- src/Neuro/SimulationViewerHand.C [146]
+
+\subsection SimEventObjectToBias 3.18. SimEventObjectToBias
+Purpose:
+\par
+  Indicate which object we are biasing for (use for statistics)
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Neuro/PrefrontalCortex.C [414]
+
+Checked from:
+- src/Neuro/SimulationViewerRecStats.C [228]
+
+\subsection SimEventTargetMask 3.19. SimEventTargetMask
+Purpose:
+\par
+  A new target mask is available, TargetChecker will check for this and
+  use the new mask
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- src/Neuro/TargetChecker.C [155]
+
+Posted from:
+- src/Matlab/mexSaliency.C [270]
+- src/Matlab/mexSaliencySkin.C [286]
+
+Checked from:
+- No reference found
+
+\subsection SimEventVisualBufferOutput 3.20. SimEventVisualBufferOutput
+Purpose:
+\par
+  A new output is available from the VisualBuffer
+\par
+
+Defined in:
+\par
+  src/Neuro/NeuroSimEvents.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- No reference found
+
+Checked from:
+- src/Neuro/SimulationViewerEyeMvt2.C [155]
+
+\section MediaSimEvents 4. Media Events
+\subsection SimEventInputFrame 4.1. SimEventInputFrame
+Purpose:
+\par
+  A new input frame is available
+\par
+  InputFrameSeries posts this event each time a new input frame has
+  become available.
+
+Defined in:
+\par
+  src/Media/MediaSimEvents.H
+
+Handlers in:
+- src/Apps/neo2/BlobSegmenter.C [182]
+- src/Apps/neo2/BlobSegmenterAuto.C [97]
+- src/Apps/neo2/DumpChips.C [100]
+- src/Apps/neo2/ExportPascal.C [81]
+- src/Apps/neo2/GPSExtract.C [95]
+- src/Apps/neo2/GUI.C [128]
+- src/Apps/neo2/INTTracker.C [173]
+- src/Apps/neo2/KeypointPlugin.C [375]
+- src/Apps/neo2/OpenSURFPlugin.C [109]
+- src/Apps/neo2/SIFTPlugin.C [63]
+- src/Apps/neo2/Sandbox.C [19]
+- src/Apps/neo2/Validator.C [48]
+- src/Apps/neo2/VideoXMLReader.C [147]
+- src/Apps/neo2/VisualTracker.C [143]
+- src/Apps/neo2/NeoAnnotate/GUIAdapter.qt.C [46]
+- src/Image/VisualTracker.C [102]
+- src/Neuro/AttentionGate.C [241]
+- src/Neuro/PrefrontalCortex.C [228,342,405]
+- src/Neuro/Retina.C [169,453]
+- src/Neuro/SimulationViewerEyeMvt2.C [124]
+- src/Neuro/SimulationViewerNerdCam.C [204]
+- src/Neuro/SimulationViewerSurpCont.C [116]
+- src/Neuro/WinnerTakeAll.C [148]
+
+Posted from:
+- src/AppDevices/app-cam-saccades.C [213]
+- src/AppNeuro/app-perceptual-grouping.C [254]
+- src/AppNeuro/test-BPnnet.C [134]
+- src/Apps/neo2/DBStorage.C [316,416]
+- src/ArmControl/app-ArmControl.C [761]
+- src/Beobot/app-build-salObjDB.C [269]
+- src/Beobot/app-egomotion.C [303]
+- src/Beobot/beobot-Gist-Sal-Nav-master.C [219]
+- src/Gist/extractGist.C [226]
+- src/Gist/faceDetection.C [325,364]
+- src/Gist/test-Gist-Sal-Nav.C [309]
+- src/INVT/StereoVision.C [136]
+- src/MBARI/mbariFunctions.C [150]
+- src/Matlab/mexSaliency.C [273]
+- src/Matlab/mexSaliencySkin.C [289]
+- src/Media/SimFrameSeries.C [86]
+- src/Neuro/getSaliency.C [90]
+- src/ObjRec/ObjRecSalBayes.C [266]
+- src/ObjRec/test-LabelMeSaliency.C [160]
+- src/ObjRec/test-ObjSearch.C [288]
+- src/VFAT/fzvision.C [566]
+- src/VFAT/fzvision2.C [609]
+- src/VFAT/szvision.C [173]
+
+Checked from:
+- src/Apps/neo2/AttentionPlugin.C [125]
+- src/Apps/neo2/ColorHistPlugin.C [112]
+- src/Apps/neo2/CudaHMaxPlugin.C [93]
+- src/Apps/neo2/ExtractCudaHMaxPlugin.C [143]
+- src/Apps/neo2/ExtractHMaxPlugin.C [120]
+- src/Apps/neo2/GistPlugin.C [42]
+- src/Apps/neo2/HMaxPlugin.C [91]
+- src/Apps/neo2/SVMClassifierPlugin.C [102]
+- src/Apps/neo2/THMaxPlugin.C [193]
+- src/Neuro/InferoTemporalSalBayes.C [195]
+- src/Neuro/SimulationViewerCompress.C [287]
+- src/Neuro/SimulationViewerRecStats.C [186]
+- src/Neuro/SimulationViewerStats.C [231,255]
+
+\subsection SimEventRequestSaveOutput 4.2. SimEventRequestSaveOutput
+Purpose:
+\par
+  Request that outputs be saved now
+\par
+  Normally, SimOutputFrameSeries will save outputs at a fixed rate.
+  However, it can also operate in an event-driven mode if a framerate
+  has not been specified on the command line. SimModule objects may
+  post SimEventSaveOutput events each time they generate events which
+  they think warrant saving the outputs should the output frame series
+  operate in event-driven mode. Any SimEventSaveOutput will be ignored
+  if the output frame series is operating at a fixed framerate. An
+  example is that when WinnerTakeAll has a new covert shift of
+  attention, it will post a SimEventSaveOutput.
+
+Defined in:
+\par
+  src/Media/MediaSimEvents.H
+
+Handlers in:
+- src/Media/SimFrameSeries.C [167]
+
+Posted from:
+- src/Neuro/WinnerTakeAll.C [196]
+
+Checked from:
+- No reference found
+
+\subsection SimEventUserInput 4.3. SimEventUserInput
+Purpose:
+\par
+  Send the user mouse and keyboard events
+\par
+
+Defined in:
+\par
+  src/Media/MediaSimEvents.H
+
+Handlers in:
+- src/Apps/neo2/BlobSegmenter.C [170]
+- src/Apps/neo2/BlobSegmenterAuto.C [85]
+- src/Apps/neo2/GUI.C [174]
+- src/Apps/neo2/VisualTracker.C [131]
+
+Posted from:
+- src/Apps/neo2/GUI.C [283]
+- src/Media/SimFrameSeries.C [194]
+
+Checked from:
+- No reference found
+
+\subsection SimEventInputDescription 4.4. SimEventInputDescription
+Purpose:
+\par
+  Get a description of the current input
+\par
+  This message can be sent just after initialization so that downstream
+  modules can be informed of the number of frames in the input, and the
+  name of the input file.
+
+Defined in:
+\par
+  src/Media/MediaSimEvents.H
+
+Handlers in:
+- src/Apps/neo2/NeoAnnotate/GUIAdapter.qt.C [60]
+
+Posted from:
+- src/Apps/neo2/DBStorage.C [232,392]
+
+Checked from:
+- No reference found
+
+\subsection SimEventRequestFrameNum 4.5. SimEventRequestFrameNum
+Purpose:
+\par
+  Request that the input module seek to a new frame
+\par
+
+Defined in:
+\par
+  src/Media/MediaSimEvents.H
+
+Handlers in:
+- src/Apps/neo2/DBStorage.C [574]
+
+Posted from:
+- src/Apps/neo2/GUI.C [242]
+- src/Apps/neo2/NeoAnnotate/AnnotationGUI.qt.C [223]
+
+Checked from:
+- No reference found
+
+\subsection SimEventSceneDescription 4.6. SimEventSceneDescription
+Purpose:
+\par
+  A Description of the scene
+\par
+  Any module can use this event to post knowledge of the scene. For
+  example gist recognition can determine the scene type and post this
+  event.
+
+Defined in:
+\par
+  src/Media/MediaSimEvents.H
+
+Handlers in:
+- src/Neuro/SimulationViewer.C [63]
+
+Posted from:
+- No reference found
+
+Checked from:
+- src/Neuro/SimulationViewerRecStats.C [167]
+
+\subsection SimEventObjectDescription 4.7. SimEventObjectDescription
+Purpose:
+\par
+  A Description of an object
+\par
+  Any module can use this event to post knowledge of an object. For
+  example IT can determine the object type and post this event.
+
+Defined in:
+\par
+  src/Media/MediaSimEvents.H
+
+Handlers in:
+- src/Neuro/SimulationViewer.C [70]
+
+Posted from:
+- src/Neuro/InferoTemporalHmax.C [236]
+- src/Neuro/InferoTemporalSalBayes.C [258,337]
+
+Checked from:
+- src/Neuro/InferoTemporalHmax.C [209]
+- src/Neuro/SimulationViewerRecStats.C [171]
+
+\section VisualTracker 5. Visual Tracker Events
+\subsection SimEventVisualTracker 5.1. SimEventVisualTracker
+Purpose:
+\par
+  Callback for when a new input frame is available
+\par
+
+Defined in:
+\par
+  src/Image/VisualTracker.H
+
+Handlers in:
+- No reference found
+
+Posted from:
+- src/Image/VisualTracker.C [120,124]
+
+Checked from:
+- No reference found
+
+\subsection SimEventSetVisualTracker 5.2. SimEventSetVisualTracker
+Purpose:
+\par
+\par
+
+Defined in:
+\par
+  src/Image/VisualTracker.H
+
+Handlers in:
+- src/Image/VisualTracker.C [130]
+
+Posted from:
+- No reference found
+
+Checked from:
+- No reference found
+
+\section NeoIISimEvents 6. NeoVision II Events
+\subsection SimEventFramePolygonData 6.1. SimEventFramePolygonData
+Purpose:
+\par
+\par
+
+Defined in:
+\par
+  src/Apps/neo2/NeoIISimEvents.H
+
+Handlers in:
+- src/Apps/neo2/BlobSegmenter.C [447]
+- src/Apps/neo2/BlobSegmenterAuto.C [152]
+- src/Apps/neo2/ColorHistPlugin.C [101]
+- src/Apps/neo2/CudaHMaxPlugin.C [88]
+- src/Apps/neo2/DBWriter.C [161]
+- src/Apps/neo2/DumpChips.C [111]
+- src/Apps/neo2/ExportPascal.C [90]
+- src/Apps/neo2/ExtractCudaHMaxPlugin.C [136]
+- src/Apps/neo2/ExtractHMaxPlugin.C [113]
+- src/Apps/neo2/GUI.C [140]
+- src/Apps/neo2/GistPlugin.C [37]
+- src/Apps/neo2/HMaxPlugin.C [86]
+- src/Apps/neo2/INTTracker.C [143]
+- src/Apps/neo2/KeypointPlugin.C [129]
+- src/Apps/neo2/SVMClassifierPlugin.C [92]
+- src/Apps/neo2/THMaxPlugin.C [151]
+- src/Apps/neo2/Validator.C [62]
+- src/Apps/neo2/VideoXMLReader.C [171]
+- src/Apps/neo2/VisualTracker.C [199]
+- src/Apps/neo2/NeoAnnotate/GUIAdapter.qt.C [53]
+
+Posted from:
+- src/Apps/neo2/AttentionPlugin.C [161]
+- src/Apps/neo2/BlobSegmenter.C [439]
+- src/Apps/neo2/BlobSegmenterAuto.C [144]
+- src/Apps/neo2/ColorHistPlugin.C [202]
+- src/Apps/neo2/CudaHMaxPlugin.C [146]
+- src/Apps/neo2/DBStorage.C [326,425]
+- src/Apps/neo2/FixedAttentionPlugin.C [159]
+- src/Apps/neo2/GPSExtract.C [112]
+- src/Apps/neo2/GUI.C [237]
+- src/Apps/neo2/GistPlugin.C [118]
+- src/Apps/neo2/HMaxPlugin.C [141]
+- src/Apps/neo2/INTTracker.C [187]
+- src/Apps/neo2/KeypointPlugin.C [370]
+- src/Apps/neo2/MovingObjectAttentionPlugin.C [195]
+- src/Apps/neo2/SVMClassifierPlugin.C [160]
+- src/Apps/neo2/THMaxPlugin.C [289]
+- src/Apps/neo2/VideoXMLReader.C [165]
+- src/Apps/neo2/VisualTracker.C [191]
+- src/Apps/neo2/NeoAnnotate/MainDisplay.qt.C [118]
+
+Checked from:
+- No reference found
+
+\subsection SimEventFrameKeyPointData 6.2. SimEventFrameKeyPointData
+Purpose:
+\par
+\par
+
+Defined in:
+\par
+  src/Apps/neo2/NeoIISimEvents.H
+
+Handlers in:
+- src/Apps/neo2/FeatureMatchingPlugin.C [94]
+- src/Apps/neo2/GUI.C [160]
+
+Posted from:
+- src/Apps/neo2/OpenSURFPlugin.C [173]
+- src/Apps/neo2/SIFTPlugin.C [80]
+
+Checked from:
+- No reference found
+
+\subsection SimEventTrackedKeyPointData 6.3. SimEventTrackedKeyPointData
+Purpose:
+\par
+\par
+
+Defined in:
+\par
+  src/Apps/neo2/NeoIISimEvents.H
+
+Handlers in:
+- src/Apps/neo2/GUI.C [167]
+
+Posted from:
+- src/Apps/neo2/FeatureMatchingPlugin.C [105,135]
+
+Checked from:
+- src/Apps/neo2/FeatureMatchingPlugin.C [102]
+
+<!--############################################################-->
+
+*/

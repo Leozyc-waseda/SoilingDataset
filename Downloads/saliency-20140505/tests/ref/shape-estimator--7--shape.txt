@@ -1,0 +1,17 @@
+0000000.00ms FOAradius            21
+0000000.00ms FoveaRadius          21
+0000000.00ms InputDims            384x256
+0000000.00ms ReadFrame            ../inputs/faces.ppm
+0000000.00ms InputFrameSeries     frame 0
+0000107.10ms CovertShift          (112,96) 3.954mV
+0000107.10ms ShapeEstimator       (112,96) RawVisualCortex:TJunction:junction_10100010(3,6) [Shape]
+0000107.10ms OutputFrameSeries    frame 0
+0000107.10ms WriteRGB             T000000.pnm
+0000189.30ms CovertShift          (272,128) 4.223mV
+0000189.30ms ShapeEstimator       (272,128) RawVisualCortex:TJunction:junction_00101010(4,7) [Shape]
+0000189.30ms OutputFrameSeries    frame 1
+0000189.30ms WriteRGB             T000001.pnm
+0000254.20ms CovertShift          (304,112) 5.290mV
+0000254.20ms ShapeEstimator       (304,112) RawVisualCortex:TJunction:junction_00101010(3,6) [Shape]
+0000254.20ms OutputFrameSeries    frame 2
+0000254.20ms WriteRGB             T000002.pnm

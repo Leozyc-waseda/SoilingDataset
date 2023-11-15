@@ -1,0 +1,8 @@
+0000000.00ms FOAradius            21
+0000000.00ms FoveaRadius          21
+0000000.00ms InputDims            256x256
+0000000.00ms ReadFrame            testpic001.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000093.30ms CovertShift          (112,112) 4.943mV
+0000093.30ms OutputFrameSeries    frame 0
+0000093.30ms WriteFloat           testpic001.pnm-SM000000.pfm

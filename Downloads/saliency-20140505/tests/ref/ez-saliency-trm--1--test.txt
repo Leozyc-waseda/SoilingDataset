@@ -1,0 +1,40 @@
+0000000.00ms FOAradius            20
+0000000.00ms FoveaRadius          20
+0000000.00ms InputDims            320x240
+0000000.00ms ReadFrame            ../inputs/ezframe000000.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000030.00ms OutputFrameSeries    frame 0
+0000030.00ms WriteFloat           TRM000000.pfm
+0000030.00ms WriteFloat           TRM-SB000000.pnm
+0000030.00ms WriteRGB             T000000.pnm
+0000030.00ms ReadFrame            ../inputs/ezframe000001.pnm
+0000030.00ms InputFrameSeries     frame 1
+0000060.00ms OutputFrameSeries    frame 1
+0000060.00ms WriteFloat           TRM000001.pfm
+0000060.00ms WriteFloat           TRM-SB000001.pnm
+0000060.00ms WriteRGB             T000001.pnm
+0000060.00ms ReadFrame            ../inputs/ezframe000002.pnm
+0000060.00ms InputFrameSeries     frame 2
+0000090.00ms OutputFrameSeries    frame 2
+0000090.00ms WriteFloat           TRM000002.pfm
+0000090.00ms WriteFloat           TRM-SB000002.pnm
+0000090.00ms WriteRGB             T000002.pnm
+0000090.00ms ReadFrame            ../inputs/ezframe000003.pnm
+0000090.00ms InputFrameSeries     frame 3
+0000111.90ms CovertShift          (288,144) 4.271mV
+0000120.00ms OutputFrameSeries    frame 3
+0000120.00ms WriteFloat           TRM000003.pfm
+0000120.00ms WriteFloat           TRM-SB000003.pnm
+0000120.00ms WriteRGB             T000003.pnm
+0000120.00ms ReadFrame            ../inputs/ezframe000004.pnm
+0000120.00ms InputFrameSeries     frame 4
+0000150.00ms OutputFrameSeries    frame 4
+0000150.00ms WriteFloat           TRM000004.pfm
+0000150.00ms WriteFloat           TRM-SB000004.pnm
+0000150.00ms WriteRGB             T000004.pnm
+0000150.00ms ReadFrame            ../inputs/ezframe000005.pnm
+0000150.00ms InputFrameSeries     frame 5
+0000180.00ms OutputFrameSeries    frame 5
+0000180.00ms WriteFloat           TRM000005.pfm
+0000180.00ms WriteFloat           TRM-SB000005.pnm
+0000180.00ms WriteRGB             T000005.pnm

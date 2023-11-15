@@ -1,0 +1,921 @@
+/*      -*- mode: text; fill-column: 70; indent-tabs-mode: nil -*-
+      $Id: howto-testsuite.dxy 6337 2006-02-28 18:26:26Z rjpeters $
+
+                   ------------------------------------
+                   iLab Neuromorphic Vision C++ Toolkit
+                   ------------------------------------
+
+                             Programmer Notes
+                             ----------------
+
+*/
+
+/*! \page howto-testsuite HOWTO add tests to the test suite
+
+<i>For the impatient: if you want to write low-level tests IN c++ OF
+your c++ code, start with the \ref whitebox-tests "whitebox tests"
+section; if you want to write high-level regression tests for existing
+executables, start with the \ref blackbox-tests "blackbox tests"
+section.</i>
+
+\note This HOWTO was originally written around svn revision 6562 of
+the toolkit, around March 2006; if you are reading this later and find
+discrepancies between this HOWTO and the latest code, please either:
+fix the HOWTO and commit a change back through svn, or post a comment
+to http://ilab.usc.edu/forum/ mentioning the problem.
+
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section introduction Introduction
+
+The files for the test suite all live in the <tt>tests/</tt>
+subdirectory; these include
+
+- perl modules (<tt>*.pm</tt> files) that implement the test suite
+framework,
+- perl scripts (<tt>*.pl</tt> files) that run the individual
+test suites,
+- input files for the various tests (in theory these should
+all go in <tt>tests/inputs/</tt>, but in practice some still sit
+directly in <tt>tests/</tt> for historical reasons), and
+- reference files for regression tests (in <tt>tests/ref</tt>).
+
+The test suite is split into two parts: one is the main test suite,
+and the other is the so-called testlong suite, so named because it
+contains tests that take much longer to run. The main test suite can
+be run with:
+\verbatim
+$ make test
+# OR
+$ cd tests && ./run_test_suite.pl
+\endverbatim
+
+Note that for a number of reasons, you <i>must</i> be sitting in the
+<tt>tests/</tt> directory in order for <tt>./run_test_suite.pl</tt> to
+work; that is, you can't be sitting in the top-level directory and
+call <tt>./tests/run_test_suite.pl</tt> (the main reason is that many
+of the tests use relative, not absolute, paths to refer to input and
+output files).
+
+Likewise, the testlong suite can be run with:
+\verbatim
+$ make testlong
+# OR
+$ cd tests && ./run_testlong_suite.pl
+\endverbatim
+
+Each of the <tt>./run_test_suite.pl</tt> and
+<tt>./run_testlong_suite.pl</tt> scripts are implemented with the
+<tt>testrun.pm</tt> perl module defined in <tt>tests</tt>; their job
+is essentially to run a bunch of individual test scripts and collect
+status information from each of those scripts. Scripts matching
+<tt>test_*.pl</tt> are run in the main test suite, and scripts
+matching <tt>testlong_*.pl</tt> are run in the testlong suite. The
+only condition on the individual test scripts is that they must emit a
+line of the form "MMM of NNN tests succeeded", where MMM and NNN are
+integers. Specifically, <tt>testrun.pm</tt> does that parsing with a
+block like the following:
+
+\verbatim
+if (/^([0-9]+) of ([0-9]+) tests succeeded/) {
+  # increment counters
+}
+\endverbatim
+
+After running all the scripts and parsing the status lines emitted by
+each script, the test suite drivers print a status summary of all the
+scripts that were run, and exit with a status code that indicates the
+number of tests that failed (thus, as usual, 0 indicates success).
+
+\verbatim
+SUMMARY: ALL TESTS PASSED (267 of 267)
+           1 of   1 tests succeeded (./test_Brain_whitebox.pl)
+           7 of   7 tests succeeded (./test_Component_whitebox.pl)
+           3 of   3 tests succeeded (./test_ImageEqual.pl)
+         100 of 100 tests succeeded (./test_Image_whitebox.pl)
+           1 of   1 tests succeeded (./test_Learn_whitebox.pl)
+           7 of   7 tests succeeded (./test_LevelSpec_whitebox.pl)
+          60 of  60 tests succeeded (./test_Pixels_whitebox.pl)
+           8 of   8 tests succeeded (./test_Raster_whitebox.pl)
+           6 of   6 tests succeeded (./test_ShapeEstimator_blackbox.pl)
+          19 of  19 tests succeeded (./test_ezvision_blackbox.pl)
+           4 of   4 tests succeeded (./test_mpeg2yuv_blackbox.pl)
+           4 of   4 tests succeeded (./test_retina_blackbox.pl)
+          19 of  19 tests succeeded (./test_scriptvision_blackbox.pl)
+           2 of   2 tests succeeded (./test_sformat_whitebox.pl)
+          17 of  17 tests succeeded (./test_vision_blackbox.pl)
+           9 of   9 tests succeeded (./test_yuv2ppm_blackbox.pl)
+\endverbatim
+
+So, in theory, any script that emitted such a line could be integrated
+into the test suite. However, in practice, most tests fall into either
+the \ref blackbox-tests "blackbox" or \ref whitebox-tests "whitebox"
+category, and the job of writing a one of those kinds of test scripts
+is much easier if you use either the <tt>whitebox.pm</tt> or the
+<tt>blackbox.pm</tt> perl module.
+
+
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section whitebox-tests Whitebox tests
+
+Whitebox tests are so named because they inspect the inner workings of
+the code (rather than treating the code as a "black box"). So,
+whitebox tests are written in C++, using the TestSuite class, and are
+used to test the low-level workings of various C++
+classes.
+
+<!--############################################################-->
+
+\subsection whitebox-perl The whitebox.pm perl module
+
+Implementing a whitebox test program means writing a single C++ source
+file plus a tiny perl script that loads the whitebox perl module and
+uses that to drive the C++ program, like so:
+
+\verbatim
+#!/usr/bin/perl -w
+
+use invt_config;
+use whitebox;
+
+whitebox::run("$invt_config::exec_prefix/bin/whitebox-Image");
+\endverbatim
+
+Internally, that <tt>whitebox::run</tt> call first calls the whitebox
+c++ program with a <tt>--perlquery</tt> option to retrieve a list of
+available tests, and then loops over those tests, calling the c++
+program with a <tt>--run</tt> option for each test. Along the way,
+<tt>whitebox::run</tt> prints each test name and the success or
+failure status of running that test. If a test fails, the stderr from
+that test run is also printed.
+
+<!--############################################################-->
+
+\subsection whitebox-cxx The whitebox C++ program
+
+Writing the C++ implementation for a new whitebox test is much like
+writing any other new program for the toolkit. By convention, whitebox
+test sources live in <tt>src/TestSuite/</tt> and are named like
+<tt>whitebox-MyTestClass.C</tt>, for the whitebox tests of class
+<tt>MyTestClass</tt>. You can make a template for the source file like
+this:
+
+\verbatim
+$ ./devscripts/newclass.tcl src/TestSuite/whitebox-MyTestClass
+generated src/TestSuite/whitebox-MyTestClass.H
+generated src/TestSuite/whitebox-MyTestClass.C
+$ rm src/TestSuite/whitebox-MyTestClass.H       # you don't need the .H file
+\endverbatim
+
+Then you need to add a line to <tt>depoptions.in</tt> telling the
+dependency calculator how to build an executable from your new source
+file. You would want to add a line like this:
+
+\verbatim
+--exeformat testx , @source@TestSuite/whitebox-MyTestClass.C :@exec_prefix@/bin/whitebox-MyTestClass
+\endverbatim
+
+This line says
+- to make an executable named
+<tt>${exec_prefix}/bin/whitebox-MyTestClass</tt> (where
+<tt>${exec_prefix}</tt> is determined by the configure script; by
+default it is just <tt>./</tt>),
+- whose main function is found in
+<tt>src/TestSuite/whitebox-MyTestClass.C</tt>,
+- to link in all necessary object files and libraries indicated by
+following the <tt>#include</tt>s from that source file, and
+- to build that executable as part of <tt>make testx</tt> (itself part
+of <tt>make all</tt>).
+
+Inside the source file, you need the following to bring in the
+TestSuite class:
+
+\code
+#include "TestSuite/TestSuite.H"
+\endcode
+
+Then you can start writing tests. Let's look at some of the code from
+<tt>src/TestSuite/whitebox-Image.C</tt> as an example. First, let's
+look at a portion of the <tt>main()</tt> function:
+
+\code
+int main(int argc, const char** argv)
+{
+  TestSuite suite;
+
+  suite.ADD_TEST(Image_xx_type_convert_xx_1);
+
+  suite.parseAndRun(argc, argv);
+
+  return 0;
+}
+\endcode
+
+There are four lines within <tt>main()</tt> there:
+- the first line creates a <tt>TestSuite</tt> object which will handle
+the command-line options and run the tests;
+- the second line adds a test function to the test suite (more on that
+in a moment);
+- the third line handles the command-line options and proceeds
+accordingly;
+- finally we <tt>return 0</tt> -- even if a test fails, we still
+return 0, since the failure of the test is indicated through the
+program's stdout.
+
+The <tt>ADD_TEST</tt> line is actually a macro that calls
+<tt>TestSuite::addTest()</tt> with the address of the test function
+<tt>&Image_xx_type_convert_xx_1</tt> and the name of that function as
+a string, i.e. <tt>"Image_xx_type_convert_xx_1"</tt>. The idea is that
+the test name should have three parts, separated by <tt>_xx_</tt> (the
+<tt>whitebox.pm</tt> perl module will later clean up those ugly
+<tt>_xx_</tt> and convert them to <tt>--</tt>): first, the class name
+being tested, in this case <tt>Image</tt>; second, the name of the
+test or group of tests, in this case <tt>type_convert</tt>; third, the
+number of the test within its group, in this case <tt>1</tt>. A test
+function itself looks like this:
+
+\code
+void Image_xx_type_convert_xx_1(TestSuite& suite)
+{
+  float array[4] = { -10.9, 3.2, 254.7, 267.3 };
+
+  Image<float> f(array, 4, 1);
+
+  Image<byte> b = f;
+
+  REQUIRE_EQ((int)b.getVal(0), 0); // clamped
+  REQUIRE_EQ((int)b.getVal(1), 3);
+  REQUIRE_EQ((int)b.getVal(2), 254);
+  REQUIRE_EQ((int)b.getVal(3), 255); // clamped
+}
+\endcode
+
+You can make as many test functions as you want; just be sure to
+<tt>ADD_TEST</tt> each of them within <tt>main()</tt>. Basically, you
+can do whatever you want within a test function, and along the way you
+call one or more of the <tt>REQUIRE</tt> macros to verify that things
+are as they should be. There are several varieties to choose from:
+
+\code
+REQUIRE_EQ(lhs, rhs);        // require (lhs == rhs)
+REQUIRE_EQFP(lhs, rhs, eps); // require (abs(lhs-rhs) < eps)
+REQUIRE(expr);               // require (expr == true)
+REQUIRE_NEQ(lhs, rhs);       // require (lhs != rhs)
+REQUIRE_LT(lhs, rhs);        // require (lhs < rhs)
+REQUIRE_LTE(lhs, rhs);       // require (lhs <= rhs)
+REQUIRE_GT(lhs, rhs);        // require (lhs > rhs)
+REQUIRE_GTE(lhs, rhs);       // require (lhs >= rhs)
+\endcode
+
+Each of these is a macro that actually calls back to
+<tt>TestSuite::require()</tt> or <tt>TestSuite::requireEq()</tt>.
+
+
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section blackbox-tests Blackbox tests
+
+Blackbox tests are so named because they test the external behavior of
+a program, treating it as a "black box", without requiring any
+knowledge of its inner workings (although you yourself may use such
+knowledge to help decide what tests will best exercise the program).
+
+<!--############################################################-->
+
+\subsection blackbox-perl The blackbox.pm perl module
+
+In our toolkit, the <tt>blackbox.pm</tt> perl module helps you
+implement what are essentially regression tests of executables in the
+toolkit. Unlike whitebox tests, where you write a dedicated piece of
+C++ code that implements the tests, with blackbox tests you typically
+have an existing program in place that already does something useful,
+and you just want to write some tests to verify that that program
+continues to behave as expected under a variety conditions (e.g.,
+different inputs, different command-line options). In some cases you
+may need to tweak an existing program slightly to make it more
+testable; for example:
+
+- if your program normally uses some randomness in its calculations,
+you'll want to have a command-line option to turn off that randomness
+for testing purposes, otherwise regression tests won't work
+
+- if your program normally sends its output to an onscreen window,
+you'll want to have an option to tell it to send that output to disk
+files instead (perhaps image files, or a text log file) so that you
+can easily compare the results of different program runs
+
+Once you have those elements in place, writing blackbox tests for you
+program is very easy. Let's look at
+<tt>tests/test_retina_blackbox.pl</tt> as an example. Each blackbox
+test script has three main parts. In practice, it's probably easiest
+to get going by copying an existing blackbox test script and then
+modifying the various segments to fit your needs, but for now let's
+step through each part. First, it should begin with the following to
+import the necessary modules:
+
+\verbatim
+#!/usr/bin/perl -w
+
+use strict;
+
+use blackbox;
+use invt_config;
+\endverbatim
+
+Second, the core of the test script is a local array of anonymous
+hashes, where each hash describes one test to be run; for example:
+
+\verbatim
+my @tests =
+    (
+
+     # ...
+
+     {
+         name  => 'bluecones--1',
+         args  => ['-f', 'testpic001.pnm', 'retinaout.ppm'],
+         files => ['retinaout.ppm'],
+     },
+
+     {
+         name  => 'allopt--1',
+         args  => ['-bf', 'testpic001.pnm', 'retinaout.ppm', 100, 100],
+         files => ['retinaout.ppm'],
+     },
+     );
+\endverbatim
+
+More on that in a moment. The third and final part is a call to
+<tt>blackbox::run</tt> with the name of the executable to be tested,
+and our local array of test descriptors:
+
+\verbatim
+# Run the black box tests; note that the default executable can be
+# overridden from the command-line with "--executable"
+
+blackbox::run("$invt_config::exec_prefix/bin/retina", @tests);
+\endverbatim
+
+Once you have those elements in place, make sure the script is
+executable (with <tt>chmod +x</tt>), and then you have a
+fully-functioning test script. Each test script accepts a standard set
+of command-line options; you can try passing <tt>--help</tt> to see a
+description of the available options.
+
+<!--############################################################-->
+
+\subsection blackbox-test-descriptors Blackbox test descriptors
+
+Now let's return to the test descriptors in more detail. Here's one
+example again:
+
+\verbatim
+my @tests =
+    (
+     {
+         name  => 'noopt--1',
+         args  => ['testpic001.pnm', 'retinaout.ppm'],
+         files => ['retinaout.ppm'],
+     },
+     );
+\endverbatim
+
+Each descriptor is an anonymous hash with three fields:
+
+- <tt>name</tt> is just a human readable name for the test, using double
+dashes to separate different parts of the test name
+- <tt>args</tt> is a list of command line options that should be
+passed to the test program for this test
+- <tt>files</tt> is a list of outputs that the test program is
+expected to produce, and which should be compared against stored
+reference files
+
+Internally, <tt>blackbox::run</tt> loops over all of the descriptors,
+and for each one, it runs the test program (<tt>bin/retina</tt> in
+this case) with the desired <tt>args</tt>, and then checks each output
+file in <tt>files</tt> against the corresponding reference file. If
+any test file doesn't match its reference file, then a detailed
+comparison of the two files is run and a summary of this comparison is
+printed.
+
+<!--############################################################-->
+
+\subsection blackbox-createref Adding a new test and creating the reference files
+
+When you first write a new test, obviously the reference files won't
+be there, but creating them the first time is very easy: just pass a
+<tt>--createref</tt> option to the test script. For example, let's add
+a new test to the <tt>test_retina_blackbox.pl</tt> test script, by
+adding the following to the <tt>@tests</tt> array:
+
+\verbatim
+     {
+         name  => 'allopt--2',
+         args  => ['-bf', 'testpic001.pnm', 'retinaout.ppm', 90, 90],
+         files => ['retinaout.ppm'],
+     },
+\endverbatim
+
+Now let's try running the test script and see what happens:
+
+\verbatim
+$ ./test_retina_blackbox.pl
+
+...
+
+=========================================================
+test 'allopt--1' ...
+
+running command '/path/to/saliency/bin/retina
+        -bf
+        testpic001.pnm
+        retinaout.ppm
+        100
+        100'
+
+checking retinaout.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'allopt--2' ...
+
+running command '/path/to/saliency/bin/retina
+        -bf
+        testpic001.pnm
+        retinaout.ppm
+        90
+        90'
+
+checking retinaout.ppm ... FAILED!
+        reference file '/path/to/saliency/tests/ref/allopt--2--retinaout.ppm' is missing!
+Raster::ReadFrame: reading raster file: testpic001.pnm
+PnmParser::PnmParser: PBM Reading RGB Image: testpic001.pnm
+retinafilt::main: Using (90, 90) for fovea center
+retinafilt::showtypeof: type of pix0 is 6PixRGBIhE
+retinafilt::showtypeof: type of pix1 is 6PixRGBIhE
+retinafilt::showtypeof: type of pix1-pix0 is 6PixRGBIiE
+retinafilt::showtypeof: type of (pix1-pix0)*dd is 6PixRGBIfE
+retinafilt::showtypeof: type of pix0 + (pix1-pix0)*dd is 6PixRGBIfE
+retinafilt::showtypeof: type of (pix0 + (pix1-pix0)*dd) * blind is 6PixRGBIfE
+Raster::WriteFrame: writing raster file: retinaout.ppm
+
+test FAILED (command exited with exit status '1'):
+---------------------------------------------------------
+
+4 of 5 tests succeeded
+
+FAILED tests:
+        allopt--2
+\endverbatim
+
+OK, so it ran our test, but of course the test failed because it
+didn't find the reference file that we haven't created yet. Notice how
+the name of the missing reference file includes both the test name
+(<tt>allopt--2</tt>) and the test file name (<tt>retinaout.ppm</tt>):
+
+\verbatim
+/path/to/saliency/tests/ref/allopt--2--retinaout.ppm
+\endverbatim
+
+Now let's use the <tt>--match</tt> option, which lets you specify a
+regular expression to filter the names of tests to be run, to run just
+our new test:
+
+\verbatim
+$ ./test_retina_blackbox.pl --match allopt--2
+
+=========================================================
+test 'allopt--2' ...
+
+...
+
+---------------------------------------------------------
+
+0 of 1 tests succeeded
+
+FAILED tests:
+        allopt--2
+\endverbatim
+
+You might also try the different <tt>--verbosity</tt> levels. The
+default level is 3, but you can use any of <tt>--verbosity</tt> -1, 0,
+1, 2, 3, or 4.
+
+So now let's create the missing reference file for our new test,
+using the <tt>--createref</tt> option:
+
+\verbatim
+$ ./test_retina_blackbox.pl --match allopt--2 --createref
+
+=========================================================
+test 'allopt--2' ...
+
+running command '/path/to/saliency/bin/retina
+        -bf
+        testpic001.pnm
+        retinaout.ppm
+        90
+        90'
+
+checking retinaout.ppm ... (creating reference file from results) ok
+---------------------------------------------------------
+
+1 of 1 tests succeeded
+\endverbatim
+
+Now, having created the reference file, if we re-run the test without
+<tt>--createref</tt>, it should pass:
+
+\verbatim
+$ ./test_retina_blackbox.pl --match allopt--2
+
+=========================================================
+test 'allopt--2' ...
+
+running command '/path/to/saliency/bin/retina
+        -bf
+        testpic001.pnm
+        retinaout.ppm
+        90
+        90'
+
+checking retinaout.ppm ... ok
+---------------------------------------------------------
+
+1 of 1 tests succeeded
+\endverbatim
+
+<!--############################################################-->
+
+\subsection blackbox-breakage When a reference/test comparison fails
+
+Now let's make the test break on purpose, to see what happens in that
+case. Let's change the args for our new test from this:
+
+\verbatim
+         args  => ['-bf', 'testpic001.pnm', 'retinaout.ppm', 90, 90],
+\endverbatim
+
+to this:
+
+\verbatim
+         args  => ['-bf', 'testpic001.pnm', 'retinaout.ppm', 91, 91],
+\endverbatim
+
+Now when we re-run the test, it fails, and prints a detailed
+comparison of how the test file differs from the reference file:
+
+\verbatim
+$ ./test_retina_blackbox.pl --match allopt--2
+
+=========================================================
+test 'allopt--2' ...
+
+running command '/home/rjpeters/projects/saliency/bin/retina
+        -bf
+        testpic001.pnm
+        retinaout.ppm
+        91
+        91'
+
+checking retinaout.ppm ... FAILED check against '/home/rjpeters/projects/saliency/tests/ref/allopt--2--retinaout.ppm.gz'!
+
+comparison statistics:
+        magnitude -25: 4 diffs
+        magnitude -24: 9 diffs
+        magnitude -23: 21 diffs
+        magnitude -22: 14 diffs
+        magnitude -21: 16 diffs
+
+        ...
+
+        magnitude 17: 10 diffs
+        magnitude 18: 17 diffs
+        magnitude 19: 10 diffs
+        magnitude 20: 6 diffs
+        num diff locations: 100334
+        file1 length: 196623 bytes
+        file2 length: 196623 bytes
+        % of bytes differing: 51.0286182186214
+        mean offset position: 103514.439880798
+        num (file diff location % 2) == 0: 50251
+        num (file diff location % 2) == 1: 50083
+        num (file diff location % 3) == 0: 33460
+        num (file diff location % 3) == 1: 33719
+        num (file diff location % 3) == 2: 33155
+        num (file diff location % 4) == 0: 25104
+        num (file diff location % 4) == 1: 25066
+        num (file diff location % 4) == 2: 25147
+        num (file diff location % 4) == 3: 25017
+        sum of file1 bytes (at diff locations): 11107399
+        sum of file2 bytes (at diff locations): 11100625
+        mean diff (at diff locations): -0.0675145015647736
+        mean abs diff (at diff locations): 2.01233878844659
+        mean diff (at all locations): -0.0344517172456935
+        mean abs diff (at all locations): 1.02686867762164
+        corrcoef: 0.999408
+        md5sum (test) retinaout.ppm:
+                f7009f3aed7dd4270816b7512d4f89c8
+        md5sum (ref)  allopt--2--retinaout.ppm:
+                4ffb20c024537328d692aff9309b020d
+Raster::ReadFrame: reading raster file: testpic001.pnm
+PnmParser::PnmParser: PBM Reading RGB Image: testpic001.pnm
+retinafilt::main: Using (91, 91) for fovea center
+retinafilt::showtypeof: type of pix0 is 6PixRGBIhE
+retinafilt::showtypeof: type of pix1 is 6PixRGBIhE
+retinafilt::showtypeof: type of pix1-pix0 is 6PixRGBIiE
+retinafilt::showtypeof: type of (pix1-pix0)*dd is 6PixRGBIfE
+retinafilt::showtypeof: type of pix0 + (pix1-pix0)*dd is 6PixRGBIfE
+retinafilt::showtypeof: type of (pix0 + (pix1-pix0)*dd) * blind is 6PixRGBIfE
+Raster::WriteFrame: writing raster file: retinaout.ppm
+
+test FAILED (command exited with exit status '256'):
+---------------------------------------------------------
+
+0 of 1 tests succeeded
+
+FAILED tests:
+        allopt--2
+\endverbatim
+
+In a real situation, you might be able to use the comparison stats to
+help diagnose why the test failed.
+
+
+<!--############################################################-->
+
+\subsection blackbox-replaceref Updating/replacing reference files
+
+If you are sure that the reason for the test failure is innocuous, or
+if you have deliberately changed your program to produce different
+results, you can interactively replace the reference files with the
+<tt>--interactive</tt> command-line option. If you give
+<tt>--interactive 1</tt>, you will just see the textual comparison of
+the two files; if you give <tt>--interactive 2</tt>, then two windows
+will also pop up showing the two image files for visual comparison
+(you need to have the program xv installed for that to work). Either
+way, you will be asked
+
+\verbatim
+replace previous reference file (y or n)?
+\endverbatim
+
+for each non-matching reference file.
+
+<b>Use great care with this option:</b> If you are absolutely sure you
+want to update ALL non-matching reference files, you can pass the
+<tt>--replaceref</tt> command-line option, which will
+NON-interactively replace all reference files. Be sure you know what
+changes are going to be made when you use this option.
+
+
+<!--############################################################-->
+
+\subsection blackbox-cmdline Blackbox command-line options
+
+Each blackbox test script comes equipped with a number of useful
+command-line options (some of these we've discussed already).
+
+
+
+\subsubsection blackbox-cmdline-creatref --createref
+
+With <tt>--createref</tt>, any reference files that are missing will
+be instantiated from the corresponding test file generated during the
+test run. The new reference file will either go in the default
+<tt>ref/</tt> directory or in the location specified by a
+<tt>--refdir</tt> option.
+
+
+
+\subsubsection blackbox-cmdline-executable --executable /path/to/alternate/exe
+
+Normally, the blackbox tests use the executable that is hardwired into
+the <tt>blackbox::run()</tt> call. However, it is possible to override
+that by specifying an alternate executable on the command line with
+the <tt>--executable</tt> option. This might be useful if you have an
+alternate build that has extra debugging or profiling built in.
+
+
+
+\subsubsection blackbox-cmdline-help --help
+
+This just lists the available command-line options along with a
+description of their behavior.
+
+
+
+\subsubsection blackbox-cmdline-interactive --interactive <level>
+
+As we discussed before, if a non-matching test file is found,
+<tt>--interactive</tt> will cause the test script to ask you whether
+to replace the reference file with the new test file. With
+<tt>--interactive 1</tt>, you'll just get the textual comparison stats
+of the two files; with <tt>--interactive 2</tt>, you'll also get a
+visual comparison of the two files if they are image files.
+
+
+
+\subsubsection blackbox-cmdline-list --list
+
+Then there is <tt>--list</tt>, which causes the driver to list the
+names of available tests. For example, let's use this option with the
+<tt>test_ezvision_blackbox.pl</tt> script in the <tt>tests/</tt>
+directory:
+
+\verbatim
+$ ./test_ezvision_blackbox.pl --list
+ez-trajectory--1
+ez-vc-type-entropy--1
+ez-vc-type-variance--1
+ez-raw-maps--1
+ez-feature-maps--1
+ez-conspicuity-maps--1
+ez-conspicuity-maps--2
+ez-saliency-map--1
+ez-saliency-map--2
+ez-saliency-map--3
+ez-saliency-map--4
+ez-foa--1
+ez-saliency-map--5
+ez-saliency-map--6
+ez-variable-rate--1
+ez-save-everything--1
+ez-junction-channels--2
+ez-target-mask--1
+ez-eye-trace--1
+\endverbatim
+
+
+
+\subsubsection blackbox-cmdline-list-refs --list-refs
+
+Also useful is <tt>--list-refs</tt>, which lists the full paths to all
+of the reference files involved in the test script. Again, you can
+combine this with <tt>--match</tt> to restrict the output to only
+matching tests. For example:
+
+\verbatim
+$ ./test_ezvision_blackbox.pl --list-refs --match foa
+/path/to/saliency/tests/ref/ez-foa--1--test.txt
+/path/to/saliency/tests/ref/ez-foa--1--T000000.pnm.gz
+/path/to/saliency/tests/ref/ez-foa--1--T000001.pnm.gz
+/path/to/saliency/tests/ref/ez-foa--1--T000002.pnm.gz
+/path/to/saliency/tests/ref/ez-foa--1--T000003.pnm.gz
+/path/to/saliency/tests/ref/ez-foa--1--T000004.pnm.gz
+\endverbatim
+
+Note how that list mirrors the <tt>files</tt> element of the
+<tt>ez-foa--1</tt> test descriptor in
+<tt>test_ezvision_blackbox.pl</tt>:
+
+\verbatim
+     {
+         name  => "ez-foa--1",
+         args  => ['-ZT', '--boring-delay=FOREVER', '--boring-sm-mv=0.0',
+                   '--nodisplay-eye', '--nodisplay-eye-traj',
+                   '--textlog=test.txt', '--output-frames=0-4@250',
+                   '--crop-foa=64x64',
+                   '--in=raster:testpic001.pnm', '-+', '--out=ppm:'],
+         files => ['test.txt', 'T000000.pnm', 'T000001.pnm',
+                   'T000002.pnm', 'T000003.pnm', 'T000004.pnm'],
+     },
+\endverbatim
+
+
+
+\subsubsection blackbox-cmdline-match --match <regexp>
+
+You might want to use the output of <tt>--list</tt> to help you select
+a <tt>--match</tt> pattern for a later test run; or in fact you can
+use <tt>--match</tt> along with <tt>--list</tt> to just list matching
+tests.
+
+\verbatim
+$ ./test_ezvision_blackbox.pl --list --match sal.*map
+ez-saliency-map--1
+ez-saliency-map--2
+ez-saliency-map--3
+ez-saliency-map--4
+ez-saliency-map--5
+ez-saliency-map--6
+\endverbatim
+
+
+
+\subsubsection blackbox-cmdline-nocomparison --nocomparison
+
+If you are interested in using the test suite for benchmarking, for
+example to compare run times with different build options, or across
+different machines, you may want to use the <tt>--nocomparison</tt>
+option. This option causes the script to run the program with all the
+same command-line option sets that it normally would, but all
+test/reference file comparisons are skipped. That way, the vast
+majority of the CPU time spent will be due to running the program
+itself (and not spent running cmp or diff on the test files). For
+example:
+
+\verbatim
+$ ./test_retina_blackbox.pl --match bluecones --nocomparison
+
+=========================================================
+test 'bluecones--1' ...
+
+running command '/path/to/saliency/bin/retina
+        -f
+        testpic001.pnm
+        retinaout.ppm'
+
+checking retinaout.ppm ... comparison skipped for benchmarking
+---------------------------------------------------------
+
+1 of 1 tests succeeded
+\endverbatim
+
+
+
+\subsubsection blackbox-cmdline-quit --quit-on-fail
+
+Normally, the blackbox test scripts run all the tests, continuing even
+some tests fail. If you want instead to have the script stop
+immediately if/when a test fails, you can pass <tt>--quit-on-fail</tt>
+on the command line.
+
+
+
+\subsubsection blackbox-cmdline-refdir --refdir /path/to/alternate/refdir
+
+If you are working on a system for which the test suite doesn't pass
+as-is (this is usually due to differences in floating-point operations
+between different CPUs and between different compiler versions), you
+may want to use the <tt>--refdir</tt> option to build an alternate set
+of reference files.
+
+Let's say you are working on such a machine, and you want to make some
+changes to the source code, and you want to make sure those changes
+don't break the test suite. Normally, you'd just make your changes and
+then run the test suite, but on this machine, the test suite doesn't
+even pass in the first place. To get around that, you can first build
+a fresh set of reference files by combining <tt>--refdir</tt> with
+<tt>--createref</tt>:
+
+\verbatim
+$ ./test_ezvision_blackbox.tcl --refdir my_alternate_ref --createref
+\endverbatim
+
+Then make your source code changes, then check that test suite still
+passes against the NEW set of reference files:
+
+\verbatim
+$ ./test_ezvision_blackbox.tcl --refdir my_alternate_ref
+\endverbatim
+
+This is already automated as part of <tt>make localtest</tt>, which
+will build a fresh reference set the first time it is run, and will
+test against that reference set on subsequent runs.
+
+
+
+\subsubsection blackbox-cmdline-replaceref --replaceref
+
+<b>Use great care with this option!</b> This will cause the test
+script to NON-interactively replace ALL non-matching reference files
+with the corresponding new test files. If you are going to use this
+option, it's generally a very good idea to first run the test script
+once without <tt>--replaceref</tt> so you can see exactly which
+reference files would be replaced.
+
+
+
+\subsubsection blackbox-cmdline-verbosity --verbosity <level>
+
+This option controls how much information is printed. Allowable levels
+are -1, 0, 1, 2, 3, 4:
+- -1 = no output, result of test run is given by
+exit status
+- 0 = just print a single summary line indicating
+how many tests succeeded
+- 1 = just print one line per test indicating
+success or failure
+- 2 = print the command-line options used for
+each test, and list each reference file that is
+tested
+- 3 = as before, but print detailed analysis of
+any failed reference tests
+- 4 = as before, but show the stdout+stderr from
+every command, even if the test doesn't fail
+
+*/

@@ -1,0 +1,177 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>GrabQtMainForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>GrabQtMainForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>236</width>
+            <height>207</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>test-GrabQt</string>
+    </property>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>tiltLabel</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>180</x>
+                <y>10</y>
+                <width>30</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Plain</enum>
+        </property>
+        <property name="text">
+            <string>Tilt</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>panLabel</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>90</x>
+                <y>160</y>
+                <width>30</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Pan</string>
+        </property>
+    </widget>
+    <widget class="QSlider">
+        <property name="name">
+            <cstring>panSlider</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>50</x>
+                <y>130</y>
+                <width>100</width>
+                <height>24</height>
+            </rect>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>pauseButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>40</x>
+                <y>30</y>
+                <width>120</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Grab</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>saveButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>40</x>
+                <y>75</y>
+                <width>120</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Save...</string>
+        </property>
+    </widget>
+    <widget class="QSlider">
+        <property name="name">
+            <cstring>tiltSlider</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>180</x>
+                <y>30</y>
+                <width>22</width>
+                <height>100</height>
+            </rect>
+        </property>
+        <property name="orientation">
+            <enum>Vertical</enum>
+        </property>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>panSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>GrabQtMainForm</receiver>
+        <slot>handlePanSlider(int)</slot>
+    </connection>
+    <connection>
+        <sender>tiltSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>GrabQtMainForm</receiver>
+        <slot>handleTiltSlider(int)</slot>
+    </connection>
+    <connection>
+        <sender>saveButton</sender>
+        <signal>clicked()</signal>
+        <receiver>GrabQtMainForm</receiver>
+        <slot>saveImage()</slot>
+    </connection>
+    <connection>
+        <sender>pauseButton</sender>
+        <signal>clicked()</signal>
+        <receiver>GrabQtMainForm</receiver>
+        <slot>handlePauseButton()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in declaration">Transport/FrameIstream.H</include>
+    <include location="local" impldecl="in declaration">Devices/FrameGrabberConfigurator.H</include>
+    <include location="local" impldecl="in declaration">ModelManagerControl.h</include>
+    <include location="global" impldecl="in implementation">qfiledialog.h</include>
+    <include location="global" impldecl="in implementation">qmessagebox.h</include>
+    <include location="local" impldecl="in implementation">QtUtil/ImageConvert.H</include>
+    <include location="global" impldecl="in implementation">qimage.h</include>
+    <include location="global" impldecl="in implementation">qpixmap.h</include>
+    <include location="local" impldecl="in implementation">Raster/Raster.H</include>
+    <include location="local" impldecl="in implementation">GrabQtMainForm.ui.h</include>
+</includes>
+<variables>
+    <variable>nub::soft_ref&lt;FrameIstream&gt; gb;</variable>
+    <variable>nub::soft_ref&lt;FrameGrabberConfigurator&gt; gbc;</variable>
+    <variable>ModelManager manager;</variable>
+    <variable>QDialog *display;</variable>
+    <variable>bool grabbing;</variable>
+    <variable>ModelManagerControl mmc;</variable>
+</variables>
+<slots>
+    <slot>init( int argc, const char * * argv )</slot>
+    <slot>handlePauseButton()</slot>
+    <slot>handlePanSlider( int pos )</slot>
+    <slot>handleTiltSlider( int pos )</slot>
+    <slot>saveImage()</slot>
+    <slot>timerEvent( QTimerEvent * )</slot>
+    <slot>grabImage()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

@@ -1,0 +1,57 @@
+0000000.00ms FOAradius            20
+0000000.00ms FoveaRadius          20
+0000000.00ms InputDims            320x240
+0000000.00ms ReadFrame            ../inputs/ezframe000000.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000030.00ms OutputFrameSeries    frame 0
+0000030.00ms WriteFloat           COcolor-000000.pnm
+0000030.00ms WriteFloat           SOrg-000000.pnm
+0000030.00ms WriteFloat           SOby-000000.pnm
+0000030.00ms WriteFloat           SOflicker-000000.pnm
+0000030.00ms WriteFloat           SOintensity-000000.pnm
+0000030.00ms WriteFloat           COorientation-000000.pnm
+0000030.00ms WriteFloat           SOori_0-000000.pnm
+0000030.00ms WriteFloat           SOori_1-000000.pnm
+0000030.00ms WriteFloat           SOori_2-000000.pnm
+0000030.00ms WriteFloat           SOori_3-000000.pnm
+0000030.00ms WriteFloat           COmotion-000000.pnm
+0000030.00ms WriteFloat           SOdir_0-000000.pnm
+0000030.00ms WriteFloat           SOdir_1-000000.pnm
+0000030.00ms WriteFloat           SOdir_2-000000.pnm
+0000030.00ms WriteFloat           SOdir_3-000000.pnm
+0000030.00ms ReadFrame            ../inputs/ezframe000001.pnm
+0000030.00ms InputFrameSeries     frame 1
+0000060.00ms OutputFrameSeries    frame 1
+0000060.00ms WriteFloat           COcolor-000001.pnm
+0000060.00ms WriteFloat           SOrg-000001.pnm
+0000060.00ms WriteFloat           SOby-000001.pnm
+0000060.00ms WriteFloat           SOflicker-000001.pnm
+0000060.00ms WriteFloat           SOintensity-000001.pnm
+0000060.00ms WriteFloat           COorientation-000001.pnm
+0000060.00ms WriteFloat           SOori_0-000001.pnm
+0000060.00ms WriteFloat           SOori_1-000001.pnm
+0000060.00ms WriteFloat           SOori_2-000001.pnm
+0000060.00ms WriteFloat           SOori_3-000001.pnm
+0000060.00ms WriteFloat           COmotion-000001.pnm
+0000060.00ms WriteFloat           SOdir_0-000001.pnm
+0000060.00ms WriteFloat           SOdir_1-000001.pnm
+0000060.00ms WriteFloat           SOdir_2-000001.pnm
+0000060.00ms WriteFloat           SOdir_3-000001.pnm
+0000060.00ms ReadFrame            ../inputs/ezframe000002.pnm
+0000060.00ms InputFrameSeries     frame 2
+0000090.00ms OutputFrameSeries    frame 2
+0000090.00ms WriteFloat           COcolor-000002.pnm
+0000090.00ms WriteFloat           SOrg-000002.pnm
+0000090.00ms WriteFloat           SOby-000002.pnm
+0000090.00ms WriteFloat           SOflicker-000002.pnm
+0000090.00ms WriteFloat           SOintensity-000002.pnm
+0000090.00ms WriteFloat           COorientation-000002.pnm
+0000090.00ms WriteFloat           SOori_0-000002.pnm
+0000090.00ms WriteFloat           SOori_1-000002.pnm
+0000090.00ms WriteFloat           SOori_2-000002.pnm
+0000090.00ms WriteFloat           SOori_3-000002.pnm
+0000090.00ms WriteFloat           COmotion-000002.pnm
+0000090.00ms WriteFloat           SOdir_0-000002.pnm
+0000090.00ms WriteFloat           SOdir_1-000002.pnm
+0000090.00ms WriteFloat           SOdir_2-000002.pnm
+0000090.00ms WriteFloat           SOdir_3-000002.pnm

@@ -1,0 +1,439 @@
+/* These are notes from my (itti@usc.edu) trying to cleanup the src3/
+ source tree through the creation of a basic ModelComponent class */
+
+// //////////////////////////////////////////////////////////////////// //
+// The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2001 by the //
+// University of Southern California (USC) and the iLab at USC.         //
+// See http://iLab.usc.edu for information about this project.          //
+// //////////////////////////////////////////////////////////////////// //
+// Major portions of the iLab Neuromorphic Vision Toolkit are protected //
+// under the U.S. patent ``Computation of Intrinsic Perceptual Saliency //
+// in Visual Environments, and Applications'' by Christof Koch and      //
+// Laurent Itti, California Institute of Technology, 2001 (patent       //
+// pending; filed July 23, 2001, following provisional applications     //
+// No. 60/274,674 filed March 8, 2001 and 60/288,724 filed May 4, 2001).//
+// //////////////////////////////////////////////////////////////////// //
+// This file is part of the iLab Neuromorphic Vision C++ Toolkit.       //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is free software; you can   //
+// redistribute it and/or modify it under the terms of the GNU General  //
+// Public License as published by the Free Software Foundation; either  //
+// version 2 of the License, or (at your option) any later version.     //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope  //
+// that it will be useful, but WITHOUT ANY WARRANTY; without even the   //
+// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      //
+// PURPOSE.  See the GNU General Public License for more details.       //
+//                                                                      //
+// You should have received a copy of the GNU General Public License    //
+// along with the iLab Neuromorphic Vision C++ Toolkit; if not, write   //
+// to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,   //
+// Boston, MA 02111-1307 USA.                                           //
+// //////////////////////////////////////////////////////////////////// //
+//
+// Primary maintainer for this file: Rob Peters <rjpeters@klab.caltech.edu>
+// $Id: src31notes.dxy 11683 2009-09-10 22:51:55Z beobot $
+//
+
+
+// ######################################################################
+// ######################################################################
+/*! \page src31overview Changes from Revisions 3.0 to 3.1 in src3/
+
+<h1>NOTE</h1>
+
+Note that the 'src3' directory discussed below has now been renamed
+back to just 'src' (2005-06-12).
+
+<h1>Overview of changes in src3/ with Revision 3.1</h1>
+- <b>\ref src31components</b>
+  - --><i>Towards a neural simulation environment</i>
+
+- <b>\ref src31tips</b>
+  - --><i>Tips and frequently asked questions</i>
+
+*/
+
+// ######################################################################
+// ######################################################################
+/*! \page src31components Towards a neural simulation environment
+
+
+Over the many years of development of this toolkit by many independent
+developers, several bad things have been growing to intolerable
+proportions:
+- only one executable, vision.C, had complex command-line parsing
+  capability, although in principle many other executables could have
+  had such capability through the OptionSet and OptionParser
+  classes. Thus, vision.C had become the only program that could be
+  tuned to do various things using command-line options, and as such
+  people would keep adding new stuff into vision.C to the point that
+  it had become an incredibly complicated mess;
+- many little programs were developed to test out and use new classes
+  added to the toolkit. Typically those programs all shared
+  substantial components (e.g., get a bottom-up visual attention model
+  going, which meant instantiate a bunch of ChannelBase derivative
+  objects, a VisualCortex, a Brain, etc), which was achieved through
+  cut-and-paste from similar programs. Consequently, any core
+  modification of the toolkit required updating of all those
+  duplications of code.
+- people had a tendency to develop undocumented classes in their
+  little corner, and the lack of doc and availability to core programs
+  would make this unknown to other developers; thus, several
+  almost-equivalent classes had been created for, e.g., access to a
+  serial port and other functionality.
+
+With release 3.1 of the toolkit in early 2003, we attempted to fix
+those problems through the following strategy:
+- a mechanism was implemented to create tunable model parameters,
+  whose values could be easily set via the command line or via config
+  files. A set of classes (ModelParam, ModelComponent, ModelManager)
+  was provided to ease the management of hierarchies of model
+  components that would have such tunable params, and to automate the
+  process of tuning those parameters via the command line or config
+  files.
+- thus, vision.C was obsoleted and replaced by ezvision.C, which is a
+  truly minimalistic program. Instead of doing all the work of parsing
+  the command-line and deciding what to do based on the command-line
+  options in the main() of various programs, that work was shifted
+  main() to where it belonged in the first place: the various
+  components of a model. The main paradigm shift, hence, was that a
+  given model component (e.g., VisualCortex) should itself declare
+  which of its parameters could be tuned, rather than the main() of
+  vision.C or other executables deciding on that. With this new
+  framework, adding a new tunable parameter to a given model component
+  would automatically make it available to all programs that used that
+  component, without any modification necessary on those programs'
+  main() function.
+- ModelComponent was developed to be a base class for substantial
+  computational modules of a neuromorphic model. The functionalities
+  included in the base class (mechanisms to build hierarchies of
+  ModelComponent objects, automatic setting of ModelParam values via
+  the command-line, etc) would not need to be duplicated anymore as it
+  had been the case previously.
+- Hopefully, documenting code and making it available to other
+  programs should become more common in this framework too; indeed, if
+  you wish to introduce new functionality into ezvision.C, typically
+  you should not do so by adding code to ezvision.C itself, but rather
+  by adding new components or new parameters to the existing
+  components that are used by ezvision.C.
+
+Thus, the main idea behind revision 3.1 was to push as much code as
+possible out of main() and back to where it truly belonged in the
+first place, scattered across the various components of a model. See
+\ref modelbuilding "here" for a quick overview of how this was
+implemented and how to use this framework to build your new classes
+and models.
+
+ */
+
+
+
+// ######################################################################
+// ######################################################################
+/*! \page src31tips Tips and frequently asked questions
+
+
+
+
+<h3>How do command-line options work?</h3>
+
+For a general introduction without which the details below may be
+difficult to understand, see \ref modelbuilding "here".
+
+Command-line options use a shared namespace and are all defined in
+ModelOptionDef.C. See \ref modelbuilding "here" for an explanation of
+why that is. The general behavior is as follows: only ModelParam<T>
+data members from ModelComponent objects may be exported as
+command-line options; each ModelComponent requests to the ModelManager
+that some or all of its ModelParam<T> data members be exported to the
+command-line; the ModelManager is in charge of parsing the
+command-line, and will set the ModelParam<T> value to the parsed
+command-line value for each ModelComponent that requested the
+corresponding command-line option. The process is entirely dynamic: if
+no ModelComponent requested a given option, it will not be available
+(and will not show up in the --help page); if parsing an option and
+setting the corresponding ModelParam<T> values triggers new options to
+be exported, they will become available immediately (see below for
+more detailed explanations of how to add command-line options that
+depend upon previously parsed command-line option values).
+
+Typically, things go as follows:
+
+- as ModelComponent derivative objects are instantiated, they
+  instantiate any ModelParam<T> data member they may have. By default,
+  those members remain private to the component and its derivatives
+  (thus, they usually are in the protected section of the class
+  definition). If the component is not registered with the
+  ModelManager using ModelManager::registerComponent(), then the
+  Manager will not interact with the component at all. If the
+  component is registered, the ModelParam becomes accessible through
+  calls to ModelComponent::setModelParamVal(),
+  ModelComponent::setModelParamString(), etc. run on the manager
+  object (see ModelComponent.H), since the ModelManager is a
+  ModelComponent whose registered components are SubComponents. So,
+  once a ModelComponent has been registered, you may not need to keep
+  a pointer to it around, as you can modify its parameters through
+  accesses to the ModelManager. This is the way to change ModelParam
+  values for those parameters which ate not command-line options. See
+  below for the parameters that will also become tunable via the
+  command-line.
+
+- some time before the command-line is parsed, one typically calls
+  ModelComponent::exportOptions() on the manager; this will propagate
+  down to all its registered components and their subcomponents. When
+  this is called, the caller, who has some meta-knowledge about what
+  other components are available in the overall model, chooses which
+  classes of command-line options should be exported (e.g., all
+  options that have to do with saving results; see the OPTEXP_XXX
+  defines in ModelOptionDef.H). Typically, in
+  ModelComponent::exportOptions(), components decide on what they wish
+  to export and then make appropriate calls to
+  ModelManager::requestOption() on the manager, to actually request
+  each option. If exportOptions() has not been called by the time the
+  command-line is parsed, it will be called automatically with
+  OPTEXP_ALL.
+
+- The manager keeps a list of default values for all possible options,
+  and, for each option, a list of all the components that have
+  requested it. When the manager is instantiated, the default values
+  are taken from the hard-coded list in ModelOptionDef.C.  When a
+  component requests an option for one of its ModelParam<T> members,
+  by default the parameter value will be set to the default value from
+  the manager.  Subsequent calls to
+  ModelManager::setOptionValString() on the manager will change
+  that default value as well as change the ModelParam values of all
+  the components that have requested the option.
+
+- Thus, it does not matter whether you call
+  ModelManager::setOptionValString() before or after your
+  component is instantiated (if it exists, the ModelParam value will
+  be changed immediately; if it does not exist yet, the ModelParam
+  value will be changed when the component is instantiated and calls
+  ModelManager::requestOption() on the manager).
+
+- Do not use ModelComponent::setModelParamVal() on the manager to
+  change option values! This will change the values of the
+  corresponding ModelParam members of all components currently
+  registered with the manager, but it will not change the default
+  option value; so any new component will still get the old default
+  value rather than the value you have just set.
+
+- During parsing of the command-line,
+  ModelManager::setOptionValString() is internally called onto the
+  manager, for each parsed command-line option. This will change the
+  default in the manager and the internal value of all the registered
+  components, using ModelComponent::setModelParamString() on each
+  registered component and its subcomponents. If you need to do
+  something each time one of your ModelParam values is changed, you
+  can overload ModelComponent::setModelParamString(). This is for
+  example used by OrientationChannel in Channels.C (to instantiate a
+  bunch of GarborChannels each time the number of orientations is
+  changed) and by SaccadeControllerConfigurator in
+  SaccadeControllers.C (to instantiate a saccade controller of
+  appropriate type and export its command-line options each time a
+  saccade controller type is specified). With this mechanism, you can
+  thus create new command-line options on the basis of the values of
+  previous command-line options. This is exactly what
+  SaccadeControllerConfigurator is about. Compare the list of options
+  related to saccade controllers when you type "ezvision --help" and
+  "ezvision --sc-type=Monkey2 --help"
+
+- To debug the process, simply use "--debug" or
+  "--save-config-to=debug.pmap" and check whether the value specified
+  on the command-line was properly propagated down to all components
+  that requested it. Otherwise check that you are following the
+  sequence described here and \ref modelbuilding "there" in your
+  model. You can also use a call to "manager.printout(std::cerr)" to
+  print out the model hierarchy and ModelParam values.
+
+
+
+
+
+
+<h3>What if I want to hide options from the user except for a couple?</h3>
+
+If you need to be more specific than the general export classes
+defined for ModelComponent::exportOptions() with OPTEXP_XXX in
+ModelOptionDef.H, you will need to manually request the options using
+ModelComponent::doRequestOption() on your ModelComponent objects.
+
+An example of this is provided in the implementation of
+RadioDecoder::exportOptions() in RadioDecoder.C. Radiodecoder has an
+AudioGrabber subcomponent; we would like to let the users choose the
+device file name for the grabber, but we don't want them to change the
+audio recording frequency, otherwise the radio decoding will not
+work. So we explicitly block recursion in the call to exportOptions()
+at the level of the RadioDecoder, and manually export the device name
+option of the AudioGrabber subcomponent.
+
+Another possible approach is to make a very conservative call to
+ModelComponent::exportOptions(), for example, exporting nothing, and
+then to explicitly export some select options by calling
+ModelComponent::doRequestOption(), on the manager (which will propagate
+to all components of the model), or on some model components.
+
+
+
+
+
+
+<h3>How do I use my own custom option values instead of those provided
+in ModelOptionDef.C?</h3>
+
+There are several ways of doing that. You can change an option value
+using ModelManager::setOptionValString() before you parse the command
+line, to set a new default value. See how this is used in bmcvfigs.C
+for an example.
+
+Another approach is that you may want to change a bunch of default
+values depending on the type of derivation of an object which you will
+instantiate on a given run of your model. Furthermore, in such case,
+typically the object type initially is not known, and becomes known
+only while parsing the command-line. An example of that is for
+FrameGrabber objects; we would like to set the defaults that are most
+likely to work for either a V4Lgrabber or an IEEE1394grabber, but both
+sets of defaults differ substantially. To solve this, first, we use a
+FrameGrabberConfigurator to select the type of FrameGrabber derivative
+to use (see definition in FrameGrabber.H). Then, in
+FrameGrabber::exportOptions(), we instruct the ModelManager to use our
+current ModelParam values as option defaults, rather than the global
+defaults in ModelOptionDef.C; this is achieved by setting the third
+argument of the ModelManager::requestOption() calls to true (it is
+false by default). Finally, in the constructors of V4Lgrabber (see
+V4Lgrabber.C) and IEEE1394grabber (see IEEE1394grabber.C), we set our
+custom defaults. So as a V4Lgrabber or an IEEE1394grabber gets
+instantiated and gets a chance to exportOptions(), the correct
+defaults are being pushed into the ModelManager. Be careful with this,
+typically you would want to use this technique only if you expect to
+have only one object of the type in question in your model.
+
+
+
+
+
+
+<h3>Ok, that sounds cool, but what if I have several instances of a
+given object but want to have different options for each
+instance?</h3>
+
+In this kind of case, you typically will set the parameters that
+differentiate your objects by hand, and then will export by hand only
+those options which may be shared by your objects.
+
+An example of that is in test-stereo.C, which uses two IEEE1394grabber
+objects, for the left and right eyes. The first grabber is manually
+configured to use FrameGrabber subchannel 0 using
+ModelComponent::setModelParamVal(), and the second one to use
+subchannel 1. Clearly, it hence does not make sense for this setup to
+export a command-line option to set the subchannel. So instead, we
+export no option through the standard ModelManager::exportOptions()
+call. Then we only export a few options like image size and grab mode,
+by hand, calling ModelComponent::doRequestOption() on the
+manager. This will recurse and both grabbers will request the option
+since we have registered both with the manager, and when command-line
+options are parsed, they will affect both grabbers equally.
+
+
+
+
+
+
+<h3>How do I replace one of my regular internal parameters by a
+ModelParam<T>?</h3>
+
+- First, make sure than you can create a ModelParam of the type of
+  your parameter. For that, check the list of instantiations of
+  ModelParam<T> in InstantiateAll.H. If your parameter type is
+  in this list, move on to the next step. Otherwise:
+  - Enter a new instantiation in the list in InstantiateAll.H, and
+    #include in ModelParam.C (towards top) whatever file is required to
+    define the type you are using, so that the instantiation will work
+    as ModelParam.C is compiled;
+  - If operator>> and operator<< exist for your new type, move on to
+    the next step;
+  - If that type is an enum, create a .H file for it, and model it
+    after the PyramidType enum in PyramidTypes.H; make sure you number
+    your enum values and provide the xxxName() function;
+  - We need to be able to convert to/from string for your new
+    parameter type; to this end, edit StringConversions.H and add
+    prototypes for convertToString() and convertFromString()
+    specializations for your new type. Then implement those functions in
+    StringConversions.C; look at how the other conversions were
+    implemented and just do the same for your type.
+  - If you are going to export your new type as a command-line option,
+    edit ModelOptionDef.H and add a key for your new type in the
+    ModelOptionType enum.
+
+- At this point, 'make ModelParam.o' and 'make StringConversions.o'
+  should work.
+
+- Add the new data member in the protected section of your class that
+  will use the parameter; your class must derive from ModelComponent
+  or one of its derivatives. Make sure you put doxygen comments as to
+  what the ModelParam data member does; see for example the protected
+  section of class Brain in Brain.H.
+
+- In your constructor for your class, add an initialization for your
+  parameter, with a default value. See the constructor in Brain.C for
+  an example.
+
+- If you want to export your new parameter as a command-line option,
+  you will need to implement an overload of the
+  ModelComponent::exportOptions() function. Decide when you want to
+  export the option, depending on how much it relies on the presence
+  of other components in the model; look in ModelOptionDef.H at the
+  OPTEXP_XXX defines. Typically, models that will only use your
+  component will call exportOptions() with only OPTEXP_CORE on. Then
+  implement exportOptions() for your new class, looking for example at
+  the implementation for class Brain in Brain.C. Make sure your
+  overload calls the base ModelComponent::exportOptions() at some
+  point. Finally, create a new entry in ModelOptionDef.C for your new
+  option. The name for your ModelParam should be chosen so that:
+   - if it is unlikely to be used by other components, prefix it with
+     something that has to do with your class, so that you will be
+     sure that nobody will use the same name by mistake (e.g.,
+     "AudioGrabberStereo" rather than "Stereo");
+   - if you expect that several components will share the value set by
+     your option, then use a more generic name (e.g.,
+     "FOAradius"). Look at the top for the format of the entries in
+     the AllModelOptions array in ModelOptionDef.C. Choose an option
+     category for your option; this will place your option along with
+     related options when --help is requested.
+
+- Everything should now compile and models using your class will all
+benefit from the presence of the new ModelParam and possible
+associated command-line option.
+
+
+
+
+
+
+<h3>How do I set the FOA radius?</h3>
+
+That's a good one. Once you have called ModelComponent::start() on
+your manager, you can't change option values anymore (that's to
+prevent people from changing, e.g., the number of orientations in an
+OrientationChannel while a simulation is running). But you need to
+start the model and load the first input image in order to get its
+dims and compute the FOA radius. We solve this in two ways:
+
+- the preferred way is to just use an InputFrameSeries to load your
+  input frames (see FrameSeries.H). The InputFrameSeries will peek the
+  dims of the first frame during start(), and set a few options that
+  are dependent on these dims, like FOAradius, FoveaRadius, etc, if
+  those currently are set to zero (which means that they should be set
+  from input image dims).
+
+- or there is the manual way, but it is non-preferred. You can just
+  use a raw Raster::ReadRGB() call to read your first frame before you
+  call start() and after you have parsed the command-line. Then you
+  manually compute your FOA radius, then set the option by calling
+  setOptionValString() on the manager (you will need to convert your
+  radius to string, and can use convertToString() from
+  StringConversions.H to do that). Then start your model.
+
+*/
+

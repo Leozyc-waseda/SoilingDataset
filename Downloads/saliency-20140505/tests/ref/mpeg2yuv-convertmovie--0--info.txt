@@ -1,0 +1,1 @@
+InfoOutputSeries: summary[mpgconverted]: 50 frames (640x480 VideoFrame (YUV420P))

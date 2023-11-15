@@ -1,0 +1,103 @@
+#!/usr/bin/env tclsh
+
+# Rob Peters <rjpeters at klab dot caltech dot edu>
+
+# $Id: render_postscript 6932 2006-08-04 16:46:57Z rjpeters $
+
+
+# Usage: to render foo.ps into a 1600-pixel wide pnm file, with 4x
+# oversampling (for anti-aliasing):
+#
+#   render_postscript foo.ps w1600 4 > foo.pnm
+#
+# To make it 800 pixels tall instead, using 3x oversampling:
+#
+#   render_postscript foo.ps h800 3 > foo.pnm
+
+
+if { [llength $argv] != 3 } {
+    puts stderr "usage: render_postscript psfile {h,w}width ultrares"
+    exit 1
+}
+
+set psfile [lindex $argv 0]
+set pix_w [lindex $argv 1]
+set ultrares [lindex $argv 2]
+
+switch -glob -- $pix_w {
+    h* {
+	set pix_w [string range $pix_w 1 end]
+	set size_arg "ysize"
+    }
+    w* {
+	set pix_w [string range $pix_w 1 end]
+	set size_arg "xsize"
+    }
+    default {
+	set size_arg "xsize"
+    }
+}
+
+set tempfile "render-postscript-temp[pid].ps"
+
+if { [string equal ".ps" [file extension $psfile]] } {
+
+    if { [catch {set bbox [exec grep --binary-files=text \
+			       "^%%BoundingBox: " $psfile] }] } {
+
+	error "no BoundingBox in ${psfile}!"
+
+	exec ps2ps $psfile $tempfile
+	set psfile $tempfile
+
+	# get the BoundingBox from $tempfile, but use the original
+	# psfile for rendering (fonts lose quality after going through
+	# ps2ps)
+
+	set bbox [exec grep --binary-files=text "^%%BoundingBox: " $psfile]
+    }
+
+} elseif { [string equal ".eps" [file extension $psfile]] || \
+	       [string equal ".epsi" [file extension $psfile]] } {
+    # nothing to do
+
+    # we used to do this:
+
+    #    exec eps2eps $psfile temp.eps
+    #    set psfile temp.eps
+
+    # but it seems to introduce bogus non-white pixels at the
+    # lower-left corner of the image, which throws off subsequent
+    # attempts at cropping
+    set bbox [exec grep --binary-files=text "^%%BoundingBox: " $psfile]
+} elseif { [string equal ".pdf" [file extension $psfile]] } {
+    exec pdf2ps $psfile $tempfile
+    set psfile $tempfile
+    set bbox [exec grep --binary-files=text "^%%BoundingBox: " $psfile]
+}
+
+
+set bbox [lrange $bbox 1 5]
+
+puts stderr $bbox
+
+set llx [expr [lindex $bbox 0] / 72.0]
+set lly [expr [lindex $bbox 1] / 72.0]
+#set urx [expr $llx + [lindex $bbox 2] / 72.0]
+#set ury [expr $lly + [lindex $bbox 3] / 72.0]
+set urx [expr [lindex $bbox 2] / 72.0]
+set ury [expr [lindex $bbox 3] / 72.0]
+
+exec pstopnm -stdout -portrait \
+    -llx $llx \
+    -lly $lly \
+    -urx $urx \
+    -ury $ury \
+    -xborder 0 -yborder 0 \
+    -$size_arg [expr $pix_w * $ultrares] \
+    $psfile \
+    | pnmscale -reduce $ultrares \
+    2>@ stderr \
+    >@ stdout
+
+if { [file exists $tempfile] } { file delete $tempfile }

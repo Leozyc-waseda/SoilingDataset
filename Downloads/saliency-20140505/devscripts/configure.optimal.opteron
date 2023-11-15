@@ -1,0 +1,1 @@
+./configure --enable-mmx --enable-sse --enable-sse2 --enable-aggressive --enable-ffastmath --enable-quietcompile --disable-werror 

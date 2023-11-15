@@ -1,0 +1,159 @@
+#!/bin/sh
+export TDIR=/home2/tmp/saliency-$$
+export DOTFONTPATH=.
+export PATH=${PATH}:/usr/bin/X11
+
+mkdir -p $TDIR
+cd $TDIR
+
+# first, create the daily tarball distribution:
+echo "This is a manifest from `date` for" > MANIFEST
+echo "    'svn export svn://isvn.usc.edu/software/invt/trunk/saliency'" >> MANIFEST
+echo "" >> MANIFEST
+destdir="saliency-`date +%Y%m%d`"
+mkdir -p $destdir/inst
+/usr/bin/svn export --force --username anonsvn --password itRocks svn://isvn.usc.edu/software/invt/trunk/saliency $destdir >> MANIFEST
+mv MANIFEST $destdir/MANIFEST
+chmod -w $destdir/MANIFEST
+tar jclpf /lab/httpd/html/source/saliency-current.tar.bz2 $destdir
+rm -rf $destdir
+
+# get the code:
+/usr/bin/svn checkout --username anonsvn --password itRocks svn://isvn.usc.edu/software/invt/trunk/saliency
+
+# OLD: make a copy of the current snapshot for web distribution:
+#/bin/tar clpf - --exclude CVS --exclude .svn saliency | bzip2 -9 > \
+#  /lab/httpd/html/source/saliency-current.tar.bz2
+
+# go to the active directory:
+cd saliency
+
+# now HTMLify the README for display on the web site, skipping the
+# first few lines:
+start=`grep -nim 1 copyright README`
+nl=`wc -l README | awk '{ print $1 }'`
+toget=`expr $nl - ${start:0:1} + 2`
+tail -$toget README > README.tmp
+txt2html --extract --preformat_trigger_lines=1 \
+  --preformat_whitespace_min=4 \
+  README.tmp > /home/httpd/html/toolkit/README.inc
+
+fmt -s -w 100 COMPILING > /home/httpd/html/toolkit/COMPILING.inc
+
+# do a configure:
+export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/X11R6/lib:/usr/share/lib:\
+/usr/local/lib:${TDIR}/saliency/lib
+export PATH=${PATH}:/usr/local/bin
+err=0
+
+ok="OK"
+bad="<EM>BROKEN!</EM>"
+
+echo "<P class=\"sm\">Automatic build started: " `date` "</P><UL>" > BUILD.inc
+
+echo "<LI><A HREF=\"documentation-dailyconfig.shtml\">./configure \
+--enable-quietcompile --enable-shlibs</A> -- " >> BUILD.inc
+echo `date` > CONFIGURE.inc
+/usr/bin/time ./configure --enable-quietcompile --enable-shlibs >> CONFIGURE.inc 2>&1
+if [ "0$?" -ne 0 ]; then err=1; msg=$bad; else msg=$ok; fi
+echo "$msg</LI>" >> BUILD.inc
+
+# do a make all:
+echo "<LI><A HREF=\"documentation-dailymake.shtml\">make all</A> -- " >> BUILD.inc
+echo `date` > MAKEALL.inc
+/usr/bin/time make all >> MAKEALL.inc 2>&1
+if [ "0$?" -ne 0 ]; then err=1; msg=$bad; else msg=$ok; fi
+echo "$msg</LI>" >> BUILD.inc
+
+# just in case, do a make test-execs before running the test suite:
+#make test-execs
+
+# do a make test: (note: we actually run the test suite directly so that we
+# can get an output in terms of number of tests that failed):
+#echo "<LI><A HREF=\"documentation-dailytest.shtml\">make test</A> -- " >> BUILD.inc
+#echo `date` > MAKETEST.inc
+#cd tests; /usr/bin/time ./run_test_suite.pl >> ../MAKETEST.inc 2>&1
+#ret=$?; cd ..
+#if [ "0$ret" -ne 0 ]; then err=1; msg="$bad -- $ret tests failed"; else msg=$ok; fi
+#echo "$msg</LI>" >> BUILD.inc
+
+# do a make testlong:
+#echo "<LI><A HREF=\"documentation-dailytestlong.shtml\">make testlong</A> -- " >> BUILD.inc
+#echo `date` > MAKETESTLONG.inc
+#cd tests; /usr/bin/time ./run_testlong_suite.pl >> ../MAKETESTLONG.inc 2>&1
+#ret=$?; cd ..
+#if [ "0$ret" -ne 0 ]; then err=1; msg="$bad -- $ret tests failed"; else msg=$ok; fi
+#echo "$msg</LI>" >> BUILD.inc
+
+# create the screenshots:
+echo "<LI><A HREF=\"documentation-dailydemo.shtml\">make demo</A> -- " >> BUILD.inc
+echo `date` > MAKEDEMO.inc
+/usr/bin/time make demo >> MAKEDEMO.inc 2>&1
+if [ "0$?" -ne 0 ]; then
+    err=1; msg=$bad;
+else
+    msg=$ok;
+    # store the results of make demo:
+    /bin/cp -f screenshots/index.raw /home/httpd/html/toolkit/screenshots.inc
+    /bin/cp -afr screenshots/screenshots screenshots/thumbnails /home/httpd/html/toolkit/
+fi
+echo "$msg</LI></UL>" >> BUILD.inc
+
+# that's it for our nightly build:
+echo "<P class=\"sm\">Automatic build finished: " `date` "</P>" >> BUILD.inc
+
+# keep a copy of these outputs:
+FILES="CONFIGURE.inc MAKEALL.inc MAKETEST.inc MAKETESTLONG.inc MAKEDEMO.inc BUILD.inc"
+dat=`/bin/date +%y%m%d`
+tar jcvf /lab/packages/logs/compile.${dat}.tbz $FILES
+
+# send an email if there was some error:
+if [ "0$err" -ne 0 ]; then
+/bin/mail -s "Error in 32-bit toolkit build - $dat" cvslog@iLab.usc.edu <<EOF
+Greetings -
+
+There was some error in the iLab Neuromorphic Vision C++ Toolkit build
+process on our server tonight.  If you get a chance, please see
+the logs at http://ilab.usc.edu/toolkit/documentation.shtml in the
+section on daily diagnostics. If you need to possibly trace back to
+earlier days, please see the archive at http://ilab.usc.edu/packages/logs/
+
+Thanks,
+
+  -- the iLab.usc.edu server
+EOF
+fi
+
+# refresh the web page all at once:
+/bin/mv $FILES /home/httpd/html/toolkit/
+
+# now create the doc:
+make doc
+#make doc-latex
+make ldep-html
+/bin/rm -rf /lab/sdoc/*
+/bin/cp -rf doc/* /lab/sdoc/
+/bin/cp README /lab/sdoc/html/
+
+# now cripple the doc and copy it to a public directory:
+make doc-nosrc
+/bin/rm -rf /home/httpd/html/toolkit/doc-nosrc/*
+/bin/cp -arf doc/* /home/httpd/html/toolkit/doc-nosrc/
+/bin/cp README /home/httpd/html/toolkit/doc-nosrc/html/
+
+# cleanup:
+cd
+/bin/rm -rf $TDIR
+
+# finally, unpack 64-bit build files:
+cd /home/httpd/html/toolkit && \
+  tar jxf /home/httpd/html/ftp/z/7/build64.tbz \
+  BUILD64.inc CONFIGURE64.inc MAKEALL64.inc MAKETEST64.inc MAKETESTLONG64.inc
+
+# fix < and & in most .inc files:
+for f in CONFIGURE.inc MAKEALL.inc MAKETEST.inc MAKETESTLONG.inc MAKEDEMO.inc \
+  CONFIGURE64.inc MAKEALL64.inc MAKETEST64.inc MAKETESTLONG64.inc ; do
+    sed -i.bak -e 's/\&/\&amp;/g' -e 's/</\&lt;/g' $f
+done
+
+/bin/rm *.bak

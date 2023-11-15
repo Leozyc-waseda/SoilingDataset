@@ -1,0 +1,144 @@
+#!/usr/bin/perl -w
+
+# $HeadURL: svn://isvn.usc.edu/software/invt/trunk/saliency/devscripts/profiling/profgraph $
+# $Id: profgraph 6941 2006-08-05 15:23:15Z rjpeters $
+
+# Driver script to generate a directed graph illustrating the flat
+# profile and (pruned) call-graph from a gmon.out file.
+
+# To use this script, you first need to compile your program with
+# profiling enabled. To do that, run 'make clean', then run the
+# configure script with --enable-profiling (plus whatever configure
+# options you normally use), then re-make your program. Then run your
+# program with whatever input, options, etc. you want; this will
+# generate a "gmon.out" file after the program stops. Then, to
+# generate the profile graph, run this script like so:
+
+#   profgraph bin/myprogram gmon.out myprofile
+
+# which will generate myprofile.txt, myprofile.pl, myprofile.dot, and
+# myprofile.ps. The .ps file will have the profile graph, and the
+# other files represent intermediate stages of processing.
+
+use strict;
+
+use File::Basename;
+
+if (scalar(@ARGV) < 3 || scalar(@ARGV) > 4)
+{
+    print STDERR "usage: $0 <exe-file> <gmon-file> <http://doc/root> ?outstem=prof?\n";
+    exit 1;
+}
+
+my $stem = "prof$$";
+
+my $exe = $ARGV[0];
+my $gmon = $ARGV[1];
+my $docroot = $ARGV[2];
+
+if (scalar(@ARGV) > 3)
+{
+    $stem = $ARGV[3];
+}
+
+sub runcmd
+{
+    my $cmd = $_[0];
+    my $dest = $_[1];
+    print STDERR "$cmd > $dest\n";
+    system("$cmd > $dest");
+    if ($?)
+    {
+	unlink($dest);
+	die "$!\n";
+    }
+}
+
+my $dir = dirname($0);
+
+if (!-f "${stem}.txt")
+{
+    runcmd("gprof --brief --no-demangle $exe $gmon", "${stem}.txt");
+}
+
+if (!-f "${stem}.pl1")
+{
+    runcmd("$dir/pl_from_gprof.pl < ${stem}.txt", "${stem}.pl1");
+}
+
+if (!-f "${stem}.pl")
+{
+    runcmd("$dir/add_debug_info.pl $exe < ${stem}.pl1", "${stem}.pl");
+}
+
+if (!-f "${stem}.dot")
+{
+    runcmd("$dir/dot_from_pl.pl -t 0.75 --docroot $docroot < ${stem}.pl",
+	   "${stem}.dot");
+}
+
+if (!-f "${stem}.ps")
+{
+    runcmd("dot -Tps ${stem}.dot", "${stem}.ps");
+}
+
+if (!-f "${stem}.map")
+{
+    runcmd("dot -Tcmapx ${stem}.dot", "${stem}.map");
+}
+
+if (!-f "${stem}.gif")
+{
+    runcmd("dot -Tgif ${stem}.dot", "${stem}.gif");
+}
+
+if (!-f "${stem}.thumb.png")
+{
+    runcmd("dot -Tgif ${stem}.dot | giftopnm | pnmscale -xsize 150 | pnmtopng",
+	   "${stem}.thumb.png");
+}
+
+if (!-f "${stem}.html")
+{
+    my $basestem = basename($stem);
+
+    print STDERR "generating ${stem}.html\n";
+    open(FD, ">${stem}.html") || die "$!\n";
+    print FD "<html>\n";
+    print FD "<head>\n";
+    print FD "<title>${basestem}</title>\n";
+    print FD "</head>\n";
+    print FD "<body>\n";
+
+    print FD "<p><b>legend:</b>";
+    print FD "<ul>";
+    print FD "<li>boxes represent functions";
+    print FD "<li>arrows represent caller-callee relationships";
+    print FD "<li>box line 1 gives function name";
+    print FD "<li>box line 2 gives source file and line number";
+    print FD "<li>box line 3 gives number of function calls; % of cpu time spent in self; and % of cpu time spent in self+children";
+    print FD "<li>box saturation and redness is proportional to % of cpu time spent in self";
+    print FD "<li>clicking on a box leads to the source code for the function";
+    print FD "</ul>";
+
+    print FD "<img border=\"0\" \n";
+    print FD "     src=\"${basestem}.png\"\n";
+    print FD "     usemap=#g>\n";
+    print FD `cat ${stem}.map`;
+    print FD "</body>\n";
+    print FD "</html>\n";
+    close(FD);
+}
+
+if (!-f "${stem}.png")
+{
+    my $info = `giftopnm ${stem}.gif | pnmfile`;
+    if ($info !~ m/ (\d+) by (\d+) /)
+    {
+	die "couldn't find image dims in $info\n";
+    }
+    my $w = $1;
+    my $h = $2;
+    runcmd("$dir/../render_postscript ${stem}.ps w$w 4 | pnmtopng",
+	   "${stem}.png");
+}

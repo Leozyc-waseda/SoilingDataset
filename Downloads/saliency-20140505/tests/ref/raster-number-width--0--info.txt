@@ -1,0 +1,1 @@
+InfoOutputSeries: summary[berrycopy]: 3 frames (400x300 Image<PixRGB<byte>>)

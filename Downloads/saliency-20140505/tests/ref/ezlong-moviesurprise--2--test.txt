@@ -1,0 +1,24 @@
+0000000.00ms FOAradius            20
+0000000.00ms FoveaRadius          20
+0000000.00ms InputDims            320x240
+0000000.00ms ReadFrame            ../inputs/ezframe000000.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000030.00ms OutputFrameSeries    frame 0
+0000030.00ms ReadFrame            ../inputs/ezframe000001.pnm
+0000030.00ms InputFrameSeries     frame 1
+0000060.00ms OutputFrameSeries    frame 1
+0000060.00ms ReadFrame            ../inputs/ezframe000002.pnm
+0000060.00ms InputFrameSeries     frame 2
+0000090.00ms OutputFrameSeries    frame 2
+0000090.00ms ReadFrame            ../inputs/ezframe000003.pnm
+0000090.00ms InputFrameSeries     frame 3
+0000114.30ms CovertShift          (80,112) 4.109mV
+0000115.00ms CovertShift          (96,112) 3.974mV
+0000120.00ms OutputFrameSeries    frame 3
+0000120.00ms ReadFrame            ../inputs/ezframe000004.pnm
+0000120.00ms InputFrameSeries     frame 4
+0000150.00ms OutputFrameSeries    frame 4
+0000150.00ms ReadFrame            ../inputs/ezframe000005.pnm
+0000150.00ms InputFrameSeries     frame 5
+0000173.80ms CovertShift          (80,112) 6.549mV
+0000180.00ms OutputFrameSeries    frame 5

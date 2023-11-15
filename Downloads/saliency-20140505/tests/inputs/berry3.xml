@@ -1,0 +1,28 @@
+<scenes>
+<annotation>
+  <filename>berry3.png</filename>
+  <folder>../inputs</folder>
+  <source>Sample Input</source>
+  <description>Blackberry 3 Search</description>
+  <object>
+    <name>Blackberry</name>
+    <id>3</id>
+    <description>Blackberry</description>
+    <polygon>
+      <pt><x>145</x><y>146</y></pt>
+      <pt><x>164</x><y>101</y></pt>
+      <pt><x>249</x><y>85</y></pt>
+      <pt><x>262</x><y>112</y></pt>
+      <pt><x>268</x><y>148</y></pt>
+      <pt><x>262</x><y>154</y></pt>
+      <pt><x>238</x><y>141</y></pt>
+      <pt><x>217</x><y>170</y></pt>
+      <pt><x>177</x><y>182</y></pt>
+      <pt><x>199</x><y>130</y></pt>
+      <pt><x>193</x><y>127</y></pt>
+      <pt><x>163</x><y>182</y></pt>
+      <pt><x>157</x><y>181</y></pt>
+    </polygon>
+  </object>
+</annotation>
+</scenes>

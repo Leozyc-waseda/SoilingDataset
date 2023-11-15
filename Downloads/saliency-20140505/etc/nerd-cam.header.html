@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> \
+<html> \
+<head> \
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1"> \
+<meta name=keywords content="nerd-cam,nerd,cam,computer,vision,robotics,robot,camera,saliency,contour,integration,mundhenk,itti,university,southern,california,los,angeles"> \
+<meta name=description content="View salient nerds at the University of Southern California or learn how to build your own nerd-cam"> \
+<meta name=copyright content="Copyright © 2000-2006 by T. Nathan Mundhenk. All rights reserved."> \
+<meta name=Pimp content="T. Nathan Mundhenk"> \
+<meta name=robots content="index, follow"> \
+<meta name=rating content=General> \
+<meta name=distribution content=Global> \
+<meta name=revisit-after content="15 days"> \
+<meta name=reply-to content="mundhenk@usc.edu"> \
+<meta name=owner content="mundhenk@usc.edu"> \
+<meta name=author content="T. Nathan Mundhenk, Laurent Itti"> \
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> \
+<LINK rel="stylesheet" href="http://ilab.usc.edu/style.css"> \
+<title>Nerd-Cam at USC iLab Status</title> \
+</head> \
+<body onload="startClock()"> \
+<script language="JavaScript"> \
+<!-- \
+// Timer Code \
+ \
+var timerID = null; \
+var PauseTime=5 \
+var x=PauseTime; \
+var y=1; \
+ \
+function startClock() \
+{ \
+	if ( x == 0) \
+	{ \
+		x = PauseTime; \
+		location.reload(); \
+	} \
+	else \
+	{ \
+		x=x-y; \
+	} \
+	document.form1.clock.value=x; \
+	timerID=setTimeout("startClock()", 1000); \
+} \
+// END HIDING --> \ 
+</script> \
+<p><span style='font-family:Helvetica'> \
+   <img border=0 width=600 height=100 id="_x0000_i1027" src="image/merged-downsized.jpg" alt=Nerd-Cam.com></span></p> \
+   <form name=form1> \
+   <h1>LIVE from the University of Southern California's Hedco Neuroscience Building... Nerd-cam will update in <INPUT TYPE="text" SIZE="3" NAME="clock">&nbsp;seconds: \
+    </h1> \
+    </form> \
+<!-- All Your Base Are Belong to Us --> \
+

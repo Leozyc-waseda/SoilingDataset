@@ -1,0 +1,3001 @@
+/*      -*- mode: text; fill-column: 70; indent-tabs-mode: nil -*-
+      $Id: programmer-notes.dxy 13886 2010-09-05 03:41:21Z itti $
+
+                   ------------------------------------
+                   iLab Neuromorphic Vision C++ Toolkit
+                   ------------------------------------
+
+                             Programmer Notes
+                             ----------------
+
+*/
+
+/*! \page programmer-notes Programmer notes
+
+The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2001-2005 by
+the University of Southern California (USC) and iLab at USC.
+
+Major portions of the iLab Neuromorphic Vision C++ Toolkit are
+protected under the U.S. patent ``Computation of Intrinsic Perceptual
+Saliency in Visual Environments, and Applications'' by Christof Koch
+and Laurent Itti, California Institute of Technology, 2001 (patent
+pending; application number 09/912,225 filed July 23, 2001; see
+http://pair.uspto.gov/cgi-bin/final/home.pl for current status)
+
+This file is part of the iLab Neuromorphic Vision C++ Toolkit.
+
+The iLab Neuromorphic Vision C++ Toolkit is free software; you can
+redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation; either
+version 2 of the License, or (at your option) any later version.
+
+The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope
+that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with the iLab Neuromorphic Vision C++ Toolkit; if not, write to
+the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+Boston, MA 02111-1307 USA.
+
+Table of contents:
+
+- \ref introduction
+- \ref getting-the-code
+- \ref file-organization
+- \ref compiling
+- \ref executables
+- \ref video-clips
+- \ref parallel-code
+- \ref documentation
+- \ref writing-code
+- \ref roadmap
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section introduction 1. INTRODUCTION
+
+
+<!--############################################################-->
+
+\subsection purpose-and-objectives 1.1. Purpose and Objectives
+
+
+This toolkit provides a number of C++ classes to assist you in
+developing neuromorphic vision algorithms. Neuromorphic algorithms are
+motivated by and closely follow the architecture of biological brains.
+
+Originally, this toolkit was developed to implement our model of
+bottom-up, saliency-based visual attention, as described in the
+following scientific articles (all available in PDF format from
+http://iLab.usc.edu):
+
+L. Itti, C. Koch, E. Niebur, A Model of Saliency-Based Visual
+Attention for Rapid Scene Analysis, IEEE Transactions on Pattern
+Analysis and Machine Intelligence, Vol. 20, No. 11, pp. 1254-1259, Nov
+1998.
+
+L. Itti, Models of Bottom-Up and Top-Down Visual Attention, California
+Institute of Technology, Jan 2000.  [Ph.D. Thesis]
+
+L. Itti, C. Koch, A saliency-based search mechanism for overt and
+covert shifts of visual attention, Vision Research, Vol. 40,
+No. 10-12, pp. 1489-1506, May 2000.
+
+L. Itti, C. Koch, Computational Modeling of Visual Attention, Nature
+Reviews Neuroscience, Vol. 2, No. 3, pp.  194-203, Mar 2001.
+
+and many others (see web site, under 'publications').
+
+The model takes an input color image or video sequence and predicts
+which locations in this image will attract our visual attention (that
+is, are conspicuous, or 'salient'). It replicates processing in
+posterior parietal cortex and other brain areas along the dorsal
+visual stream in the primate brain. The model includes a bottom-up
+(image-based) computation of low-level color, intensity, orientation
+and motion features, as well as a non-linear spatial competition which
+enhances salient locations in each of these feature channels.  All
+feature channels feed into a unique scalar ``saliency map'' which
+controls where to next focus attention onto. Because it includes a
+detailed low-level vision front-end, the model has been applied not
+only to laboratory stimuli, but also to a wide variety of natural
+scenes. In addition to predicting a wealth of psychophysical
+experiments, the model demonstrates remarkable performance at
+detecting salient objects in outdoors imagery --- sometimes exceeding
+human performance --- despite wide variations in imaging conditions,
+targets to be detected, and environments.
+
+
+<!--############################################################-->
+
+\subsection classes-included 1.2. Classes included in the package
+
+
+- low-level graphic elements such as a 2D point (Point2D), an RGB
+  pixel (PixRGB), a rectangle, etc
+
+- a template Image class that defines a 2D array (of data type chosen
+  through the C++ template mechanism) and provides numerous low-level
+  image processing functions, such as convolution, rescaling, basic
+  arithmetic operations, decimation & interpolation, various
+  normalizations, type conversions, omnidirectional lens distortion
+  correction, various methods to draw lines, circles, rectangles,
+  points, etc and miscellaneous functions such as speckle noise
+  addition, 3D warping, flooding, edge detection, 3/4 chamfer distance
+  transform, etc
+
+- a template ImageSet class which implements collections of Image
+  objects, possibly forming dyadic pyramids of various data types
+  (defined as template argument) and for various pyramid schemes. A
+  dyadic pyramid is a series of images (one image per pyramid 'level,'
+  where the base of the pyramid, or level 0, is the original image
+  from which the pyramid is built), such that the next level in the
+  pyramid is derived from the current level by applying some filter
+  and then reducing the size of the level by a factor two horizontally
+  and vertically (hence the term 'dyadic,' which means in powers of
+  two). Pyramid schemes include Gaussian pyramids with several
+  Gaussian filter sizes (thus, a Gaussian (= blurring) filter is
+  applied to each level before size reduction), Laplacian (= edge
+  detector), Gabor (= detect oriented edges in a given direction), etc
+
+- a Raster namespace and set of functions which allow storage and
+  retrieval of Image objects as PNM (Portable aNyMap; also known as
+  PPM Portable PixMap and PPM Portable GreyMap) image files on disk, a
+  very easy to use, uncompressed and standardized image file
+  format. PNM is a very convenient format because of the availability
+  of the 'netpbm' suite (installed by default in many Linux
+  distributions), which includes many programs to convert from any
+  other image format to PPM/PGM, and then from PPM/PGM to any other
+  format. We also support other common image formats such as JPEG and
+  PNG (not to be confused with PNM), as well as raw YUV image formats
+  (see RasterFileFormat and VideoFormat).
+
+- several classes which are specific to our model of bottom-up,
+  saliency-based visual attention, such as a number of Channel classes
+  (which wrap underlying image pyramids of various types), a
+  VisualCortex class (contains several pyramids for color, intensity,
+  orientation and flicker information), a SaliencyMap class (which is
+  a 2D array of simple leaky integrate & fire neurons), a
+  WinnerTakeAll class (which is a distributed neuronal algorithm by
+  which the location of maximum activity can be detected in the
+  saliency map), a Brain class (contains a retina, visual cortex,
+  saliency map, winner-take-all and a few other objects), a number of
+  SaccadeController classes which allow for the control of eye
+  movements from shifts of attention, a ShapeEstimator class which
+  computes an estimate bounding region around an attended object, etc
+
+- several classes that are specific to our model of contour
+  integration in the primate brain. These classes simulate intricate
+  patterns of connections between neurons visually responsive to
+  various locations in our visual environment, and allow the model to
+  extract salient contours from surrounding noise and clutter
+  (contourNeuron and contourRun classes).
+
+- several classes specific to symbolic knowledge representation, which
+  we use to model the influence of a verbally-specified task/goal onto
+  the spatiotemporal deployment of attention and eye movements.
+
+- several classes that deal with object recognition, including a
+  re-implementation of the HMAX model, a 2-layer backpropagation
+  network for object recognition, etc.
+
+- a Jet class, which is a vector of responses from various neurons all
+  responding to a same location in the visual field, but with
+  different sensitivities (e.g., one neuron is tuned to red color,
+  another to vertical orientation, etc). Several operations are
+  provided that allow the computation of mean jets, distance between
+  two jets, etc. This class has been applied to some fairly
+  unsuccessful (so far) attempt at segmenting objects from scenes
+  using some jet-based metric.
+
+- a V4Lgrabber class, which allows very easy capture of video frames
+  from any Video4Linux-compliant framegrabber device installed in your
+  computer (see http://roadrunner.swansea.uk.linux.org/v4l.shtml).
+
+- an IEEE1394grabber class, which allows very easy capture of video
+  frames from any IEEE-1394 (FireWire) digital camera (i.e., web-cam,
+  as opposed to DV camcorders, which use a different data stream
+  format).
+
+- various other hardware drivers, such as a Serial port class, a
+  Serial-Servo-Controller (SSC) class, an alphanumeric LCD display
+  driver, various pan/tilt camera head drivers with associated
+  calibration code, a Keyboard driver, AudioGrabber and AudioMixer
+  abstractions, etc.
+
+- an XWindow class which just opens a window on the screen and can
+  display Images in it, and is extremely easy to use; and an
+  XWinManaged class which in addition responds to various mouse and
+  widget events.
+
+- A ParamMap class for storage/retrieval of various parameters in
+  config files; and a somewhat overlapping readConfig class which
+  allows easy reading/parsing/storage of configuration files for your
+  applications.
+
+- a set of very fast and multithreaded interprocess communication
+  classes which allow quick transfer of images and other data from one
+  computer to another over the network; most of these classes
+  (TCPxxxx.C/.H) will not be of interest to the user, who will mostly
+  deal with the Beowulf class (sets up interconnections between
+  different computers on a network) and the TCPmessage class (builds
+  messages to be passed between machines and can contain various
+  elements such as images, text strings, etc).
+
+- a very convenient logging facility which provides a set of functions
+  to be used instead of printf to report debugging messages,
+  information messages, errors or fatal errors. In addition to
+  accepting the same syntax as printf, these functions will print the
+  program name, class name, method name, possible system messages (see
+  'man perror'), etc. either to standard output or through the
+  systemwide system logs (see 'man syslog').
+
+- several other classes, such as a Timer class which can be used to
+  measure time, a Range class, etc.
+
+
+<!--############################################################-->
+
+\subsection basic-features 1.3. Basic features of the programming environment
+
+
+The toolkit makes use of a number of advanced C++ programming
+techniques, which are intended to make use of its various components
+easier and more flexible to the knowledgeable programmer. While this
+brings many advantages described below, one drawback is that some of
+the constructs and techniques employed may be unfamiliar to the
+inexperienced programmer. If you are only moderately familiar with
+C++, we urge you to very carefully read the book "The C++ Programming
+Language" (Third Edition or Special Edition), by Bjarne Stroustrup
+Addison-Wesley, ISBN 0-201-88954-4 or 0-201-70073-5. See
+http://www.research.att.com/~bs/3rd.html for details.
+
+- Full configure process so that the source tree should compile on a
+  variety of computing environments (see configure.in, configure and
+  Makefile.in);
+
+- Full test suite to ensure that various pieces of the code continue
+  to work the same as you implement new functionality (see TestSuite.H
+  and "make test");
+
+- Heavy use of C++ template mechanisms, so that many classes are
+  implemented in a type-generic manner, and may be instantiated for
+  various data types (e.g., the Image class is parameterized by a
+  template argument defining the datatype to use for individual
+  pixels; functions operating on the Image class are written in a
+  generic manner, with as few assumptions as possible made on what the
+  pixel datatype may end up being; Image objects may then be created
+  in your programs that may use pixels of type byte, int, float,
+  PixRGB<byte>, IntFireNeuron, Jet<byte>, or an open-ended variety of
+  other datatypes);
+
+- Heavy use of inheritance and class hierarchies. When a model
+  component is being implemented in several forms, either for
+  experimentations with several possible approaches, or for re-use of
+  a generic framework in various specializations, usually we define a
+  base class to specify the interface (sometimes that base class is
+  purely virtual), and then a number of derived classes which
+  implement various behaviors behind that interface. Examples are the
+  Channel hierarchy, where ChannelBase defines the common interface,
+  then derived into SingleChannel (contains one ImageSet) and
+  ComplexChannel (contains a collection of SingleChannel and/or
+  ComplexChannel objects), and further derived into IntensityChannel,
+  RedGreenChannel, DirectionChannel, MotionChannel, etc;
+
+- Reference-counted, copy-on-write memory allocation for large objects
+  such as images (so that various copies of an image share the same
+  physical memory until one of the copies attempts to modify that
+  memory, at which point a copy of the memory is first made; see
+  ArrayData.H and its use in Image.H and TCPmessage.H);
+
+- Automatic type promotion, so that operations among template classes
+  automatically avoid all overflows (e.g., multiplying an image of
+  bytes by a float coefficient results in an image of floats; see
+  Promotions.H);
+
+- Automatic range checking and clamping during demotion of types
+  (e.g., assigning an image of floats to an image of bytes
+  transparently converts and clamps all pixel values to the 0..255
+  range; see Promotions.H);
+
+- Smart reference-counted pointers, so that when the last pointer to
+  an object is destroyed, memory allocated for the pointee is
+  automatically freed (see SharedPtr.H);
+
+- Persistent model parameters that may be stored/retrieved to/from
+  configuration files, or configured via command-line options. A
+  framework is provided where a run-time selection of various model
+  components may export at run-time command-line options that will
+  allow tuning of some of their internal parameters. The mechanism is
+  pushed to the extreme, so that new model components selected via the
+  command line may export their set of command-line options while the
+  command line is being parsed (see ModelParam.H, ModelComponent.H and
+  ModelManager.H for the general framework, and
+  VisualCortexConfigurator.H for exporting options while the
+  command-line is being parsed);
+
+- Atomic operations (see atomic.H);
+
+- Range-checked iterators that may be used in place of normal
+  iterators, for debugging purposes (see CheckedIterator.H);
+
+- MMX/SSE alternative faster implementations for some of our core
+  image processing functions (e.g., lowPass3, byte-to-int conversions,
+  etc; see mmx-sse.H);
+
+- Wrappers to use some of our classes from within Matlab (see, e.g.,
+  mexSaliency.C);
+
+- Use of multi-threading (see, e.g., RadioDecoder.H, TCPcommunicator.H
+  and others);
+
+- A large collection of test programs that demonstrate the minimal use
+  of a given class (see test-*.C);
+
+To get started, please see the online documentation at
+http://iLab.usc.edu/sdoc/html/ (use the same username/pass as you used
+to obtain this code). Make sure you read all of the introductory pages
+(links to them are both on the front page and on the side bar, under
+"Related pages"). Once you have read those, a good way to get
+accustomed to the code base is to browse through the class hierarchy
+and click on the name of any highlighted entity you may not be
+familiar with. Also, be sure to check the online repository browser,
+which will allow you to check the full edit history of every source
+file, at
+
+    http://ilab.usc.edu/cgi-bin/secure/viewcvs.cgi/trunk/saliency/
+
+(same username/pass as for the documentation).
+
+Also, a wrapper to "man" is provided and named saliency/bin/mn; once
+you have saliency/bin in you path, you can use it just like "man" to
+view documentation about a class or file as a man page; for example:
+
+\verbatim
+     mn lcd
+     mn FrameGrabber.H
+\endverbatim
+
+and so on. The actual man pages reside in saliency/doc/man and are
+created when you type "make doc" from within saliency/src/.
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section getting-the-code 2. GETTING THE CODE
+
+
+<!--############################################################-->
+
+\subsection subversion 2.1. Subversion (SVN)
+
+
+The easiest way to obtain the latest revision of the source code is
+from our Subversion repository. Subversion (abbreviated SVN, homepage
+http://subversion.tigris.org) is a version control system designed as
+a new-and-improved replacement for CVS.
+
+\note
+        There is an excellent O'Reilly book about Subversion,
+        which is available, for free, in its entirety, here:
+
+\par
+           http://svnbook.red-bean.com/
+
+\par
+        (Make sure that you click on links for the latest version of
+        the book -- currently there are 1.0 and 1.1 versions, and
+        (obviously) 1.1 is the more recent version).
+
+\par
+        If you have a question about subversion that isn't answered in
+        this README, your next source should be the svn book online.
+
+Subversion allows several programmers to simultaneously work on the
+same code and that will keep track of all changes made; to achieve
+that, the master copy of the source code is maintained in a central
+database, and the various programmers download a working copy of the
+code to their various machines and home directories. After they have
+modified the code and the modifications work, they post their changes
+back to the master repository for everyone to enjoy.
+
+You can see the contents of our neuromorphic vision toolkit subversion
+repository through a web interface at:
+
+    http://ilab.usc.edu/cgi-bin/secure/viewcvs.cgi/trunk/saliency/
+
+(Be assured that although the URL contains 'viewcvs', you are indeed
+looking at a subversion (svn) repository, not a cvs one. The 'viewcvs'
+web interface works with both CVS and svn repositories).
+
+This will allow you to see the various revisions, who made them and
+when, and to highlight differences between various versions of the
+code.  You should not use this to download the code; rather follow
+these instructions:
+
+
+<!--############################################################-->
+
+\subsection using-svn 2.2. Using svn
+
+
+Go to the directory where you want to install the source code. Then
+type:
+
+\verbatim
+        svn checkout svn://ilab.usc.edu/trunk/saliency
+\endverbatim
+
+this will download the entire source tree.
+
+You can now start editing the code (see below for the various
+subdirectories). Once you have made changes and have tested that
+everything compiles fine and works ok, you can check which files you
+have modified locally by typing:
+
+\verbatim
+        svn status
+\endverbatim
+
+\note
+        CVS USERS SEE NOTE BELOW REGARDING 'svn status' and 'svn update'
+
+Once you are satisfied that your changes are ready for the world to
+see, you can post them by issuing (from the directory where you have
+made changes):
+
+\verbatim
+        svn commit -m"short message describing what you did"
+\endverbatim
+
+If someone else has modified the same source code as you have, svn
+will refuse to commit your changes and ask you to first update your
+source to the latest subversion repository revision; you do that by
+typing:
+
+\verbatim
+        svn update
+\endverbatim
+
+\note
+        NOTE TO CVS USERS: Unlike in CVS, you should NOT use 'svn
+        update' to quickly check which files you have modified
+        locally. Instead you should use 'svn status', and here's why.
+
+\par
+        In fact CVS has a 'cvs status' command that would give you
+        information about local changes, but its output is so verbose
+        that nobody ever uses it; everyone uses 'cvs update'
+        instead. Of course there are two problems with that: (1) it
+        might bring in new modifications from the repository, which
+        you don't necessarily want, and (2) it requires significant
+        network bandwidth to communicate with the CVS repository and
+        determine what changes you have made. In svn, the situation is
+        much nicer. For one thing, the output of 'svn status' is now
+        compact, just like the output of 'cvs update' was. For another
+        thing, 'svn status' requires no network traffic -- subversion
+        keeps pristine copies of the unmodified files tucked away
+        inside the various .svn directories in your working
+        copy. Therefore you can do 'svn status' or 'svn diff' to
+        examine local changes without having to wait for the network,
+        and without placing undue load on the svn server. </tt>
+
+When you do 'svn update', subversion will try to merge other
+people's into your own working copy. Usually this is fully automatic,
+unless you have been editing exactly the same lines in a file as
+someone else has (you should then talk to that person to figure out
+why both of you are editing the same code, since usually different
+people will work on different parts of the code!). In this case,
+subversion will notify you that there has been a conflict by printing
+a 'C' next to the offending file's name during your 'svn
+update'. Subversion's approach to conflicts is more user-friendly than
+CVS's approach -- in particular, it won't let you commit a file
+containing those pesky >>>>>>>> conflict markers by accident. With
+subversion, you must explicitly notify svn after you've resolved the
+conflict, by using the 'svn resolved' command.
+
+If there has been a conflict, subversion puts three extra files in
+your working copy:
+
+\verbatim
+  filename.mine     [contains just your local modifications]
+  filename.r5000    [the base file against which you made local mods]
+  filename.r5001    [the latest version on the server]
+\endverbatim
+
+where '5000' is the revision against which you had made local
+modifications, and '5001' is the latest revision on the server.
+
+You can do one of three things to fix the conflict:
+
+  - merge the changes by hand, by editing <filename> and removing the
+    various conflict markers
+
+  - OR, copy one of the three temporary files listed above back on top
+    of <filename>
+
+  - OR, throw away your local changes by doint 'svn revert <filename>'
+
+Once you are done fixing the conflict, you must inform svn of
+this by doing 'svn resolved <filename>'.
+
+Then, you can commit any remaining changes in <filename> to the
+server with another 'svn commit', BUT... be sure to first run 'svn
+diff' on the file in question, to make sure you really know which
+changes you have added.
+
+Subversion will safely ignore all files that have not been
+explicitly added to the repository; these include your .o files,
+editor backups, and so on.  So it is not necessary to clean up those
+files before doing a 'svn commit'.
+
+In summary, the recommended strategy for smooth interaction with the
+source tree is:
+
+- NEVER copy files around (e.g., put them onto another computer),
+  then edit them, meanwhile do something else in your working svn
+  tree and do an update once in a while, then some day copy those old
+  files back into your svn working copy, overwriting the up-to-date
+  ones. This will break the entire mechanism if someone else has also
+  edited that file and committed changes (indeed, subversion will
+  think that you just decided to delete all of this other person's
+  edits!);
+
+- Instead, if you need to have various copies of the code at various
+  places, just checkout a copy at each place and work in those
+  checked-out trees. Once you are done with some edits at one place
+  (e.g., home) just commit them to the server and when you get to
+  another place (e.g., work), just update your tree there. Thus, you
+  are using the central svn server to keep your various copies of the
+  code in sync and transfer your edits from one place to another;
+
+- Once you have made a bunch of changes that work ("make all" and
+  "make test" pass, though it is okay if your new code is bogus in
+  its execution as long as you are the only one using it), do the
+  following:
+  - 'svn update' to make sure that you are in sync;
+  - 'svn status' to show you with an "M" prefix all the files you
+    have modified. If some files show up there that you did not
+    think you had modified or did not wish to modify, try 'svn diff
+    <file>' to see how your copy differs from the server's master
+    copy. If you realize that these are edits you made while
+    debugging, but you don't want to commit them, simply do an 'svn
+    revert <file>' to restore that file to its pristine unmodified
+    state.
+  - If you have made a large number of changes, and a single commit
+    message would not work well, you may wish to commit your
+    modified files individually or in smaller groups; for example:
+\verbatim
+        svn commit -m"fixed bug with lowPass3()" Image_FilterOps.C
+        svn commit -m"new compute() function" myStuff.H myStuff.C
+\endverbatim
+
+    \par
+    However, note that in subversion, unlike CVS, commits are
+    atomic -- everything that happens in a single 'svn commit'
+    command is stored as a single revision in the server, and bumps
+    the global revision number only once. Therefore, it is
+    sub-optimal (though not catastrophic) to use more than one 'svn
+    commit' for a set of changes that really belong together in a
+    single unit.
+
+    \par
+    And so on. You can do an 'svn status' after each step to
+    see which files remain to commit.  Using this simple behavior,
+    you will avoid committing changes you did not wish to commit.
+
+
+<!--############################################################-->
+
+\subsection svn-advanced 2.3. Advanced svn techniques
+
+PLEASE DO NOT USE THE FOLLOWING UNLESS YOU REALLY KNOW WHAT YOU ARE
+DOING!
+
+To add a new file to the repository, you need to tell svn by doing:
+
+\verbatim
+        svn add newfile
+\endverbatim
+
+this will schedule the file for addition; it will actually be added
+when you next commit.
+
+To remove a file from the repository, do
+
+\verbatim
+        svn delete file
+\endverbatim
+
+and it will be deleted when you next commit. Deleted files aren't
+really gone forever; they can still be retrieved by doing an 'svn
+checkout' with an older date or revision number.
+
+To add a new subdirectory
+
+\verbatim
+        svn mkdir newdir
+        svn commit -m"created newdir"
+\endverbatim
+
+To remove a directory: unlike in CVS, this is actually possible in
+subversion. It's the same as deleting a file:
+
+\verbatim
+        svn delete somedir
+\endverbatim
+
+To rename a file or directory: this is another thing that was not
+possible in CVS, but is trivial in subversion:
+
+\verbatim
+        svn move name1 name2
+\endverbatim
+
+
+<!--############################################################-->
+
+\subsection about-svn-properties 2.4. About svn properties
+
+
+\note
+        The most important thing about this section -- if you
+        are going to commit code to the subversion repository, you
+        should modify your ~/.subversion/config file so that the
+        svn:keywords property gets set automatically on any files that
+        you add to the repo. See the "svn:keywords" section below.
+
+Subversion allows you to use arbitrarily-named properties to associate
+any user-specified content with versioned files (can be text, or other
+MIME types... so e.g. it's possible to put images into an svn
+property). Changes to properties are versioned just like changes to
+file contents.
+
+The main subcommands associated with properties are the following:
+
+\verbatim
+	svn proplist -v <filename>
+	svn propset <property-name> <property-value> <filename>
+	svn propget <property-name> <filename>
+	svn propedit <property-name> <filename>
+	svn propdel <property-name> <filename>
+\endverbatim
+
+\note
+        In order to use 'svn propedit', you need to set at least
+        one of the SVN_EDITOR, VISUAL, or EDITOR environment
+        variables. If you haven't done that, you'll get an error like
+        the following:
+\verbatim
+          svn: None of the environment variables SVN_EDITOR, VISUAL or
+          EDITOR is set, and no 'editor-cmd' run-time configuration
+          option was found
+\endverbatim
+\par
+        To set one of the env vars, just do
+\verbatim
+          export SVN_EDITOR="emacs -nw"    (in sh or bash)
+
+          or
+
+          setenv SVN_EDITOR "emacs -nw"    (in csh or tcsh)
+\endverbatim
+\par
+        and if you want to make that change permanent, add the line
+        somewhere in your ~/.bashrc or ~/.cshrc.
+
+For example:
+
+\verbatim
+  cd /path/to/saliency
+  svn propedit svn:ignore .  (brings up an emacs window for editing the property)
+  svn proplist -v .
+  -->  Properties on '.':
+         svn:ignore : Makefile
+       Makefile.local
+       TAGS
+       autom4te-2.5x.cache
+       autom4te.cache
+       build
+       config.log
+       config.status
+       depoptions
+       inst
+       mexopts.sh
+\endverbatim
+  (The svn:ignore property is equivalent to the old .cvsignore files.)
+
+\verbatim
+  svn proplist -v src/Image/Image.H
+  -->  Properties on 'src/Image/Image.H':
+         svn:keywords : Author Date Id Revision
+         svn:eol-style : native
+\endverbatim
+
+\verbatim
+  svn proplist -v devscripts/extract_templates.tcl
+  -->  Properties on 'devscripts/extract_templates.tcl':
+         svn:executable : *
+         svn:keywords : Author Date Id Revision
+         svn:eol-style : native
+\endverbatim
+
+Properties can have any name; for example you could associate
+copyright information with a file like this:
+
+\verbatim
+  svn propset copyright 'Copyright (2005)...' foofile
+\endverbatim
+
+But there are also some 'magic' properties that start with the svn:
+prefix, and these have a special meaning to svn...
+
+<ul>
+
+
+<li> svn:ignore -- just like the .cvsignore files. The most common use
+    for svn:ignore is likely to be when you add a new executable that
+    will get built in the bin/ directory -- since of course we don't
+    want to check binary executables in to the svn repository, svn
+    will show that it doesn't recognize the new executable by
+    indicating it with a '?' when you run "svn status". Suppose the
+    new executable is named bin/myprog. Then, initially we have the
+    following:
+\verbatim
+    $ svn status
+    ?      bin/myprog
+\endverbatim
+    You can avoid that noise by adding myprog to the svn:ignore
+    property of the bin directory... e.g.,
+\verbatim
+    $ svn propedit svn:ignore bin
+
+      (brings up an editor window with the list of items in
+      svn:ignore, just add 'myprog' to that list; if you get an error
+      message, then see the NOTE above about setting one of the
+      SVN_IGNORE, VISUAL, or EDITOR environment variables)
+
+    $ svn proplist -v bin
+    Properties on 'bin':
+      svn:ignore : BeobotLauncher
+    CINNICanova
+    CINNICinteract
+    CINNICstats
+    CINNICtest
+    ...
+
+      (lists all properties and their current values for bin)
+\endverbatim
+\verbatim
+    $ svn status
+     M     bin
+
+      (now no longer shows a '?' for myprog, but shows a " M" for bin,
+      indicating that bin has locally-changed properties)
+\endverbatim
+\verbatim
+    $ svn commit -m"Added myprog to svn:ignore for bin." bin
+
+      (commits the changed property)
+\endverbatim
+</li>
+
+<li> svn:keywords -- specifies which RCS keywords get substituted; unlike
+    CVS, this property defaults to being empty, which means that
+    people either have to remember to set svn:keywords explicitly e.g.
+
+\verbatim
+    svn propset svn:keywords "Author Date Id Revision HeadURL" foo.C
+\endverbatim
+
+    or can add some lines to $HOME/.subversion/config to make
+    svn:keywords get set automatically anytime you 'svn add' a new
+    file that has a particular filename extension.
+
+    We recommend that developers who plan to contribute code to our
+    subversion repository add lines similar to the following to the
+    end of their ~/.subversion/config file:
+
+\verbatim
+    [miscellany]
+    enable-auto-props = yes
+
+    [auto-props]
+    *.[cC]    = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    *.[hH]    = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    *.cc      = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    *.cpp     = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    *.hh      = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    *.hpp     = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    *.html    = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    *.m       = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    *.pl      = svn:eol-style=native;svn:executable;svn:keywords=Author Date Id Revision HeadURL
+    *.py      = svn:eol-style=native;svn:executable;svn:keywords=Author Date Id Revision HeadURL
+    *.sh      = svn:eol-style=native;svn:executable;svn:keywords=Author Date Id Revision HeadURL
+    *.tcl     = svn:eol-style=native;svn:executable;svn:keywords=Author Date Id Revision HeadURL
+    *.txt     = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    *.xml     = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    *.xsl     = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+    Makefile* = svn:eol-style=native;svn:keywords=Author Date Id Revision HeadURL
+
+    *.gif     = svn:mime-type=image/gif
+    *.jpg     = svn:mime-type=image/jpeg
+    *.png     = svn:mime-type=image/png
+\endverbatim
+</li>
+
+<li> svn:executable -- doesn't matter what the content of this property
+    is, but if it is present, then svn knows to chmod +x the file when
+    checking it out
+</li>
+
+<li> svn:special -- for now, the only thing this is used for is for
+    storing symlinks in the svn repo... e.g.,
+
+\verbatim
+    ln -s devscripts scripts
+    svn add scripts
+    svn proplist -v scripts
+    -->  Properties on 'scripts':
+           svn:special : *
+    svn revert scripts
+    rm scripts
+\endverbatim
+</li>
+
+</ul>
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section file-organization 3. FILE ORGANIZATION
+
+
+The full tree contains the following (you may not get all of this):
+
+\verbatim
+
+README        this file
+
+src/          source code (historical note [2005-06-12]: the current src/
+              directory was renamed from src3/, which itself was a
+              descendent of earlier src2/ and src/ directories, all of
+              which are available from earlier revisions of the
+              subversion repository)
+
+src/Util/
+src/Image/
+src/Raster/
+src/Component/
+src/agentMinder/
+src/qt/
+              as of 2005-06, we are currently undergoing a transition
+              to split the source code into subdirectories consisting
+              of logically related modules
+
+notes/        various (mostly obsolete) documentation and research notes;
+              don't worry too much about it, everything you need is in
+              the present README;
+
+devscripts/   shell scripts and other resources used in the course of
+              maintaining the source code repository, see
+              devscripts/README for more details
+
+doc/          if you do 'make doc', then the resulting output will go
+              in doc/html, doc/latex, doc/man, doc/rtf
+
+bin/          executables; this is where the results of your compilation will
+              be; everything that remains there after a 'make clean'
+              is a shell or perl script that was written to do various
+              batch processing;
+
+params/       learning parameters for specialization of the system to one
+              given visual search task (e.g., detecting traffic
+              signs);
+
+tests/        a test suite consisting of blackbox and whitebox tests
+              to verify the behavior of different components of our
+              toolkit; to run, do 'cd tests; ./run_test_suite.tcl'
+              (takes ~30 seconds on a 2.8GHz Xeon), or do 'cd tests;
+              ./run_testlong_suite.tcl' (takes ~300 seconds)
+
+matlab/       some Matlab code for the new version of the oriented filters
+              (under development; to be used in conjunction with
+              Roberto Manduchi's steerable-scalable filter
+              optimization code).
+
+\endverbatim
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section compiling 4. COMPILING
+
+
+<!--############################################################-->
+
+\subsection basic-compilation 4.1. Basic compilation
+
+
+Use the following steps to build the executables from source:
+
+\verbatim
+  cd saliency         ### switch to the source code's directory
+
+  ./configure --help  ### to see a list of possible configuration options
+
+  ./configure         ### run the configure script with optional options
+                      ### e.g. ./configure --prefix=/usr/local
+                      ###  or  ./configure --enable-mmx --enable-sse
+                      ###  or  ./configure --enable-mem-debug
+
+  make
+
+  make test           ### optional test if you want to run the test suite
+
+  make testlong       ### optional more stringent tests, takes long time
+\endverbatim
+
+will compile the core executables (see below) and place them in the
+bin/ subdirectory of the installation location you chose with the
+configure script (default will be saliency/bin/ in your working
+saliency directory). You should have zero errors and zero warnings.
+
+\verbatim
+  make core           ### just a few core programs if you get some errors
+                      ### about missing libs when you just type "make".
+                      ### The core programs should not require
+                      ### unusual or exotics libs (like FireWire, etc)
+
+  make all            ### build everything
+\endverbatim
+
+If you run 'make test', be aware that some of the tests unfortunately
+rely on the specific way that Intel processors do floating-point
+computations; so if you're running on a different processor, you may
+see some test failures due to this fact.
+
+There are additional targets for make, which will require some
+nonstandard software packages to compile. These include:
+
+\verbatim
+  make                -> only builds the base executables (into saliency/bin/)
+  make base           -> same as above
+  make core           -> builds only core programs that don't need funny libs
+  make bot            -> builds beobot-related executables
+  make mex            -> builds Matlab MEX files
+  make gtk            -> builds GTK-dependent executables
+  make sdl            -> builds SDL-dependent executables
+  make qt             -> builds Qt-dependent executables
+  make mpeg           -> builds MPEG-related executables
+  make tprogs         -> builds test programs
+  make all            -> builds everything except for mex
+  make xml            -> builds all Xerces-C XML library dependent stuff
+  make doc            -> builds the doxygen documentation into ../doc
+  make doc-latex      -> builds the doxygen LaTeX doc into ../doc
+\endverbatim
+
+See Makefile.in for the current list of possible targets.
+
+On SMP machines, you may use the provided "mk" script (in
+saliency/bin/) to enable parallel compilation. For example (assuming
+that saliency/bin/ is in your path), typing:
+
+\verbatim
+  mk all
+\endverbatim
+
+on a dual-CPU machine will make everything, running two jobs in
+parallel throughout the build process. On an n-CPU machine it will run
+n compilation jobs in parallel. mk passes all its arguments to make,
+so it has the same syntax.
+
+
+<!--############################################################-->
+
+\subsection architecture-issues 4.2. Architecture & Operating System Issues
+
+We use an autoconf-controlled build system (see the \ref autoconf
+section below) to detect and handle OS differences, but currently most
+things are heavily aimed at Linux, and may not work at all under
+different systems (although with the configure script you should at
+least expect some message hinting at the reason for the failure). Most
+of the code should compile on other Unix architectures, including \ref
+macosx-fink "Mac OS X (10.2 or greater)" and the \ref windows-cygwin
+"Cygwin environment under Windows".
+
+If you run into problems building the software on a non-Linux system,
+you might try the following types of modifications:
+
+- different compiler and linker options
+- system functions defined in different include files than those used
+  (you will then get warnings about standard functions like printf()
+  or time() being used but not declared; the man page for the
+  corresponding function should tell you which include file to use if
+  it is well written as it is under Linux, otherwise, you can try to
+  locate the include file yourself using the 'find' unix command; for
+  example "find /usr/include -name time.h -print")
+
+If you are able to tweak things to get the software to build under a
+new system, please consider moving those tweaks into the configure.ac
+template script and contributing your changes back to our subversion
+repository, so that others with similar systems can benefit from your
+changes.
+
+<!--############################################################-->
+
+\subsubsection linux-build 4.2.1 Building under Linux
+
+The operating system principally used for development of the iLab
+Neuromorphic Vision C++ Toolkit is Mandriva Linux.
+
+Under Mandriva, make sure that you setup the following media sources:
+
+- main
+- main_updates
+- contrib
+- contrib_updates
+- non-free
+- non-free-updates
+- plf-free
+- plf-nonfree
+
+Then you can use the uprmi system to download and install additional
+packages and their dependencies automatically.
+
+As of Mandriva 2009.1, the following packages should be installed (for
+a 64-bit distribution, you can easily guess the corresponding names
+for 32-bit):
+
+\verbatim
+  urpmi emacs
+  urpmi tcl-devel
+  urpmi tk-devel
+  urpmi popt-devel
+  urpmi bzip2-devel
+  urpmi ffmpeg-devel
+  urpmi fftw-devel
+  urpmi gsl-devel
+  urpmi blas-devel
+  urpmi lapack-devel
+  urpmi avc1394-devel
+
+  # pick one, as they conflict...
+  urpmi dc1394-devel
+  urpmi lib64dc1394_22-devel
+
+  urpmi raw1394-utils
+  urpmi SDL-devel
+  urpmi SDL_gfx-devel
+  urpmi SDL_mixer-devel
+  urpmi SDL_image-devel
+  urpmi openmpi
+  urpmi gd-devel
+  urpmi readline-devel
+  urpmi termcap-devel
+  urpmi qwt-devel
+  urpmi ode-devel
+  urpmi cwiimote-devel
+  urpmi bluez-devel
+  urpmi qt3-devel
+
+  urpmi opencv-devel
+
+  # and don't forget the essentials:
+  urpmi xv
+  urpmi mencoder
+  urpmi mplayer
+  urpmi zsh
+
+  # needed for ice 3.3.0 (in http://ilab.usc.edu/packages/forall/current/)
+  urpmi db4.6
+  urpmi lib64dbcxx4.6
+  urpmi openssl (should be installed already)
+  urpmi expat (should be installed already)
+  rpm -Uvh ice-3.3.0-1.rhel5.noarch.rpm
+  # In the command below, first run it without the --nodeps and make
+  # sure you only get complaints about libcrypto, libssl and libdb,
+  # all of which should be installed already, then
+  rpm -Uvh --nodeps ice-c++-devel-3.3.0-1.rhel5.x86_64.rpm
+    ice-libs-3.3.0-1.rhel5.x86_64.rpm
+    ice-servers-3.3.0-1.rhel5.x86_64.rpm
+    ice-utils-3.3.0-1.rhel5.x86_64.rpm
+\endverbatim
+
+Some packages do not have readily available RPMs for Mandriva. Look in
+saliency/packages for .spec files to make these RPMs for your system
+yourself.
+
+<!--############################################################-->
+
+\subsubsection macosx-fink 4.2.2 Building under Mac OS X
+
+In order to get the most use out of the toolkit under Mac OS X, you
+will need to do two things:
+
+- make sure you have installed the Mac OS X Developer Tools (also
+  known as the Xcode from 10.3 onward), which you can install either
+  from a separate Developer Tools CD that may have accompanied your
+  shrinkwrapped copy of Mac OS X, or which you can download and
+  install from Apple's web site (follow links from
+  http://developer.apple.com/)
+
+- install Fink (http://fink.sourceforge.net/), which is essentially a
+  packaging system for ports of common unix/linux utilities to Mac OS
+  X. With Fink you will be able to download and install many of the
+  3rd-party libraries that provide additional functionality for the
+  programs in the iLab Neuromorphic Vision Toolkit. See
+  http://fink.sourceforge.net/download/ for a "Quick Start" tutorial
+  on Fink -- in particular, see the section on X11; you'll need to
+  have either Apple's or Fink's X11 installed.
+
+Here is an example of packages which I installed on a Leopard macbook,
+at svn revision 11488 of our code, using manual "fink install"
+commands (I said yes to install all dependencies when asked):
+
+\verbatim
+gcc42
+sdl sdl-image sdl-mixer
+libpng3
+libjpeg
+popt
+qt3 qt3-designer
+gsl
+ffmpeg
+\endverbatim
+
+then, if you allow yourself to install unstable fink packages from
+source, you can also get things like fftw3, a recent gcc compiler, etc
+
+To list all installed Fink packages, do "fink list" from a terminal
+command line -- installed packages will be shown with a "i" at the
+beginning of the line. To give you some guidance in selecting packages
+for installation, one of our Mac OS X (10.3) systems has the following
+packages installed, and is able to build most of the programs in the
+toolkit:
+
+\verbatim
+anacron                 2.3-4            Periodic command scheduler
+apr-ssl-shlibs          0.9.5-15         Apache Portable Runtime
+apt                     0.5.4-37         Advanced front-end for dpkg
+apt-shlibs              0.5.4-37         Advanced front-end for dpkg
+arts                    1.1.4-22         KDE - analog realtime synthesizer
+arts-shlibs             1.1.4-22         KDE - arts shared libraries
+audiofile               0.2.6-10         Audio File Library *Developement Files*
+audiofile-bin           0.2.6-10         Audio File Library *Binaries*
+audiofile-shlibs        0.2.6-10         Audio File Library *Shared Libraries*
+base-files              1.9.2-1          Directory infrastructure
+bzip2                   1.0.2-12         Block-sorting file compressor
+bzip2-dev               1.0.2-12         Developer files for bzip2 package
+bzip2-shlibs            1.0.2-12         Shared libraries for bzip2 package
+cctools                 525-1            [virtual package representing the developer tools]
+cctools-extra           1:495-3          Extra software from cctools
+cctools-single-module   1.0-1            [virtual package, your dev tools support -single_module]
+ctan-other-misc         1.0-1            LaTeX macros from CTAN contrib/other/misc directory
+cvs                     1.11.17-1        Version control system
+cyrus-sasl2-shlibs      2.1.15-23        Cyrus Simple Authentication and Security Layer Library
+daemonic                20010902-2       Interface to daemon init scripts
+darwin                  7.9.0-1          [virtual package representing the kernel]
+db42-ssl-shlibs         4.2.52-12        Shared Libraries for db42-ssl
+debianutils             1.23-11          Misc. utilities specific to Debian (and Fink)
+detex                   2.7-2            Filter to strip TeX commands from a .tex file
+diffutils               2.8.1-1          Tools to compare files
+dosunix                 1.0.13-1         Converts DOS text files to unix text format
+dpkg                    1.10.21-202      The Debian package manager
+emacs21                 21.2-26          Flexible real-time text editor, v21.2 with X11 support
+emacsen-common          1.4.13-2         Common facilities for all emacsen
+esound                  0.2.32-4         Enlightened Sound Daemon
+esound-bin              0.2.32-4         Enlightened Sound Daemon
+esound-common           0.2.32-4         Enlightened Sound Daemon
+esound-shlibs           0.2.32-4         Enlightened Sound Daemon
+expat-shlibs            1.95.7-1         C library for parsing XML
+file                    3.41-1           Determine file type (magic)
+fileutils               4.1-4            Common shell commands like ls, touch, chmod
+fink                    0.21.3-1         The Fink package manager
+fink-mirrors            0.21.1.1-1       Mirror infrastructure
+fink-prebinding         0.7.1-2          Tools for enabling prebinding in Fink
+gawk                    3.1.2-12         The Awk processing language, GNU edition
+gcc2                    2.95.2-1         [virtual package representing the gcc 2.95.2 compiler]
+gcc2.95                 2.95.2-1         [virtual package representing the gcc 2.95.2 compiler]
+gcc3.1                  3.1-1            [virtual package representing the gcc 3.1 compiler]
+gcc3.3                  3.3-1            [virtual package representing the gcc 3.3 compiler]
+gdbm3-shlibs            1.8.3-1          Shared libraries for gdbm3 package
+gettext                 0.10.40-18       Message localization support
+gettext-bin             0.10.40-18       Executables for gettext package
+gettext-dev             0.10.40-18       Developer files for gettext package
+ghostscript             8.00-3           Interpreter for PostScript and PDF
+ghostscript-fonts       6.0-3            Standard fonts for Ghostscript
+gimp-print-shlibs       4.2.5-1          [virtual package representing Apple's install of Gimp Print]
+glib                    1.2.10-18        Common C routines used by Gtk+ and other libs
+glib-shlibs             1.2.10-18        Common C routines used by Gtk+ and other libs
+glib2-shlibs            2.2.3-2          GTK+ - low-level core libraries
+gmp-shlibs              4.1.2-11         Shared libraries for gmp package
+gnupg                   1.2.4-1          Gnu privacy guard - A Free PGP replacement
+grep                    2.4.2-3          Search text files for patterns
+gtk+                    1.2.10-27        The Gimp Toolkit
+gtk+-data               1.2.10-27        The Gimp Toolkit
+gtk+-shlibs             1.2.10-27        The Gimp Toolkit
+gzip                    1.2.4a-6         The gzip file compressor
+ifmslide                0.45-4           Powerful presentations with PDFLaTeX and LaTeX
+imagemagick             5.5.1-23         Image manipulation tools
+kdebase3-ssl            3.1.4-21         KDE - base system
+kdebase3-ssl-shlibs     3.1.4-21         KDE - base shared libraries
+kdegames3-base          3.1.4-21         KDE - kdegames base package
+kdegames3-common        3.1.4-21         KDE - game shared libraries
+kdelibs3-ssl            3.1.4-22         KDE - essential libraries
+kdelibs3-ssl-shlibs     3.1.4-22         KDE - essential shared libraries
+kshisen                 3.1.4-21         KDE - Shisen-So - a Mah Jong-like game
+latex2html              2002-2-1-1       Converts LaTeX documents to HTML
+lcms-shlibs             1.12-1           Free color management engine in 100K
+less                    381-10           Featureful text pager
+lesstif-shlibs          1:0.93.18-1      Free implementation of OSF/Motif
+libart2-shlibs          2.3.16-2         Library for high-performance 2D graphics
+libiconv                1.9.1-11         Character set conversion library
+libiconv-bin            1.9.1-11         Executables for libiconv package
+libiconv-dev            1.9.1-11         Developer files for libiconv package
+libjpeg                 6b-16            JPEG image format handling library
+libjpeg-bin             6b-16            Executables for libjpeg package
+libjpeg-shlibs          6b-16            Shared libraries for libjpeg package
+libmad-shlibs           0.15.0b-2        MPEG audio decoder library
+libogg-shlibs           1.1-1            Ogg bitstream shared libraries
+libpng3                 1:1.2.5-2        PNG image format handling library
+libpng3-shlibs          1:1.2.5-2        Shared libraries for libpng3 package
+libtiff                 3.6.1-1          TIFF image format library and tools
+libtiff-bin             3.6.1-1          Executables for libtiff package
+libtiff-shlibs          3.6.1-1          Shared libraries for libtiff package
+libvorbis0-shlibs       1.0.1-1          Vorbis audio codec shared libraries
+libwww-bin              5.3.2-4          General-purpose Web API written in C for Unix and Windows
+libwww-shlibs           5.3.2-4          General-purpose Web API written in C for Unix and Windows
+libxml2-bin             2.6.7-2          XML parsing library, version 2
+libxml2-shlibs          2.6.7-2          XML parsing library, version 2
+libxslt-shlibs          1.1.4-3          XML stylsheet transformation shared libraries
+m4                      1.4-6            Advanced macro processing language
+macosx                  10.3.9-1         [virtual package representing the system]
+make                    3.79.1-3         Software build tool
+ncurses                 5.3-20031018-2   Full-screen ascii drawing library
+ncurses-dev             5.3-20031018-2   Development files for ncurses package
+ncurses-shlibs          5.3-20031018-2   Shared libraries for ncurses package
+neon24-ssl-shlibs       0.24.7-11        HTTP/WebDAV client library with a C API
+netpbm-bin              10.12-3          Graphics manipulation programs and libraries
+netpbm10                10.12-3          Graphics manipulation programs and libraries
+netpbm10-shlibs         10.12-3          Graphics manipulation programs and libraries
+nget                    0.23-2           Downloader for binary news postings
+openldap-ssl-shlibs     2.1.22-25        Shared libraries for LDAP
+openslp-ssl-shlibs      1.0.9a-4         Shared Libraries for OpenSLP + SSL Support
+openssh                 3.7.1p1-1        Secure shell (remote login) client and server
+openssl                 0.9.6m-11        Secure Sockets Layer and general crypto library
+openssl-shlibs          0.9.6m-11        Secure Sockets Layer and general crypto library
+openssl097-shlibs       0.9.7d-1         Secure Sockets Layer and general crypto library
+patch                   2.5.4-2          Utility to apply patches to source trees
+pcre-shlibs             4.2-2            Perl Compatible Regular Expressions Library
+pdfscreen               1.5-6            Resize LaTeX-produced pdf to fit on computer screen
+popt                    1.7-3            Library for parsing command line options
+popt-shlibs             1.7-3            Library for parsing command line options
+ppower4                 0.9.4-1          Post-processor for PDF presentations created by pdf(La)TeX
+python23                1:2.3.3-23       Interpreted, object-oriented language
+python23-shlibs         1:2.3.3-23       Interpreted, object-oriented language
+python23-socket         1:2.3.3-23       Socket plugin for python
+python23-socket-ssl     1:2.3.3-23       Socket plugin for python (SSL version)
+qt3                     3.2.2-12         Cross-Platform GUI application framework
+qt3-designer            3.2.2-12         Cross-Platform GUI application framework
+qt3-doc                 3.2.2-12         Cross-Platform GUI application framework
+qt3-linguist            3.2.2-12         Cross-Platform GUI application framework
+qt3-shlibs              3.2.2-12         Cross-Platform GUI application framework
+readline                4.3-25           Comfortable terminal input library
+readline-shlibs         4.3-25           Comfortable terminal input library
+rsync                   2.5.5-1          Synchronize filesystems between hosts
+sdl                     1.2.7-1          Cross-platform multimedia library
+sdl-image               1.2.3-1          SDL image file loading library
+sdl-image-shlibs        1.2.3-1          SDL image file loading library
+sdl-mixer               1.2.5-12         SDL multi-channel audio mixer library
+sdl-mixer-shlibs        1.2.5-12         SDL multi-channel audio mixer library
+sdl-shlibs              1.2.7-1          Cross-platform multimedia library
+sed                     4.0.5-1          The stream editor, GNU version
+smpeg-shlibs            0.4.4-25         SDL MPEG Player Library
+storable-pm             1.0.14-7         Placeholder for versioned Storable packages
+swig-shlibs             1.3.20-11        Tool that connects C, C++ programs with high-level languages
+system-java             1.4.2-1          [virtual package representing Java 1.4.2]
+system-java13           1.3.1-1          [virtual package representing Java 1.3.1]
+system-java13-dev       1.3.1-1          [virtual package representing Java 1.3.1 development headers]
+system-java14           1.4.2-1          [virtual package representing Java 1.4.2]
+system-java14-dev       1.4.2-1          [virtual package representing Java 1.4.2 development headers]
+system-perl             5.8.1-1          [virtual package representing perl]
+system-xfree86          2:4.3-2          [placeholder for user installed x11]
+system-xfree86-dev      2:4.3-2          [placeholder for user installed x11 development tools]
+system-xfree86-shlibs   2:4.3-2          [placeholder for user installed x11 shared libraries]
+t1lib1-shlibs           1.3.1-2          Shared libs for generating Type 1 Font bitmaps
+tar                     1.13.25-12       GNU tar - tape archiver
+tcltk                   8.4.1-12         Tool Command Language and the Tk toolkit
+tcltk-dev               8.4.1-12         Tool Command Language and the Tk toolkit
+tcltk-shlibs            8.4.1-12         Tool Command Language and the Tk toolkit
+tetex                   2.0.2-36         Complete distribution of the TeX typesetting system
+tetex-base              2.0.2-36         Base programs for a teTeX installation
+tetex-shlibs            2.0.2-36         Shared libraries for a teTeX installation
+tetex-texmf             2.0.2-2          Main texmf tree for a teTeX installation
+tex4ht                  20030412-10      TeX to Hypertext translator
+texinfo                 4.7-11           Texinfo documentation system
+texpower                0.0.8h-1         Creating dynamic online presentations with LaTeX
+type1inst               0.6.1-3          Type 1 PostScript font installation utility
+unrar                   3.3.5-21         RAR archive decoder
+unzip                   5.50-14          Decompression compatible with pkunzip
+wget                    1.8.2-2          Automatic web site retreiver
+xfontpath               0.4-12           X font path manager for fink
+\endverbatim
+
+Once you have the Xcode/Developer Tools and Fink installed, you can
+build the toolkit from a terminal window
+(/Applications/Utilities/Terminal.app) using the standard ./configure
+and make sequence shown in \ref basic-compilation.
+
+<!--############################################################-->
+
+\subsubsection windows-cygwin 4.2.3 Building under Windows in the Cygwin environment
+
+In order to build the toolkit under Windows, you will need to install
+a Cygwin environment (http://www.cygwin.com/), which provides a
+unix-style development environment.
+
+To install cygwin, essentially you need to download the program
+setup.exe from http://www.cygwin.com/, then run the setup.exe program
+which will guide you through selecting a set of packages to
+install. You can always go back and re-run setup.exe if you find you
+need to install additional packages later on, or if you want to
+upgrade your packages to the latest version.
+
+To list all installed packages, do "cygcheck -c -d" from a cygwin bash
+shell. To give you some guidance in selecting packages for
+installation, one of our Windows systems has the following packages
+installed, and is able to build most of the programs in the toolkit:
+
+\verbatim
+_update-info-dir        00349-1
+agetty                  2.1-1
+alternatives            1.3.20a-2
+apache                  1.3.33-2
+apr                     0.9.7-1
+apr-util                0.9.7-1
+ash                     20040127-3
+astyle                  1.15.3-3
+atk                     1.9.1-1
+atk-devel               1.9.1-1
+atk-doc                 1.9.1-1
+atk-runtime             1.9.1-1
+autoconf                2.59-2
+autoconf-devel          2.59-2
+autoconf-stable         2.13-6
+autoconf2.1             2.13-1
+autoconf2.5             2.59-2
+automake                1.7.9-2
+automake-devel          1.9.2-2
+automake-stable         1.4p6-3
+automake1.4             1.4p6-2
+automake1.9             1.9.6-1
+autossh                 1.3-2
+base-files              3.7-1
+base-passwd             2.2-1
+bash                    3.0-14
+bc                      1.06-2
+binutils                20050610-1
+bison                   20030307-1
+byacc                   1.9-1
+bzip2                   1.0.3-1
+c-client                2002e-3
+c3270                   3.2.20-1
+cabextract              1.1-1
+ccache                  2.2-1
+ccdoc                   0.8.41-2
+ccrypt                  1.7-1
+check                   0.9.1-1
+chere                   0.6-3
+chkconfig               1.2.24h-1
+clamav                  0.87.1-1
+clear                   1.0-2
+clisp                   2.38-1
+cmake                   2.2.3-2
+cocom                   0.995-1
+compface                1.5.2-1
+coreutils               5.93-3
+cpio                    2.6-5
+cppunit                 1.9.14-1
+cron                    3.0.1-19
+crypt                   1.1-1
+ctags                   5.5-4
+curl                    7.15.1-1
+curl-devel              7.15.1-1
+cvs                     1.11.17-1
+cygipc                  2.03-2
+cygrunsrv               1.12-1
+cygutils                1.2.9-1
+cygwin                  1.5.19-4
+cygwin-doc              1.4-3
+cyrus-sasl              2.1.19-3
+d                       1.2.0-1
+ddd                     3.3.9-1
+dejagnu                 20021217-2
+desktop-file-utils      0.10-1
+diffstat                1.40-1
+diffutils               2.8.7-1
+distcc                  2.18.3-1
+doxygen                 1.4.6-1
+dpkg                    1.10.4-2
+e2fsimage               0.2.0-2
+e2fsprogs               1.35-3
+ed                      0.2-1
+editrights              1.01-1
+ELFIO                   1.0.2-1
+emacs                   21.2-13
+emacs-el                21.2-13
+emacs-X11               21.2-13
+esound                  0.2.36-1
+expat                   1.95.8-1
+expect                  20030128-1
+fftw3                   3.0.1-2
+fftw3-dev               3.0.1-2
+fftw3-doc               3.0.1-2
+file                    4.16-1
+fileutils               4.1-3
+findutils               4.2.27-1
+flex                    2.5.4a-3
+fltk                    1.1.4-2
+fontconfig              2.2.2-1
+freeglut                2.2.0-1
+freetype2               2.1.9-1
+gawk                    3.1.5-2
+gcc                     3.4.4-1
+gcc-ada                 3.4.4-1
+gcc-core                3.4.4-1
+gcc-g++                 3.4.4-1
+gcc-g77                 3.4.4-1
+gcc-gdc                 3.4.4-1
+gcc-gpc                 3.3.3-3
+gcc-java                3.4.4-1
+gcc-mingw               20040810-1
+gcc-mingw-ada           20050522-1
+gcc-mingw-core          20050522-1
+gcc-mingw-g++           20050522-1
+gcc-mingw-g77           20050522-1
+gcc-mingw-gdc           20050522-1
+gcc-mingw-gpc           20040810-1
+gcc-mingw-java          20050522-1
+gcc-mingw-objc          20050522-1
+gcc-objc                3.4.4-1
+gdb                     20041228-3
+gdbm                    1.8.3-7
+gettext                 0.14.5-1
+gettext-devel           0.14.5-1
+ghostscript             8.15-2
+ghostscript-base        8.15-2
+ghostscript-x11         8.15-2
+glib                    1.2.10-3
+glib-devel              1.2.10-3
+glib2                   2.6.6-2
+glib2-devel             2.6.6-2
+glib2-runtime           2.6.6-2
+gmp                     4.1.4-2
+gnome-common            2.12.0-1
+gnome-keyring           0.4.6-1
+gnome-mime-data         2.4.2-1
+gnupg                   1.4.1-1
+gperf                   2.7.2-1
+grep                    2.5.1a-2
+groff                   1.18.1-2
+gtk+-devel              1.2.10-2
+gtk-doc                 1.3-1
+gtk2-x11                2.6.10-1
+gtk2-x11-devel          2.6.10-1
+gtk2-x11-doc            2.6.10-1
+gtk2-x11-runtime        2.6.10-1
+guile                   1.6.7-4
+guile-devel             1.6.7-4
+guile-doc               1.6.7-4
+gzip                    1.3.5-1
+help2man                1.35.1-1
+indent                  2.2.9-1
+inetutils               1.3.2-35
+initscripts             0.9-1
+intltool                0.33-1
+ioperm                  0.4-1
+irc                     20010101-3
+jasper                  1.701.0-1
+jbigkit                 1.5-3
+jpeg                    6b-11
+keychain                2.5.3.1-1
+lablgtk2                2.4.0-2
+lcms                    1.14-1
+less                    381-1
+lesstif                 0.93.94-2
+lftp                    2.6.10-2
+libapr0                 0.9.7-1
+libaprutil0             0.9.7-1
+libart_lgpl             1.4.2-3
+libart_lgpl2            2.3.17-1
+libaudiofile-devel      0.2.6-2
+libaudiofile0           0.2.6-2
+libbonobo2              2.10.1-1
+libbonobo2-devel        2.10.1-1
+libbonobo20             2.10.1-1
+libbz2_1                1.0.3-1
+libcharset1             1.9.2-2
+libcroco06              0.6.0-1
+libcurl3                7.15.1-1
+libdb4.1                4.1.25-1
+libdb4.2                4.2.52-1
+libdb4.3                4.3.28-1
+libesound-devel         0.2.36-1
+libesound0              0.2.36-1
+libfontconfig-devel     2.2.2-1
+libfontconfig1          2.2.2-1
+libfpx                  1.2.0.12-1
+libfreetype2-devel      2.1.9-1
+libfreetype26           2.1.9-1
+libgcrypt               1.2.1-1
+libgdbm                 1.8.0-5
+libgdbm-devel           1.8.3-7
+libgdbm3                1.8.3-3
+libgdbm4                1.8.3-7
+libgettextpo0           0.14.5-1
+libglade2               2.5.1-1
+libgnomecanvas2         2.10.2-1
+libgpg-error            1.1-1
+libGraphicsMagick-devel 1.0.6-1
+libGraphicsMagick0      1.0.6-1
+libguile12              1.6.7-4
+libguile16              1.7.1.20041006-1
+libiconv                1.9.2-2
+libiconv2               1.9.2-2
+libIDL                  0.5.17-2
+libIDL2                 0.8.6-1
+libintl                 0.10.38-3
+libintl1                0.10.40-1
+libintl2                0.12.1-3
+libintl3                0.14.5-1
+libjpeg62               6b-11
+libjpeg6b               6b-8
+libkpathsea3            2.0.2-15
+libkpathsea4            3.0.0-3
+libltdl3                1.5.20-2
+libltdl6                1.9f_20041024-1
+libMagick-devel         6.0.4-1
+libMagick6              6.0.4-1
+libncurses-devel        5.4-4
+libncurses5             5.2-1
+libncurses6             5.2-8
+libncurses7             5.3-4
+libncurses8             5.4-4
+libneon24               0.24.7-2
+libneon25               0.25.5-1
+libnetpbm10             10.30-1
+libopenldap2            2.1.25-1
+libopenldap2_2_7        2.2.26-2
+libpcre                 4.1-2
+libpcre0                6.3-1
+libpng                  1.2.8-2
+libpng12                1.2.8-2
+libpng12-devel          1.2.8-2
+libpopt0                1.6.4-4
+libreadline4            4.1-2
+libreadline5            4.3-5
+libreadline6            5.1-1
+libsasl2                2.1.19-3
+libsasl2-devel          2.1.19-3
+libsmi                  0.4.2-1
+libtiff-devel           3.7.3-1
+libtiff4                3.6.0-5
+libtiff5                3.7.3-1
+libtool                 1.5b-2
+libtool-devel           1.5.10-2
+libtool-stable          1.4.3-3
+libtool1.5              1.5.20-2
+libungif                4.1.4-1
+libungif4               4.1.4-1
+libwnck                 2.8.1-1
+libXft                  2.1.6-1
+libXft-devel            2.1.6-1
+libXft1                 1.0.0-1
+libXft2                 2.1.6-1
+libxml2                 2.6.22-1
+libxml2-devel           2.6.22-1
+libxml2-python          2.6.22-1
+libxslt                 1.1.15-2
+lighttpd                1.4.9-1
+login                   1.9-7
+m4                      1.4.4-1
+make                    3.80-1
+man                     1.5p-1
+mc                      4.6.1-2
+mingw-runtime           3.9-2
+minires                 1.00-1
+minires-devel           1.00-1
+mktemp                  1.5-3
+more                    2.11o-2
+mt                      2.3.1-1
+naim                    0.11.8.1-1
+nano                    1.2.2-1
+nasm                    0.98.39-1
+ncftp                   3.1.7-1
+ncurses                 5.4-4
+nedit                   5.5-1
+neon                    0.25.5-1
+netcat                  1.10-2
+netpbm                  10.30-1
+ocaml                   3.08.1-1
+openjade                1.3.3-1
+openldap                2.2.26-2
+openldap-devel          2.2.26-2
+OpenSP                  1.5.1-1
+openssh                 4.2p1-1
+openssl                 0.9.8a-1
+openssl-devel           0.9.8a-1
+openssl097              0.9.7i-1
+ORBit2                  2.12.3-1
+ORBit2-devel            2.12.3-1
+pango                   1.8.1-1
+pango-devel             1.8.1-1
+pango-doc               1.8.1-1
+pango-runtime           1.8.1-1
+patch                   2.5.8-8
+patchutils              0.2.31-1
+pcre                    6.3-1
+pcre-devel              6.3-1
+pcre-doc                6.3-1
+pdksh                   5.2.14-3
+perl                    5.8.7-5
+perl-libwin32           0.26-1
+ping                    1.0-1
+pkgconfig               0.17.2-2
+popt                    1.6.4-4
+postgresql              8.0.4-1
+pr3270                  3.2.20-1
+procps                  3.2.5-1
+proftpd                 1.2.10-1
+python                  2.4.1-1
+qt3                     3.3.4-2
+qt3-bin                 3.3.4-2
+qt3-devel               3.3.4-2
+qt3-doc                 3.3.4-2
+rcs                     5.7-3
+readline                5.1-1
+rebase                  2.4.2-1
+rpm                     4.1-2
+rpm-build               4.1-1
+rpm-doc                 4.1-1
+rsync                   2.6.6-1
+ruby                    1.8.4-1
+run                     1.1.6-1
+rxvt                    2.7.10-6
+s3270                   3.2.20-1
+sed                     4.1.4-1
+setsid                  0.0-3
+sh-utils                2.0.15-5
+shared-mime-info        0.16-1
+sharutils               4.5.3-1
+shutdown                1.7-1
+splint                  3.1.1-1
+startup-notification    0.8-1
+stunnel                 4.14-2
+subversion              1.2.3-1
+subversion-devel        1.2.3-1
+suite3270               3.2.20-1
+SWI-Prolog              5.2.6-1
+swig                    1.3.25-1
+sysvinit                2.84-4
+t1lib                   5.1.0-1
+tar                     1.15.1-3
+tcl3270                 3.2.20-1
+tcltk                   20030901-1
+tcm                     2.20-1
+tcp_wrappers            7.6-1
+tcsh                    6.14.00-5
+termcap                 20050421-1
+terminfo                5.4_20041009-1
+tetex-base              3.0.0-3
+tetex-bin               3.0.0-3
+tetex-devel             3.0.0-3
+tetex-extra             3.0.0-3
+texinfo                 4.8-1
+TeXmacs                 1.0.6-1
+textutils               2.0.21-2
+time                    1.7-1
+tin                     1.8.0-1
+transfig                3.2.4-2
+ttcp                    19980512-1
+tzcode                  2005r-2
+unison                  2.10.2-4
+units                   1.77-1
+unzip                   5.50-5
+upx                     1.24-1
+uw-imap                 2002e-3
+vim                     6.4-4
+w32api                  3.6-1
+which                   1.7-1
+whois                   4.7.11-1
+WordNet                 2.0-1
+X-startup-scripts       1.0.11-1
+x3270                   3.2.20-1
+Xaw3d                   1.5D-5
+xemacs                  21.4.18-2
+xemacs-emacs-common     21.4.18-2
+xemacs-mule-sumo        2005-12-08-1
+xemacs-sumo             2005-12-08-1
+xemacs-tags             21.4.18-2
+xerces-c-devel          2.5.0-1
+XFree86-lib-compat      4.3.0-2
+xinetd                  2.3.9-1
+xorg-x11-base           6.8.2.0-1
+xorg-x11-bin            6.8.2.0-1
+xorg-x11-bin-dlls       6.8.2.0-1
+xorg-x11-bin-lndir      6.8.2.0-1
+xorg-x11-devel          6.8.2.0-2
+xorg-x11-etc            6.8.2.0-1
+xorg-x11-f100           6.8.1.0-3
+xorg-x11-fenc           6.8.1.0-2
+xorg-x11-fnts           6.8.1.0-3
+xorg-x11-fscl           6.8.1.0-2
+xorg-x11-fsrv           6.8.2.0-1
+xorg-x11-libs-data      6.8.2.0-1
+xorg-x11-man-pages      6.8.2.0-1
+xorg-x11-xwin           6.8.2.0-4
+xpdf                    3.01-1
+xterm                   202-1
+zip                     2.3-6
+zlib                    1.2.3-1
+zsh                     4.2.6-1
+\endverbatim
+
+Once you have a cygwin environment installed, you can build the
+toolkit from cygwin shell window using the standard ./configure and
+make sequence shown in \ref basic-compilation.
+
+If you want to use any of the tcl-based apps (e.g., bin/invt), you may
+get an error like the following:
+\verbatim
+fatal initialization error (package 'Tcl'):
+        Can't find a usable init.tcl in the following directories:
+\endverbatim
+In that case, you need to set the TCL_LIBRARY environment variable,
+either on the command-line or in your ~/.bashrc, like so:
+\verbatim
+export TCL_LIBRARY="C:/cygwin/usr/share/tcl8.4"
+\endverbatim
+
+<!--############################################################-->
+
+\subsection parallel-code-notes 4.3. Parallel code notes
+
+
+NOTE: PVM SUPPORT HAS BEEN OBSOLETED AND REMOVED AT SVN REVISION 8264.
+
+You need to install PVM (Parallel Virtual Machine), a supercomputing
+message passing toolkit from Oak Ridge National Laboratory
+(www.epm.ornl.gov/pvm/pvm_home.html) for 'pvision' and
+'pvision-master' to compile. These two programs implement our model of
+bottom-up, saliency-based visual attention to run on a cluster of
+Linux machines connected through a high-speed network. These two
+programs are rather obsolete as better versions are now available that
+do not require PVM (pvisionTCP, pvisionTCP2, etc). If you do not wish
+to install PVM and to compile those two programs, don't try "make
+pvm".
+
+Note that "make pvm" is implicitly called by "make all" so you will
+need to have PVM installed for "make all" to work.
+
+
+<!--############################################################-->
+
+\subsection other-libs 4.4. IEEE-1394, SDL, ffmpeg, and other libs code notes
+
+
+You will need the FireWire development libs for the IEEE1394 code to
+compile properly. On Mandrake 9.0, that means that you will need to
+install:
+
+\verbatim
+libdc1394_0-0.9.0-1mdk.i586.rpm
+libdc1394_0-devel-0.9.0-1mdk.i586.rpm
+libraw1394_5-0.9.0-2mdk.i586.rpm
+libraw1394_5-devel-0.9.0-2mdk.i586.rpm
+\endverbatim
+
+or later versions. That will allow the code to compile. To run it, you
+will in addition need to (as root):
+
+\verbatim
+        mknod -m 777 /dev/raw1394 c 171 0
+        mkdir /dev/video1394
+        mknod -m 777 /dev/video1394/0 c 171 16
+
+        modprobe ohci1394
+        modprobe raw1394
+        modprobe video1394
+\endverbatim
+
+You will need SDL development libs for the SDL-related code to
+compile, ffmpeg libs to the MPEG-related code, etc. It can be a long
+and frustrating process to find and install all the packages needed
+for "make all" to succeed. To help you, please see:
+
+        http://iLab.usc.edu/packages/
+
+which contains the list of "exotic" packages we have installed on our
+machines so that "make all" will work.
+
+
+
+<!--############################################################-->
+
+\subsection autoconf 4.5. Using autoconf to control the build process
+
+
+<!--############################################################-->
+
+\subsubsection just-building 4.5.1. If you are just going to build the software
+
+
+The first thing you'll notice is that there is no Makefile in the
+subversion repository! This is because we have a configure script
+that checks various features of the build environment (i.e. your
+computer), and uses that information to generate a Makefile from a
+Makefile.in template. In addition, the configure script allows you
+to toggle additional switches controlling how the build will be
+done.
+
+To see the list of available configuration options:
+
+\verbatim
+  ./configure --help
+\endverbatim
+
+To run the configure script, just type ./configure. In general, if
+you don't specify any additional options to ./configure, you'll just
+get the right default behavior (for old-timers: similar to what we
+got previously from the old Makefile).
+
+
+<!--############################################################-->
+
+\subsubsection editing-makefile 4.5.2. If you need to edit or add to the Makefile
+
+
+Then the most important thing is DON'T EDIT THE FILE CALLED
+"Makefile"!!!
+
+(Sorry to yell ;) but I find that that is the hardest part to
+remember of the entire autoconf process...)
+
+Instead, you should edit "Makefile.in". This is the template file
+that ./configure uses to generate the Makefile. You'll find that
+Makefile.in looks very familiar. The main differences are:
+
+  - at the top of Makefile.in there are a bunch of lines like this:
+
+\verbatim
+      CXX := @CXX@
+\endverbatim
+\par
+    those are the lines where the configure script substitutes in
+    the information it has garnered from its various checks. You
+    won't need to worry about these unless you're also editing the
+    configure script (then see step 3 below).
+
+  - instead of hardcoding the installation location for executables
+    as "../bin", we now use "$(exec_prefix)/bin", which allows the
+    user to specify a different installation location via the
+    --prefix or --exec-prefix options to the configure script (but
+    the default exec_prefix is still "..", so the default
+    installation location is "../bin".
+
+
+<!--############################################################-->
+
+\subsubsection editing-configure 4.5.3. If you need to change the configure script
+
+
+Then, just like the Makefile, DON'T EDIT THE FILE CALLED
+"configure"!!!
+
+Instead, you should edit "configure.ac". This file is processed by
+the autoconf program to generate the configure script.
+
+Next most important, if you change "configure.ac" and commit changes
+back to the subversion repository, then AFTERWARDS you MUST also run
+autoconf again, and then 'svn commit' the generated "configure"
+script. Here's why:
+
+- Most people don't need to modify the configure.ac
+  script. Therefore we don't want to require them to have autoconf
+  installed on their system. Therefore they need to have access to
+  the generated "configure" script, which is itself very highly
+  portable bourne shell code. Therefore, we always need to have
+  the most recent version of the "configure" script available on
+  the svn server.
+
+- It's important that you 'svn commit' the generated "configure"
+  script AFTER the corresponding commit of "configure.ac", so that
+  the timestamps are correct on the files. That's because the
+  makefile has a rule to regenerate configure from
+  configure.ac. But, we don't want that rule to get triggered
+  unnecessarily. Therefore we need to make sure that, in the
+  subversion repository, "configure" always has a later timestamp
+  than "configure.ac".
+
+- By convention, you don't need to put anything substantial in the
+  svn log message for "configure"; in fact the best thing is to
+  put something like "From configure.ac revision 4567", so we can
+  always see which revisions correspond between the two files.
+
+The configure.ac file itself is an m4-macroized version of bourne
+shell code. So you can put any bourne shell code into configure.ac, as
+long as its portable (i.e. shouldn't rely on bash-specific
+extensions). m4 is a macro language, just like the C preprocessor,
+except on steroids. The autoconf distribution basically consists of a
+large set of m4 macros that help you do useful tests.
+
+You can read more about autoconf here:
+
+- http://www.gnu.org/software/autoconf/autoconf.html
+- http://www.gnu.org/manual/autoconf/index.html
+
+Running autoconf is very simple. You just type "autoconf". It looks
+for a file named "configure.ac" (or "configure.in", the older
+deprecated name for the script template), then does its
+m4-processing business, and writes the results to "configure". If
+all goes well, you'll see no messages.
+
+Our configure.ac template requires autoconf 2.53 or later. In
+particular, it won't work with autoconf 2.13, which is still the
+default in some distros, although recent distros should at least
+have autoconf 2.53 available.
+
+BE WARNED: Just because autoconf runs successfully does not mean
+that your configure script will be syntactically correct bourne
+shell code. All the autoconf does is run the m4 processor over your
+template. Therefore you should always try running the generated
+configure script to make sure there are no shell script syntax
+errors, before you 'svn commit' changes to "configure.ac".
+
+Here's a quick overview of what happens in the configure.ac file:
+
+- You'll notice two kinds of comments: those starting with "#",
+  and those starting with "dnl". The "#" comments will be carried
+  over intact into the generated "configure" file, while the "dnl"
+  comments will be discarded by m4.
+
+- The autoconf macros are easy to spot as they're all in all caps
+  and the all start with AC_.
+
+- Quoting in m4 is done with square brackets []. This is a bit of
+  black magic. Nobody is really sure how many levels of quotes you
+  should have. Conventional wisdom is: "if it doesn't work, add
+  another level of quotes". In general, all arguments to macros
+  should be quoted, even if they're a single word, or the result
+  of another macro call. This is to avoid m4 getting overeager
+  about what it tries to macro-process.
+
+- configure.ac must start with AC_INIT() to specify the name of
+  the project, its version number, an email address for bug
+  reports, and a short name to be used in generated tar.gz
+  distros.
+
+- Near the end of the file will be one or more AC_CONFIG_FILES()
+  calls. These tell the script that it should generated the named
+  files by substituting all of the "output variables" (see below)
+  into the corresponding template file. For example
+  AC_CONFIG_FILES([Makefile:Makefile.in]) causes Makefile to be
+  generated by doing output-variable-substitution in Makefile.in.
+
+- The script builds a number of "output variables", which are
+  variables that will be substituted during AC_CONFIG_FILES()
+  calls. Some of the output variables are managed more or less
+  automatically; these include:
+    - the names of the C and C++ compilers (CC and CXX)
+      These are computed by AC_PROG_CC() and AC_PROG_CXX().
+    - the C preprocessor flags (CPPFLAGS) -- e.g. -I options to gcc
+    - C preprocessor definitions (DEFS) -- a list of -D options
+    - the C compiler flags (CFLAGS)
+    - the C++ compiler flags (CXXFLAGS)
+    - the linker flags (LDFLAGS)
+    - the libraries to be linked in to executables (LIBS)
+      This is manipulated by AC_CHECK_LIB(), for example.
+
+- In general, the idea is that you don't add something to one of
+  the variables until you know that it works. That is, don't add a
+  library to LIBS until you've checked that the library is present
+  and working. Autoconf macros are designed to make these checks
+  very simple.
+
+- In general you need to do the checks in the order of least
+  dependent to most dependent, since autoconf uses the various
+  CPPFLAGS/CXXFLAGS/LIBS variables as it runs its tests. That is,
+  if libfoo depends on libbar, then you need to check for libbar
+  first. If libbar is present, then autoconf will add -lbar to
+  LIBS. Then when you check for libfoo, it's dependence on libbar
+  will already be satisfied.
+
+- To add a -D option to the DEFS output variable, use AC_DEFINE()
+
+- To your own variable into an output variable, call AC_SUBST()
+  with the variable's name.
+
+- To add a switch that the user can give as a command-line option
+  to configure, use AC_ARG_ENABLE(). Probably best for you to read
+  the docs if you need to use this, rather than for me to try to
+  explain it... (or take a look at some of the existing usages in
+  our own configure.ac).
+
+- To add a macro that has already been written, you can place it
+  in the acsite.m4 file, which will get included with configure.ac
+  when running autoconf. You can examine the file to see how the
+  autoqt macro (http://autoqt.sourceforge.net) was added.
+
+
+<!--############################################################-->
+
+\subsection qt-notes 4.6. Qt3 code notes
+
+
+We are developing GUI applications for the Toolkit and some of these
+programs will depend on Qt, a very easy-to-use library that has
+cross-platform support, includes a powerful visual Designer software,
+and significantly reduces the amount of code necessary to create user
+interfaces (less than Xlib or Gtk). Qt has extensive documentation and
+widespread popularity throughout the open source community. Qt is
+released under GPL and is available for download from http://www.trolltech.com/
+
+Also, if you are running KDE, you should have Qt already installed
+because KDE is a very well-known Qt-based desktop environment.
+
+To code with Qt3, please follow these instructions:
+
+   - Qt3 applications usually need the user to work with three types of
+     files:
+     -# ui files written in XML that describe the user interface --
+        can be automatically generated by Qt Designer
+     -# ui.h files with additional code for setting up signals/slots
+        and extending widgets -- Qt Designer will help set up the
+        framework of these files
+     -# cpp files, one of which is a generic main() function that you
+        can freely modify -- Qt Designer can provide you with a
+        barebones version, but you are better off writing it yourself
+        or basing it on one of the existing ones
+
+   - Source code for Qt3 applications need to be placed in the
+     saliency/src/Qt directory. This includes all three kinds of files
+     mentioned above.
+
+   - Some of the files in the saliency/src/Qt directory are helpers
+     that convert between formats recognized by Qt and those used in
+     the rest of this toolkit. You can use these by including the
+     appropriate header (e.g., #include "ImageConvertQt.H")
+
+   - Qt3 Designer will be very helpful for creating user interfaces and
+     setting up the signals/slots interaction system. Qt3 Designer also
+     includes Qt Assistant, which will direct you to the extensive Qt
+     documentation available.
+
+Compile notes for Qt3 applications:
+
+   - configure will check for Qt3 libraries on your machine and export
+     the appropriate directory where Qt3 sources and binaries reside.
+
+   - Makefile.in has an option for "make qt" which will build
+     Qt-dependent executables.
+
+   - Qt3 executables should go in depoptions.in just like any other
+     programs. Make sure to use the "--exeformat qt" option.
+
+   - The make process will generate dependency information based on
+     the source files present. However, some of this dependency
+     information is only available after the intermediary source files
+     created by the Qt3 User Interface Compiler (uic) have been
+     generated. Thus, for the first time you build the program, you
+     need to do the following (assume you have user interface files
+     MyForm.ui and MyForm.ui.h):
+\verbatim
+     make src/Qt/ui/MyForm.h
+     make src/Qt/ui/MyForm.cpp
+\endverbatim
+     After these files are created for the first time, they should not
+     be removed so that the cdeps dependency generator can refer to
+     them. However, you should not have to ever edit them since they
+     will always be created automatically by uic.
+
+   - By default, make will keep intermediary source files in the
+     src/Qt/ui directory. The corresponding object code will be built
+     into build/obj/Qt/ui.
+
+   - IMPORTANT -- when adding a new Qt user interface to the svn
+     repository, it will be necessary to also include the files that
+     were created just for the sake for generating dependencies. If
+     you created an interface called MyForm, all of the following
+     files will need to be added to svn:
+\verbatim
+     svn add src/Qt/MyForm.ui
+     svn add src/Qt/MyForm.ui.h
+     svn add src/Qt/ui/MyForm.h
+     svn add src/Qt/ui/Myform.cpp
+\endverbatim
+     Do not worry about the object files, those are ignored by svn and
+     will have no effect.
+
+   - Note #1: Although Trolltech recommends using qmake to build Qt
+     projects, we do not use it because it is difficult to pass on
+     dependency information to it.
+
+   - Note #2: The basic outline of the make process for Qt
+     applications is available at:
+\par
+     http://doc.trolltech.com/3.2/designer-manual-9.html#3-1
+\par
+     It can also be found in the corresponding section of the Qt
+     Assistant.  See "Creating Makefiles without qmake" under Qt
+     Designer manual, "Customizing and Integrating Qt Designer."
+
+   - Note #3: We run moc (Qt's Meta-Object Compiler) on the fly when
+     compiling files with .cpp or .Q extensions. Previously, we used
+     to store the moc_*.cpp files in the repository, but this is no
+     longer necessary. However, by running moc on the fly, we minimize
+     dependency bookkeeping and avoid churn in the svn repository, at
+     the expense of very little compile time (e.g., moc usually takes
+     <0.5s to run, while compiling the .cpp file itself typically
+     takes ~10-20s for Qt source code).
+
+As an example you should look at the simple application test-Qt, which
+was created almost entirely in Qt Designer and required only about 25
+additional lines of code to be written by the programmer. This should
+demonstrate both the power and the simplicity of Qt.
+
+
+<!--############################################################-->
+
+\subsection qt4-notes 4.7. Qt4 code notes
+
+The workflow for Qt4 is significantly different than that of Qt3,
+especially as regards the use of the Qt Designer. Have a look here for
+porting info:
+
+\par
+http://qt.nokia.com/doc/4.6/porting4-designer.html
+\par
+
+Here is what you should do to create new Qt4 projects:
+
+- using the Qt4 designer, you create a foo.ui file; add it to the svn
+  repo. A good place to store this file is in src/Qt4/ but it does not
+  have to, it could be in some other directory for your project.
+
+- then run
+
+\verbatim
+  make src/WhereTheUIfileIs/foo.ui.H
+\endverbatim
+
+  which will pass your .ui file through uic and obtain foo.ui.H; you
+  should add it to the svn repo.
+
+- you manually edit foo.qt.H and foo.qt.C with the slot and other
+  implementations for your foo widget; it is understood that in any
+  .qt.H file there will be a class definition that contains Q_OBJECT,
+  etc as this file will be pre-processed by moc. There should be no
+  such thing in .qt.C files, though, as those are not pre-processed
+  through moc.
+
+- then the Makefile has rules by which we pass foo.qt.H through moc on
+  the fly, and compile the result along with your foo.qt.C to obtain
+  foo.qt.o (in objdir). We do the moc processing on the fly because
+  moc is pretty brittle and pushing moc'ed files into the svn repo
+  fails if you try to then compile them with even the most slightly
+  different version of moc.
+
+- finally, you manually edit test-foo.C or app-foo.C and in there you
+  #include "Qt4/foo.qt.H"; yes you are including the file that has not
+  been yet processed by moc but that's ok. Add test-foo.C to the svn
+  repo and to depoptions.in.
+
+- the rest is magic thanks to the rules in Makefile.in.
+
+Have a look at src/Qt4/test-BeoChipQt.C for an example, with the
+associated files BeoChipMainForm.qt.C, BeoChipMainForm.qt.H,
+BeoChipMainForm.ui, and BeoChipMainForm.ui.H, for an example.
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section executables 5. EXECUTABLES
+
+
+<ul>
+
+<li> ezvision: This is the main executable. Try to run it with a "--help"
+  command-line option to see the various supported options.
+
+  Typically, you will run:
+
+\verbatim
+        ezvision -T --io=raster:image.ppm
+\endverbatim
+
+  to process an image 'image.ppm'. This will take image.ppm as the
+  input image, and will generate output images using the filename stem
+  'image.ppm'. To also see the output images in onscreen windows
+  (assuming you have a connection to an X server), you can add
+  --out=display
+
+\verbatim
+        ezvision -T --io=raster:image.ppm --out=display
+\endverbatim
+
+  To send the output to the display only, without writing any files,
+  using a --in instead of --io (note that --io=foo is an alias for
+  --in=foo --out=foo):
+
+\verbatim
+        ezvision -T --in=raster:image.ppm --out=display
+\endverbatim
+
+  A target map is a binary map which is black everywhere except that
+  objects that you wish to detect in the image.ppm appear in the
+  target map as white blobs. So, typically you will use a target map
+  if you want the program to report when it has found a given target,
+  and to automatically stop when it has found all the targets. In this
+  case, save your target map as a target.pgm portable greymap file,
+  and run:
+
+\verbatim
+        ezvision -T --io=raster:image.ppm targets.pgm
+\endverbatim
+
+  If you want to look at some internals of the model, you can use the
+  various "show ..." options; for example:
+
+\verbatim
+        ezvision -T --save-conspic-maps --io=raster:image.ppm
+\endverbatim
+
+  will show the attentional trajectory (T option), and various
+  conspicuity maps.
+
+\verbatim
+        ezvision -Kx \
+            --input-frames=0-100@30Hz \
+            --output-frames=0-100@30Hz \
+            --rescale-output=640x480 \
+            --ehc-type=Simple \
+            --esc-type=Monkey2 \
+            --vc-chans=IC:5.2OFM \
+            --nodisplay-additive \
+            --foveate-input \
+            --io=raster:frame#.ppm
+\endverbatim
+
+  will process a series of input images named frame000000.ppm through
+  frame000100.ppm, loading a new frame every 33.333ms (30Hz) of
+  simulated time (--input-frames option), displaying in an X-window
+  (-x option) a combination of original, attention trajectory, and
+  various internal maps (-K option) in a non-additive manner (drawings
+  are erased at every new frame; --nodisplay-additive), rescaling the
+  output image to 640x480 (--rescale-output option), using a
+  SaccadeController of type "Monkey2" to generate eye/head movements
+  in addition to the covert attention shifts (--esc-type option), using
+  a foveation filter to foveate each input frame according to current
+  eye position (--foveate-input option), using a VisualCortex that has
+  intensity (I), color with weight 5.2 (C:5.2), orientation (O),
+  flicker (F), motion (M) channels (--vc-chans option; note that your
+  channels could also be all off-loaded from your machine and running
+  instead on distant CPUs part of a Beowulf cluster if you added a "B"
+  letter to the --vc-chans option; use this only if you know what you
+  are doing, and see SingleChannelBeo.H and friends).
+
+  Note that if you want your output to go to movie files instead of
+  raster file series, you can use "--in=raster:frame#.ppm --out=mpeg"
+  instead of "--io=raster:frame#.ppm". You can also take the input
+  from an movie file like this "--in=somefile.mpg --out=mpeg".
+
+  Note a few special options that exist in all "proper" executables:
+
+\verbatim
+    -h, --[no]help [on]
+      Show help message and option syntax [ShowHelpMessage]
+
+    -d, --[no]debug
+      Use debug mode, which, in particular, will increase the
+      verbosity of the log messages and printout all model parameter
+      values just before the model starts. [DebugMode]
+
+    --[no]use-fpe [on]
+      Use floating-point exceptions, which will abort execution if
+      overflow, underflow, invalid or division by zero are
+      encountered. [UsingFPE]
+
+    -Z, --[no]test-mode
+      Use test mode, which, in particular, will turn off randomness
+      (like --nouse-random), reset random numbers to a reproducible
+      pseudo sequence, and turn off most displays. This is mostly
+      useful for execution of the test suite, or any situation where
+      you need deterministic, reproducible behavior.  [TestMode]
+
+    --load-config-from=<file.pmap> []
+      Load configuration from file [LoadConfigFile]
+
+    --save-config-to=<file.pmap> []
+      Save configuration to file [SaveConfigFile]
+\endverbatim
+
+  In particular, the last one will allow you so save a snapshot of all
+  current settings, for later re-loading. So if you have a very long
+  list of command-line options, you may as well use
+  "--save-config-to=settings.pmap", so that next time instead of
+  re-typing that long list you will only have to type
+  "--load-config-from=settings.pmap".
+
+  Note that some new options may pop-up on the fly as you instantiate
+  run-time plugin components; for example, compare:
+
+\verbatim
+        ezvision --help
+\endverbatim
+
+  to
+
+\verbatim
+        ezvision --ehc-type=Simple --esc-type=Monkey2 --help
+\endverbatim
+
+  and you will see a bunch of new options that will allow you to tune
+  the Monkey2 SaccadeController.
+
+  For the other options, the best is to ask us or look at the source
+  code.
+
+<li> test-grab: tests your framegrabber by just grabbing a frame and
+  displaying it in a window;
+
+<li> pvisionTCP, pvisionTCP-master: parallel saliency computation,
+  using our direct TCP transfer library, and spreading processing of
+  each frame across several CPUs (such that one CPU processes color,
+  another intensity, etc). No flicker/motion processing (each new
+  frame is processed independently from the previous ones).  Because
+  this is a truly parallel program, both throughput is increased and
+  latency is decreased; runs at 30fps on our 16-CPU cluster. Typically
+  you would run pvisionTCP on each of your slave Beowulf nodes, and
+  pvisionTCP-master on your head node. There are scripts in bin/ to
+  get this started;
+
+  To start it, run "pvisionTCPgo" which will start the slave processes
+  on the Beowulf compute nodes, then run "pvisionTCPmaster" on your
+  framegrabber-equipped head node;
+
+<li> pvisionTCP2, pvisionTCP2-master: same as above except that flicker
+  is detected as well and the program runs at 15fps;
+
+<li> CINNICtest: test executable for the contour integration model;
+
+<li> beograb, beograb-master: parallel frame grabbing; will grab at 30fps
+  and store grabbed frames in round robin onto the local disk of each
+  slave node. This way it is actually possible to grab & save at
+  30fps, while typically this is too much data for a single CPU to be
+  able to save on its disk in real time (but here each CPU saves only
+  one in 16 frames onto its disk);
+
+<li> test-hmax, test-psycho: early versions of new test programs for
+  object recognition and the generation of psychophysics displays.
+
+</ul>
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section video-clips 6. PROCESSING VIDEO CLIPS
+
+
+Video clips can be processed using ezvision just like series of image
+frames. Just pass --in=path/to/mymovie.mpg to use a movie for input;
+likewise you can save your output to movies by using
+--out=mpeg:path/to/outdir/.
+
+
+<!--############################################################-->
+
+\subsection grabbing-video 6.1. Grabbing video
+
+
+The easiest way to grab video is to use some Windoze machine equipped
+with a framegrabber. Typically, we try to grab at 30 frames/s in
+640x480 resolution, RGB555 uncompressed mode. You may use other modes
+as well, like YV12, as supported by your framegrabber. As you grab,
+make sure that you don't have any dropped frames and that you grab
+uncompressed data. Indeed, compression (e.g., MPEG, DivX, etc.) will
+introduce artifacts, and that will have to be taken into account later
+when you attempt to process your data and interpret the results; that
+is, are the results you see due to the genuine contents of the video
+clip, or to the artifacts created by the compression process? That can
+be very important if your goal is, for example, to use our model to
+determine priority regions in a video clip and use those regions in a
+region-based video compression algorithm. If the data you use had
+already been compressed before, that will taint your results on how
+well your new compression algorithm is doing.
+
+So, RGB555 640x480 30fps uncompressed AVI is usually the most
+desirable setting. If you have options to do deinterlacing, you may or
+may not want to use them (just make a note of what you did and be
+consistent over your collection of clips).
+
+
+<!--############################################################-->
+
+\subsection converting-tbz 6.2. Converting video to .tbz files
+
+
+The easiest way of doing batch processing on video data is to first
+convert (in a lossless manner) your movie file into a series of
+individual PPM frames, and then to create a tar archive with all the
+frames in it, and to compress this archive using the bzip2
+program. Once you have a .tbz file in this format, we have a number of
+scripts that will be able to run the attention model on those
+files. You must create your .tbz exactly as described below for these
+scripts to work.
+
+To convert from a movie to .tbz, use the movie2tbz.pl script in
+saliency/bin/. The script accepts any input video format that
+'mplayer' can deal with:
+
+\verbatim
+        movie2tbz.pl movie1.avi movie2.mpg movie3.mov
+\endverbatim
+
+will convert all three movies to .tbz format, yielding movie1.tbz,
+movie2.tbz and movie3.tbz. There are additional options that
+movie2tbz.pl accepts; have a look at the script itself to see a
+description of the usage, in the comment block at the top of the
+script.
+
+If you want to create your .tbz files manually, you can certainly do
+that too. The .tbz files should contain a series of frames with the
+file names:
+
+\verbatim
+        frame000000.ppm
+        frame000001.ppm
+        ...
+\endverbatim
+
+be sure to have a six-digit number, to start at frame zero, and to
+have no gap in the number sequence.  Follow this naming convention, as
+it is required by the scripts that process .tbz files. Then tar and
+compress all the frames, such that your tar file contains no
+directory/subdirectory information (i.e., when it is untarred, the
+extracted frames should go into the current directory). For example:
+
+\verbatim
+        tar cvf - frame*.ppm | bzip2 -9 > mymovie.tbz
+\endverbatim
+
+or, if you have so many frames that your shell complains that
+"frame*.ppm" has too many files, you can also use:
+
+\verbatim
+        tar cvf - . | bzip2 -9 > mymovie.tbz
+\endverbatim
+
+in which case your archive will contain files ./frame000000.ppm,
+./frame000001.ppm, etc and the leading ./ is okay (note that .tbz
+files created with this manner will have an additional entry for just
+"./", so be sure that you know that if you are trying to count the
+number of frames in a movie by listing the files the .tbz archive
+contains).
+
+
+<!--############################################################-->
+
+\subsection processing-tbz 6.3. Processing a .tbz file
+
+
+To process a .tbz file through ezvision, use the script
+process_movie.pl in saliency/bin/; typically:
+
+\verbatim
+        process_movie.pl /path/to/movie.tbz
+\endverbatim
+
+will unpack the .tbz, process the frames through ezvision, and
+compress the results into a .mpg file.  There are many options that
+process_movie.pl accepts; have a look at the script itself to see a
+description of the usage, in the comment block at the top of the
+script. In particular, you can decide on the output format (mpeg,
+quicktime, divx, tbz, etc) and pass additional options to ezvision
+too. There are also specialized versions of process_movie.pl that are
+just shorthands which call process_movie.pl with a bunch of preset
+options; for example, process_movie_foveated.sh,
+process_movie_headanim.sh, etc
+
+For process_movie.pl to work, you need to have ezvision and several
+other programs installed and in your path (mpeg_encode, mencoder,
+etc). Have a look at the script for details.
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section parallel-code 7. RUNNING PARALLEL CODE
+
+
+Before you run parallel code (such as pvisionTCP), make sure that you
+master the Beowulf administration tools, such as 'brsh,' so that you
+cleanup after yourself when you are done with the beowulf. For
+example, if you have started a bunch of pvisionTCP processes, be sure
+to execute:
+
+\verbatim
+        brsh killall -9 pvisionTCP
+\endverbatim
+
+when you are done. For brsh to work, you need to have a .rhosts file
+with:
+
+\verbatim
+        iLab1.usc.edu itti
+        iLab2.usc.edu itti
+        iLab3.usc.edu itti
+        iLab4.usc.edu itti
+        iLab5.usc.edu itti
+        iLab6.usc.edu itti
+        iLab7.usc.edu itti
+        bsl10.usc.edu itti
+        bsl11.usc.edu itti
+        n01.beo.usc.edu itti
+        n02.beo.usc.edu itti
+        n03.beo.usc.edu itti
+        n04.beo.usc.edu itti
+        n05.beo.usc.edu itti
+        n06.beo.usc.edu itti
+        n07.beo.usc.edu itti
+        n08.beo.usc.edu itti
+        n09.beo.usc.edu itti
+        n10.beo.usc.edu itti
+        n11.beo.usc.edu itti
+        n12.beo.usc.edu itti
+        n13.beo.usc.edu itti
+        n14.beo.usc.edu itti
+        n15.beo.usc.edu itti
+        n16.beo.usc.edu itti
+\endverbatim
+
+in your home directory, except that you replace "itti" by your login
+name and make sure that your own computer's name also is in the list.
+Then, brsh will execute the command passed as argument on every node
+in the beowulf; for example:
+
+\verbatim
+        brsh ps aux       #  shows you all processes
+        brsh df -h        #  shows you all disk space
+        ...
+\endverbatim
+
+Also check out the real time CPU and network load graphs at
+http://iLab.usc.edu/beo/
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section documentation 8. DOCUMENTATION
+
+
+Documentation is automatically extracted from the source code and
+published on the web at:
+
+        http://iLab.usc.edu/sdoc/html/
+
+It is also available in PDF or RTF format.
+
+Please document your code using the doxygen syntax (see
+http://www.doxygen.org/). Doxygen will extract special comments from
+your code and organize them along with the class names and methods
+into some nice web pages. Regular comments will not be used by
+doxygen, so feel free to use them a lot inside your code. So the idea
+is that all regular comments are only for people editing the code, and
+a few special comments are provided for people just wanting to use
+your classes but not look at the code in detail. So the special
+comments explain what the class does and what each method does.
+Typically this means:
+
+- towards the top of your class definition in your .H, have a block
+  like:
+\verbatim
+    //! Short summary in one line
+    /*! Longer description of what the class does, that
+        can take several lines
+     */
+\endverbatim
+  If you have only a short summary, only write the first one-line
+  comment (using <code>//!</code>); if you have a long description
+  (using <code>/*! ... * /</code>), then make sure you still include
+  the short summary too in that case. Any deviation from this scheme
+  will produce bogus documentation;
+
+- before each method in your .H, either a single-line comment or if
+  you have more to say, both a single-line comment and a multiline
+  comment as above;
+
+- do not repeat these comments in your .C; what the method does and
+  what parameters it takes is documented in the .H; however, put
+  extensive regular comments inside your functions (without using the
+  doxygen markers) to explain people editing the code what you are
+  doing;
+
+- the first line of both your .H and you .C should be a single-line,
+  regular (non-doxygen) comment that states the file name and a very
+  short description of what the class does (useful for printing, so
+  that we know which file corresponds to a given printout; also useful
+  for the roadmap below);
+
+- see V4Lgrabber.H and V4Lgrabber.C for a good example to use when
+  writing a new class.
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section writing-code 9. WRITING CODE
+
+
+Please follow these guidelines when writing new code:
+
+- no 'printf,' 'cout,' or 'cerr' allowed. Instead, use the functions
+provided by log.H to display various messages;
+
+- please keep line length to less than 80 characters, so that the code
+will print properly and we won't get very annoyed because we have to
+resize our editor windows;
+
+- try to avoid 'malloc' and 'free,' unless you have to use it (e.g.,
+will do a 'realloc' later). Instead use the C++ functions 'new' and
+'delete';
+
+- make sure that each time you allocate memory with 'new' you also
+free it with 'delete.' So, if possible do not allocate memory for
+return values of your functions, leaving it to the user of the
+function to free the memory when they are done with the return value;
+rather ask the user to pass a memory buffer that has been already
+allocated as a parameter to your function. Try to use SharedPtr's to
+handle your dynamically allocated objects (see SharedPtr.H, and try a
+"grep SharedPtr *.C" for examples of how to use it);
+
+- try to avoid passing pointers as function parameters; rather use the
+C++ passing of arguments by reference (using an &; for example use
+'function(float& retval)' rather than 'function(float *retval)'; this
+way you will not have to deal with pointers inside your function and
+your code will be easier to read and cleaner);
+
+- when writing a new class, follow the general architecture that has
+been used in other classes: make a .H file, a .C file, enclose your
+definitions in the .H file by \#ifndef MY_CLASS_DEFINED, try to
+#include as few files as possible in your .H (just what is needed for
+class definition) and include the rest in your .C (what is needed for
+actual implementation of the class), do not repeat comments from your
+.H in your .C, separate your methods in your .C by // ###.. (70 times
+#), and so on. See V4Lgrabber.H and V4Lgrabber.C for a good example to
+use when writing a new class (and see previous section regarding
+comments). When creating a new class, start from a copy of the
+templates provided in NewClass.H and NewClass.C;
+
+- make sure that your class has a constructor with no argument; this
+is useful if people want to have your class as a member inside their
+class, or to create arrays of objects from your class. Typically, I
+find it useful to have a boolean variable 'initialized' inside my
+classes that let me know whether proper initialization was done; see
+for example Image.H/.C. If you have several possible constructors
+(e.g., with various numbers of parameters, I find it useful to only
+write the initialization code once as an 'init' method, and then have
+the various constructors call this method); similarly a 'freeMem'
+method is useful if you want to reinitialize your object (and then
+your destructor just calls freeMem());
+
+- do not declare all your variables at the top of your function like
+you must do in C; rather declare each variable the first time it is
+used, as is usual in C++.  Similarly, unless you want to use a loop
+variable after the loop is finished, declare your loop variable inside
+your loop statement; declaring variables so that they have as short a
+lifetime (because they run out of scope) as possible will help you
+avoid lots of bugs!
+\code
+// instead of:
+
+        void MyClass::myFunction() // WRONG!
+        {
+          int x, y, z, i;
+          ...
+          for (i = 0; i < 10; i ++) {
+             x = i * 2;
+             do_stuff(x);
+          }
+          ...  // never use 'i' again...
+        }
+
+// write:
+
+        void MyClass::myFunction()
+        {
+          ...
+          for (int i = 0; i < 10; ++i) {
+             const int x = i * 2;
+             do_stuff(x);
+          }
+
+          // 'i' and 'x' run out of scope here so the compiler will
+          // complain if you inadvertently use them past this point.
+          ...
+        }
+\endcode
+
+- use capitalized names for classes and uncapitalized names for
+methods; for example:
+\code
+class MyCoolClass;                    // note uppercase M at start
+void MyCoolClass::myCoolMethod();     // note lowercase m at start
+\endcode
+<b>Use your class name as your file name (MyCoolClass.H and
+MyCoolClass.C); using different names for class and file DOES NOT
+MAKE SENSE (e.g., ssc.H and class SSC are getting on my nerves! it
+should be Ssc.H and class Ssc)</b>
+
+- in your classes, please put public methods first (under a public:
+heading), then your private methods and data (under a private:
+heading). Indeed, users of your class do not care about the private
+members, so why would you want to bore them from the start by putting
+your private section first? see V4Lgrabber.H/.C;
+
+- if possible, use emacs as editor; it will properly highlight and
+indent (using <TAB>) your code automatically for you!
+
+- use only the five following base datatypes if you need a guaranteed
+  data size:
+
+\code
+  byte          // for a 8-bit unsigned integer number
+  int16         // for a 16-bit signed integer number
+  int32         // for a 32-bit signed integer number
+  float         // for a 32-bit floating point number
+  double        // for a 64-bit floating point number
+\endcode
+
+If you could tolerate that your variable be either a 32 or 64-bit int,
+then use int.
+
+- use 'const' whenever possible in your function declarations, as this
+makes the function declaration much easier to understand and it also
+avoids lots of bugs; so every read-only parameter should be declared
+const; every read-write parameter should be passed by reference (&)
+and not declared const; every method which does not modify the data
+members of the class should be declared const; for example:
+
+\code
+        void MyClass::getInfo(const int32 zz, float& result1,
+                              byte& result2) const;
+\endcode
+
+is a method with 1 read-only parameter, 2 read-write parameters, and
+which does not modify the internal data members of MyClass;
+
+- try to have as few hardcoded numbers as possible; each time you need
+a hardcoded number that someone may want to modify later, use a
+#define statement in your .H to give a macro name to that number, then
+use the macro name in your code; for example, instead of:
+
+\code
+// in myClass.C:
+Image<float> im(100, 100);
+\endcode
+
+write:
+
+\code
+// in myClass.H:
+// image size:
+const int IMWIDTH = 100;
+const int IMHEIGHT = 100;
+
+// in myClass.C:
+Image<float> im(IMWIDTH, IMHEIGHT);
+\endcode
+
+and try to avoid hardcoded numbers in any case!  Use ModelParam<T>
+parameters instead (see ModelParam.H). Of course do not abuse of that
+rule: if you implement some math functions you will have lots of
+numbers; so use your judgment to decide when to #define a constant;
+typically you will do it if you use it several times in several
+different methods, but not if you just use it once in one method
+(unless you consider that it is a tunable parameter of your code).
+
+- if you want to check the validity of parameters in a function, use
+the ASSERT() macro, which we can either #define as calling assert()
+(see 'man assert') while in development mode, or as doing nothing so
+that we save some computation time when the code is stable; for
+example:
+\code
+     void Image::getValue(const int32 x, const int32 y)
+     {
+       ASSERT(x >= 0 && x < w);  // will quit if x coordinate outside image
+       ASSERT(y >= 0 && y < h);  // will quit if y coordinate outside image
+       ...
+     }
+\endcode
+
+- please write readable code!  Most cryptic C++ constructs will not
+buy you anything in execution time (on the contrary), which is our
+main priority.  So use lots of parentheses, even if you know that some
+of them are not needed, to make your code easier to read. The compiler
+will remove all extra parentheses before compiling. Also use lots of
+spaces, as they make fast reading of the code much easier. For
+example:
+\verbatim
+           NO!                            YES
+------------------------------------------------------------------------------
+for(int i=0;i<10;i++) ...       for (int i = 0; i < 10; ++i) ...
+
+myfunction(a,b,10,z);           myFunction(a, b, 10, z);
+
+if(x=func()==1) ...             x = func();   // comment
+                                if (x == 1) ...
+
+for(z=0,x=0;x<imgx;x++,buf++)   z = 0;  // comment
+                                for (int x = 0; x < imgx; ++x) {
+                                    ...
+                                    ++buf;  // comment
+                                }
+
+x=x>y?x:y;                      if (x < y) x = y;    // faster
+
+printf("bug %d\n", x);          LERROR("bug %d", x);
+\endverbatim
+see Image.H and Image.C as a good example of our writing style and
+class organization rules.
+
+
+<!--############################################################-->
+<!--############################################################-->
+<!--############################################################-->
+
+\section roadmap 10. ROADMAP
+
+
+Have a look at the papers and at section 1 for general information and
+a brief description of what the various classes do. Then check out the
+online documentation. Then look at the code itself.
+
+Use the online documentation (see above). It is clickable, so that
+each time you encounter an object type that you don't know, you can
+just click on it to instantly discover what it is.
+
+A good order in which to get acquainted with the various classes is as
+follows (look at both the .H and .C) -- NOTE: the list below may be
+obsolete; the online documentation is the only up-to-date reference
+(updated nightly):
+
+
+<!--############################################################-->
+
+\subsection visual-attention-model 10.1. Visual attention model
+
+
+- log.H -- Error message facility and interface to syslog
+- saliency.H -- type definitions and macros
+- Pixels.H -- basic pixel types
+- Point2D.H -- a basic 2D point class
+- Rectangle.H -- a basic rectangle class
+- Image.H -- an image template class with many image processing functions
+- Raster.H  -- writes a raster to disk / displays it
+- ImageSet.H -- a template image pyramid class
+
+- SaliencyMap.H -- class declarations for saliency map
+- WinnerTakeAll.H -- header file for winner-take-all network
+- VisualCortex.H  -- the early visual processing stages
+- Brain.H -- the whole brain
+- SaccadeController.H -- optional eye/head movement generation
+- ShapeEstimator.H -- estimate the size/shape of attended objects
+- SimulationViewer.H -- do various drawings to display results
+- StdBrain.H -- a Brain with a bunch of standard modules pre-implemented in it
+
+- ezvision.C -- main executable
+- openvision.C -- similar to ezvision but uses filters defined in a text file
+- streamvision.C -- similar to ezvision but reads/writes movie streams
+- vision.C -- this is now obsolete; use ezvision instead
+
+
+<!--############################################################-->
+
+\subsection contour-integration-model 10.2. Contour integration model
+
+
+- readConfig.H -- deal with configuration files
+- contourNeuron.H -- CINNIC classes
+- CINNICtest.H -- test binary for CINNIC neuron
+
+
+<!--############################################################-->
+
+\subsection frame-grabbing 10.3. Grabbing & displaying images
+
+
+- FrameGrabber.H -- abstraction of a frame grabber
+- V4Lgrabber.H -- definition and access functions for video4linux grabber
+- IEEE1394grabber.H -- definition and access functions for FireWire grabber
+- XWindow.H -- class definition for a simple window
+- XWinManaged.H -- an X window with event management
+- Timer.H -- a simple class for precise time measurements
+
+
+<!--############################################################-->
+
+\subsection parallel-computing 10.4. Parallel computing
+
+
+- TCPmessage.H -- direct message passing over TCP connections
+- Beowulf.H -- simple interfacing to a Beowulf cluster
+- pvisionTCP.H -- Definitions for pvisionTCP & pvisionTCP-master
+
+
+<!--############################################################-->
+
+\subsection low-level-parallel 10.5. Low-level details of parallel computing (should not be needed)
+
+
+- TCPdefs.H -- common definitions for the various TCPxxx classes
+- SockServ.H -- a simple multi-client socket server
+- TCPcliServ.H -- a client/server to receive/send TCPmessage
+- TCPcommunicator.H -- a class to handle multiple TCPmessage communications
+
+
+<!--############################################################-->
+
+\subsection audio 10.6. Audio
+
+
+- AudioGrabber.H -- grab audio samples from /dev/dsp
+- AudioMixer.H -- control audio mixer and select audio grab source
+
+
+<!--############################################################-->
+
+\subsection hardware-drives 10.7. Misc hardware drivers
+
+
+- ssc.H -- driver for a serial R/C servo controller
+- carcontrol.H -- control an R/C car like the one of the Beobots
+- serial.H -- serial port driver
+- GPS.H -- driver for Gramin/NMEA global positioning system unit
+- Gyro.H -- interface to a GyroMouse
+- lcd.H -- interface to a small alphanumeric serial LCD display
+- SpeedSensor -- driver for a mouse-based speed sensor
+- VCC4.H -- driver for a VCC4 pan/tilt/zoom camera
+
+
+<!--############################################################-->
+
+\subsection psychophysics-displays 10.8. Psychophysics displays
+
+
+- PsychoDisplay.H -- easily create psychophysics displays using SDL
+
+- psycho-movie.C -- show movies and record eye movements
+- psycho-still.C -- show still images and record eye movements
+- psycho-search.C -- search for one target
+- psycho-dsearch.C -- search for two targets
+- psycho-headmove.C -- record head movements
+- psycho-only.C -- pure psychophysics display of still images (no eye mvts)
+
+*/

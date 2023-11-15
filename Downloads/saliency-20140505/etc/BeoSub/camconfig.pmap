@@ -1,0 +1,32 @@
+model  {
+	DebugMode  false
+	LoadConfigFile  camconfig.pmap
+	SaveConfigFile  
+	ShowHelpMessage  true
+	TestMode  false
+	TextLogFile  
+	UsingFPE  false
+	cocam  {
+		FrameGrabberBrightness  32768
+		FrameGrabberByteSwap  false
+		FrameGrabberChannel  1
+		FrameGrabberColour  32768
+		FrameGrabberContrast  32768
+		FrameGrabberDevice  /dev/video1394/0
+		FrameGrabberDims  320x240
+		FrameGrabberExposure  511
+		FrameGrabberFPS  30
+		FrameGrabberGain  0
+		FrameGrabberGamma  0
+		FrameGrabberHue  32768
+		FrameGrabberMode  YUV422
+		FrameGrabberNbuf  4
+		FrameGrabberSaturation  90
+		FrameGrabberSharpness  80
+		FrameGrabberShutter  6
+		FrameGrabberSubChan  0
+		FrameGrabberWhiteBalBU  95
+		FrameGrabberWhiteBalRV  87
+		FrameGrabberWhiteness  32768
+	}
+}

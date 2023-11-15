@@ -1,0 +1,77 @@
+// //////////////////////////////////////////////////////////////////// //
+// The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2001 by the //
+// University of Southern California (USC) and the iLab at USC.         //
+// See http://iLab.usc.edu for information about this project.          //
+// //////////////////////////////////////////////////////////////////// //
+// Major portions of the iLab Neuromorphic Vision Toolkit are protected //
+// under the U.S. patent ``Computation of Intrinsic Perceptual Saliency //
+// in Visual Environments, and Applications'' by Christof Koch and      //
+// Laurent Itti, California Institute of Technology, 2001 (patent       //
+// pending; filed July 23, 2001, following provisional applications     //
+// No. 60/274,674 filed March 8, 2001 and 60/288,724 filed May 4, 2001).//
+// //////////////////////////////////////////////////////////////////// //
+// This file is part of the iLab Neuromorphic Vision C++ Toolkit.       //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is free software; you can   //
+// redistribute it and/or modify it under the terms of the GNU General  //
+// Public License as published by the Free Software Foundation; either  //
+// version 2 of the License, or (at your option) any later version.     //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope  //
+// that it will be useful, but WITHOUT ANY WARRANTY; without even the   //
+// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      //
+// PURPOSE.  See the GNU General Public License for more details.       //
+//                                                                      //
+// You should have received a copy of the GNU General Public License    //
+// along with the iLab Neuromorphic Vision C++ Toolkit; if not, write   //
+// to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,   //
+// Boston, MA 02111-1307 USA.                                           //
+// //////////////////////////////////////////////////////////////////// //
+//
+// Primary maintainer for this file: Laurent Itti <itti@usc.edu>
+// $Id: historical-notes.dxy 6359 2006-03-13 01:47:10Z rjpeters $
+//
+
+/*!
+
+\page historical-notes Historical notes
+
+- Back in the old days of CVS, before Subversion, there were a couple
+  times when major changes prompted us to fork the entire source tree;
+  so along the way we had src/, src2/, and src3/. Now with Subversion,
+  things are more flexible and easy to manage and so the old src/ and
+  src2/ have been relegated to the saliency-archives, while the old
+  src3/ has been renamed to just plain src/ once more.
+
+- It all began with <B>src/</B> -- not the current src/, but the <A
+  HREF="http://ilab.usc.edu/cgi-bin/secure/viewcvs.cgi/trunk/saliency-archives/src/">
+  now-obsolete original src/</A>. It was active approximately between
+  1995 (not under version control) and late 2000, with minor
+  compatibility updates throughout year 2001. When development in the
+  old src/ began, support for C++ templates in g++ was incomplete, so
+  the old src/ relied on simulated templates in which scripts were
+  used to generate instantiations of source files from a generic
+  source.
+
+- <B>src2/</B> is an obsolete source tree as well. The move from the
+  old src/ to src2/ mainly involved switching the source tree to use
+  bonafide C++ templates. <I>NOTE that src2/ has now been moved out of
+  the main subversion development tree, though it is still available
+  in the <A
+  HREF="http://ilab.usc.edu/cgi-bin/secure/viewcvs.cgi/trunk/saliency-archives/src2/">
+  saliency archives</A></I>
+
+- <B>src3/</B> was the active source tree at the time of our CVS to
+  Subversion transition (mid-2005). During 2001, Rob Peters and others
+  started introducing a number of powerful new components to the
+  toolkit, which generated sufficient incompatibility to warrant a
+  move to a new source tree, src3/. In early 2003, some additional
+  fairly large changes were introduced, but to avoid losing CVS
+  history once again, we kept the code in src3/ rather than moving to
+  src4. See \ref src31overview "here" for notes on the changes in
+  revision 3.1 relative to revision 3.0. <I>NOTE: As of 2005-06-12
+  src3/ has been renamed back to just src/, now that we have the
+  capability for cheap renaming within Subversion without losing
+  revision history information</I>.
+
+*/

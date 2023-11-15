@@ -1,0 +1,53 @@
+0000000.00ms FOAradius            20
+0000000.00ms FoveaRadius          20
+0000000.00ms InputDims            320x240
+0000000.00ms ReadFrame            ../inputs/ezin000000.png
+0000000.00ms InputFrameSeries     frame 0
+0000000.00ms CovertShift          (192,128) 4.173mV
+0000030.00ms CovertShift          (192,128) 4.173mV
+0000060.00ms CovertShift          (192,128) 4.173mV
+0000090.00ms CovertShift          (192,128) 4.173mV
+0000120.00ms CovertShift          (192,128) 4.173mV
+0000150.00ms CovertShift          (192,128) 4.173mV
+0000180.00ms OutputFrameSeries    frame 0
+0000180.00ms WriteRGB             T000000.png
+0000180.00ms ReadFrame            ../inputs/ezin000001.png
+0000180.00ms InputFrameSeries     frame 1
+0000180.00ms CovertShift          (112,144) 5.719mV
+0000210.00ms CovertShift          (112,144) 5.718mV
+0000240.00ms CovertShift          (112,144) 5.718mV
+0000270.00ms CovertShift          (112,144) 5.718mV
+0000300.00ms CovertShift          (112,144) 5.718mV
+0000330.00ms CovertShift          (112,144) 5.718mV
+0000360.00ms OutputFrameSeries    frame 1
+0000360.00ms WriteRGB             T000001.png
+0000360.00ms ReadFrame            ../inputs/ezin000002.png
+0000360.00ms InputFrameSeries     frame 2
+0000360.00ms CovertShift          (128,128) 6.941mV
+0000390.00ms CovertShift          (128,128) 6.938mV
+0000420.00ms CovertShift          (128,128) 6.938mV
+0000450.00ms CovertShift          (128,128) 6.938mV
+0000480.00ms CovertShift          (128,128) 6.938mV
+0000510.00ms OutputFrameSeries    frame 2
+0000510.00ms WriteRGB             T000002.png
+0000510.00ms ReadFrame            ../inputs/ezin000003.png
+0000510.00ms InputFrameSeries     frame 3
+0000510.00ms CovertShift          (48,160) 5.307mV
+0000540.00ms CovertShift          (48,160) 5.307mV
+0000570.00ms CovertShift          (48,160) 5.307mV
+0000600.00ms CovertShift          (48,160) 5.307mV
+0000630.00ms CovertShift          (48,160) 5.307mV
+0000660.00ms CovertShift          (48,160) 5.307mV
+0000690.00ms OutputFrameSeries    frame 3
+0000690.00ms WriteRGB             T000003.png
+0000690.00ms ReadFrame            ../inputs/ezin000004.png
+0000690.00ms InputFrameSeries     frame 4
+0000690.00ms CovertShift          (192,128) 5.521mV
+0000720.00ms CovertShift          (192,128) 5.521mV
+0000750.00ms CovertShift          (192,128) 5.521mV
+0000780.00ms CovertShift          (192,128) 5.521mV
+0000810.00ms CovertShift          (192,128) 5.521mV
+0000840.00ms OutputFrameSeries    frame 4
+0000840.00ms WriteRGB             T000004.png
+0000840.00ms CovertShift          (192,128) 5.521mV
+0000870.00ms CovertShift          (192,128) 5.521mV

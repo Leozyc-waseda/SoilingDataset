@@ -1,0 +1,18 @@
+#!/bin/csh
+
+setenv PROG nameclt
+
+foreach obj (`${PROG} list saliency.CMapServers`)
+	echo "Unbind $obj"
+#	${PROG} unbind saliency.CMapServers/$obj
+end
+
+foreach obj (`${PROG} list saliency.BotControllers`)
+	echo "Unbind $obj"
+#	${PROG} unbind saliency.BotControllers/$obj
+end
+
+foreach obj (`${PROG} list saliency.SceneRec`)
+	echo "Unbind $obj"
+	${PROG} unbind saliency.SceneRec/$obj
+end

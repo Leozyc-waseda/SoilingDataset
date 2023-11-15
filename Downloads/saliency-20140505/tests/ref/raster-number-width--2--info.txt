@@ -1,0 +1,1 @@
+InfoOutputSeries: summary[rgb-24-bit-copy]: 1 frames (32x32 Image<PixRGB<byte>>)

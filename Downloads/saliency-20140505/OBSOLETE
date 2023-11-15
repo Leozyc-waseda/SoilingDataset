@@ -1,0 +1,267 @@
+      -*- mode: outline; fill-column: 70; indent-tabs-mode: nil -*-
+            $Id: OBSOLETE 10982 2009-03-05 05:11:22Z itti $
+          $HeadURL: svn://isvn.usc.edu/software/invt/trunk/saliency/OBSOLETE $
+
+======================================================================
+
+    This file contains a listing of programs that were previously part
+    of the toolkit but which have removed for one reason or
+    another. In some cases, a program may have been removed because
+    its functionality is provided by another program in a more general
+    or featureful way.
+
+======================================================================
+
+* [2007-01-30] [rjpeters] Removed test-new-Pixels
+
+  Merged these tests into TestSuite/whitebox-Pixels.C, so that they
+  will be run regularly as part of the test suite.
+
+* [2007-01-30] [rjpeters] Removed test-Xwin
+
+  To get similar functionality for tracing X events in an XWinManaged,
+  try this:
+
+    bin/stream --in=colorbars:4Hz --out=display --trace-x-events
+
+  and then make some key presses or mouse button presses in the
+  colorbars window.
+
+* [2007-02-07] [itti] Removed executables which are unused and unmaintained
+
+  Things marked as [unused] below were compiling and possibly working
+  fine, just usually their functionality was so limited they they were
+  not being used, or they applied to hardware setups which are not
+  contemporary anymore. Things marked as [obsolete] had been
+  unmaintained for so long, and had undergone so many unchecked source
+  code update so that they would keep compiling, that probably they
+  did not work anymore. If a newer program may be used as a
+  replacement, sometimes it is indicated as well.
+
+  The cleanup was based on looking at saliency/deathlist.txt at
+  revision 8249, and the deletions were committed into revision 8250.
+
+  AppDevices/app-calibrate-camera.C   [unused]
+  AppDevices/app-grab-server.C        [unused]
+  AppDevices/app-lcdecho.C            [unused]
+  AppDevices/test-diskgrab1394.C      [use bin/stream --in=v4l or --in=ieee1394, and --out=pnm or --out=rawvideo]
+  AppDevices/test-moveCamera.C        [use sscControlQt or test-ssc instead]
+  AppDevices/test-stereo.C            [pretty much useless given test-multigrab]
+  AppMedia/app-invt-convert.C         [use app-raster-convert instead]
+  AppMedia/app-make-target-image.C    [unused]
+  AppMedia/app-make-test-movie.C      [unused]
+  AppMedia/app-prepare-target-image.C [unused]
+  AppMedia/stim-noise.C               [use stim-surprise]
+  AppMedia/test-data-frame-grab.C     [use stream instead; but this used to save time stamps which stream does not yet support]
+  AppMedia/test-flood.C               [unused]
+  AppMedia/test-monty.C               [unused]
+  AppMedia/test-optimizeHSV.C         [unused]
+  AppNeuro/app-get-shape-estimator.C  [use ezvision]
+  AppNeuro/app-sal-count.C            [use ezvision --top5]
+  AppNeuro/test-component.C           [unused]
+  AppNeuro/test-hueChannel.C          [unused]
+  AppNeuro/test-reset.C               [broken?]
+  AppPsycho/AccSearch.C               [unused]
+  AppPsycho/AllSSearch.C              [unused]
+  AppPsycho/Allgen.C                  [unused]
+  AppPsycho/CircleSearch.C            [unused]
+  AppPsycho/Contgen.C                 [unused]
+  AppPsycho/psycho-headmove.C         [unused]
+  AppPsycho/psycho-obfba.C            [unused]
+  MBARI/computeClampedDiffMean.C      [unused]
+  Matlab/mexTest.C                    [redundant given mexSaliency]
+  Matlab/mexTestDirectFeedChannel.C   [obsolete and redundant]
+  Matlab/mexTestReichardt.C           [idem]
+  Matlab/mexVision.C                  [less powerful than mexSaliency?]
+
+  Also removed the following orphaned classes/files:
+
+  Devices/V4LgrabberLight.[HC]        [who needs light when you can have hardcore code?]
+  ObjRec/evalCSCLAB.H                 [unused]
+  ObjRec/evalCoil.H                   [unused]
+  ObjRec/evalLABELME.H                [unused]
+  Sbqa/Landmark_Graph.[HC]            [unused]
+
+  The entire IRoom project has been obsoleted. It contained:
+
+  IRoom/test-IRoomProbeAnalysis.C
+  IRoom/IRoom_UserInterface.C
+  IRoom/test-ScanPolicy3.C
+  IRoom/test-IRoomFoo.C
+  IRoom/test-CameraPolicy2.C
+  IRoom/test-IRoomCoordTransforms.C
+  IRoom/IRoom_UserInterface.H
+  IRoom/IRoomHandoff.C
+  IRoom/test-motionDetector.C
+  IRoom/IRoomHandoff.H
+  IRoom/IRoomAction.C
+  IRoom/TargetLeak.C
+  IRoom/test-CameraPolicy.C
+  IRoom/test-ScanPolicyLinearForceSmooth.C
+  IRoom/IRoomAction.H
+  IRoom/TargetLeak.H
+  IRoom/TaskInitiative.C
+  IRoom/IRoomSaccade.C
+  IRoom/IRoomCallJavaMsg.C
+  IRoom/TrajectoryAnalysis.C
+  IRoom/TaskInitiative.H
+  IRoom/IRoomSaccade.H
+  IRoom/IRoomResourceReport.H
+  IRoom/test-ScanPolicyNaiveSmooth.C
+  IRoom/test-ScanPolicySpringSmooth.C
+  IRoom/IRoomCallJavaMsg.H
+  IRoom/TrajectoryAnalysis.H
+  IRoom/test-trackSignature.C
+  IRoom/test-ScanPolicyNaive.C
+  IRoom/test-ScanPolicySpring.C
+  IRoom/IRoom_ExampleModule.C
+  IRoom/test-Saliency2.C
+  IRoom/IRoom_InterruptScan.C
+  IRoom/IRoom_ProbeView.C
+  IRoom/IRoom_ScanPolicy.C
+  IRoom/IRoom_InterruptScan.H
+  IRoom/IRoom_ExampleModule.H
+  IRoom/IRoom_ProbeView.H
+  IRoom/IRoom_ScanPolicy.H
+  IRoom/README.dxy
+  IRoom/IRoom_ProbeAnalysis.C
+  IRoom/IRoomAgentInfo.C
+  IRoom/test-IRoomAgentMinder.C
+  IRoom/test-IRoomCameraHandoff2.C
+  IRoom/test-IRoomSignatureRepository.C
+  IRoom/IRoom_ProbeAnalysis.H
+  IRoom/IRoomAgentInfo.H
+  IRoom/test-TaskSelection.C
+  IRoom/test-IRoomScanPolicy.C
+  IRoom/IRoom_CameraManager.C
+  IRoom/IRoomOpts.C
+  IRoom/IRoom_PursuitTracker.C
+  IRoom/IRoomCommandLine.C
+  IRoom/IRoom_CameraManager.H
+  IRoom/IRoomFindSignalCamera.C
+  IRoom/TrackMemory.C
+  IRoom/SaliencyMemory.C
+  IRoom/IRoomOpts.H
+  IRoom/Signature.C
+  IRoom/IRoom_PursuitTracker.H
+  IRoom/IRoomBrain.C
+  IRoom/IRoomCommandLine.H
+  IRoom/test-IRoomCameraHandoff.C
+  IRoom/IRoomFindSignalCamera.H
+  IRoom/TrackMemory.H
+  IRoom/SaliencyMemory.H
+  IRoom/Signature.H
+  IRoom/IRoomBrain.H
+  IRoom/TaskSelection.C
+  IRoom/test-IRoomPursuitTracker.C
+  IRoom/TaskSelection.H
+  IRoom/TaskCoverage.C
+  IRoom/TaskTracker.C
+  IRoom/test-ScanPolicy.C
+  IRoom/test-IRoomUserInterface.C
+  IRoom/TaskCoverage.H
+  IRoom/TaskTracker.H
+  IRoom/test-Saliency.C
+  IRoom/test-ScanPolicySmoothCamera.C
+  IRoom/CoverageMap.C
+  IRoom/test-ScanPolicyLinearForce.C
+  IRoom/IRoomResource.C
+  IRoom/CoverageMap.H
+  IRoom/CameraCoordTransforms.C
+  IRoom/CoverageAnalysis.C
+  IRoom/ColorSignature.C
+  IRoom/SignatureRepository.C
+  IRoom/IRoom_AgentMinder.C
+  IRoom/IRoomResource.H
+  IRoom/test-CoordTransforms.C
+  IRoom/test-IRoom.C
+  IRoom/CameraCoordTransforms.H
+  IRoom/CoverageAnalysis.H
+  IRoom/test-PursuitTracker.C
+  IRoom/ColorSignature.H
+  IRoom/SignatureRepository.H
+  IRoom/IRoom_SignatureRepository.C
+  IRoom/IRoom_AgentMinder.H
+  IRoom/IRoomBrainConf.C
+  IRoom/test-Saliency3.C
+  IRoom/IRoomCameraInfo.C
+  IRoom/IRoomMoveSignal.C
+  IRoom/test-TrackMemory.C
+  IRoom/IRoom_SignatureRepository.H
+  IRoom/IRoomBrainConf.H
+  IRoom/IRoomCameraInfo.H
+  IRoom/IRoomMoveSignal.H
+  IRoom/convertPixel.C
+  IRoom/test-IRoomExampleModule.C
+  IRoom/test-IRoomInterruptScan.C
+  IRoom/IRoom.C
+  IRoom/test-IRoomProbeView.C
+  IRoom/test-ScanPolicyMaxSelector.C
+  IRoom/IRoom.H
+  IRoom
+
+  And the agentMinder has been also entirely obsoleted, it included:
+
+  agentMinder/TaskScheduler.java
+  agentMinder/IRoomAgentMinder.C
+  agentMinder/InputListener.java
+  agentMinder/IRoomInterface.java
+  agentMinder/MapViewHandler.java
+  agentMinder/Neuron.java
+  agentMinder/ActivationFunction.java
+  agentMinder/AbstractModule.java
+  agentMinder/IRoomInterface.H
+  agentMinder/CameraHandoff.java
+  agentMinder/DerivFunction.java
+  agentMinder/README.dxy
+  agentMinder/blob.conf
+  agentMinder/AgentTimers.java
+  agentMinder/RecordOfOccupants.java
+  agentMinder/AgentFinder.java
+  agentMinder/Native.C
+  agentMinder/RungeKutta.java
+  agentMinder/TCPmessage.java
+  agentMinder/UserInputHandler.java
+  agentMinder/camera.conf
+  agentMinder/Makefile
+  agentMinder/DerivnFunction.java
+  agentMinder/AgentRecord.java
+  agentMinder/RecordOfTargets.java
+  agentMinder/Watcher.java
+  agentMinder
+
+* [2007-02-07] [rjpeters] Removed test-color (testing CompositeColorChannel)
+
+  use bin/ezvision --vc-chans=S --compcolor-double-weight=1.0 --compcolor-single-weight=0.00001
+
+* [2007-02-07] [rjpeters] Removed test-junction
+
+  use bin/ezvision --vc-chans=OL:2T:2X:2E
+
+* [2007-02-08] [rjpeters] Removed mpgsize
+
+  use bin/stream --out=info instead
+
+* [2007-02-08] [itti] Removed PVM support
+
+  We only used pvm for one application, a parallel saliency program
+  (Parallel/pvision-master.C and Parallel/pvision.C). This was very
+  slow compared to our own TCP transport library (see src/Beowulf/).
+
+  If you ever need to write PVM code, have a look at revisions 8263 or
+  earlier for how to set this up in configure.ac and depoptions.in.
+
+* [2007-02-20] [rjpeters] Removed deprecated QuickTimeDecoder/QuickTimeParser/QuickTimeUtil
+
+  These classes relied on QuickDraw APIs that are deprecated starting
+  with OSX 10.4. They are replaced by QuartzQuickTimeDecoder and
+  QuartzQuickTimeParser classes that use the officially-sanctioned
+  Quartz 2D APIs.
+
+* [2007-04-17] [rjpeters] Removed ImageDisplay class and test-ImageDisplay
+
+  For direct window management ImageDisplay is superseded by enhanced
+  functionality in XWinManaged itself, and for handling multiple
+  output streams ImageDisplay is superseded by ImageDisplayStream
+  (which can be used as part of an OutputFrameSeries by requesting
+  --out=display).

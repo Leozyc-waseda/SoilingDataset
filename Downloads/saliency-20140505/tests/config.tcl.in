@@ -1,0 +1,86 @@
+# -*- tcl -*-
+
+# $Id: config.tcl.in 5561 2005-09-20 20:01:31Z rjpeters $
+# $HeadURL: svn://isvn.usc.edu/software/invt/trunk/saliency/tests/config.tcl.in $
+
+# DON'T MODIFY this file execpt as "config.tcl.in" (if you're looking
+# at config.tcl, then that file is generated from config.tcl.in by the
+# configure script; any changes to config.tcl itself will be lost).
+
+# Here we just hold configure-time information that is needed by the
+# test suite.
+
+namespace eval config {
+
+    proc file_normalize {fname} {
+
+	# put a 'catch' block around the [file normalize], because
+	# [file normalize] is only available in tcl >= 8.4
+	catch {
+	    return [file normalize $fname]
+	}
+	return $fname
+    }
+
+    # About srcdir and builddir: under "normal" conditions (where you
+    # unpack the a tarball or get an svn checkout and then do a
+    # ./configure within that directory) your srcdir and builddir will
+    # be the same. Given that, the difference between abs_srcdir and
+    # abs_top_srcdir is just as it sounds -- abs_top_srcdir will be
+    # something like /path/to/saliency, while abs_srcidr will be
+    # something like /path/to/saliency/tests, i.e. pointing to the
+    # "tests" subdirectory that this script lives in.
+
+    # Thus, to point at files that live in the svn repo itself and are
+    # not built/installed (such as scripts in bin/, or test scripts in
+    # tests/), you want to prefix with [config::abs_top_srcdir]. On
+    # the other hand, for files that get installed to a location
+    # specified by --prefix or --exec-prefix, you want to prefix with
+    # [config::prefix] or [config::exec_prefix].
+
+    proc abs_srcdir       {} { return [file_normalize @abs_srcdir@] }
+    proc abs_top_srcdir   {} { return [file_normalize @abs_top_srcdir@] }
+    proc abs_builddir     {} { return [file_normalize @abs_builddir@] }
+    proc abs_top_builddir {} { return [file_normalize @abs_top_builddir@] }
+
+    proc make_absolute { dir } {
+
+	if { [regexp {^/} $dir] } {
+	    # ok, it's already an absolute path; return as is
+	    return $dir
+	} else {
+
+	    # it's a relative path; assuming it's relative to the
+	    # top-level build directory, let's make it absolute:
+
+	    set abs_top_builddir @abs_top_builddir@
+	    return [file_normalize ${abs_top_builddir}/$dir]
+	}
+    }
+
+    proc prefix {} {
+
+	# Check if --prefix was a relative or absolute path; if
+	# relative, then we need to fix it up since we're sitting in
+	# the 'tests' directory which is one level below where the
+	# configure script was run
+	return [make_absolute @prefix@]
+    }
+
+    proc exec_prefix {} {
+
+	# Have to go through this machination because the configure
+	# script will set exec_prefix to a literal "${prefix}" if
+	# --exec-prefix is not given on the configure script
+	# command-line; however since "${prefix}" is in Makefile
+	# syntax, we need to trap that and re-interpret it here
+	if { [string equal {@exec_prefix@} {${prefix}}] } {
+	    return [make_absolute @prefix@]
+	} else {
+	    return [make_absolute @exec_prefix@]
+	}
+    }
+
+    proc CC    {} { return @CC@ }
+    proc CXX   {} { return @CXX@ }
+}

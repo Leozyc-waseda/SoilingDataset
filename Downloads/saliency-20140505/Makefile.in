@@ -1,0 +1,1294 @@
+# This is a -*- makefile -*- handled by autoconf. If this file is named
+# "Makefile.in", then it is a template which will be used to generate a
+# "Makefile" file when the ./configure script is run.
+
+##########################################################################
+## The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2001 by the ##
+## University of Southern California (USC) and the iLab at USC.         ##
+## See http://iLab.usc.edu for information about this project.          ##
+##########################################################################
+## Major portions of the iLab Neuromorphic Vision Toolkit are protected ##
+## under the U.S. patent ``Computation of Intrinsic Perceptual Saliency ##
+## in Visual Environments, and Applications'' by Christof Koch and      ##
+## Laurent Itti, California Institute of Technology, 2001 (patent       ##
+## pending; filed July 23, 2001, following provisional applications     ##
+## No. 60/274,674 filed March 8, 2001 and 60/288,724 filed May 4, 2001).##
+##########################################################################
+## This file is part of the iLab Neuromorphic Vision C++ Toolkit.       ##
+##                                                                      ##
+## The iLab Neuromorphic Vision C++ Toolkit is free software; you can   ##
+## redistribute it and/or modify it under the terms of the GNU General  ##
+## Public License as published by the Free Software Foundation; either  ##
+## version 2 of the License, or (at your option) any later version.     ##
+##                                                                      ##
+## The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope  ##
+## that it will be useful, but WITHOUT ANY WARRANTY; without even the   ##
+## implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      ##
+## PURPOSE.  See the GNU General Public License for more details.       ##
+##                                                                      ##
+## You should have received a copy of the GNU General Public License    ##
+## along with the iLab Neuromorphic Vision C++ Toolkit; if not, write   ##
+## to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,   ##
+## Boston, MA 02111-1307 USA.                                           ##
+##########################################################################
+##
+## Primary maintainer for this file: Rob Peters <rjpeters@klab.caltech.edu>
+## $Id: Makefile.in 15495 2014-01-23 02:32:14Z itti $
+##
+
+##### USAGE:
+#
+# make           -> only builds the base executables (into ../bin)
+# make base      -> same as above
+# make core      -> builds only core programs that don't need funny libs
+# make bot       -> builds beobot-related executables
+# make mex       -> builds Matlab MEX files
+# make mpi       -> builds MPI-dependent execulables
+# make opengl    -> builds OPENGL-dependent executables
+# make sdl       -> builds SDL-dependent executables
+# make qt        -> builds Qt-dependent executables
+# make mpeg	 -> builds MPEG-related executables
+# make tprogs    -> builds test programs
+# make all       -> builds everything 
+# make xml       -> builds all Xerces-C XML library dependent stuff
+# make doc       -> builds the doxygen documentation into ../doc
+# make doc-latex -> builds the doxygen LaTeX doc into ../doc
+# make test      -> builds and runs tests on programs
+
+
+
+##### Default target:
+default: base
+
+MAKEFLAGS += --warn-undefined-variables
+
+##############################################################################
+##### Variables computed by the configure script -- don't edit these
+##### by hand!
+##############################################################################
+
+ADDINC                 := @ADDINC@
+ACLOCAL_PROG           := @ACLOCAL_PROG@
+AUTOCONF_PROG          := @AUTOCONF_PROG@
+CC                     := @CC@
+CFLAGS                 := @CFLAGS@
+CPPFLAGS               := @CPPFLAGS@
+BOOST_CPPFLAGS         := @BOOST_CPPFLAGS@
+CXX                    := @CXX@
+CXXFLAGS               := @CXXFLAGS@
+DEPFILES               := @DEPFILES@
+PPUCC                  := @PPUCC@
+PPUCXX                 := @PPUCXX@
+SPUCC                  := @SPUCC@
+SPUCXX                 := @SPUCXX@
+EMBEDSPU               := @EMBEDSPU@
+NVCC                   := @NVCC@
+NVCCFLAGS              := @NVCCFLAGS@
+SLICE2CPP              := @SLICE2CPP@
+DEFS                   := @DEFS@
+LDFLAGS                := @LDFLAGS@
+LDFLAGS_BIN            := @LDFLAGS_BIN@
+BOOST_LDFLAGS          := @BOOST_LDFLAGS@
+LIBS                   := @LIBS@
+MEX_PROG               := @MEX_PROG@
+MXEXT                  := @MXEXT@
+OMNIIDL                := @OMNIIDL@
+PACKAGE_VERSION        := @PACKAGE_VERSION@
+QT3DIR                 := @QT3DIR@
+QT4DIR                 := @QT4DIR@
+MOC3                   := @MOC3@
+MOC4                   := @MOC4@
+UIC3                   := @UIC3@
+UIC4                   := @UIC4@
+QUIETCOMPILE           := @QUIETCOMPILE@
+TIME                    = @TIME@
+VPATH_LIBDIRS          := @VPATH_LIBDIRS@
+MATLAB_VPATH           := @MATLAB_VPATH@
+buildscripts           := @buildscripts@
+o                      := @o@
+objdir                 := @objdir@
+precompiled_headers    := @precompiled_headers@
+prefix                 := @prefix@
+source                 := @source@
+exec_prefix            := @exec_prefix@
+with_matp              := @with_matp@
+with_sdl               := @with_sdl@
+with_omniORB4          := @with_omniORB4@
+with_Ice               := @with_Ice@
+testdir                := tests
+
+##############################################################################
+##### Dependencies:
+##############################################################################
+
+ifeq ($(precompiled_headers),yes)
+# c++stdlib.h must come first on the command-line, since if it comes
+# later (esp. if it comes after -include config.h) then we won't get
+# the precompiled c++stdlib.h.gch header but instead the plain
+# c++stdlib.h header
+CPPFLAGS := -include c++stdlib.h $(CPPFLAGS)
+endif
+
+DEPFILE := build/alldepends-v2
+
+include $(DEPFILE)
+
+
+
+
+# Here we are canceling a bunch of built-in match-anything pattern
+# rules. We don't rely on any of these rules for our build, but
+# nevertheless 'make' would normally try to use them for EVERY SINGLE
+# file it considers -- e.g. for some source file src/foo/bar.c, it
+# would check for src/foo/bar.c,v, then src/foo/RCS/bar.c,v, ...,
+# src/foo/bar.c.f, src/foo/bar.c.sh, src/foo/bar.c.mod, etc. That is a
+# lot of wasted stat() calls and a lot of wasted time just for 'make'
+# to determine that there is nothing to do. A simple example is the
+# following: without the rules canceled (i.e. with the following lines
+# commented out), get everything up-to-date, then try 'make -d
+# build/alldepends-v2 > log'. The log file will contain some 200,000+
+# lines showing all the various possible implicit rules that were
+# tried. Repeating the experiment with the implicit rules canceled
+# (i.e., the following lines intact) gives a log file of only ~12,000
+# lines, and a much shorter run time.
+
+%: %,v
+%: RCS/%,v
+%: RCS/%
+%: s.%
+%: SCCS/s.%
+%: %.o
+%: %.c
+%: %.cc
+%: %.C
+%: %.cpp
+%: %.p
+%: %.f
+%: %.F
+%: %.r
+%: %.s
+%: %.S
+%: %.mod
+%: %.sh
+%: %.o
+
+##############################################################################
+##### Makefile verbosity:
+##############################################################################
+
+# what are these COMPILEx variables? They are set to different values
+# depending on whether --enable-quietcompile was specified when
+# running ./configure. See below for the current definitions. In
+# addition, QUIETCOMPILE is "yes" when quiet compilation is unabled,
+# and "no" otherwise. You can override your default QUIETCOMPILE
+# setting for a single 'make' invocation by passing QUIETCOMPILE=yes
+# or QUIETCOMPILE=no on the command-line. That is, if you used
+# --enable-quietcompile, you can get a one-time verbose 'make' run by
+# doing 'make all QUIETCOMPILE=no'. Or, if you didn't use
+# --enable-quietcompile, you can get a one-time quiet compile with
+# 'make all QUIETCOMPILE=yes'.
+
+
+# do quiet or verbose compilation?
+ifeq ($(QUIETCOMPILE),yes)
+COMPILE1                = @echo     # show a brief message
+COMPILE2                = @	    # do not show actual compile command
+COMPILE3                = 	    # do not print blank line after compile command
+COMPILE4                = @	    # do not show compile command
+else
+COMPILE1                = @true     # ignore message before compile command
+COMPILE2                = @TIME@    # show compile command and time used to compile
+COMPILE3                = @echo ""  # print a blank line after compile command
+COMPILE4                = 	    # show compile command, but do not measure time
+endif
+
+##############################################################################
+##### Libraries:
+##############################################################################
+
+##### This is needed so that 'make' knows where to look for libraries
+##### when we specify a library as "-l<libname>" as a dependency. Note
+##### that we first look in our VPATH_LIBDIR, and then, if not found,
+##### in the MATLAB_VPATH, to avoid using Matlab's old and bogus Qt,
+##### FFTW, etc libraries in normal non-matlab apps:
+vpath % $(VPATH_LIBDIRS)
+
+ifeq ($(strip $(with_matp)),yes)
+vpath % $(MATLAB_VPATH)
+endif
+
+##### Add .dylib here so things work OK on Mac OSX
+.LIBPATTERNS := lib%.dylib lib%.dll.a lib%.so lib%.so.0 lib%.a
+
+##############################################################################
+##### Rules to rebuild the Makefile from the configure script:
+##############################################################################
+
+aclocal.m4: configure.ac acsite.m4
+	$(COMPILE1) Generating aclocal.m4 macros
+	$(COMPILE4) $(ACLOCAL_PROG)
+
+configure: configure.ac acsite.m4 aclocal.m4
+	$(COMPILE1) Generating configure script
+	$(COMPILE4) $(AUTOCONF_PROG)
+
+config.status: configure
+	$(COMPILE1) Running config check
+	$(COMPILE4) ./config.status --recheck
+
+.config-h-in.stamp: configure.ac acsite.m4 aclocal.m4
+	$(COMPILE1) Running autoheader
+	$(COMPILE4) autoheader $<
+	$(COMPILE4) touch $@
+
+config.h.in: .config-h-in.stamp
+
+.config-h.stamp: config.h.in config.status
+	$(COMPILE1) Updating config.h
+	$(COMPILE4) ./config.status --header=config.h:config.h.in
+	$(COMPILE4) touch $@
+
+config.h: .config-h.stamp
+
+Makefile: Makefile.in config.status
+	$(COMPILE1) Configuring Makefile
+	$(COMPILE4) ./config.status --file=Makefile:Makefile.in
+
+mexopts.sh: mexopts.sh.in config.status
+	$(COMPILE1) Configuring mexopts.sh
+	$(COMPILE4) ./config.status --file=mexopts.sh:mexopts.sh.in
+
+depoptions-all:$(DEPFILES) config.status
+	$(COMPILE4) rm -f $@.in
+	$(COMPILE4) for f in $(DEPFILES); do cat $$f >> $@.in; done
+	$(COMPILE1) Configuring depoptions
+	$(COMPILE4) ./config.status --file=depoptions-all:depoptions-all.in
+
+tests/config.tcl: tests/config.tcl.in config.status
+	$(COMPILE1) Configuring tests/config.tcl
+	$(COMPILE4) ./config.status --file=tests/config.tcl:tests/config.tcl.in
+
+tests/invt_config.pm: tests/invt_config.pm.in config.status
+	$(COMPILE1) Configuring tests/invt_config.pm
+	$(COMPILE4) ./config.status --file=tests/invt_config.pm:tests/invt_config.pm.in
+
+.everytime: config.h
+	$(COMPILE4) @touch $@
+
+ifeq ($(precompiled_headers),yes)
+.everytime: c++stdlib.h.gch
+endif
+
+-include .everytime
+
+##############################################################################
+##### Matlab/Mex adjustments to rules so far:
+##############################################################################
+
+##### MEX options file (full path, in case '.' is not in PATH)
+MXOPTSFILE = ./mexopts.sh
+
+##### Verbosity toggles
+ifeq ($(QUIETCOMPILE),yes)
+MEX_VERBOSE :=
+DEVNULL := > /dev/null
+else
+MEX_VERBOSE := -v
+DEVNULL :=
+endif
+
+##############################################################################
+##### Implicit rules
+##############################################################################
+
+#####
+##### Rules for Matlab MEX files:
+#####
+
+# make a mex object file from a C++ source file
+$(objdir)Matlab/mex%.o: $(source)Matlab/mex%.C $(MXOPTSFILE)
+	$(COMPILE1) "Compiling MEX file            " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(MEX_PROG) $(MEX_VERBOSE) -f $(MXOPTSFILE) \
+		-c $< \
+		-outdir $(objdir)Matlab
+	$(COMPILE3)
+
+# make a mex object file from a C++ source file
+$(objdir)Matlab/Mex%.o: $(source)Matlab/Mex%.C $(MXOPTSFILE)
+	$(COMPILE1) "Compiling MEX file            " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(MEX_PROG) $(MEX_VERBOSE) -f $(MXOPTSFILE) \
+		-c $< \
+		-outdir $(objdir)Matlab
+	$(COMPILE3)
+
+#####
+##### Rules for Cell Broadband Engine:
+#####
+
+# make an object file from a PPU C++ source file
+$(objdir)Cell/PPU_%.o: $(source)Cell/PPU_%.C
+	$(COMPILE1) "Compiling PPU C++ file        " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(PPUCXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) \
+		-W -Wall -Winline -mabi=altivec -maltivec -I /opt/ibm/cell-sdk/prototype/sysroot/usr/include -include altivec.h \
+		-c $< \
+		-o $@
+	$(COMPILE3)
+
+# make an object file from a PPU C source file
+$(objdir)Cell/PPU_%.o: $(source)Cell/PPU_%.c
+	$(COMPILE1) "Compiling PPU C file          " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(PPUCC) $(DEFS) $(CPPFLAGS) $(CFLAGS) \
+		-W -Wall -Winline -mabi=altivec -maltivec -I /opt/ibm/cell-sdk/prototype/sysroot/usr/include -include altivec.h \
+		-c $< \
+		-o $@
+	$(COMPILE3)
+
+# make an object file from an SPU C++ source file
+$(objdir)Cell/SPU_%.o: $(source)Cell/SPU_%.C
+	$(COMPILE1) "Compiling SPU C++ file        " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(SPUCXX) $(DEFS) $(CPPFLAGS) \
+		-W -Wall -Winline -I /opt/ibm/cell-sdk/prototype/sysroot/usr/spu/include -include spu_intrinsics.h \
+		$< \
+		-o $(basename $@).spu
+	$(COMPILE4) $(EMBEDSPU) -m32 $(notdir $(basename $@)) $(basename $@).spu $@
+	$(COMPILE3)
+
+# make an object file from an SPU C source file
+$(objdir)Cell/SPU_%.o: $(source)Cell/SPU_%.c
+	$(COMPILE1) "Compiling SPU C file          " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(SPUCC) $(DEFS) $(CPPFLAGS) \
+		-W -Wall -Winline -Wno-main -I /opt/ibm/cell-sdk/prototype/sysroot/usr/spu/include -include spu_intrinsics.h \
+		$< \
+		-o $(basename $@).spu
+	$(COMPILE4) $(EMBEDSPU) -m32 $(notdir $(basename $@)) $(basename $@).spu $@
+	$(COMPILE3)
+
+#####
+##### Rules for Qt3:
+#####
+
+# make an object file from a Qt3 meta-C++ source file
+$(objdir)%.o: $(source)%.Q
+	$(COMPILE1) "Compiling Qt3 meta-C++ file   " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE4) echo "#include \"$*.Q\"" > $(source)$*.tmp.C
+	$(COMPILE4) if grep -F Q_OBJECT $(source)$*.H > /dev/null 2>&1; then $(MOC3) -i $(source)$*.H >> $(source)$*.tmp.C; fi
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) \
+		-c $(source)$*.tmp.C \
+		-o $@
+	$(COMPILE4) rm -f $(source)$*.tmp.C
+	$(COMPILE3)
+
+# make an object file from a Qt meta-C++ source file
+$(objdir)Qt/%.o: $(source)Qt/%.cpp
+	$(COMPILE1) "Compiling Qt3 meta-C++ file   " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE4) echo "#include \"Qt/$*.cpp\"" > $(source)Qt/$*.tmp.cpp
+	$(COMPILE4) if grep -F Q_OBJECT $(source)Qt/$*.h > /dev/null 2>&1; then $(MOC3) -i $(source)Qt/$*.h >> $(source)Qt/$*.tmp.cpp; fi
+	$(COMPILE2) $(CXX) -I$(dir $<) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) \
+		-c $(source)Qt/$*.tmp.cpp \
+		-o $@
+	$(COMPILE4) rm -f $(source)Qt/$*.tmp.cpp
+	$(COMPILE3)
+
+REMOVE_QT_TIMESTAMP := sed -e "4,5d"
+
+# note that we "cd $(source)" before running uic, so that the
+# generated include directives are like "Qt/foo.ui.h" rather than
+# "src/Qt/foo.ui.h"
+$(source)Qt/ui/%.cpp: $(source)Qt/%.ui $(source)Qt/ui/%.h
+	$(COMPILE1) "Building Qt3 user interface   " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE4) ./devscripts/query-svn-unmodified.sh $@ $^ $(DEVNULL) \
+		|| (cd $(source) && $(UIC3) Qt/$*.ui -i Qt/ui/$*.h) \
+		| $(REMOVE_QT_TIMESTAMP) \
+		> $@
+	$(COMPILE2) ./devscripts/normalize-whitespace.sh $@
+	$(COMPILE4) touch -c $@
+
+# note that we "cd $(source)" before running uic, so that the
+# generated include directives are like "Qt/foo.ui.h" rather than
+# "src/Qt/foo.ui.h"
+$(source)Qt/ui/%.h: $(source)Qt/%.ui
+	$(COMPILE1) "Building Qt3 user interface   " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE4) ./devscripts/query-svn-unmodified.sh $@ $^ $(DEVNULL) \
+		|| (cd $(source) && $(UIC3) Qt/$*.ui) \
+		| $(REMOVE_QT_TIMESTAMP) \
+		> $@
+	$(COMPILE4) ./devscripts/normalize-whitespace.sh $@
+	$(COMPILE4) touch -c $@
+
+#####
+##### Rules for CT2WS Qt3: this will be obsoleted very soon!
+#####
+
+# make an object file from a Qt meta-C++ source file
+$(objdir)Apps/CT2WS/Qt/%.o: $(source)Apps/CT2WS/Qt/%.cpp
+	$(COMPILE1) "Compiling Qt3 meta-C++ file   " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE4) echo "#include \"Apps/CT2WS/Qt/$*.cpp\"" > $(source)Apps/CT2WS/Qt/$*.tmp.cpp
+	$(COMPILE4) if grep -F Q_OBJECT $(source)Apps/CT2WS/Qt/$*.h > /dev/null 2>&1; then $(MOC3) -i $(source)Apps/CT2WS/Qt/$*.h >> $(source)Apps/CT2WS/Qt/$*.tmp.cpp; fi
+	$(COMPILE2) $(CXX) -I$(dir $<) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) \
+		-c $(source)Apps/CT2WS/Qt/$*.tmp.cpp \
+		-o $@
+	$(COMPILE4) rm -f $(source)Apps/CT2WS/Qt/$*.tmp.cpp
+	$(COMPILE3)
+
+REMOVE_QT_TIMESTAMP := sed -e "4,5d"
+
+# note that we "cd $(source)" before running uic, so that the
+# generated include directives are like "Apps/CT2WS/Qt/foo.ui.h" rather than
+# "src/Apps/CT2WS/Qt/foo.ui.h"
+$(source)Apps/CT2WS/Qt/ui/%.cpp: $(source)Apps/CT2WS/Qt/%.ui $(source)Apps/CT2WS/Qt/ui/%.h
+	$(COMPILE1) "Building Qt3 user interface   " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE4) ./devscripts/query-svn-unmodified.sh $@ $^ $(DEVNULL) \
+		|| (cd $(source) && $(UIC3) Apps/CT2WS/Qt/$*.ui -i Apps/CT2WS/Qt/ui/$*.h) \
+		| $(REMOVE_QT_TIMESTAMP) \
+		> $@
+	$(COMPILE2) ./devscripts/normalize-whitespace.sh $@
+	$(COMPILE4) touch -c $@
+
+# note that we "cd $(source)" before running uic, so that the
+# generated include directives are like "Apps/CT2WS/Qt/foo.ui.h" rather than
+# "src/Apps/CT2WS/Qt/foo.ui.h"
+$(source)Apps/CT2WS/Qt/ui/%.h: $(source)Apps/CT2WS/Qt/%.ui
+	$(COMPILE1) "Building Qt3 user interface   " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE4) ./devscripts/query-svn-unmodified.sh $@ $^ $(DEVNULL) \
+		|| (cd $(source) && $(UIC3) Apps/CT2WS/Qt/$*.ui) \
+		| $(REMOVE_QT_TIMESTAMP) \
+		> $@
+	$(COMPILE4) ./devscripts/normalize-whitespace.sh $@
+	$(COMPILE4) touch -c $@
+
+#####
+##### Rules for Qt4:
+#####
+
+# Here is the deal for Qt4: 
+#
+#  - using the Qt4 designer, you create a foo.ui file; add it to the svn repo.
+#
+#  - then here we pass it through uic and obtain foo.ui.H; you should add it to the svn repo.
+#
+#  - you manually edit foo.qt.H and foo.qt.C with the slot and other implementations for your foo widget; it is
+#    understood that in any .qt.H file there will be a class definition that contains Q_OBJECT, etc as this file will be
+#    pre-processed by moc. There should be no such thing in .qt.C files, though, as those are not pre-processed through
+#    moc.
+#
+#  - then we pass foo.qt.H through moc on the fly, and compile the result along with your foo.qt.C to obtain foo.qt.o
+#    (in objdir). We do the moc processing on the fly because moc is pretty brittle and pushing moc'ed files into the
+#    svn repo fails if you try to then compile them with even the most slightly different version of moc.
+#
+#  - finally, you manually edit test-foo.C or app-foo.C and in there you #include "Qt4/foo.qt.H"; yes you are including
+#    the file that has not been yet processed by moc but that's ok. Add test-foo.C to the svn repo.
+#
+#  - the rest is magic thanks to the rules below.
+
+# Use uic to compile a qt designer .ui file into the corresponding .ui.H source file.  Note that we "cd $(source)"
+# before running uic, so that the generated include directives are like "Qt4/foo.ui.h" rather than "src/Qt4/foo.ui.h"
+$(source)%.ui.H: $(source)%.ui
+	$(COMPILE1) "Building Qt4 user interface   " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE4) ./devscripts/query-svn-unmodified.sh $@ $^ $(DEVNULL) \
+		|| ( cd $(source) && $(UIC4) $(subst $(source),,$<) ) \
+		| $(REMOVE_QT_TIMESTAMP) \
+		> $@
+	$(COMPILE4) ./devscripts/normalize-whitespace.sh $@
+	$(COMPILE4) touch -c $@
+
+# Pass a Qt4 class definition through moc, yielding a temporary file which we then compile with g++ to obtain an object
+# file. Note that we "cd $(source)" before running moc, so that the generated include directives are like "Qt4/foo.qt.H"
+# rather than "src/Qt4/foo.qt.H"
+$(objdir)%.qt.o: $(source)%.qt.C
+	$(COMPILE1) "Compiling (moc + g++) Qt4 file" $<
+	@mkdir -p $(dir $@)
+	$(COMPILE4) ( cd $(source) && $(MOC4) $(subst .qt.C,.qt.H,$(subst $(source),,$<)) ) > $<.tmp.C
+	$(COMPILE4) echo "#include \"$(subst $(source),,$<)\"" >> $<.tmp.C
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) \
+		-c $<.tmp.C \
+		-o $@
+	$(COMPILE4) rm -f $<.tmp.C
+	$(COMPILE3)
+
+#####
+##### Rules for Ice: from a .ice, we use slice2cpp to generate .ice.H
+##### and .ice.C files, then we compile the .ice.C normally, except that we
+##### add the current path in the include path
+#####
+
+ifeq ($(strip $(with_Ice)),yes)
+
+# make .ice.H and .ice.C files from .ice file:
+%.ice.H %.ice.C: %.ice
+	$(COMPILE1) "Processing Ice meta-file      " $<
+	$(COMPILE2) $(SLICE2CPP) -I$(source) --output-dir $(dir $<) \
+		--header-ext ice.H --source-ext ice.C \
+		$<
+	$(COMPILE2) ./devscripts/normalize-whitespace.sh $*.ice.H $*.ice.C
+	$(COMPILE3)
+
+# make an object file from an Ice C++ source file
+$(objdir)%.ice.o: $(source)%.ice.C
+	$(COMPILE1) "Compiling Ice C++ file        " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) -I $(dir $<) \
+		-c $< \
+		-o $@
+	$(COMPILE3)
+
+endif
+
+#####
+##### Rules for nVidia CUDA GPU code
+#####
+
+# make an object file from a .cu CUDA source file
+$(objdir)%.o: $(source)%.cu
+	$(COMPILE1) "Compiling CUDA GPU file       " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(NVCC) $(DEFS) $(NVCCFLAGS) -Xcompiler -fpic $(ADDINC) \
+		-c $< \
+		-o $@
+	$(COMPILE3)
+
+#####
+##### Rules for CORBA:
+#####
+
+# build c++ header/source files from a corba .idl file
+ifeq ($(strip $(with_omniORB4)),yes)
+%SK.hh %SK.cc: %.idl
+	$(COMPILE1) "Compiling CORBA interface     " $<
+	$(COMPILE2) $(OMNIIDL) -C"$(dir $<)" -bcxx -Wbh=SK.hh -Wbs=SK.cc -Wbkeep_inc_path -Wbuse_quotes $(ADDINC) $<
+	$(COMPILE2) ./devscripts/normalize-whitespace.sh $*SK.hh $*SK.cc
+endif
+
+#####
+##### Pattern rules for lex and yacc:
+#####
+
+%.C : %.l
+	${COMPILE1} "Generating lexer from     " $<
+	${COMPILE4} ${LEX} --outfile=$@ $<
+	${COMPILE3}
+
+%.C : %.y
+	${COMPILE1} "Generating parser from    " $<
+	${COMPILE4} ${YACC} --output-file=$@ --defines=$*.H $<
+	${COMPILE3}
+
+
+#####
+##### Most general rules:
+#####
+
+# make an object file from a C source file
+$(objdir)%.o: $(source)%.c
+	$(COMPILE1) "Compiling C file              " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) \
+		-c $< \
+		-o $@
+	$(COMPILE3)
+
+# make an object file from a C++ source file
+$(objdir)%.o: $(source)%.C
+	$(COMPILE1) "Compiling C++ file            " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) \
+		-c $< \
+		-o $@
+	$(COMPILE3)
+
+# make an object file from a C++ source file
+$(objdir)%.o: $(source)%.cc
+	$(COMPILE1) "Compiling C++ (cc) file       " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) \
+		-c $< \
+		-o $@
+	$(COMPILE3)
+
+# make an object file from a C++ source file
+$(objdir)%.o: $(source)%.cpp
+	$(COMPILE1) "Compiling C++ (cpp) file      " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) -I $(dir $<) \
+		-c $< \
+		-o $@
+	$(COMPILE3)
+
+# make a plugin shared library
+$(exec_prefix)/lib/invt/plugins/%.so:
+	$(COMPILE1) "Creating plugin library       " $@
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) -shared \
+		$+ \
+		-o $@
+
+# make a shared object from an object file
+$(objdir)%.so: $(objdir)%.o
+	$(COMPILE1) "Creating shared object        " $@
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) -shared \
+		$< \
+		-o $@
+	$(COMPILE3)
+
+# generate a preprocessed version of a source file (this is useful
+# e.g. to see how many lines of code result from all of the file's
+# #includes)
+%.E: %.C
+	$(COMPILE1) "Pre-processing C++ file       " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) \
+		-E $< \
+		> $@
+	$(COMPILE3)
+
+%.E: %.cc
+	$(COMPILE1) "Pre-processing C++ file       " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) \
+		-E $< \
+		> $@
+	$(COMPILE3)
+
+# compile to assembly language
+%.s: %.c
+	$(COMPILE1) "Assembly from C file          " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) \
+		-S $< \
+		-o $@
+	$(COMPILE3)
+
+# compile to assembly language
+%.s: %.C
+	$(COMPILE1) "Assembly from C++ file        " $<
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CXX) $(DEFS) $(CPPFLAGS) $(CXXFLAGS) \
+		-S $< \
+		-o $@
+	$(COMPILE3)
+
+#####
+##### Rules for precompiled headers:
+#####
+
+ifeq ($(precompiled_headers),yes)
+%.h.gch: %.h config.h
+	$(COMPILE1) "Pre-compiling header file     " $@
+	@mkdir -p $(dir $@)
+# we need to remove the existing .gch file, otherwise the compiler
+# might crash while including the same .gch file that it is trying to
+# build:
+	$(COMPILE4) rm -f $@
+	$(COMPILE2) $(CXX) $(DEFS) $(subst -include $<, ,$(CPPFLAGS)) $(CXXFLAGS) \
+		-x c++ -c $< \
+		-o $@
+	$(COMPILE3)
+endif
+
+#####
+##### Directories:
+#####
+
+##### This build rule helps to create subdirectories that don't need
+# to be part of the SVN repository, but do need to exist to hold
+# generated files during the build process in sandboxes..
+%.timestamp:
+	@[ -d ${@D} ] || mkdir -p ${@D}
+	@[ -f $@ ] || touch $@
+
+#####
+##### Build rules for generated source files in the 'inst' directory
+#####
+
+# rule for the template function explicit instantiation files (see
+# comments in the extract_templates.tcl script for details). For now,
+# we just assume that everybody wants to be instantiated for
+# byte+float; in the future, we can make this more flexible if
+# necessary.
+inst/%.I: $(source)%.H $(buildscripts)/extract_templates.tcl
+	@mkdir -p $(dir $@)
+	$(COMPILE1) "Finding template instances    " $@
+	$(COMPILE4) $(buildscripts)/extract_templates.tcl \
+	  $< byte float > $(@).tmp
+	$(COMPILE4) mv $(@).tmp $@
+
+#####
+##### SVN version:
+#####
+
+# Rule for building a file that contains the svn repo version as
+# determined by the output of 'svnversion .'. Note that we skip
+# running svnversion if the user has passed "nodeps=1" on the
+# command-line; this may help save time in tight edit-compile-test
+# cycles on NFS disks. In that case, your executables will say
+# "svnversion-unknown" if you call them with --version or
+# --svnversion, until you rerun make again without "nodeps=1".
+.everytime: $(exec_prefix)/lib/invt/buildversion
+
+$(exec_prefix)/lib/invt/buildversion: $(SOURCES) $(HEADERS)
+	@mkdir -p $(dir $@)
+ifndef nodeps
+	$(COMPILE1) Determining svn repo version
+	$(COMPILE4) if test -d .svn; then svnversion . > $@; else rm -f $@; touch $@; fi
+else
+	$(COMPILE4) rm -f $@
+	$(COMPILE4) touch $@
+endif
+
+##############################################################################
+##### Executable targets:
+##############################################################################
+
+##### How do I add a new executable?
+
+# The list of executables is maintained in depoptions.in. There you
+# will find instructions for adding a new --exeformat line that
+# specifies (1) to which group your new executable belongs (e.g. base,
+# bot, tprogs, etc.); (2) which source file contains the "main" function
+# for your executable (note that "main" might be spelt "mexFunction"
+# if your executable is a mex function); (3) what the installed name
+# is of your executable. All of the object file and library
+# dependencies for your executable will be computed automatically by
+# the "cdeps" script.
+
+# If your program needs to link against a new external library, add a
+# suitable --phantomlinkformat to "depoptions.in" that specifies a
+# mapping between library's header file(s) and its corresponding -l
+# linker options.
+
+##### The build rules for the various target collections:
+
+# 'all' should include all of the exec categories from depoptions.in
+# that don't depend on unusual and/or proprietary libraries -- at
+# present, the list of exclusions includes 'mexp' (but if matlab is
+# present, then we add 'mexp' to 'all' later) and 'xml'. Keep these
+# lines sorted with Esc-x sort-lines in emacs.
+
+all: \
+base \
+bot \
+core \
+mpeg \
+mpi \
+opengl \
+sift \
+testx \
+tprogs \
+
+# currently does not compile: script and qt
+
+
+base: core testx
+
+##### Found mex? -> set targets for mex file compilation
+ifdef MEX_PROG
+mex: $(MXOPTSFILE) mexp
+all: mex
+else
+mex: 
+	@echo
+	@echo "Please make sure that 'mex' in in the executable path"
+	@echo "for compiling mex files. Then type: ./configure"
+	@echo
+endif
+
+##### Found matlab external API support? -> include matp programs
+ifeq ($(strip $(with_matp)),yes)
+all: matp
+endif
+
+##### Found sdl? -> include sdl programs
+ifeq ($(strip $(with_sdl)),yes)
+all: sdl
+endif
+
+##### Found CORBA? -> include corba targets
+ifeq ($(strip $(with_omniORB4)),yes)
+all: corba rcbot
+endif
+
+##### Found Ice? -> include ice targets. Disabled for now as the pre-processing is confusing to some users
+###ifeq ($(strip $(with_Ice)),yes)
+###all: ice
+###endif
+
+##### Building shlibs? -> include plugins targets
+ifeq ($(strip $(o)),so)
+###all: plugins   /// disabled until sceneunderstanding compiles completely
+endif
+
+##### everything is stronger than all, in that it does include every 
+##### executable declared in depoptions.in; the list of executables
+##### is in the ALLEXECS variable which is defined in $(DEPFILE):
+everything: $(ALLEXECS)
+
+
+##############################################################################
+### Build scripts, deopendencies computation and helper programs:
+##############################################################################
+
+##### Rule to build the dependency-computing program:
+$(buildscripts)/cdeps: $(buildscripts)/cdeps.cc
+	$(COMPILE1) Compiling source dependencies calculator
+	$(COMPILE2) $(CXX) -O2 -Wall $(LDFLAGS) $^ -o $@
+
+ifeq ($(QUIETCOMPILE),yes)
+CDEPOPTS :=
+else
+CDEPOPTS := --warn-orphans
+endif
+CDEPVERBOSITY := 1
+
+##### Rule for creating the dependencies:
+$(DEPFILE): $(buildscripts)/cdeps depoptions-all
+	@mkdir -p $(dir $@)
+	$(COMPILE1) Computing source file dependencies
+	$(COMPILE2) $(buildscripts)/cdeps $(CDEPOPTS) \
+	   --verbosity $(CDEPVERBOSITY) \
+	   --srcdir "$(source)" \
+	   --source-ext .Q --source-ext .cu \
+	   $(ADDINC) \
+	   --objdir "$(objdir)" \
+	   --literal .I \
+	   --options-file depoptions-all \
+	   --output-link-deps \
+	   --output-compile-deps \
+	   --cachefile build/dep.cache \
+	   --sources-variable SOURCES \
+	   --headers-variable HEADERS \
+	   --config-file config.h \
+           > $(@).tmp
+	$(COMPILE4) mv $(@).tmp $@
+
+# For efficiency, we allow dependency re-computation to be avoided if
+# you pass "nodeps=1" on the command-line. BE CAREFUL WITH THIS,
+# THOUGH -- this is a "you need to really understand what you're
+# doing" type of option. It can be handy if you're doing a rapid
+# edit-compile-test cycle on a single source file, and you know you
+# aren't changing any #include dependencies -- this way, you can avoid
+# recomputing build/alldepends-v2 each time, which may save significant
+# time, particularly if your working copy is on an NFS disk.
+ifndef nodeps
+$(DEPFILE): $(SOURCES) $(HEADERS)
+endif
+
+# Use 'gcc -M' to generate a complete list of all #include
+# dependencies in our source tree. This output is similar to
+# build/alldepends-v2, but includes all dependencies on system headers
+# (it also takes >100x longer to generate than build/alldepends-v2).
+gccfulldeps: $(SOURCES) $(HEADERS)
+	CXX="$(CXX)" DEFS="$(DEFS)" CPPFLAGS="$(CPPFLAGS)" \
+	  SOURCES="$(SOURCES)" \
+	  time ./devscripts/make-gccfulldeps.tcl > $@
+
+# For introspection -- makes a file that lists all of the link-time
+# dependencies between source files; also reports on stderr any
+# recursive link dependencies.
+
+LDEPOPTS := --source-ext .Q --srcdir "$(source)" $(ADDINC) --objdir "" --literal .I --verbosity 2
+
+ldeps: $(SOURCES) $(HEADERS) $(buildscripts)/cdeps
+	$(COMPILE1) Computing link dependencies
+	$(COMPILE2) $(buildscripts)/cdeps $(LDEPOPTS) \
+	   --output-ldep-raw > $(@).tmp
+	$(COMPILE4) fgrep -v .I $(@).tmp | sort > $@
+
+ldep-groups: $(SOURCES) $(HEADERS) $(buildscripts)/cdeps
+	$(COMPILE1) Computing link dependency groups
+	$(COMPILE2) $(buildscripts)/cdeps $(LDEPOPTS) \
+	   --output-ldep-groups \
+           | sort -rn > $@
+
+ldep-modules: ldeps
+	$(COMPILE1) Computing module dependencies
+	perl -p \
+	  -e 's:^src/([^/]*)/.* src/([^/]*)/.*:\1 \2:' \
+	  ldeps \
+	  | sort -u > $@
+
+ldep-check: ldep-modules
+	$(COMPILE1) Checking whether module dependencies have changed
+	$(buildscripts)/make-ldep-check.pl etc/ldep-allowed < ldep-modules
+
+ldep-levels: $(SOURCES) $(HEADERS) $(buildscripts)/cdeps
+	$(COMPILE1) Computing link dependency levels
+	$(COMPILE2) $(buildscripts)/cdeps $(LDEPOPTS) \
+	   --output-ldep-levelsv \
+           | sort -n | sed -e 's/\[\[\[#.*\]\]\]//'> $@
+
+# This is a series of shell pipes to build a PNG image showing the
+# link dependencies among our src subdirectories. First,
+# devscripts/cdeps output a raw list (probably 20,000+ lines long) in
+# which each line lists two files, indicating that the first file
+# link-depends on the second file. Then,
+# devscripts/dot-ldep-modules.tcl transforms this into DOT
+# format. Next, 'tred' prunes out superfluous transitive edges from
+# the graph. Finally, 'dot' renders the graph into a PNG image.
+ldep-html: $(SOURCES) $(HEADERS) $(buildscripts)/cdeps
+	$(COMPILE1) Building PNG image showing between-directory link-dependencies
+	@mkdir -p doc/ldep/
+	$(buildscripts)/cdeps $(LDEPOPTS) \
+	   --output-ldep-raw | fgrep -v .I > tmp-ldeps
+	time $(buildscripts)/make-ldep-html.sh \
+	   tmp-ldeps \
+	   $(source) \
+	   doc/ldep
+	rm tmp-ldeps
+
+
+ldepadjacency.m: $(SOURCES) $(HEADERS) $(buildscripts)/cdeps
+	$(COMPILE1) Computing link dependency levels
+	$(COMPILE2) $(buildscripts)/cdeps $(LDEPOPTS) \
+	   --output-ldep-adjacency \
+           > $@
+
+##############################################################################
+##### Benchmarking targets:
+##############################################################################
+
+# Object detection and recognition benchmarks
+objbench: testrec objrecbench objdetbench
+	$(COMPILE1) 
+	$(COMPILE1) Running Neovision2 Object Detection / Recognition Benchmarks
+
+objrecbench: testrec neovision2-Obj
+	$(COMPILE1) 
+	$(COMPILE1) Running Neovision2 Object Recognition Benchmarks
+	$(COMPILE1) 
+	@mkdir -p $(objdir)objbenchrec
+	$(COMPILE2) ./scripts/processNeovision2ObjRec.pl $(exec_prefix)/bin/test-ObjRec \
+	   $(source)NeovisionII/ObjRec/modules $(objdir)objbenchrec
+	$(COMPILE1) 
+	$(COMPILE1) Assembling Reports for Neovision2 Object Recognition Benchmarks
+	$(COMPILE1) 
+	@mkdir -p doc/objbenchrec
+	$(COMPILE2) ./scripts/generateNeovision2RecReports.pl $(objdir)objbenchrec doc/objbenchrec
+
+objdetbench: testrec neovision2-Det
+	$(COMPILE1) 
+	$(COMPILE1) Running Neovision2 Object Detection 
+	$(COMPILE1) 
+	@mkdir -p $(objdir)objbenchdet
+	$(COMPILE2) ./scripts/processNeovision2ObjDet.pl $(exec_prefix)/bin/test-ObjDet \
+	   $(source)NeovisionII/ObjDet/modules $(objdir)objbenchdet
+	@mkdir -p $(objdir)objbenchrec
+	$(COMPILE1) Assembling Reports for Neovision2 Object Detection
+	$(COMPILE1) 
+	@mkdir -p doc/objbenchdet
+	$(COMPILE2) ./scripts/generateNeovision2DetReports.pl $(objdir)objbenchdet doc/objbenchdet
+
+neo2testsuite: SimOS neoPlugins cudaNeoPlugins
+	$(COMPILE1) 
+	$(COMPILE1) Running Neovision2 Object Detection / Recognition Benchmarks
+	$(COMPILE1) 
+	$(COMPILE1) Training Modules
+	$(COMPILE2) ./scripts/processNeo2Training.pl $(objdir)/neo2results src/Apps/neo2/testsuite/
+	$(COMPILE1) Testing Modules
+	$(COMPILE2) ./scripts/processNeo2Testing.pl $(objdir)/neo2results src/Apps/neo2/testsuite/
+	$(COMPILE1) Generating Results
+	$(COMPILE2) ./scripts/processNeo2Results.pl $(objdir)/neo2results src/Apps/neo2/testsuite/
+
+
+
+##############################################################################
+##### Clean-up targets:
+##############################################################################
+
+# Clean everything:
+clean:
+	-rm -f bin/*
+	-rm -f bin/*/*
+	-rm -f lib/*.so*
+	-rm -f lib/*/*.so*
+	-rm -f inst/*.I
+	-rm -f inst/*/*.I
+	-rm -f inst/.??*.stamp
+	-rm -f inst/*/.??*.stamp
+	-rm -rf build/obj
+#       clean any testsuite temporary files:
+	-rm -f tests/trash-* tests/trash/*
+	-rm -rf tests/test_suite_temp_*
+#       clean the online doc:
+	-rm -rf doc/html doc/latex doc/man doc/rtf doc/warn.log
+#       clean autoconf-related stuff:
+	-rm -rf autom4te*.cache
+#       clean tmp+bkp files associated with various devscripts
+	-rm -rf .devscripts-tmp/
+#       misc cleanups:
+	-rm -f `find . -name "*~" -print`
+	-rm -f `find . -name "*%" -print`
+#       dependency cache
+	-rm -f depoptions-all*
+	-rm -f build/dep.cache
+	-rm -f `find . -name "*.ice.[HC]" -print`
+
+# clean everything, including pre-compiled headers, utilities, etc
+mrproper: clean
+	-rm -f devscripts/cdeps
+	-rm -f c++stdlib.h.gch
+	-rm -rf build
+	-rm -rf doc/objbenchdet
+	-rm -rf doc/objbenchrec
+
+##############################################################################
+##### Targets for running the test suite:
+##############################################################################
+
+TEST_EXECS := \
+$(exec_prefix)/bin/app-combineOptimalGains \
+$(exec_prefix)/bin/contour \
+$(exec_prefix)/bin/corrcoef \
+$(exec_prefix)/bin/envision \
+$(exec_prefix)/bin/ezvision \
+$(exec_prefix)/bin/fzoom \
+$(exec_prefix)/bin/invt \
+$(exec_prefix)/bin/simple-saliency \
+$(exec_prefix)/bin/stream \
+$(exec_prefix)/bin/test-intVisualCortex \
+$(exec_prefix)/bin/test-SIFTimageMatch \
+tests/config.tcl \
+tests/invt_config.pm \
+
+test-execs: testx $(TEST_EXECS)
+
+test: testx $(TEST_EXECS)
+	$(COMPILE4) cd $(testdir) && \
+	   $(TIME) ./run_test_suite.pl --quit-on-fail 0
+
+itest: testx $(TEST_EXECS)
+	$(COMPILE4) cd $(testdir) && \
+	   $(TIME) ./run_test_suite.pl --interactive 2
+
+testlong: testx $(TEST_EXECS)
+	$(COMPILE4) cd $(testdir) && \
+	   $(TIME) ./run_test_suite.pl --long --quit-on-fail 0
+
+testall: testx $(TEST_EXECS)
+	$(COMPILE4) cd $(testdir) && \
+	   $(TIME) ./run_test_suite.pl --all --quit-on-fail 0
+
+testbench: testx $(TEST_EXECS)
+	$(COMPILE4) cd $(testdir) && \
+	   $(TIME) ./run_test_suite.pl --all --writebench=benchmark.txt \
+	--quit-on-fail 0
+
+ptest: testx $(TEST_EXECS)
+	$(COMPILE4) cd $(testdir) && \
+	   $(TIME) ./run_test_suite.pl \
+	   --threads=`grep "^processor" /proc/cpuinfo | wc -l` \
+	   --bench=benchmark.txt --noprofiling
+
+ptestlong: testx $(TEST_EXECS)
+	$(COMPILE4) cd $(testdir) && \
+	   $(TIME) ./run_test_suite.pl --long \
+	   --threads=`grep "^processor" /proc/cpuinfo | wc -l` \
+	   --bench=benchmark.txt --noprofiling
+
+ptestall: testx $(TEST_EXECS)
+	$(COMPILE4) cd $(testdir) && \
+	   $(TIME) ./run_test_suite.pl --all \
+	   --threads=`grep "^processor" /proc/cpuinfo | wc -l` \
+	   --bench=benchmark.txt --noprofiling
+
+# Either (1) generate a local reference set in tests/localref if
+# tests/localref doesn't exist yet, or (2) run the test suite against
+# an existing local reference set. Typical usage should be: (1)
+# generate the local reference set from a clean cvs checkout, then (2)
+# make your edits, then (3) rerun the tests against the saved local
+# reference set, then (4) cvs commit your changes if the test suite
+# passes, then (5) throw away the local reference set.
+localtest: testx $(TEST_EXECS)
+	if test -d tests/localref; then \
+		cd $(testdir) && \
+		$(TIME) ./run_test_suite.pl --refdir localref; \
+	else \
+		cd $(testdir) && \
+		$(TIME) ./run_test_suite.pl --refdir localref --createref 1; \
+	fi
+
+# Cleanup (erase) the local test reference. Next time 'make localtest'
+# is run, a new reference set will be created from the output of that
+# run:
+localtestclean:
+	-rm -rf tests/localref
+
+##############################################################################
+##### Setup demos and screenshots:
+##############################################################################
+
+demo: tests/config.tcl $(exec_prefix)/bin/ezvision $(exec_prefix)/bin/pfmtopgm
+	cd screenshots && ./build.tcl runner
+	cd screenshots && ./build.tcl html
+	cd screenshots && ./build.tcl htmlraw
+	cd screenshots && ./build.tcl screenshots
+
+##############################################################################
+##### Build TAGS file for use in Emacs:
+##############################################################################
+
+# (Do 'make TAGS', then in emacs, try "Esc-x find-tag" (shorthand is
+# Esc-. (Esc-period), "Esc-x tags-search", or "Esc-x
+# tags-query-replace". Emacs will ask you which TAGS table you want to
+# visit, just give it "path/to/your/saliency/TAGS".)
+TAGS: $(SOURCES) $(HEADERS)
+	$(COMPILE1) "Building TAGS file for use in emacs"
+	$(COMPILE2) $(buildscripts)/list-sources.sh | etags - -o $@
+
+##############################################################################
+##### Rule to build the doxygen doc into doc/:
+##############################################################################
+.PHONY: doc
+doc: etc/doxygen.conf $(SOURCES) $(HEADERS)
+	doxygen etc/doxygen.conf
+	cp README doc/html/
+	cp doc/input/ilab0.gif doc/html/
+
+##### Rule to build the doxygen doc into doc/ but without full C++ source code:
+.PHONY: doc-lite
+doc-lite: etc/doxygen.conf $(SOURCES) $(HEADERS)
+	sh -c 'cfg=`mktemp /tmp/invt.doc.XXXXXX`;              \
+	       cp etc/doxygen.conf $$cfg;                      \
+	       echo "SOURCE_BROWSER = NO" >> $$cfg;            \
+	       echo "FILE_PATTERNS = *.H *.h *.dxy" >>$$cfg;   \
+	       doxygen $$cfg;                                  \
+	       rm -f $$cfg'             #' emacs colorization bug
+	cp README doc/html/
+	cp doc/input/ilab0.gif doc/html/
+
+##### Make a crippled doc missing all the C/C++/java implementation:
+doc-nosrc: doc/html/index.html
+	cp doc/input/nosrc.html doc/html/
+	devscripts/cripple-doc.pl doc/html
+
+doc/html/index.html: doc
+
+##### Rule to build the latex doc. Disabled because too big, chokes LaTeX:
+doc-latex:
+	@echo "=== LaTeX Documentation cannot be built anymore."
+	@echo "=== The source tree is now too large for a single LaTeX manual."
+
+##### Rule to build the doxygen doc-neo2 into doc/neo2/:
+.PHONY: doc-neo2
+doc-neo2: etc/doxygen.neo2.conf $(SOURCES) $(HEADERS)
+	doxygen etc/doxygen.neo2.conf
+	cp README doc/neo2/html/
+	cp doc/input/ilab0.gif doc/neo2/html/
+
+##############################################################################
+##### Rules for linking the executable programs:
+##############################################################################
+
+# See the comment about "How do I add a new executable?" above
+
+# Link pattern rule for mex files
+
+# NOTE: We construct a temporary empty "dummy" C++ source file to pass
+# to the mex command -- mex likes to have at least one source file in
+# its command-line, but we've already compiled all the real source
+# files into object files, so we just need to pass an empty file to
+# placate mex. We also generate a unique temporary directory to pass
+# to mex's -outdir option, so that we don't have collisions in case
+# multiple 'make' invocations are running at once (with 'make -j');
+# mex makes private temporary .o files from
+# /matlab/extern/src/mexversion.c, and if there are multiple mex
+# invocations running at once, then they will all try to create and
+# delete the same mexversion.o file.
+#
+# NOTE: With Matlab R2006b it seems that the result ends up in the
+# outdir even though we told it to go to the matlab/ directory, so we
+# move it back manually if it is in outdir.
+$(exec_prefix)/matlab/%.$(MXEXT):
+	$(COMPILE1) "Linking MEX file              " $@
+	$(COMPILE2) sh -c 'd=`mktemp -d tmp-XXXXXXXXXX`; \
+	  c=$${d}/dummy.C; touch $$c; \
+	  $(MEX_PROG) $(MEX_VERBOSE) -f $(MXOPTSFILE) -outdir $$d -o ../$@ \
+            $$c $(addprefix $(PWD)/,$(filter-out /%, $+)) $(filter /%, $+); \
+	  s=$$?; rm $$c; if [ -f "$$d/$(@F)" ]; then \
+	  /bin/mv "$$d/$(@F)" $@; fi; rmdir $$d; exit $$s;'
+
+# Link pattern rule for Cell Broadband Engine programs
+
+# A cell program CBE_xxx is created from PPU_xxx.o and SPU_xxx.a
+
+$(exec_prefix)/bin/CBE_%:
+	$(COMPILE1) "Linking Cell executable       " $@
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(PPUCXX) $(CXXFLAGS) $(LDFLAGS) \
+	  $(addprefix $(PWD)/,$(filter-out /%, $+)) \
+	  $(filter /%, $+) $(LIBS) \
+	  -L/opt/ibm/cell-sdk/prototype/sysroot/usr/lib -m32 -Wl,-m,elf32ppc \
+	  -R/opt/ibm/cell-sdk/prototype/sysroot/usr/lib \
+	  -o $@
+
+# Link pattern rule for all other executables
+
+# What is this stuff with $(filter)? It's to work around issues with
+# shared libraries. In order for the executable to be runnable from
+# any directory, we need to specify full path names to the shared
+# objects (i.e. the .so files that live in build/obj). So, we need to
+# add the value of $(PWD) as a prefix to those files. But first, we
+# have to separate those path names within $+ that are already
+# absolute (these will include e.g. /usr/lib/libm.so). We select those
+# with the $(filter), and the reset we select with $(filter-out), to
+# which we then apply the $(addprefix).
+#
+# LDFLAGS_BIN are linker flags to pass only for the standard binaries so
+# for instance use this if you don't want a linker flag passed when compiling
+# cdeps.cc
+$(exec_prefix)/bin/%:
+	$(COMPILE1) "Linking executable program    " $@
+	@mkdir -p $(dir $@)
+	$(COMPILE2) $(CXX) $(CXXFLAGS) $(LDFLAGS) $(LDFLAGS_BIN) \
+	  $(addprefix $(PWD)/,$(filter-out /%, $+)) \
+	  $(filter /%, $+) $(LIBS) \
+	  -o $@
+
+##############################################################################
+##### devscripts drivers:
+##############################################################################
+
+# we can be fairly aggressive here -- if a source file compiles OK
+# without a #include, we can safely remove that #include -- so, this
+# call to prune-includes.tcl includes the '-w' option which means to
+# overwrite the existing souce file with the pruned version
+prune-source-includes:
+	@$(buildscripts)/prune-includes.tcl -w \
+	  -DEFS "$(DEFS)" -CPPFLAGS "$(CPPFLAGS)" -CXXFLAGS "$(CXXFLAGS)" \
+	  $(SOURCES) | tee $(@).log
+
+# for headers, we need to be more careful -- we can't necessarily
+# remove a #include from a header just because the header alone
+# compiles OK without that #include -- so, in this case, we don't use
+# '-w', instead we just treat the output of this command as advisory
+# information that somebody could examine if they wanted to manually
+# clean up the #includes in header files
+prune-header-includes:
+	@$(buildscripts)/prune-includes.tcl -c \
+	  -DEFS "$(DEFS)" -CPPFLAGS "$(CPPFLAGS)" -CXXFLAGS "$(CXXFLAGS)" \
+	  $(HEADERS) | tee $(@).log
+
+##############################################################################
+##### Local makefile hooks:
+##############################################################################
+
+# This offers users a hook to include local stuff into their Makefile
+# without having to make modifications to the main Makefile.in. Using
+# the form of "include" with a "-" just means that make will ignore
+# this line if no file named Makefile.local exists. Note,
+# Makefile.local is for things that don't belong in the cvs repo, so
+# Makefile.local itself should also NOT be checked into the cvs repo!
+-include Makefile.local

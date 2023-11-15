@@ -1,0 +1,613 @@
+/* config.h.in.  Generated from configure.ac by autoheader.  */
+
+#ifndef INVT_CONFIG_H_200604201237_DEFINED
+#define INVT_CONFIG_H_200604201237_DEFINED
+
+/* enable memory checking? */
+#undef GVX_MEM_DEBUG
+
+/* whether libstdc++ is lacking a full std::iostream instantiation */
+#undef GVX_MISSING_IOSTREAM_INSTANTIATION
+
+/* whether to disable GVX_TRACE statements */
+#undef GVX_NO_PROF
+
+/* whether <readline/readline.h> is missing or broken */
+#undef GVX_NO_READLINE
+
+/* Define to 1 if you have the <arpa/inet.h> header file. */
+#undef HAVE_ARPA_INET_H
+
+/* whether we have the fsincos asm instruction */
+#undef HAVE_ASM_FSINCOS
+
+/* define if the Boost library is available */
+#undef HAVE_BOOST
+
+/* define if the Boost::Serialization library is available */
+#undef HAVE_BOOST_SERIALIZATION
+
+/* have libpgrlibdcstereo library and associated headers? */
+#undef HAVE_BUMBLEBEE2
+
+/* Define to 1 if you have the <bzlib.h> header file. */
+#undef HAVE_BZLIB_H
+
+/* Define to 1 if you have the <cuda_runtime.h> header file. */
+#undef HAVE_CUDA_RUNTIME_H
+
+/* Define to 1 if you have the <cxxabi.h> header file. */
+#undef HAVE_CXXABI_H
+
+/* have libdc1394 library and associated headers? */
+#undef HAVE_DC1394V2
+
+/* Define to 1 if you have the <execinfo.h> header file. */
+#undef HAVE_EXECINFO_H
+
+/* have libeyelink_core library and associated headers? */
+#undef HAVE_EYELINK
+
+/* whether <fenv.h> has feenableexcept() */
+#undef HAVE_FEENABLEEXCEPT
+
+/* Define to 1 if you have the <fenv.h> header file. */
+#undef HAVE_FENV_H
+
+/* avcodec.h was found in the ffmpeg directory */
+#undef HAVE_FFMPEG_AVCODEC_H
+
+/* avformat.h was found in the ffmpeg directory */
+#undef HAVE_FFMPEG_AVFORMAT_H
+
+/* Define to 1 if you have the <fftw3.h> header file. */
+#undef HAVE_FFTW3_H
+
+/* Define to 1 if you have the <fstream> header file. */
+#undef HAVE_FSTREAM
+
+/* Define to 1 if you have the <GL/glew.h> header file. */
+#undef HAVE_GL_GLEW_H
+
+/* Define to 1 if you have the <GL/glut.h> header file. */
+#undef HAVE_GL_GLUT_H
+
+/* Define to 1 if you have the <GL/osmesa.h> header file. */
+#undef HAVE_GL_OSMESA_H
+
+/* Define to 1 if you have the <gsl/gsl_cblas.h> header file. */
+#undef HAVE_GSL_GSL_CBLAS_H
+
+/* Define to 1 if you have the <gsl/gsl_linalg.h> header file. */
+#undef HAVE_GSL_GSL_LINALG_H
+
+/* have libhighgui library and associated headers? */
+#undef HAVE_HIGHGUI
+
+/* have ieee1394 (firewire) library? */
+#undef HAVE_IEEE1394
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* whether libc has ioperm() */
+#undef HAVE_IOPERM
+
+/* Define to 1 if you have the <iosfwd> header file. */
+#undef HAVE_IOSFWD
+
+/* Define to 1 if you have the <iostream> header file. */
+#undef HAVE_IOSTREAM
+
+/* whether <cmath> has isfinite() */
+#undef HAVE_ISFINITE
+
+/* Define to 1 if you have the <jpeglib.h> header file. */
+#undef HAVE_JPEGLIB_H
+
+/* have fortran-77 linear-algebra library? */
+#undef HAVE_LAPACK
+
+/* whether <cmath> has lgamma() */
+#undef HAVE_LGAMMA
+
+/* avcodec.h was found in the libavcodec directory */
+#undef HAVE_LIBAVCODEC_AVCODEC_H
+
+/* avformat.h was found in the libavformat directory */
+#undef HAVE_LIBAVFORMAT_AVFORMAT_H
+
+/* have libbluetooth library and associated headers? */
+#undef HAVE_LIBBLUETOOTH
+
+/* Define to 1 if you have the <libcwiimote/wiimote.h> header file. */
+#undef HAVE_LIBCWIIMOTE_WIIMOTE_H
+
+/* have libirobot-create library and associated headers? */
+#undef HAVE_LIBIROBOT_CREATE
+
+/* Define to 1 if you have the <libkern/OSAtomic.h> header file. */
+#undef HAVE_LIBKERN_OSATOMIC_H
+
+/* have libserial library and associated headers? */
+#undef HAVE_LIBSERIAL
+
+/* Define to 1 if you have the <libsvm-2.0/libsvm/svm.h> header file. */
+#undef HAVE_LIBSVM_2_0_LIBSVM_SVM_H
+
+/* have libcwiimote library and associated headers? */
+#undef HAVE_LIBWIIMOTE
+
+/* have xml library? */
+#undef HAVE_LIBXML
+
+/* Define to 1 if you have the <limits> header file. */
+#undef HAVE_LIMITS
+
+/* Define to 1 if you have the <linux/joystick.h> header file. */
+#undef HAVE_LINUX_JOYSTICK_H
+
+/* Define to 1 if you have the <linux/parport.h> header file. */
+#undef HAVE_LINUX_PARPORT_H
+
+/* Define to 1 if you have the <linux/ppdev.h> header file. */
+#undef HAVE_LINUX_PPDEV_H
+
+/* Define to 1 if you have the <linux/videodev2.h> header file. */
+#undef HAVE_LINUX_VIDEODEV2_H
+
+/* Define to 1 if you have the <linux/videodev.h> header file. */
+#undef HAVE_LINUX_VIDEODEV_H
+
+/* have liblwpr library and associated headers? */
+#undef HAVE_LWPR
+
+/* Define to 1 if you have the <lwpr/lwpr.h> header file. */
+#undef HAVE_LWPR_LWPR_H
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the <mpi.h> header file. */
+#undef HAVE_MPI_H
+
+/* Define to 1 if you have the <net/ethernet.h> header file. */
+#undef HAVE_NET_ETHERNET_H
+
+/* have libode library and associated headers? */
+#undef HAVE_ODE
+
+/* Define to 1 if you have the <ode/ode.h> header file. */
+#undef HAVE_ODE_ODE_H
+
+/* have any OpenCV library? */
+#undef HAVE_OPENCV
+
+/* have libcv library and associated headers? */
+#undef HAVE_OPENCV1
+
+/* have libopencv_core library and associated headers? */
+#undef HAVE_OPENCV2
+
+/* have libcvaux library and associated headers? */
+#undef HAVE_OPENCVAUX
+
+/* have OpenCV legacy library? */
+#undef HAVE_OPENCV_LEGACY
+
+/* whether O_LARGEFILE is available for open() calls */
+#undef HAVE_O_LARGEFILE
+
+/* have libpcl_io library and associated headers? */
+#undef HAVE_PCL
+
+/* whether <png.h> has png_get_asm_flags() */
+#undef HAVE_PNG_ASM_FLAGS
+
+/* Define to 1 if you have the <png.h> header file. */
+#undef HAVE_PNG_H
+
+/* Define to 1 if you have the <popt.h> header file. */
+#undef HAVE_POPT_H
+
+/* whether printf() allows "%zu" for size_t arguments */
+#undef HAVE_PRINTF_Z_MODIFIER
+
+/* whether pthread_spinlock_t is present and usable */
+#undef HAVE_PTHREAD_SPINLOCK_T
+
+/* Define to 1 if you have the <QuickTime/QuickTime.h> header file. */
+#undef HAVE_QUICKTIME_QUICKTIME_H
+
+/* Define to 1 if you have the <qwt/qwt_plot.h> header file. */
+#undef HAVE_QWT_QWT_PLOT_H
+
+/* Define to 1 if you have the <SDL/SDL.h> header file. */
+#undef HAVE_SDL_SDL_H
+
+/* Define to 1 if the system has the type `sighandler_t'. */
+#undef HAVE_SIGHANDLER_T
+
+/* whether <cmath> has sincos() */
+#undef HAVE_SINCOS
+
+/* Define to 1 if you have the <sqlite3.h> header file. */
+#undef HAVE_SQLITE3_H
+
+/* whether <cstdlib> has srand48() */
+#undef HAVE_SRAND48
+
+/* Define to 1 if you have the <sstream> header file. */
+#undef HAVE_SSTREAM
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* whether <cmath> has std::isfinite() */
+#undef HAVE_STD_ISFINITE
+
+/* whether <cmath> has std::isnan() */
+#undef HAVE_STD_ISNAN
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if `d_type' is a member of `struct dirent'. */
+#undef HAVE_STRUCT_DIRENT_D_TYPE
+
+/* Define to 1 if you have the <SWI-Prolog.h> header file. */
+#undef HAVE_SWI_PROLOG_H
+
+/* Define to 1 if you have the <sys/io.h> header file. */
+#undef HAVE_SYS_IO_H
+
+/* Define to 1 if you have the <sys/soundcard.h> header file. */
+#undef HAVE_SYS_SOUNDCARD_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <tclInt.h> header file. */
+#undef HAVE_TCLINT_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the <usb.h> header file. */
+#undef HAVE_USB_H
+
+/* Define to 1 if you have the <values.h> header file. */
+#undef HAVE_VALUES_H
+
+/* whether posix semaphores are present and working properly */
+#undef HAVE_WORKING_POSIX_SEMAPHORES
+
+/* have libxclib_pic library and associated headers? */
+#undef HAVE_XCLIB
+
+/* Define to 1 if you have the <xclib/xcliball.h> header file. */
+#undef HAVE_XCLIB_XCLIBALL_H
+
+/* Define to 1 if you have the <zlib.h> header file. */
+#undef HAVE_ZLIB_H
+
+/* whether <cmath> has __isfinitef() */
+#undef HAVE___ISFINITEF
+
+/* whether int is a 32-bit type */
+#undef INT_IS_32_BITS
+
+/* have an x86(-compatible) cpu */
+#undef INVT_CPU_IX86
+
+/* have an AMD Opteron cpu */
+#undef INVT_CPU_OPTERON
+
+/* whether <$AVCODEC_PATH/avcodec.h> has AVCodecContext::time_base */
+#undef INVT_FFMPEG_AVCODECCONTEXT_HAS_TIME_BASE
+
+/* whether the the ByteIO in AVFormatContext is a pointer */
+#undef INVT_FFMPEG_AVFORMATCONTEXT_BYTEIO_ISPOINTER
+
+/* whether AVStream::codec is a pointer */
+#undef INVT_FFMPEG_AVSTREAM_CODEC_IS_POINTER
+
+/* whether <$AVCODEC_PATH/avcodec.h> has avcodec_get_frame_defaults() and
+   avcodec_get_context_defaults() */
+#undef INVT_FFMPEG_HAS_DEFAULTS_FUNCTIONS
+
+/* whether <$AVCODEC_PATH/avcodec.h> has av_alloc_format_context */
+#undef INVT_FFMPEG_HAS_FORMATCONTEXT_FUNCTIONS
+
+/* whether the url_ funcs take pointers */
+#undef INVT_FFMPEG_URL_OPEN_FUNC_TAKES_SINGLE_POINTER
+
+/* avcodec.h was found on this system */
+#undef INVT_HAVE_AVCODEC
+
+/* avformat.h was found on this system */
+#undef INVT_HAVE_AVFORMAT
+
+/* have libboost_filesystem library and associated headers? */
+#undef INVT_HAVE_BOOST_FILESYSTEM
+
+/* have libboost_program_options library and associated headers? */
+#undef INVT_HAVE_BOOST_PROGRAM_OPTIONS
+
+/* have libboost_regex library and associated headers? */
+#undef INVT_HAVE_BOOST_REGEX
+
+/* have libomniORB4 library and associated headers? */
+#undef INVT_HAVE_CORBA
+
+/* have libIce library and associated headers? */
+#undef INVT_HAVE_ICE
+
+/* have libblitz library and associated headers? */
+#undef INVT_HAVE_LIBBLITZ
+
+/* have libbz2 library and associated headers? */
+#undef INVT_HAVE_LIBBZ2
+
+/* have libIL library and associated headers? */
+#undef INVT_HAVE_LIBDEVIL
+
+/* have libfftw3 library and associated headers? */
+#undef INVT_HAVE_LIBFFTW3
+
+/* have libfreenect library and associated headers? */
+#undef INVT_HAVE_LIBFREENECT
+
+/* have libGL library and associated headers? */
+#undef INVT_HAVE_LIBGL
+
+/* have libGLEW library and associated headers? */
+#undef INVT_HAVE_LIBGLEW
+
+/* have libGLU library and associated headers? */
+#undef INVT_HAVE_LIBGLU
+
+/* have libglut library and associated headers? */
+#undef INVT_HAVE_LIBGLUT
+
+/* have libgsl library and associated headers? */
+#undef INVT_HAVE_LIBGSL
+
+/* have libgslcblas library and associated headers? */
+#undef INVT_HAVE_LIBGSLCBLAS
+
+/* have libjpeg library and associated headers? */
+#undef INVT_HAVE_LIBJPEG
+
+/* have libpng library and associated headers? */
+#undef INVT_HAVE_LIBPNG
+
+/* have libpopt library and associated headers? */
+#undef INVT_HAVE_LIBPOPT
+
+/* have libpqxx library and associated headers? */
+#undef INVT_HAVE_LIBPQXX
+
+/* have libpthread library and associated headers? */
+#undef INVT_HAVE_LIBPTHREAD
+
+/* have libSDL_gfx library and associated headers? */
+#undef INVT_HAVE_LIBSDL_GFX
+
+/* have libSDL_image library and associated headers? */
+#undef INVT_HAVE_LIBSDL_IMAGE
+
+/* have libSDL_mixer library and associated headers? */
+#undef INVT_HAVE_LIBSDL_MIXER
+
+/* have libopensurf library and associated headers? */
+#undef INVT_HAVE_LIBSURF
+
+/* have libsvm library and associated headers? */
+#undef INVT_HAVE_LIBSVM
+
+/* have libtorch library and associated headers? */
+#undef INVT_HAVE_LIBTORCH
+
+/* have liburg library and associated headers? */
+#undef INVT_HAVE_LIBURG
+
+/* have libliveMedia_pic library and associated headers? */
+#undef INVT_HAVE_LIVEMEDIA
+
+/* have MPI library? */
+#undef INVT_HAVE_MPI
+
+/* have libXnVNite library and associated headers? */
+#undef INVT_HAVE_NITE
+
+/* have libOpenNI library and associated headers? */
+#undef INVT_HAVE_OPENNI
+
+/* build with Qt3 support? */
+#undef INVT_HAVE_QT3
+
+/* build with Qt4 support? */
+#undef INVT_HAVE_QT4
+
+/* have libqwt library and associated headers? */
+#undef INVT_HAVE_QWT
+
+/* have libraw1394 library and associated headers? */
+#undef INVT_HAVE_RAW1394
+
+/* instantiate templates for T=byte? */
+#undef INVT_INST_BYTE
+
+/* instantiate templates for T=float? */
+#undef INVT_INST_FLOAT
+
+/* where auxiliary runtime-library files are installed */
+#undef INVT_LIB_DIR
+
+/* enable memory checking? */
+#undef INVT_MEM_DEBUG
+
+/* use newer version of TCL (>=8.6)? */
+#undef INVT_NEWER_TCL_VERSION
+
+/* where plugin libraries are installed */
+#undef INVT_PLUGIN_DIR
+
+/* Qt3 Minor Version Number */
+#undef INVT_QT3_MINOR
+
+/* Qt4 Minor Version Number */
+#undef INVT_QT4_MINOR
+
+/* Are we using 32 bit code? */
+#undef INVT_USE_32_BIT
+
+/* Are we using 64 bit code? */
+#undef INVT_USE_64_BIT
+
+/* enable PowerPC Altivec optimizations? */
+#undef INVT_USE_ALTIVEC
+
+/* enable c++11 features */
+#undef INVT_USE_CPP11
+
+/* enable nVidia CUDA GPU optimizations? */
+#undef INVT_USE_CUDA
+
+/* Use FastMathFunctions.H? */
+#undef INVT_USE_FASTMATH
+
+/* enable Intel MMX optimizations? */
+#undef INVT_USE_MMX
+
+/* enable Intel SSE optimizations? */
+#undef INVT_USE_SSE
+
+/* enable Intel SSE2 optimizations? */
+#undef INVT_USE_SSE2
+
+/* enable Intel SSE3 optimizations? */
+#undef INVT_USE_SSE3
+
+/* enable Intel SSE/2/3 optimizations for de-Bayer code? */
+#undef INVT_USE_SSEDB
+
+/* whether long is a 32-bit type */
+#undef LONG_IS_32_BITS
+
+/* whether long is a 64-bit type */
+#undef LONG_IS_64_BITS
+
+/* whether long long is a 64-bit type */
+#undef LONG_LONG_IS_64_BITS
+
+/* Machine's O.S. is Darwin (MacOS-X) */
+#undef MACHINE_OS_DARWIN
+
+/* if defined, Matlab functionality will not be NOP-ed out */
+#undef MATLAB_LIBS_AVAILABLE
+
+/* whether <cmath> is missing cbrt() */
+#undef MISSING_CBRT
+
+/* whether <cmath> is missing isinf() */
+#undef MISSING_ISINF
+
+/* whether <cmath> is missing isnan() */
+#undef MISSING_ISNAN
+
+/* whether <cmath> is missing M_E */
+#undef MISSING_M_E
+
+/* whether <cmath> is missing M_LN2 */
+#undef MISSING_M_LN2
+
+/* whether <cmath> is missing M_PI */
+#undef MISSING_M_PI
+
+/* whether <cmath> is missing M_PI_2 */
+#undef MISSING_M_PI_2
+
+/* whether <cstdio> is missing snprintf() */
+#undef MISSING_SNPRINTF
+
+/* whether mmap() is threadsafe */
+#undef MMAP_IS_NOT_THREADSAFE
+
+/* path to mpeg_encode, if it exists */
+#undef MPEGENCODE_PROG
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* path to pager program (less/more), if it exists */
+#undef PAGER_PROG
+
+/* use multi-threaded Qt3 library? */
+#undef QT_THREAD_SUPPORT
+
+/* whether size_t is a typedef for unsigned int */
+#undef SIZE_T_IS_UNSIGNED_INT
+
+/* whether size_t is a typedef for unsigned long */
+#undef SIZE_T_IS_UNSIGNED_LONG
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Define to 1 if the X Window System is missing or not being used. */
+#undef X_DISPLAY_MISSING
+
+/* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
+   `char[]'. */
+#undef YYTEXT_POINTER
+
+/* allow GNU libc extensions? */
+#undef _GNU_SOURCE
+
+/* allow for reentrant code? */
+#undef _REENTRANT
+
+/* make C99 constant macros from <stdint.h> available in c++ */
+#undef __STDC_CONSTANT_MACROS
+
+/* make C99 limit macros from <stdint.h> available in c++ */
+#undef __STDC_LIMIT_MACROS
+
+/* printf conversion specifier to use for size_t */
+#if defined(HAVE_PRINTF_Z_MODIFIER)
+#  define ZU "zu"
+#elif defined(SIZE_T_IS_UNSIGNED_INT)
+#  define ZU "u"
+#elif defined(SIZE_T_IS_UNSIGNED_LONG)
+#  define ZU "lu"
+#else
+#  error "don't know which conversion specifier to use for size_t for printf()"
+#endif
+
+#endif /* INVT_CONFIG_H_200604201237_DEFINED */

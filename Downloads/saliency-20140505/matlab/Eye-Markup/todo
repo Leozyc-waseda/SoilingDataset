@@ -1,0 +1,9 @@
+1:
+add comments and fledge out readme
+
+2: 
+possibly separate settings for each modules from defaultparams so
+users can add there own settings without editing default params
+
+3:
+address todo's in code

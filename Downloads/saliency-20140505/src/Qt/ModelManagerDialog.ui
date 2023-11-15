@@ -1,0 +1,173 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>ModelManagerDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>ModelManagerDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>624</width>
+            <height>586</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Model Configuration</string>
+    </property>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>600</width>
+                <height>130</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Model parameters for this program are listed in the configuration box below.  Note that some of these components will require reconfiguration if you change its type, such as FrameGrabberType in FrameGrabberConfigurator.  When everything is configured, press &lt;b&gt;Apply&lt;/b&gt;, or press &lt;b&gt;Cancel&lt;/b&gt; to discard your changes.&lt;br&gt;&lt;br&gt;If you are not sure how to set the parameters, you can try using a guided approach by pressing&lt;b&gt; Wizard...&lt;/b&gt;</string>
+        </property>
+        <property name="alignment">
+            <set>WordBreak|AlignVCenter</set>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>wizardButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>540</y>
+                <width>90</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Wizard...</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>cancelButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>520</x>
+                <y>540</y>
+                <width>81</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Cancel</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>applyButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>430</x>
+                <y>540</y>
+                <width>70</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Apply</string>
+        </property>
+        <property name="default">
+            <bool>true</bool>
+        </property>
+    </widget>
+    <widget class="QListView">
+        <column>
+            <property name="text">
+                <string>Model Parameter</string>
+            </property>
+            <property name="clickable">
+                <bool>true</bool>
+            </property>
+            <property name="resizable">
+                <bool>true</bool>
+            </property>
+        </column>
+        <column>
+            <property name="text">
+                <string>Value</string>
+            </property>
+            <property name="clickable">
+                <bool>true</bool>
+            </property>
+            <property name="resizable">
+                <bool>true</bool>
+            </property>
+        </column>
+        <property name="name">
+            <cstring>listview</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>150</y>
+                <width>600</width>
+                <height>370</height>
+            </rect>
+        </property>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>applyButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ModelManagerDialog</receiver>
+        <slot>handleApplyButton()</slot>
+    </connection>
+    <connection>
+        <sender>listview</sender>
+        <signal>itemRenamed(QListViewItem*,int,const QString&amp;)</signal>
+        <receiver>ModelManagerDialog</receiver>
+        <slot>handleItemEdit(QListViewItem*)</slot>
+    </connection>
+    <connection>
+        <sender>cancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ModelManagerDialog</receiver>
+        <slot>handleCancelButton()</slot>
+    </connection>
+    <connection>
+        <sender>wizardButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ModelManagerDialog</receiver>
+        <slot>handleWizardButton()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in declaration">Component/ModelManager.H</include>
+    <include location="local" impldecl="in declaration">Component/ParamMap.H</include>
+    <include location="local" impldecl="in declaration">ModelManagerWizard.h</include>
+    <include location="local" impldecl="in implementation">ModelManagerDialog.ui.h</include>
+</includes>
+<variables>
+    <variable access="private">ParamMap backupMap;</variable>
+    <variable access="private">ParamMap pmap;</variable>
+    <variable access="private">ModelManager *mgr;</variable>
+    <variable access="private">ModelManagerWizard mmw;</variable>
+</variables>
+<slots>
+    <slot>handleItemEdit( QListViewItem * item )</slot>
+    <slot>handleWizardButton( void )</slot>
+    <slot>handleApplyButton( void )</slot>
+    <slot>handleCancelButton( void )</slot>
+</slots>
+<functions>
+    <function>init( ModelManager &amp; manager )</function>
+    <function>populate( rutz::shared_ptr&lt;ParamMap&gt; pmp, QListViewItem * parent )</function>
+</functions>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

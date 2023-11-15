@@ -1,0 +1,21 @@
+<scenes>
+<annotation>
+  <filename>berry2.png</filename>
+  <folder>../inputs</folder>
+  <source>Sample Input</source>
+  <description>Blackberry 2</description>
+  <object>
+    <name>Blackberry</name>
+    <id>2</id>
+    <description>Blackberry</description>
+    <polygon>
+      <pt><x>62</x><y>128</y></pt>
+      <pt><x>96</x><y>126</y></pt>
+      <pt><x>130</x><y>134</y></pt>
+      <pt><x>115</x><y>242</y></pt>
+      <pt><x>82</x><y>244</y></pt>
+      <pt><x>47</x><y>233</y></pt>
+    </polygon>
+  </object>
+</annotation>
+</scenes>

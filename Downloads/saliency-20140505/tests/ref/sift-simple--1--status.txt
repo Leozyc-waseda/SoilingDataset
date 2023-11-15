@@ -1,0 +1,61 @@
+Raster::ReadFrame: reading raster file: ../inputs/berry1.png
+Raster::ReadFrame: reading raster file: ../inputs/berry2.png
+VisualObject::computeKeypoints: ../inputs/berry1.png: initializing ScaleSpace from 400x300 image...
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found 343 keypoints in ScaleSpace 0
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found 62 keypoints in ScaleSpace 1
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found 19 keypoints in ScaleSpace 2
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found 8 keypoints in ScaleSpace 3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found 4 keypoints in ScaleSpace 4
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found total of 436 keypoints over all ScaleSpaces.
+VisualObject::computeKeypoints: ../inputs/berry2.png: initializing ScaleSpace from 400x300 image...
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry2.png: Found 563 keypoints in ScaleSpace 0
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry2.png: Found 279 keypoints in ScaleSpace 1
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry2.png: Found 66 keypoints in ScaleSpace 2
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry2.png: Found 14 keypoints in ScaleSpace 3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry2.png: Found 3 keypoints in ScaleSpace 4
+VisualObject::computeKeypoints: ../inputs/berry2.png: Found total of 925 keypoints over all ScaleSpaces.
+VisualObjectMatch::VisualObjectMatch: Got 38 KP matches (th=7) btw ../inputs/berry1.png and ../inputs/berry2.png
+test-SIFTimageMatch::main: Found 38 matches between ../inputs/berry1.png and ../inputs/berry2.png
+VisualObjectMatch::prune: After pruning by distance: total 0 outliers pruned.
+VisualObjectMatch::prune: After pruning by Hough: total 6 outliers pruned.
+VisualObjectMatch::prune: After pruning by affine: total 28 outliers pruned.
+test-SIFTimageMatch::main: Pruned 28 outlier matches.
+[testX]   [  1.079 -0.305 ] [refX]   [-13.215]
+[testY] = [  0.265  1.044 ] [refY] + [ 3.130]
+test-SIFTimageMatch::main: getKeypointAvgDist = 1.412813
+test-SIFTimageMatch::main: getAffineAvgDist = 0.223868
+test-SIFTimageMatch::main: getScore = 3.087367
+VisualObjectMatch::checkSIFTaffine: theta=15.040800deg sx=1.111209 sy=1.087412 shx=-0.021640 shy=-0.022114
+VisualObjectMatch::getMatchImage: r[400 300] t[400 300]
+Raster::WriteFrame: writing raster file: matches.pnm
+Raster::WriteFrame: writing raster file: fused.pnm

@@ -1,0 +1,6 @@
+(autoload 'matlab-mode "/lab/itti/.emacs.d/matlab.el" "Enter Matlab mode." t) 
+(setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist)) 
+(autoload 'matlab-shell "/lab/itti/.emacs.d/matlab.el" "Interactive Matlab mode." t) 
+
+(autoload 'cuda-mode "/lab/itti/.emacs.d/cuda.el" "Enter CUDA mode." t) 
+(setq auto-mode-alist (cons '("\\.cu\\'" . cuda-mode) auto-mode-alist)) 

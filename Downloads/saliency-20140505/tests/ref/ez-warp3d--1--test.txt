@@ -1,0 +1,13 @@
+FOAradius = 21
+FoveaRadius = 21
+InputDims = 256 256
+ReadRGB = testpic001.ppm
+Output Frame Series: frame 0 at 30.00ms
+Output Frame Series: frame 1 at 60.00ms
+WTAwinner = 128 128 67.20 0 8.084
+Output Frame Series: frame 2 at 90.00ms
+WTAwinner = 80 112 113.10 0 8.852
+Output Frame Series: frame 3 at 120.00ms
+Output Frame Series: frame 4 at 150.00ms
+WTAwinner = 48 192 175.80 0 5.260
+Output Frame Series: frame 5 at 180.00ms

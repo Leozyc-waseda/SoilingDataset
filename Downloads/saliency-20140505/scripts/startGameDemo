@@ -1,0 +1,30 @@
+#!/bin/sh
+
+#create the topics
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create RetinaTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create VisualCortexTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create SaliencyMapTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create VisualTrackerTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create SegmenterTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create CameraCtrlTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create HippocampusTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create InferotemporalCortexTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create PrefrontalCortexTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create HomeInterfaceTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create PrimaryMotorCortexTopic"
+icestormadmin --Ice.Config=src/Simulation/adminConfig.ice -e "create GUITopic"
+
+./bin/test-visca panTilt 0 0
+./bin/test-visca zoom 0
+
+
+./bin/RetinaService --in=V4L --daemon
+./bin/VisualCortexService --env-levelspec=2,4,3,4,4 --evc-type=I:0.75C:1.00O:0.75F:0M:0 --daemon
+./bin/SaliencyMapService --daemon --esm-ior-strength=0 --esm-inertia-halflife=0 --dynamic-feedback=0 --esm-inertia-strength=0 --esm-ior-halflife=0 
+./bin/VisualTrackerService  --daemon
+./bin/SegmenterService  --out=display --daemon
+./bin/PTZService --daemon
+
+./bin/HippocampusService  --out=display --daemon
+./bin/InferotemporalCortexService --out=display
+

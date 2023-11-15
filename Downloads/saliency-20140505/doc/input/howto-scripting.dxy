@@ -1,0 +1,630 @@
+        -*- mode: text; fill-column: 70; indent-tabs-mode: nil -*-
+             $Id: README 4939 2005-06-28 07:16:30Z zhanshi $
+
+                   ------------------------------------
+                   README for C++/Tcl scripting engine
+                   ------------------------------------
+
+NOTE: If you're reading this file as a flat text file, you'll notice
+that there is some additional markup, which is used to generate an
+HTML version of this file with the doxygen tool. Nevertheless, this
+file should remain readable as plain text.
+
+/** \page howto-scripting Introduction to the C++/Tcl scripting engine
+
+This is an introduction to a scripting engine that allows the C++
+objects in the iLab Neuromorphic Vision Toolkit to be manipulated
+through a tcl scripting interface.
+
+Table of contents:
+
+- \ref fortheimpatient
+- \ref overview
+- \ref neuroscript
+- \ref walkthrough
+
+<!--############################################################--><hr>
+
+\section fortheimpatient 1. For the impatient
+
+  For the impatient:
+
+  - the main program for the script interpreter is bin/invt, source
+    code in Script/invt.C (underneath src/ directory)
+  - additional script interface code is in src/Script
+  - infrastructure code for the c++/tcl scripting engine is drawn from
+    the groovx (http://ilab.usc.edu/rjpeters/groovx/) project, and
+    sits in src/rutz, src/nub, and src/tcl
+  - there is a script implementation of ezvision in bin/ezvision.tcl,
+    which you can run with bin/invt: "./bin/invt bin/ezvision.tcl
+    --args --that --you --normally --pass --to --ezvision"
+  - this script implementation (ezvision.tcl) passes both the short and
+    long ezvision test suties
+
+<!--############################################################--><hr>
+
+\section overview 2. Overview
+
+  In saliency/ezvision.tcl is a translation of ezvision.C into
+  script. The script version passes the ezvision test suite (do "make
+  bin/invt; cd tests; ./test_scriptvision_blackbox.tcl") and the long
+  movies test suite ("make bin/invt; cd tests;
+  ./testlong_script_movies_blackbox.tcl"). It's less than 2x slower
+  than the full C++ ezvision -- short ezvision test takes 13s with the
+  C++ version vs. 23s with the tcl script (77% slower), while the long
+  ezvision movies test takes 326s in C++ and 363s in Tcl (11% slower).
+
+  This system is based on some of the infrastructure from "GroovX"
+  (http://ilab.usc.edu/rjpeters/groovx/). The imported source from
+  groovx is in src/rutz (utility stuff in "rutz::" namespace), src/nub
+  (object base class plus smart pointers in "nub::" namespace), and
+  src/tcl (facilities for exposing c++ code through tcl scripts).
+
+  The only changes that are required to existing invt code are (1)
+  ModelComponent derives from a new base class, nub::object, and (2)
+  we use a new smart ptr type (nub::soft_ref) instead of SharedPtr to
+  hold ModelComponent derivatives. More info below. In any case, the
+  scripting layer is not intrusive in the sense that none of the core
+  code (Image, Neuro, Devices, Media, etc.) has to know anything about
+  scripting or scriptability, except that we have to use the right
+  smart pointer types. The syntax for using the smart pointers
+  themselves is identical between SharedPtr and nub::soft_ref.
+
+  The script interface for invt is defined in src/Script. The main
+  program is in Script/invt.C -- it basically gives a list of the
+  script modules that we want to load, and then calls off to some
+  library in src/tcl to load those packages and then start looping,
+  processing user input.
+
+  Then there are the script modules in src/Script. For now, we have:
+
+  - Script/ImageScript.C
+  - Script/ImageScript.H
+  - Script/MediaScript.C
+  - Script/MediaScript.H
+  - Script/ModelScript.C
+  - Script/ModelScript.H
+  - Script/NeuroScript.C
+  - Script/NeuroScript.H
+
+  For each C++ class that we want to export, we define a
+  Classname_Init() function that sets up the script commands for that
+  class. These *_Init() functions are what we enumerate in the main
+  program. However, it is also possible to dynamically load shared
+  libraries containing *_Init() functions into a running tcl
+  program. That means that we could have true plug-ins, where new code
+  never has to be linked into the main program, it just gets loaded at
+  runtime.
+
+<!--############################################################--><hr>
+
+\section neuroscript 3. Script interface example: NeuroScript
+
+  Look at Script/NeuroScript.H. There we have Brain_Init() and
+  Stdbrain_Init() (note that the functions are extern "C" and have the
+  first letter capitalized, and all the rest lowercase -- this is
+  important to allow dynamic loading -- that way if you tell tcl a
+  package name, it can deterministically figure out what the name of
+  the *_Init() function should be, and find it with dlsym()). Then
+  there are also some functions for installing component types into
+  the object factory, so that within a script we can create objects
+  from their class name.
+
+  On to Script/NeuroScript.C.
+
+  Here's an overview of how the object-management system works. We use
+  intrusive reference counting -- the ref count is within the object
+  itself; we inject this into the ModelComponent hierarchy by having
+  ModelComponent derive from nub::object. Because the reference count
+  is intrusive, we don't have to worry about constructing multiple
+  independent smart pointers from the same object, like we do with
+  SharedPtr -- in this case, they always share the same reference
+  count. We have nub::ref and nub::soft_ref smart pointer classes,
+  nub::ref is "strong", meaning that its pointee can never be
+  null. nub::soft_ref allows null pointees. Each nub::object gets a
+  unique nub::uid when it is created. When we construct a nub::ref or a
+  nub::soft_ref from an nub::object, we have the option to insert that
+  nub::object into the nub::objectdb, which is essentially a
+  std::map<nub::uid, soft_ref<nub::object>>. That is, it allows us to
+  retrieve an object given just its nub::uid. This is how we expose objects
+  to the tcl script -- via their nub::uid. So we are essentially using
+  integer handles to the objects.
+
+  (BTW, I also have the ability to do weak pointers -- like weak
+  references in Java -- that don't prevent their pointee from being
+  destroyed. Instead, the weak pointers just silently become null when
+  their pointee goes away -- so there's no risk of dangling pointers,
+  and the weak pointers can be used to allow safe "back-pointers" up
+  the object hierarchy without creating a strong-reference cycle that
+  would prevent the entire cycle of objects from being destroyed.)
+
+  OK, skip down to Brain_Init() in Script/NeuroScript.C. We start
+  a package with GVX_PKG_CREATE(). We inherit_pkg("ModelComponent") to
+  bring in the script commands that were defined for ModelComponent
+  (so we get "start" etc., see Modecomponent_Init() in
+  Script/ModelScript.C to see what is exposed). We
+  def_basic_type_cmds(), which allows us in script to find all current
+  Brain objects, count them, query whether some object is a Brain or
+  not. We registerComponentCreator<Brain>(), which puts a function
+  into the nub::obj_factory (nub/objfactory.h) that knows how to
+  create Brain objects. The creator function knows how to find a
+  global ModelManager that is defined in ModelScript.C, and use that
+  ModelManager to create the Brain.
+
+  Then we start getting into the pkg->def()'s. Here is where we are
+  defining the script commands. The pkg->def() takes 4 params: (1) the
+  name of the script command, (2) a human-readable string describing
+  the arguments that the command takes, (3) the pointer-to-member or
+  function address of the C++ function we want to make scriptable, and
+  (4) SRC_POS, which is just a wrapper around __FILE__ and __LINE__
+  that lets us figure out, from inside a Tcl script, where a
+  particular script wrapper was defined in the C++; that can be
+  helpful for debugging.
+
+  What happens with pkg->def() is that we set up a big template thingy
+  that gets the tcl script call as input (just a list of tcl objects),
+  figures out how to convert those to native C++ types, then calls the
+  C++ function, then converts the result back to Tcl. The command also
+  does other nice stuff like ensure that the number of input arguments
+  is correct, etc.
+
+  The c++ <-> tcl conversions are handled by a family of overloads
+  that know how to do the individual conversions (basically like our
+  convertToString() and convertFromString()). E.g., there is a
+  converter from nub::ref->Tcl that returns the int value of the
+  object's nub::uid, and a convert from Tcl->nub::ref that gets an int,
+  then looks up an object with that nub::uid in the nub::objectdb, and
+  casts it to the desired type.
+
+  Most of the time, the builtin c++ <-> tcl conversions will do the
+  right thing, and it's possible to do a pkg->def() with just the
+  address of an existing member or free function. Other times, it
+  makes more sense to write a thin c++ wrapper, that does some more
+  intelligent c++/tcl translation, that gets passed to pkg->def()
+  instead. See for example brainEvolve() in Script/NeuroScript.C,
+  which wraps Brain::evolve() so that instead of returning values
+  through non-const reference parameters (which doesn't translate well
+  into a script language with primarily value semantics), we just
+  return all the return values in a tcl list, which we can unpack on
+  the script side (see ezvision.tcl).
+
+  BTW, casting brings up the issue of exceptions -- each script
+  command call is internally wrapped in a try/catch block (see
+  tcl::command_group::invoke_raw in tcl/commandgroup.cc around line
+  382), so if any exceptions are raised while tcl is calling back to
+  c++, the command machinery will catch the exception and translate
+  into a human-readable error message on the script interpreter
+  console (i.e., the program doesn't abort).
+
+
+<!--############################################################--><hr>
+
+\section walkthrough 4. Walkthrough with bin/invt
+
+  Here's an annotated session transcript. You can play along by doing
+  "make bin/invt", then run "./bin/invt -nw" (the -nw means
+  "nowindow"). The "./bin/invt 1>>>" is the prompt. You can use
+  readline/history commands just like in bash (i.e., up-arrow to get
+  previous commands, Esc-Del to kill the word behind the cursor,
+  etc.). You can also use tab completion, but the only thing it will
+  complete is filenames (i.e. it doesn't know how to complete script
+  command names). Here goes:
+
+  \code
+
+    [iLab9 19:51 7687]$ ./bin/invt -nw
+
+    ###########################################################################
+    ###        iLab C++ Neuromorphic Vision Toolkit 3.1 (Jun 27 2005)       ###
+    ###########################################################################
+    ###  Copyright (c) 2001-2005 iLab and the Univ. of Southern California  ###
+    ###                        <http://ilab.usc.edu>                        ###
+    ###            Copyright (c) 1998-2004 Rob Peters and Caltech           ###
+    ###                <http://ilab.usc.edu/rjpeters/groovx/>               ###
+    ###  iLab C++ Neuromorphic Vision Toolkit is free software, covered by  ###
+    ###   the GNU General Public License, and you are welcome to change it  ###
+    ###       and/or distribute copies of it under certain conditions.      ###
+    ###########################################################################
+
+            startup time (tcl+tk)  0.009s (user)  0.002s (sys)  0.010s (wall)
+            startup time (  iNVT)  0.030s (user)  0.000s (sys)  0.030s (wall)
+
+  \endcode
+
+  Let's find all current objects
+
+  \code
+    ./bin/invt 1>>> Obj::find_all
+    1
+  \endcode
+
+  OK, there is one object, and its nub::uid is 1. Now let's see what
+  its type is:
+
+  \code
+    ./bin/invt 2>>> Obj::type [Obj::find_all]
+    ModelManager
+  \endcode
+
+  Cool, it's the global ModelManager that is constructed in
+  Modelmanager_Init(). Let's see what params/subcomponents it
+  currently has. We do "ModelManager::printout 1", where 1 is the
+  nub::uid of the ModelManager.
+
+  \code
+    ./bin/invt 3>>> ModelManager::printout 1
+    model: ShowHelpMessage = true
+    model: DebugMode = false
+    model: UsingFPE = false
+    model: TestMode = false
+    model: TextLogFile =
+    model: LoadConfigFile =
+    model: SaveConfigFile =
+  \endcode
+
+  In "real" code, we'd assign 1 to a variable with "set mm
+  [ModelManager::find_all]", and then do "ModelManager::printout
+  $mm". Let's do that now:
+
+  \code
+    ./bin/invt 4>>> set mm [ModelManager::find_all]
+    1
+    ./bin/invt 5>>> Obj::type $mm
+    ModelManager
+  \endcode
+
+  Now let's try to "printout" an invalid nub::uid:
+
+  \code
+    ./bin/invt 6>>> ModelManager::printout 3
+    rutz::error caught at src/tcl/commandgroup.cc:442:
+    ModelManager::printout: at src/nub/refdetail.h:243:
+    attempted to access invalid object in soft_ref<ModelComponent>
+  \endcode
+
+  OK, it caught our invalid access attempt. The source file line
+  numbers show where the exception was caught
+  (src/tcl/commandgroup.cc:442) and where it was thrown
+  (src/nub/refdetail.h:243)
+
+  Let's try to make a new object. First we try to create an object of
+  type "blah".
+
+  \code
+    ./bin/invt 7>>> new blah
+    rutz::error caught at src/tcl/tclcommandgroup.cc:442:
+    new: at src/rutz/factory.h:224:
+    known keys are:
+            Brain
+            InputFrameSeries
+            OutputFrameSeries
+            StdBrain
+    unknown object type 'blah'
+  \endcode
+
+  OK, it doesn't know anything about 'blah', but it tells us the types
+  that it does know about. These are the ones that are in the
+  nub::obj_factory, in which we registered them with
+  registerComponentCreator().
+
+  Now let's make a brain, and capture its nub::uid in a variable
+  called 'mybrain'
+
+  \code
+    ./bin/invt 8>>> set mybrain [new StdBrain]
+    2
+    ./bin/invt 9>>> puts "the value of mybrain is $mybrain"
+    the value of mybrain is 2
+  \endcode
+
+  OK, its nub::uid is 2. Now if we ask to find all Brain objects:
+
+  \code
+    ./bin/invt 9>>> StdBrain::find_all
+    2
+    ./bin/invt 10>>> Brain::find_all
+    2
+  \endcode
+
+  We get our StdBrain back from StdBrain::find_all. Note that
+  Brain::find_all also finds our StdBrain even though StdBrain!=Brain,
+  because StdBrain is a derived type of Brain.
+
+  \code
+    ./bin/invt 10>>> Obj::type $mybrain
+    StdBrain
+  \endcode
+
+  There's its type. Now let's do Obj::find_all again:
+
+  \code
+    ./bin/invt 10>>> Obj::find_all
+    1 2 3 4 5 6 7 8 9 10 11 12 13
+  \endcode
+
+  and get the object types:
+
+  \code
+    ./bin/invt 11>>> Obj::type [Obj::find_all]
+    ModelManager StdBrain RetinaConfigurator SaccadeControllerConfigurator
+    VisualCortexConfigurator SaliencyMapConfigurator
+    TaskRelevanceMapConfigurator AttentionGuidanceMapConfigurator
+    WinnerTakeAllConfigurator SimulationViewerConfigurator
+    InferoTemporalConfigurator GistEstimatorConfigurator ShapeEstimator
+  \endcode
+
+  So there are all of the subcomponents of the StdBrain object that we
+  just constructed.
+
+  Let's play around with our StdBrain some more. Query some of its
+  param values:
+
+  \code
+    ./bin/invt 12>>> StdBrain::param $mybrain IORtype
+    Auto
+  \endcode
+
+  Now let's get a different param value -- and note that this is a
+  good chance to make sure you're using the readline history editing
+  feature of bin/invt: hit the up-arrow to retrieve the previous
+  command (the one with 'IORtype'), then hit Esc-Delete to kill the
+  'IORtype' word, then type 'UseRandom' and hit Enter:
+
+  \code
+    ./bin/invt 13>>> StdBrain::param $mybrain UseRandom
+    true
+  \endcode
+
+  Now, we can also change its UseRandom value
+
+  \code
+    ./bin/invt 14>>> StdBrain::param $mybrain UseRandom 0
+    1
+  \endcode
+
+  (Note that the '1' returned here is the 'bool' value indicating
+  whether a param named 'UseRandom' was found). Now let's re-query and
+  see that our change took effect:
+
+  \code
+    ./bin/invt 15>>> StdBrain::param $mybrain UseRandom
+    false
+  \endcode
+
+  OK, its value is now 'false'. Now let's try to give a bogus param
+  value:
+
+  \code
+    ./bin/invt 16>>> StdBrain::param $mybrain UseRandom 3
+    StringConversions::convertFromString: Bogus format: 3 -- IGNORED
+    1
+  \endcode
+
+  Let's make a "typo" and query a non-existent param:
+
+  \code
+    ./bin/invt 16>>> StdBrain::param $mybrain nosuchparam
+    [Brain]::getModelParamString: No parameter named 'nosuchparam' -- IGNORING
+    <unknown>
+  \endcode
+
+  We can use the "?" function to get usage information about a command:
+
+  \code
+    ./bin/invt 18>>> ? Brain::param
+    Brain::param resolves to ::ModelComponent::param
+            ::ModelComponent::param objref paramname (argc=[3..3])
+            ::ModelComponent::param objref paramname paramvalue (argc=[4..4])
+            (defined at src/Script/ModelScript.C:118)
+  \endcode
+
+  Here we see that Brain::param has two overloads, one that returns
+  the current value, and one that sets a new value. The proper
+  overload is selected at runtime based on the argument count.
+
+  We can apply "?" to itself:
+
+  \code
+    ./bin/invt 18>>> ? ?
+    ? resolves to ::?
+            ::? cmd_name (argc=[2..2])
+            (defined at src/tcl/tclpkg-misc.cc:156)
+  \endcode
+
+  We can use "?" to see (1) which package originated the command, and
+  (2) where it is defined. Here we see that Brain has inherited
+  subCompByName from ModelComponent, and that it is defined in
+  src/Script/ModelScript.C:
+
+  \code
+    ./bin/invt 19>>> ? Brain::subCompByName
+    Brain::subCompByName resolves to ::ModelComponent::subCompByName
+            ::ModelComponent::subCompByName objref tagname (argc=[3..3])
+            (defined at src/Script/ModelScript.C:108)
+  \endcode
+
+  We can query if an object is a (subclass of) a particular type:
+
+  \code
+    ./bin/invt 17>>> ModelComponent::is $mybrain
+    1
+
+    ./bin/invt 18>>> StdBrain::is $mm
+    0
+  \endcode
+
+  Try to get modules out of Brain:
+
+  \code
+    ./bin/invt 20>>> StdBrain::module $mybrain Retina
+    0
+    ./bin/invt 21>>> StdBrain::module $mybrain VisualCortex
+    0
+  \endcode
+
+  OK, those returned null objects because the brain hasn't been
+  start()ed yet.
+
+  Now let's try to get a invalid module type (note that this is an
+  example of what happens with an LFATAL, which throws an exception,
+  which is caught and reported to the script interpreter):
+
+  \code
+    ./bin/invt 22>>> StdBrain::module $mybrain Frobnaz
+    Brain::module: Invalid module type Frobnaz -- ABORT
+    -- ABORT.
+    exception of unknown type caught at src/tcl/commandgroup.cc:442:
+    StdBrain::module:
+
+    ./bin/invt 23>>> StdBrain::hasModule $mybrain Frobnaz
+    Brain::hasModule: Invalid module type Frobnaz -- ABORT
+    -- ABORT.
+    exception of unknown type caught at src/tcl/commandgroup.cc:442:
+    StdBrain::hasModule:
+  \endcode
+
+  Play around with our ModelManager some more:
+
+  \code
+    ./bin/invt 25>>> ModelManager::numSubComp $mm
+    0
+    ./bin/invt 26>>> ModelManager::tagName $mm
+    model
+    ./bin/invt 27>>> ModelManager::descriptiveName $mm
+    iLab Neuromorphic Vision Toolit
+  \endcode
+
+  Add our StdBrain to the ModelManager:
+
+  \code
+    ./bin/invt 28>>> ModelManager::addSubComponent $mm $mybrain
+    0
+  \endcode
+
+  and now see how many subcomponents it has (you can use up-arrow to
+  retrieve the identical call that we did 3 or 4 steps back):
+
+  \code
+    ./bin/invt 29>>> ModelManager::numSubComp $mm
+    1
+  \endcode
+
+  Get the StdBrain back out of the ModelManager:
+
+  \code
+    ./bin/invt 31>>> ModelManager::subCompByIndex $mm 0
+    2
+  \endcode
+
+  Try to get an out-of-bounds subcomponent:
+
+  \code
+    ./bin/invt 32>>> ModelManager::subCompByIndex $mm 123
+    [iLab Neuromorphic Vision Toolit]::subComponent:
+        iLab Neuromorphic Vision Toolit: request for
+        subcomponent 123 but I have only 1 -- FATAL
+    -- ABORT.
+    exception of unknown type caught at src/tcl/commandgroup.cc:442:
+    ModelManager::subCompByIndex:
+  \endcode
+
+  See what's in the model manager now:
+
+  \code
+    ./bin/invt 33>>> ModelManager::printout $mm
+    model: ShowHelpMessage = true
+    model: DebugMode = false
+    model: UsingFPE = false
+    model: TestMode = false
+    model: TextLogFile =
+    model: LoadConfigFile =
+    model: SaveConfigFile =
+    model.Brain: IORtype = Auto
+    model.Brain: UseRandom = false
+    model.Brain: FOAradius = -1
+    model.Brain: FoveaRadius = -1
+    model.Brain: SimulationTimeStep = 0.0001
+    model.Brain: LevelSpec = 0-0,0-0,0
+    model.Brain: BrainBoringDelayInMs = 200
+    model.Brain: BrainBoringSMmv = 3
+    model.Brain: BrainMaxWinMv = 5
+    model.Brain: BlankBlink = false
+    model.Brain: BrainSaveObjMask = false
+    model.Brain: BrainTooManyShifts = 0
+    model.Brain: BrainTooMuchTime = 0
+    model.Brain: BrainSaveWinnerFeatures = false
+    model.Brain.ShapeEstimator: ShapeEstimatorMode = FeatureMap
+    model.Brain.ShapeEstimator: ShapeEstimatorSmoothMethod = Gaussian
+    model.Brain.RetinaConfigurator: RetinaType = Std
+    model.Brain.SaccadeControllerConfigurator: SaccadeControllerType = None
+    model.Brain.VisualCortexConfigurator: VisualCortexType = None
+    model.Brain.SaliencyMapConfigurator: SaliencyMapType = None
+    model.Brain.TaskRelevanceMapConfigurator: TaskRelevanceMapType = None
+    model.Brain.AttentionGuidanceMapConfigurator: AttentionGuidanceMapType = None
+    model.Brain.WinnerTakeAllConfigurator: WinnerTakeAllType = None
+    model.Brain.SimulationViewerConfigurator: SimulationViewerType = None
+    model.Brain.InferoTemporalConfigurator: InferoTemporalType = None
+    model.Brain.GistEstimatorConfigurator: GistEstimatorType = None
+  \endcode
+
+  change the ModelManager's tag name:
+
+  \code
+    ./bin/invt 34>>> ModelManager::tagName $mm "someOtherName"
+    ./bin/invt 35>>> ModelManager::tagName $mm
+    someOtherName
+  \endcode
+
+  Now, after all that, here's a shorthand syntax. For objects that
+  have a tcl package, we can use "-> $obj cmdname" as shorthand for
+  "<type>::cmdname $obj", where <type> is whatever is returned from
+  "Obj::type $obj".
+
+  That is, "-> $mm printout " is equivalent to "ModelManager::printout
+  $mm", because [Obj::type $mm] is "ModelManager":
+
+  \code
+    ./bin/invt 36>>> -> $mm tagName
+    someOtherName
+    ./bin/invt 37>>> -> $mm tagName "someNewName"
+    someOtherName
+    ./bin/invt 36>>> -> $mm tagName
+    someNewName
+  \endcode
+
+  Finally, when we're done:
+
+  \code
+    ./bin/invt 39>>> exit
+  \endcode
+
+  After we exit the interpreter, it leaves behind a prof.out file
+  showing (1) average microseconds per call, (2) number of calls, (3)
+  self microseconds, and (4) self+child microseconds, for each of the
+  script commands (do "sort -n +2 prof.out | tail -20") to sort by
+  total self microseconds. Here's one example left behind after
+  running tests/test_scriptvision_blackbox.tcl, showing that
+  Brain::evolve was called 1799 times, most of the time was spent in 6
+  calls to Brain::input, etc.
+
+  \code
+    $ sort -n +2 prof.out | tail -20
+           291      1        291        291 tcl/ModelManager::extraArgs
+           123      3        369        369 tcl/ModelComponent::addSubComponent
+           242      2        484        484 tcl/FrameSeries::fileStem
+           246      2        492        492 tcl/Image::byte
+          1281      1       1281       1281 tcl/ModelManager::find_all
+          3843      8       1741      30745 tcl/::->
+           689      6       4139       4139 tcl/InputFrameSeries::readRGB
+          1955      3       5866       5866 tcl/Obj::new
+          5986      1       5986       5986 tcl/ModelComponent::start
+          1346      6       8080       8080 tcl/Brain::saveResults
+             6   1794      12075      12075 tcl/FrameSeries::isMultiframe
+         21874      1      21874      21874 tcl/ModelManager::parseCommandLine
+             6   3598      23255      23255 tcl/FrameSeries::didDisplayFrames
+             7   3599      27831      27831 tcl/FrameSeries::update
+            49   1799      88937      88937 tcl/Brain::evolve
+        162231      6     973388     973388 tcl/Brain::input
+  \endcode
+
+*/

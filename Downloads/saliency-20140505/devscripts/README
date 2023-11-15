@@ -1,0 +1,142 @@
+        -*- mode: text; fill-column: 70; indent-tabs-mode: nil -*-
+           $Id: README 4750 2005-07-01 14:58:17Z rjpeters $
+
+Here's a really quick overview of the scripts in the 'devscripts'
+directory. These are scripts that are related to programming,
+building, analyzing/manipulating the source code, but NOT related to
+the domain area of the source code itself (i.e. neuromorphic vision).
+
+* add-copyright.pl
+
+  usage: ./devscripts/add-copyright.pl <copyright-file> <source-file>'
+
+  inserts contents of <copyright-file> at the beginning of
+  <source-file>
+
+* autoconf_warning.sh
+
+  usage: [shouldn't ever need to call directly]
+
+  used as a stub for a real 'autoconf', in case the machine doesn't
+  have a recent enough version of 'autoconf' -- this allows 'make' to
+  give a warning if some operation would otherwise try to invoke
+  autoconf
+
+* benchmark-fpoint.cc
+
+  usage: [don't use directly, use benchmark-fpoint.sh instead]
+
+  C benchmark suite for comparing the speed of operations using
+  int/float/double, in a situation like converting yuv->rgb pixels
+
+* benchmark-fpoint.sh
+
+  usage: ./devscripts/benchmark-fpoint.sh
+
+  compiles and runs benchmark-fpoint.cc at different optimization
+  levels, and reports the speed of int/float/double operations at each
+  optimization level (also prints information about the compiler
+  version and the cpu type and cpu speed)
+
+* benchmark-optlevel.sh
+
+  usage: ./devscripts/benchmark-optlevel.sh -O{0,1,2,3, or 4}
+
+  does ./configure, 'make all', 'make test', and 'make testlong' at
+  the given optimization level, and prints a report showing how long
+  each operation takes
+
+* cdeps.cc
+  cdeps [binary program built from cdeps.cc]
+
+  usage: [called from the Makefile, in a number of different ways]
+
+  C++ program for doing fast analysis of the compile and link
+  dependencies among a set of source files -- this output is imported
+  into the makefile to determine when object files need to be
+  recompiled, and which object files should be linked into each
+  executable
+
+* cdeps.py
+  cxxdeps.py
+
+  usage: [use cdeps.cc instead!]
+
+  An older (and much slower) Python implementation of some of the
+  functionality in cdeps.cc; its only main purpose now is as a
+  regression test for cdeps.cc.
+
+* change-includes.pl
+
+  usage: ./devscripts/change-includes.pl oldname newname file1 file2...
+
+  Replaces all occurrences of '#include "oldname"' with '#include
+  "newname"' in each of file1, file2, ... Reports the number of
+  changes made.
+
+* crypt_for_copyright.pl
+
+  usage: ???
+
+* extract_templates.tcl
+
+  usage: [called from the Makefile]
+
+  A Tcl script that does a fast+cheap parsing of a C++ header file,
+  looking for function template declartions. It then generates a .I
+  file which contains a list of explicit instantiations for those
+  functions. We use this script to achieve some semblance of separate
+  compilation of functino templates, so that we don't have to make all
+  template functions inline.
+
+* make-ldep-html.sh
+
+  usage: [called from the Makefile: 'make ldep-html']
+
+  Generates a linked set of html pages and graph images that show the
+  link dependency structure of the code in src/. Do 'make ldep-html'
+  to generate this output in doc/ldep, then open up
+  doc/ldep/modules.html in a web browser to see the output.
+
+* maintainers.sh
+
+  usage: ./devscripts/maintainers.sh src/*.[CH]
+
+  Just prints the "Primary maintainer" lines from each of the source
+  files listed on the command-line; this makes it easy to see if any
+  files are lacking maintainer info.
+
+* normalize-whitespace.sh
+
+  usage: ./devscripts/normalize-whitespace.sh src
+
+  Finds all source files under src (or whichever directory you name),
+  and changes the whitespace into a uniform format -- replacing tabs
+  with spaces, and killing trailing whitespace at the end of lines.
+
+* qmaker.sh
+
+  usage: [used internally by the makefile]
+
+  Encapsulates the logic for cd'ing to a qt project directory and
+  running a recursive make subprocess there.
+
+* set-svn-props.sh
+
+  usage: ./devscripts/set-svn-props.sh
+
+  Quick script to set svn:keywords and svn:eol-style properties
+  uniformly on all source files.
+
+* sort-includes.tcl
+
+  usage: ./devscripts/sort-includs.tcl file1 file2 file3 ...
+
+  For each file named on the command line, the script alphabetically
+  sorts consecutive #include lines. If there were any changes as a
+  result of the sorting, then the script replaces the original file
+  with the changed file. The script expects #include "foo.H", if
+  present, to be the first #include in foo.C, and will complain
+  otherwise. The script applies sorting only to consecutive #include
+  lines, so #include groups that are separated by one or more empty
+  lines will be sorted independently.

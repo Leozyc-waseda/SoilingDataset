@@ -1,0 +1,170 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>ImageQtMainForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>ImageQtMainForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>411</width>
+            <height>465</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>test-ImageQt</string>
+    </property>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ChooseButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>40</x>
+                <y>90</y>
+                <width>140</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Choose File...</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ImageLoadButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>230</x>
+                <y>90</y>
+                <width>140</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Load</string>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>ImageFileLineEdit</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>40</y>
+                <width>370</width>
+                <height>24</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>ImageFileTextLabel</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>10</y>
+                <width>90</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Image file:</string>
+        </property>
+    </widget>
+    <widget class="QCheckBox">
+        <property name="name">
+            <cstring>FullSizeBox</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>190</x>
+                <y>140</y>
+                <width>210</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>full-size (another window)</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>DisplayButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>40</x>
+                <y>140</y>
+                <width>140</width>
+                <height>31</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Display</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>ImagePixmapLabel</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>50</x>
+                <y>200</y>
+                <width>320</width>
+                <height>240</height>
+            </rect>
+        </property>
+        <property name="scaledContents">
+            <bool>true</bool>
+        </property>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>ChooseButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ImageQtMainForm</receiver>
+        <slot>setImageFile()</slot>
+    </connection>
+    <connection>
+        <sender>DisplayButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ImageQtMainForm</receiver>
+        <slot>displayImage()</slot>
+    </connection>
+    <connection>
+        <sender>ImageLoadButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ImageQtMainForm</receiver>
+        <slot>loadImage()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in declaration">Image/Image.H</include>
+    <include location="local" impldecl="in declaration">Image/Pixels.H</include>
+    <include location="local" impldecl="in implementation">Raster/Raster.H</include>
+    <include location="local" impldecl="in implementation">QtUtil/ImageConvert.H</include>
+    <include location="global" impldecl="in implementation">qfiledialog.h</include>
+    <include location="global" impldecl="in implementation">qlineedit.h</include>
+    <include location="global" impldecl="in implementation">qimage.h</include>
+    <include location="global" impldecl="in implementation">qpixmap.h</include>
+    <include location="global" impldecl="in implementation">qmessagebox.h</include>
+    <include location="local" impldecl="in implementation">ImageQtMainForm.ui.h</include>
+</includes>
+<variables>
+    <variable>Image&lt; PixRGB&lt;byte&gt; &gt; img</variable>
+</variables>
+<slots>
+    <slot>setImageFile()</slot>
+    <slot>displayImage()</slot>
+    <slot>loadImage()</slot>
+</slots>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

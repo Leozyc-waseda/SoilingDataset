@@ -1,0 +1,1172 @@
+This is how things should look like when you follow instructions from
+the README. Use the following transcript to point out possible missing
+packages from your Linux installation.
+
+The short version (for experts and people in a hurry) is as in the README:
+get the code, then:
+
+  cd saliency
+  ./configure --enable-quietcompile
+  make
+  make test           ### optional test if you want to run the test suite
+  make testlong       ### optional more stringent test suite, takes a long time
+  make all            ### build everything if you had no warning at ./configure
+
+Here are the details:
+
+##### We start by obtaining the latest SVN release of the code:
+##### For that you need to have Subversion (svn) installed on your
+##### machine. See http://subversion.tigris.org/
+
+[itti@dnt ~/compiletest]$ svn checkout --username anonsvn svn://iSvn.usc.edu/software/invt/trunk/saliency
+Authentication realm: <svn://iSvn.usc.edu:3690> iLab Neuromorphic Vision C++ Toolkit
+Password for 'anonsvn':
+A  saliency/movie
+A  saliency/movie/mpeg_encode.conf
+A  saliency/configure
+A  saliency/batch
+A  saliency/batch/makesnake.element.distance
+A  saliency/batch/makesnake.element.distance/task.conf
+A  saliency/COMPILING
+A  saliency/Makefile.in
+[...]
+A  saliency/src/webPageHelpers.C
+A  saliency/autoconf_warning.sh
+A  saliency/cvsweb.conf
+A  saliency/mexopts.sh.in
+A  saliency/mq
+A  saliency/mq/private.h
+A  saliency/mq/qtinfo
+A  saliency/mq/dechunk
+A  saliency/mq/libquicktime.a
+A  saliency/mq/quicktime.h
+A  saliency/mq/codecs.h
+A  saliency/mq/Makefile
+A  saliency/mq/mq.c
+ U saliency
+Checked out revision 4300.
+[itti@dnt ~/compiletest]$
+
+##### Alternatively, you can also download a daily snapshot of the
+##### code as a saliency-current.tar.bz2 compressed archive, from 
+##### http://ilab.usc.edu/toolkit/downloads.shtml
+##### You would then simply do: tar jxvf saliency-current.tar.bz2
+##### to uncompress and extract the files from the archive. This
+##### methods is not the preferred one, though, as you will not be
+##### able to update your code and keep in sync with the master
+##### repository, as you would if you use SVN.
+
+##### The source code is in saliency/src if you want to edit source
+##### files. All the build-related stuff, including Makefile and such,
+##### is in saliency.
+
+[itti@dnt ~/compiletest]$ cd saliency
+[itti@dnt saliency]$
+
+##### Then we run the configure script. NOTE: you do not need to run
+##### autoconf, but if you want to do so, make sure you use autoconf
+##### version >= 2.5. autoconf will create the script 'configure' from
+##### the specs in 'configure.ac'; however, a default 'configure' is
+##### provided with the source code, so here we just use that one.
+
+##### There are many options to the configure script; try to run
+##### ./configure --help to check them out. Here we will use the
+##### --enable-quietcompile option, which yields very terse messages
+##### during compilation of the code:
+
+[itti@dnt saliency]$ ./configure --enable-quietcompile
+checking for your build location... top-level
+checking for source directory... src/
+checking for object file directory... build/obj/
+checking for build scripts directory... src/
+checking for OS... Linux
+checking for CPU type... i686
+checking for CPU model... athlon-xp
+checking whether athlon-xp CPU supports Intel MMX instructions... yes
+checking whether athlon-xp CPU supports Intel SSE instructions... yes
+checking whether athlon-xp CPU supports Intel SSE2 instructions... no
+checking whether athlon-xp CPU supports Intel SSE3 instructions... no
+checking whether athlon-xp CPU supports AMD 3Dnow instructions... yes
+checking whether athlon-xp CPU supports AMD 64 bit instructions... no
+checking whether to enable Intel MMX optimizations... no
+checking whether to enable Intel SSE optimizations... no
+checking whether to enable Intel SSE2 optimizations... no
+checking whether to use cpu-tailored aggressive optimizations... no
+checking whether to use non-IEEE non-ISO fast math optimization... no
+checking whether to use arc profiles for optimizations... no
+checking whether to use profile generate for optimizations... no
+checking whether to compute branch probabilities... no
+checking whether to use branch profiles... no
+checking whether to use SSA Single Static Assignment form optimizations... no
+checking whether to force 32 bit code under 64 bit CPU... no
+checking whether to enable memory debug checks... no
+checking whether to enable profiling... no
+checking whether to enable compiler warnings... yes
+checking for desired optimization level... -O3
+checking whether to use ElectricFence for memory debugging... no
+checking whether to use dynamic linking, with most objects built as shared libraries... no
+checking whether to be quiet during compilation... yes
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables...
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ANSI C... none needed
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking for gcc version... 3.3.1
+checking for autoconf-2.5x... /usr/bin/autoconf-2.5x
+checking for autoconf version... OK, 2.57 >= 2.53
+checking for mex... /usr/local/bin/mex
+checking for python... /usr/bin/python
+checking for tclsh... /usr/bin/tclsh
+checking for env... /usr/bin/env
+checking how to run the C++ preprocessor... g++ -E
+checking for limits... yes
+checking for iosfwd... yes
+checking for iostream... yes
+checking for fstream... yes
+checking for sstream... yes
+checking for png.h... yes
+checking for popt.h... yes
+checking for values.h... yes
+checking for feenableexcept()... yes
+checking for ::isnan()... yes
+checking for std::isfinite()... yes
+checking for libm... yes
+checking for libpng... yes
+checking for X... libraries /usr/X11R6/lib, headers /usr/X11R6/include
+checking for gethostbyname... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... yes
+checking for libX11... yes
+checking for libXext... yes
+checking for libpopt... yes
+checking for libpvm3... yes
+checking for av_malloc in -lavcodec... yes
+checking for libfftw3... yes
+checking for raw1394_destroy_handle in -lraw1394... yes
+checking for libdc1394_control... yes
+checking for libdc1394_control... no
+checking for gtkmm-config... yes
+checking for SDL_Flip in -lSDL... yes
+checking QTDIR... /usr/lib/qt3/
+checking Qt version... 312 (3)
+checking for moc... /usr/lib/qt3//bin/moc
+checking for uic... /usr/lib/qt3//bin/uic
+checking for qembed... no
+checking if Qt is static... yes
+checking if Qt is multithreaded... yes
+checking if Qt is embedded... no
+checking for XftFontOpen in -lXft... yes
+checking QT_CXXFLAGS... -I/usr/lib/qt3//include -D_REENTRANT -DQT_THREAD_SUPPORT
+checking QT_LDADD... -L/usr/lib/qt3//lib  -lXft
+checking for pthread_exit in -lpthread... yes
+checking for java... no
+checking for java... /usr/java/j2sdk1.4.2_05
+checking for java... (cached) /usr/java/j2sdk1.4.2_05
+checking for java... (cached) /usr/java/j2sdk1.4.2_05
+checking for /usr/java/j2sdk1.4.2_05/include/jni.h... yes
+checking for javac... /usr/java/j2sdk1.4.2_05/bin/javac
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating mexopts.sh
+config.status: creating depoptions
+[itti@dnt saliency]$
+
+##### In the above, any error/warning above the line "checking for
+##### libpvm3... yes" is bad and will prevent you from compiling even
+##### the core programs from our code. This could be missing X11 libs,
+##### wrong compiler version, missing helper programs, etc. Any error
+##### below that line indicates that you are missing some of the
+##### packages needed to compile some extra functionality used by a
+##### few (non-core) programs in our code (e.g., IEEE1394 libs used to
+##### grab images from firewire cameras, etc). In general, you will
+##### need to install the missing packages, in particular the version
+##### of the package that has "-devel" in its name, if you want to
+##### compile more programs than just 'make core'. To help you, we
+##### keep a list of the packages we have installed on our machines
+##### (in addition to a full Mandrake distribution) at
+##### http://iLab.usc.edu/packages/
+
+##### Let's now build the core executables by typing "make core".
+##### Note that the warning below about alldepends is normal and will
+##### only occur the first time you compile from a fresh SVN checkout:
+
+[itti@dnt saliency]$ make core
+Makefile:290: alldepends: No such file or directory
+Compiling source dependencies calculator
+Computing source file dependencies
+Compiling C++ file         src/ChannelBase.C
+Compiling C++ file         src/Channels.C
+Compiling C++ file         src/ComplexChannel.C
+Finding template instances inst/FrameSeries.I
+Compiling C++ file         src/FrameSeries.C
+Compiling C++ file         src/Histogram.C
+Compiling C++ file         src/Image.C
+Compiling C++ file         src/Image_MonoOnly.C
+Compiling C++ file         src/ImageCache.C
+Compiling C++ file         src/ImageSet.C
+Finding template instances inst/ImageSet_Ops.I
+Compiling C++ file         src/ImageSet_Ops.C
+Finding template instances inst/Image_ColorOps.I
+Compiling C++ file         src/Image_ColorOps.C
+Compiling C++ file         src/Image_DrawOps.C
+Finding template instances inst/Image_FilterOps.I
+Compiling C++ file         src/Image_FilterOps.C
+Finding template instances inst/Image_IO.I
+Compiling C++ file         src/Image_IO.C
+Finding template instances inst/Image_MathOps.I
+Compiling C++ file         src/Image_MathOps.C
+Finding template instances inst/Image_ShapeOps.I
+Compiling C++ file         src/Image_ShapeOps.C
+Finding template instances inst/Image_Transforms.I
+Compiling C++ file         src/Image_Transforms.C
+Compiling C++ file         src/Jet.C
+Compiling C++ file         src/KDTree.C
+Compiling C++ file         src/Keypoint.C
+Compiling C++ file         src/LevelSpec.C
+Compiling C++ file         src/MathFunctions.C
+Compiling C++ file         src/Matrix3.C
+Compiling C++ file         src/ModelComponent.C
+Compiling C++ file         src/ModelManager.C
+Compiling C++ file         src/ModelOptionDefs.C
+Compiling C++ file         src/ModelParam.C
+Compiling C++ file         src/ParamMap.C
+Compiling C++ file         src/PbmParser.C
+Compiling C++ file         src/PfmParser.C
+Compiling C++ file         src/PngParser.C
+Compiling C++ file         src/PngWriter.C
+Compiling C++ file         src/PyrBuilder.C
+Finding template instances inst/Pyramid_Ops.I
+Compiling C++ file         src/Pyramid_Ops.C
+Finding template instances inst/Raster.I
+Compiling C++ file         src/Raster.C
+Compiling C++ file         src/ScaleSpace.C
+Compiling C++ file         src/SingleChannel.C
+Compiling C++ file         src/StringConversions.C
+Compiling C++ file         src/VisualCortex.C
+Compiling C++ file         src/VisualObject.C
+Finding template instances inst/fancynorm.I
+Compiling C++ file         src/fancynorm.C
+Compiling C++ file         src/fpe.C
+Compiling C++ file         src/log.C
+Compiling C++ file         src/mmx-sse.C
+Compiling C++ file         src/openvision.C
+Compiling C++ file         src/saliency.C
+Linking executable program bin/openvision
+Compiling C++ file         src/testimagesat.C
+Linking executable program bin/testimagesat
+Compiling C++ file         src/Beowulf.C
+Compiling C++ file         src/SingleChannelBeo.C
+Compiling C++ file         src/SingleChannelBeoServer.C
+Compiling C++ file         src/SockServ.C
+Compiling C++ file         src/TCPcliServ.C
+Compiling C++ file         src/TCPcommunicator.C
+Compiling C++ file         src/TCPmessage.C
+Compiling C++ file         src/beochannel-server.C
+Linking executable program bin/beochannel-server
+Compiling C++ file         src/AttentionGuidanceMap.C
+Compiling C++ file         src/Brain.C
+Compiling C++ file         src/ChannelsBeo.C
+Compiling C++ file         src/ChannelsSurprise.C
+Compiling C++ file         src/GistEstimator.C
+Compiling C++ file         src/GistEstimatorConfigurator.C
+Compiling C++ file         src/InferoTemporal.C
+Compiling C++ file         src/InferoTemporalConfigurator.C
+Compiling C++ file         src/Retina.C
+Compiling C++ file         src/SaccadeController.C
+Compiling C++ file         src/SaccadeControllers.C
+Compiling C++ file         src/SaliencyMap.C
+Compiling C++ file         src/ShapeEstimator.C
+Compiling C++ file         src/SimulationViewer.C
+Compiling C++ file         src/SimulationViewerCompress.C
+Compiling C++ file         src/SimulationViewerEyeMvt.C
+Compiling C++ file         src/SimulationViewerEyeMvt2.C
+Compiling C++ file         src/SimulationViewerEyeSim.C
+Compiling C++ file         src/SimulationViewerStd.C
+Compiling C++ file         src/SingleChannelSurprise.C
+Compiling C++ file         src/StdBrain.C
+Compiling C++ file         src/SurpriseImage.C
+Compiling C++ file         src/SurpriseMap.C
+Compiling C++ file         src/SurpriseModel.C
+Compiling C++ file         src/TaskRelevanceMap.C
+Compiling C++ file         src/VisualBuffer.C
+Compiling C++ file         src/VisualCortexBeo.C
+Compiling C++ file         src/VisualCortexConfigurator.C
+Compiling C++ file         src/VisualCortexEyeMvt.C
+Compiling C++ file         src/VisualCortexSurprise.C
+Compiling C++ file         src/VisualObjectDB.C
+Compiling C++ file         src/WinnerTakeAll.C
+Compiling C++ file         src/XWinManaged.C
+Compiling C++ file         src/XWindow.C
+Compiling C++ file         src/ezvision.C
+Linking executable program bin/ezvision
+Compiling C++ file         src/openvision3.C
+Linking executable program bin/openvision3
+Compiling C++ file         src/ContourChannel.C
+Compiling C++ file         src/OptionParser.C
+Compiling C++ file         src/SoxChannel.C
+Compiling C++ file         src/vision.C
+Linking executable program bin/vision
+
+##### All right, we are ready for action! Let's check out that
+##### "ezvision" program that should now be in saliency/bin/:
+
+[itti@dnt saliency]$ bin/ezvision --help
+src/Retina::setModelParamString: Selected RET of type Std
+src/SaccadeControllers::setModelParamString: Selected SC of type None
+src/VisualCortexConfigurator::setModelParamString: Configuring VC of type Std
+src/Channels::buildSubChans: Using 4 orientations spanning [0..180]deg
+src/Channels::buildSubChans: Using 4 directions spanning [0..360]deg
+src/SaliencyMap::setModelParamString: Selected SM of type Std
+src/TaskRelevanceMap::setModelParamString: Selected TRM of type Std
+src/AttentionGuidanceMap::setModelParamString: Selected AGM of type Std
+src/WinnerTakeAll::setModelParamString: Selected WTA of type Std
+src/SimulationViewer::setModelParamString: Selected SV of type Std
+src/InferoTemporalConfigurator::setModelParamString: Configuring IT of type None
+src/GistEstimatorConfigurator::setModelParamString: Selected GE of type None
+
+COMMAND-LINE OPTION SYNTAX:
+
+General Simulation Options:
+
+  -h, --[no]help [yes]
+      Show help message and option syntax [ShowHelpMessage]
+
+  -d, --[no]debug [no]
+      Use debug mode, which, in particular, will increase the
+      verbosity of the log messages and printout all model 
+      parameter values just before the model starts [DebugMode]
+
+[...]
+[itti@dnt saliency]$
+
+##### See saliency/README for additional options, how to use the
+##### programs, what they do, etc.
+
+##### Here is how doing a 'make test' now should look. First it will
+##### compile a few more programs, then it will run the test suite. If
+##### all goes well and the test pass, you will be ready to move on to
+##### the next level and try a 'make all'.
+
+[itti@dnt saliency]$ make test
+Compiling C++ file         src/test-ImageEqual.C
+Linking executable program bin/test-ImageEqual
+Finding template instances inst/TestSuite.I
+Compiling C++ file         src/TestSuite.C
+Compiling C++ file         src/test-Image.C
+Linking executable program bin/test-Image
+Compiling C++ file         src/test-Raster.C
+Linking executable program bin/test-Raster
+Compiling C++ file         src/test-LevelSpec.C
+Linking executable program bin/test-LevelSpec
+Compiling C++ file         src/getSaliency.C
+Compiling C++ file         src/test-ShapeEstimator.C
+Linking executable program bin/test-ShapeEstimator
+Compiling C++ file         src/test-Pixels.C
+Linking executable program bin/test-Pixels
+Compiling C++ file         src/retinafilt.C
+Linking executable program bin/retina
+cd src/tests && time ./run_test_suite.tcl --quit-on-fail 1
+###
+### test script 'test_Raster_white_box.tcl' ...
+###
+test Raster--img-gray-write-gray-read-gray--1 ... ok
+test Raster--img-gray-write-gray-read-rgb--1 ... ok
+test Raster--img-gray-write-rgb-read-gray--1 ... ok
+test Raster--img-gray-write-rgb-read-rgb--1 ... ok
+test Raster--img-rgb-write-gray-read-gray--1 ... ok
+test Raster--img-rgb-write-gray-read-rgb--1 ... ok
+test Raster--img-rgb-write-rgb-read-gray--1 ... ok
+test Raster--img-rgb-write-rgb-read-rgb--1 ... ok
+
+8 of 8 tests succeeded
+###
+### test script 'test_ImageEqual.tcl' ...
+###
+comparing 'ref/gray-8-bit-001.pgm' and 'ref/gray-8-bit-001.png' ... ok
+comparing 'ref/rgb-24-bit-001.ppm' and 'ref/rgb-24-bit-001.png' ... ok
+comparing 'ref/rgb-24-bit-001.ppm' and 'ref/palette-8-bit-001.png' ... ok
+
+3 of 3 tests succeeded
+###
+### test script 'test_ezvision_black_box.tcl' ...
+###
+
+=========================================================
+test 'ez-trajectory--1' ...
+
+running command './../../bin/ezvision -TZ --textlog=test.txt --output-frames=0-5@100 testpic001.ppm'
+
+checking test.txt ... ok
+checking T000000.ppm ... ok
+checking T000001.ppm ... ok
+checking T000002.ppm ... ok
+checking T000003.ppm ... ok
+checking T000004.ppm ... ok
+checking T000005.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-raw-maps--1' ...
+
+running command './../../bin/ezvision -Z --textlog=test.txt --too-many-shifts=1  --save-raw-maps testpic001.ppm'
+
+checking test.txt ... ok
+checking SRby-0-testpic001.ppm.pgm ... ok
+checking SRintensity-6-testpic001.ppm.pgm ... ok
+checking SRby-1-testpic001.ppm.pgm ... ok
+checking SRintensity-7-testpic001.ppm.pgm ... ok
+checking SRby-2-testpic001.ppm.pgm ... ok
+checking SRintensity-8-testpic001.ppm.pgm ... ok
+checking SRby-3-testpic001.ppm.pgm ... ok
+checking SRori_0-0-testpic001.ppm.pgm ... ok
+checking SRby-4-testpic001.ppm.pgm ... ok
+checking SRori_0-1-testpic001.ppm.pgm ... ok
+checking SRby-5-testpic001.ppm.pgm ... ok
+checking SRori_0-2-testpic001.ppm.pgm ... ok
+checking SRby-6-testpic001.ppm.pgm ... ok
+checking SRori_0-3-testpic001.ppm.pgm ... ok
+checking SRby-7-testpic001.ppm.pgm ... ok
+checking SRori_0-4-testpic001.ppm.pgm ... ok
+checking SRby-8-testpic001.ppm.pgm ... ok
+checking SRori_0-5-testpic001.ppm.pgm ... ok
+checking SRdir_0-0-testpic001.ppm.pgm ... ok
+checking SRori_0-6-testpic001.ppm.pgm ... ok
+checking SRdir_0-1-testpic001.ppm.pgm ... ok
+checking SRori_0-7-testpic001.ppm.pgm ... ok
+checking SRdir_0-2-testpic001.ppm.pgm ... ok
+checking SRori_0-8-testpic001.ppm.pgm ... ok
+checking SRdir_0-3-testpic001.ppm.pgm ... ok
+checking SRori_1-0-testpic001.ppm.pgm ... ok
+checking SRdir_0-4-testpic001.ppm.pgm ... ok
+checking SRori_1-1-testpic001.ppm.pgm ... ok
+checking SRdir_0-5-testpic001.ppm.pgm ... ok
+checking SRori_1-2-testpic001.ppm.pgm ... ok
+checking SRdir_0-6-testpic001.ppm.pgm ... ok
+checking SRori_1-3-testpic001.ppm.pgm ... ok
+checking SRdir_0-7-testpic001.ppm.pgm ... ok
+checking SRori_1-4-testpic001.ppm.pgm ... ok
+checking SRdir_0-8-testpic001.ppm.pgm ... ok
+checking SRori_1-5-testpic001.ppm.pgm ... ok
+checking SRdir_1-0-testpic001.ppm.pgm ... ok
+checking SRori_1-6-testpic001.ppm.pgm ... ok
+checking SRdir_1-1-testpic001.ppm.pgm ... ok
+checking SRori_1-7-testpic001.ppm.pgm ... ok
+checking SRdir_1-2-testpic001.ppm.pgm ... ok
+checking SRori_1-8-testpic001.ppm.pgm ... ok
+checking SRdir_1-3-testpic001.ppm.pgm ... ok
+checking SRori_2-0-testpic001.ppm.pgm ... ok
+checking SRdir_1-4-testpic001.ppm.pgm ... ok
+checking SRori_2-1-testpic001.ppm.pgm ... ok
+checking SRdir_1-5-testpic001.ppm.pgm ... ok
+checking SRori_2-2-testpic001.ppm.pgm ... ok
+checking SRdir_1-6-testpic001.ppm.pgm ... ok
+checking SRori_2-3-testpic001.ppm.pgm ... ok
+checking SRdir_1-7-testpic001.ppm.pgm ... ok
+checking SRori_2-4-testpic001.ppm.pgm ... ok
+checking SRdir_1-8-testpic001.ppm.pgm ... ok
+checking SRori_2-5-testpic001.ppm.pgm ... ok
+checking SRdir_2-0-testpic001.ppm.pgm ... ok
+checking SRori_2-6-testpic001.ppm.pgm ... ok
+checking SRdir_2-1-testpic001.ppm.pgm ... ok
+checking SRori_2-7-testpic001.ppm.pgm ... ok
+checking SRdir_2-2-testpic001.ppm.pgm ... ok
+checking SRori_2-8-testpic001.ppm.pgm ... ok
+checking SRdir_2-3-testpic001.ppm.pgm ... ok
+checking SRori_3-0-testpic001.ppm.pgm ... ok
+checking SRdir_2-4-testpic001.ppm.pgm ... ok
+checking SRori_3-1-testpic001.ppm.pgm ... ok
+checking SRdir_2-5-testpic001.ppm.pgm ... ok
+checking SRori_3-2-testpic001.ppm.pgm ... ok
+checking SRdir_2-6-testpic001.ppm.pgm ... ok
+checking SRori_3-3-testpic001.ppm.pgm ... ok
+checking SRdir_2-7-testpic001.ppm.pgm ... ok
+checking SRori_3-4-testpic001.ppm.pgm ... ok
+checking SRdir_2-8-testpic001.ppm.pgm ... ok
+checking SRori_3-5-testpic001.ppm.pgm ... ok
+checking SRdir_3-0-testpic001.ppm.pgm ... ok
+checking SRori_3-6-testpic001.ppm.pgm ... ok
+checking SRdir_3-1-testpic001.ppm.pgm ... ok
+checking SRori_3-7-testpic001.ppm.pgm ... ok
+checking SRdir_3-2-testpic001.ppm.pgm ... ok
+checking SRori_3-8-testpic001.ppm.pgm ... ok
+checking SRdir_3-3-testpic001.ppm.pgm ... ok
+checking SRrg-0-testpic001.ppm.pgm ... ok
+checking SRdir_3-4-testpic001.ppm.pgm ... ok
+checking SRrg-1-testpic001.ppm.pgm ... ok
+checking SRdir_3-5-testpic001.ppm.pgm ... ok
+checking SRrg-2-testpic001.ppm.pgm ... ok
+checking SRdir_3-6-testpic001.ppm.pgm ... ok
+checking SRrg-3-testpic001.ppm.pgm ... ok
+checking SRdir_3-7-testpic001.ppm.pgm ... ok
+checking SRrg-4-testpic001.ppm.pgm ... ok
+checking SRdir_3-8-testpic001.ppm.pgm ... ok
+checking SRrg-5-testpic001.ppm.pgm ... ok
+checking SRintensity-0-testpic001.ppm.pgm ... ok
+checking SRrg-6-testpic001.ppm.pgm ... ok
+checking SRintensity-1-testpic001.ppm.pgm ... ok
+checking SRrg-7-testpic001.ppm.pgm ... ok
+checking SRintensity-2-testpic001.ppm.pgm ... ok
+checking SRrg-8-testpic001.ppm.pgm ... ok
+checking SRintensity-3-testpic001.ppm.pgm ... ok
+checking SRintensity-4-testpic001.ppm.pgm ... ok
+checking SRintensity-5-testpic001.ppm.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-feature-maps--1' ...
+
+running command './../../bin/ezvision -Z --textlog=test.txt --too-many-shifts=1  --save-feature-maps testpic001.ppm'
+
+checking test.txt ... ok
+checking SFby-2-5-testpic001.ppm.pgm ... ok
+checking SFintensity-4-7-testpic001.ppm.pgm ... ok
+checking SFby-2-6-testpic001.ppm.pgm ... ok
+checking SFintensity-4-8-testpic001.ppm.pgm ... ok
+checking SFby-3-6-testpic001.ppm.pgm ... ok
+checking SFori_0-2-5-testpic001.ppm.pgm ... ok
+checking SFby-3-7-testpic001.ppm.pgm ... ok
+checking SFori_0-2-6-testpic001.ppm.pgm ... ok
+checking SFby-4-7-testpic001.ppm.pgm ... ok
+checking SFori_0-3-6-testpic001.ppm.pgm ... ok
+checking SFby-4-8-testpic001.ppm.pgm ... ok
+checking SFori_0-3-7-testpic001.ppm.pgm ... ok
+checking SFdir_0-2-5-testpic001.ppm.pgm ... ok
+checking SFori_0-4-7-testpic001.ppm.pgm ... ok
+checking SFdir_0-2-6-testpic001.ppm.pgm ... ok
+checking SFori_0-4-8-testpic001.ppm.pgm ... ok
+checking SFdir_0-3-6-testpic001.ppm.pgm ... ok
+checking SFori_1-2-5-testpic001.ppm.pgm ... ok
+checking SFdir_0-3-7-testpic001.ppm.pgm ... ok
+checking SFori_1-2-6-testpic001.ppm.pgm ... ok
+checking SFdir_0-4-7-testpic001.ppm.pgm ... ok
+checking SFori_1-3-6-testpic001.ppm.pgm ... ok
+checking SFdir_0-4-8-testpic001.ppm.pgm ... ok
+checking SFori_1-3-7-testpic001.ppm.pgm ... ok
+checking SFdir_1-2-5-testpic001.ppm.pgm ... ok
+checking SFori_1-4-7-testpic001.ppm.pgm ... ok
+checking SFdir_1-2-6-testpic001.ppm.pgm ... ok
+checking SFori_1-4-8-testpic001.ppm.pgm ... ok
+checking SFdir_1-3-6-testpic001.ppm.pgm ... ok
+checking SFori_2-2-5-testpic001.ppm.pgm ... ok
+checking SFdir_1-3-7-testpic001.ppm.pgm ... ok
+checking SFori_2-2-6-testpic001.ppm.pgm ... ok
+checking SFdir_1-4-7-testpic001.ppm.pgm ... ok
+checking SFori_2-3-6-testpic001.ppm.pgm ... ok
+checking SFdir_1-4-8-testpic001.ppm.pgm ... ok
+checking SFori_2-3-7-testpic001.ppm.pgm ... ok
+checking SFdir_2-2-5-testpic001.ppm.pgm ... ok
+checking SFori_2-4-7-testpic001.ppm.pgm ... ok
+checking SFdir_2-2-6-testpic001.ppm.pgm ... ok
+checking SFori_2-4-8-testpic001.ppm.pgm ... ok
+checking SFdir_2-3-6-testpic001.ppm.pgm ... ok
+checking SFori_3-2-5-testpic001.ppm.pgm ... ok
+checking SFdir_2-3-7-testpic001.ppm.pgm ... ok
+checking SFori_3-2-6-testpic001.ppm.pgm ... ok
+checking SFdir_2-4-7-testpic001.ppm.pgm ... ok
+checking SFori_3-3-6-testpic001.ppm.pgm ... ok
+checking SFdir_2-4-8-testpic001.ppm.pgm ... ok
+checking SFori_3-3-7-testpic001.ppm.pgm ... ok
+checking SFdir_3-2-5-testpic001.ppm.pgm ... ok
+checking SFori_3-4-7-testpic001.ppm.pgm ... ok
+checking SFdir_3-2-6-testpic001.ppm.pgm ... ok
+checking SFori_3-4-8-testpic001.ppm.pgm ... ok
+checking SFdir_3-3-6-testpic001.ppm.pgm ... ok
+checking SFrg-2-5-testpic001.ppm.pgm ... ok
+checking SFdir_3-3-7-testpic001.ppm.pgm ... ok
+checking SFrg-2-6-testpic001.ppm.pgm ... ok
+checking SFdir_3-4-7-testpic001.ppm.pgm ... ok
+checking SFrg-3-6-testpic001.ppm.pgm ... ok
+checking SFdir_3-4-8-testpic001.ppm.pgm ... ok
+checking SFrg-3-7-testpic001.ppm.pgm ... ok
+checking SFintensity-2-5-testpic001.ppm.pgm ... ok
+checking SFrg-4-7-testpic001.ppm.pgm ... ok
+checking SFintensity-2-6-testpic001.ppm.pgm ... ok
+checking SFrg-4-8-testpic001.ppm.pgm ... ok
+checking SFintensity-3-6-testpic001.ppm.pgm ... ok
+checking SFintensity-3-7-testpic001.ppm.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-conspicuity-maps--1' ...
+
+running command './../../bin/ezvision -Z --textlog=test.txt --too-many-shifts=1  --save-conspic-maps testpic001.ppm'
+
+checking test.txt ... ok
+checking COcolor-testpic001.ppm.pgm ... ok
+checking COorientation-testpic001.ppm.pgm ... ok
+checking COmotion-testpic001.ppm.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-conspicuity-maps--2' ...
+
+running command './../../bin/ezvision -Z --textlog=test.txt --too-many-shifts=1  --save-conspic-maps --maxnorm-type=Maxnorm testpic001.ppm'
+
+checking test.txt ... ok
+checking COcolor-testpic001.ppm.pgm ... ok
+checking COorientation-testpic001.ppm.pgm ... ok
+checking COmotion-testpic001.ppm.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-saliency-map--1' ...
+
+running command './../../bin/ezvision -Z --textlog=test.txt --too-many-shifts=1  --save-salmap testpic001.ppm'
+
+checking test.txt ... ok
+checking SMtestpic001.ppm.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-saliency-map--2' ...
+
+running command './../../bin/ezvision -Z --textlog=test.txt --too-many-shifts=1  --save-salmap --maxnorm-type=Maxnorm testpic001.ppm'
+
+checking test.txt ... ok
+checking SMtestpic001.ppm.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-saliency-map--3' ...
+
+running command './../../bin/ezvision -Z --textlog=test.txt --output-frames=0-4@350  --save-salmap testpic001.ppm'
+
+checking test.txt ... ok
+checking SM000000.pgm ... ok
+checking SM000001.pgm ... ok
+checking SM000002.pgm ... ok
+checking SM000003.pgm ... ok
+checking SM000004.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-saliency-map--4' ...
+
+running command './../../bin/ezvision -Z --textlog=test.txt --output-frames=0-4@350  --save-salmap --maxnorm-type=Maxnorm testpic001.ppm'
+
+checking test.txt ... ok
+checking SM000000.pgm ... ok
+checking SM000001.pgm ... ok
+checking SM000002.pgm ... ok
+checking SM000003.pgm ... ok
+checking SM000004.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-foa--1' ...
+
+running command './../../bin/ezvision -ZT --textlog=test.txt --output-frames=0-4@250  --crop-foa=64x64 testpic001.ppm'
+
+checking test.txt ... ok
+checking T000000.ppm ... ok
+checking T000001.ppm ... ok
+checking T000002.ppm ... ok
+checking T000003.ppm ... ok
+checking T000004.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-warp3d--1' ...
+
+running command './../../bin/ezvision -ZT --textlog=test.txt --output-frames=0-5@30  --warp-salmap-3d testpic001.ppm'
+
+checking test.txt ... ok
+checking T000000.ppm ... ok
+checking T000001.ppm ... ok
+checking T000002.ppm ... ok
+checking T000003.ppm ... ok
+checking T000004.ppm ... ok
+checking T000005.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-saliency-map--5' ...
+
+running command './../../bin/ezvision -Z --textlog=test.txt --input-frames=0-5@30 --output-frames=0-5@30  --save-salmap frame '
+
+checking test.txt ... ok
+checking SM000000.pgm ... ok
+checking SM000001.pgm ... ok
+checking SM000002.pgm ... ok
+checking SM000003.pgm ... ok
+checking SM000004.pgm ... ok
+checking SM000005.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'ez-saliency-map--6' ...
+
+running command './../../bin/ezvision -Z --textlog=test.txt --input-frames=0-5@30 --output-frames=0-5@30  --save-salmap --maxnorm-type=Maxnorm frame '
+
+checking test.txt ... ok
+checking SM000000.pgm ... ok
+checking SM000001.pgm ... ok
+checking SM000002.pgm ... ok
+checking SM000003.pgm ... ok
+checking SM000004.pgm ... ok
+checking SM000005.pgm ... ok
+---------------------------------------------------------
+
+13 of 13 tests succeeded
+###
+### test script 'test_vision_black_box.tcl' ...
+###
+
+=========================================================
+test 'trajectory--1' ...
+
+running command './../../bin/vision -TZ --output-frames 1-5@100 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking T000001.ppm ... ok
+checking T000002.ppm ... ok
+checking T000003.ppm ... ok
+checking T000004.ppm ... ok
+checking T000005.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'luminance--1' ...
+
+running command './../../bin/vision -Zl --exit-after-display testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking lum_0.pgm ... ok
+checking lum_1.pgm ... ok
+checking lum_2.pgm ... ok
+checking lum_3.pgm ... ok
+checking lum_4.pgm ... ok
+checking lum_5.pgm ... ok
+checking lum_6.pgm ... ok
+checking lum_7.pgm ... ok
+checking lum_8.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'feature-maps--1' ...
+
+running command './../../bin/vision -Zbrio --exit-after-display testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking by_2_5.pgm ... ok
+checking by_2_6.pgm ... ok
+checking by_3_6.pgm ... ok
+checking by_3_7.pgm ... ok
+checking by_4_7.pgm ... ok
+checking by_4_8.pgm ... ok
+checking intens_2_5.pgm ... ok
+checking intens_2_6.pgm ... ok
+checking intens_3_6.pgm ... ok
+checking intens_3_7.pgm ... ok
+checking intens_4_7.pgm ... ok
+checking intens_4_8.pgm ... ok
+checking ori0_2_5.pgm ... ok
+checking ori0_2_6.pgm ... ok
+checking ori0_3_6.pgm ... ok
+checking ori0_3_7.pgm ... ok
+checking ori0_4_7.pgm ... ok
+checking ori0_4_8.pgm ... ok
+checking ori135_2_5.pgm ... ok
+checking ori135_2_6.pgm ... ok
+checking ori135_3_6.pgm ... ok
+checking ori135_3_7.pgm ... ok
+checking ori135_4_7.pgm ... ok
+checking ori135_4_8.pgm ... ok
+checking ori45_2_5.pgm ... ok
+checking ori45_2_6.pgm ... ok
+checking ori45_3_6.pgm ... ok
+checking ori45_3_7.pgm ... ok
+checking ori45_4_7.pgm ... ok
+checking ori45_4_8.pgm ... ok
+checking ori90_2_5.pgm ... ok
+checking ori90_2_6.pgm ... ok
+checking ori90_3_6.pgm ... ok
+checking ori90_3_7.pgm ... ok
+checking ori90_4_7.pgm ... ok
+checking ori90_4_8.pgm ... ok
+checking rg_2_5.pgm ... ok
+checking rg_2_6.pgm ... ok
+checking rg_3_6.pgm ... ok
+checking rg_3_7.pgm ... ok
+checking rg_4_7.pgm ... ok
+checking rg_4_8.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'conspicuity-maps--1' ...
+
+running command './../../bin/vision -ZCIO --exit-after-display testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking color.pgm ... ok
+checking intensity.pgm ... ok
+checking orientation.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'conspicuity-maps--2' ...
+
+running command './../../bin/vision -ZCIOy --exit-after-display testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking color.pgm ... ok
+checking intensity.pgm ... ok
+checking orientation.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'saliency-map--1' ...
+
+running command './../../bin/vision -Zs --output-frames 1-4@250 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking S000001.pgm ... ok
+checking S000002.pgm ... ok
+checking S000003.pgm ... ok
+checking S000004.pgm ... ok
+checking salmap0_testpic001.ppm.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'saliency-map--2' ...
+
+running command './../../bin/vision -Zsy --output-frames 1-4@350 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking S000001.pgm ... ok
+checking S000002.pgm ... ok
+checking S000003.pgm ... ok
+checking S000004.pgm ... ok
+checking salmap0_testpic001.ppm.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'saliency-map--3' ...
+
+running command './../../bin/vision -Zsm --output-frames 2-4@347 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking S000002.pgm ... ok
+checking S000003.pgm ... ok
+checking S000004.pgm ... ok
+checking salmap0_testpic001.ppm.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'saliency-map--4' ...
+
+running command './../../bin/vision -Zs --output-frames 1-3@255 --salmap-factor 500000 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking S000001.pgm ... ok
+checking S000002.pgm ... ok
+checking S000003.pgm ... ok
+checking salmap0_testpic001.ppm.pgm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'foa--1' ...
+
+running command './../../bin/vision -ZT --output-frames 1-5@250 --crop-foa 64x64 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking T000001.ppm ... ok
+checking T000002.ppm ... ok
+checking T000003.ppm ... ok
+checking T000004.ppm ... ok
+checking T000005.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'foa--2' ...
+
+running command './../../bin/vision -ZT --display-highlight --nodisplay-traj --nodisplay-patch  --nodisplay-foa --output-frames 3-7@200 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking T000003.ppm ... ok
+checking T000004.ppm ... ok
+checking T000005.ppm ... ok
+checking T000006.ppm ... ok
+checking T000007.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'x-combo--1' ...
+
+running command './../../bin/vision -ZX --output-frames 1-3@150 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking T000001.ppm ... ok
+checking T000002.ppm ... ok
+checking T000003.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'x-combo--2' ...
+
+running command './../../bin/vision -ZX --output-frames 1-3@175 --resize 128x128 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking T000001.ppm ... ok
+checking T000002.ppm ... ok
+checking T000003.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'y-combo--1' ...
+
+running command './../../bin/vision -ZY --output-frames 2-4@125 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking T000002.ppm ... ok
+checking T000003.ppm ... ok
+checking T000004.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'y-combo--2' ...
+
+running command './../../bin/vision -ZY --output-frames 3-5@60 --resize 333x333 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking T000003.ppm ... ok
+checking T000004.ppm ... ok
+checking T000005.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'pedestrian--1' ...
+
+running command './../../bin/vision -ZTp --output-frames 1-3@182 testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking T000001.ppm ... ok
+checking T000002.ppm ... ok
+checking T000003.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'params--1' ...
+
+running command './../../bin/vision -ZT --output-frames 2-4@111 --paramfile test.pmap testpic001.ppm'
+
+checking result_testpic001.ppm_.txt ... ok
+checking T000002.ppm ... ok
+checking T000003.ppm ... ok
+checking T000004.ppm ... ok
+---------------------------------------------------------
+
+17 of 17 tests succeeded
+###
+### test script 'test_Pixels_white_box.tcl' ...
+###
+test Pixels--constructors--1 ... ok
+test Pixels--conversions--1 ... ok
+test Pixels--operators--1 ... ok
+test Pixels--operators--2 ... ok
+
+4 of 4 tests succeeded
+###
+### test script 'test_retina_black_box.tcl' ...
+###
+
+=========================================================
+test 'noopt--1' ...
+
+running command './../../bin/retina  testpic001.ppm retinaout.ppm '
+
+checking retinaout.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'blind--1' ...
+
+running command './../../bin/retina  -b testpic001.ppm retinaout.ppm '
+
+checking retinaout.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'bluecones--1' ...
+
+running command './../../bin/retina  -f testpic001.ppm retinaout.ppm '
+
+checking retinaout.ppm ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'allopt--1' ...
+
+running command './../../bin/retina  -bf testpic001.ppm retinaout.ppm 100 100 '
+
+checking retinaout.ppm ... ok
+---------------------------------------------------------
+
+4 of 4 tests succeeded
+###
+### test script 'test_LevelSpec_whitebox.tcl' ...
+###
+test LevelSpec--maxIndex--1 ... ok
+test LevelSpec--maxDepth--1 ... ok
+test LevelSpec--clevOK--1 ... ok
+test LevelSpec--slevOK--1 ... ok
+test LevelSpec--delOK--1 ... ok
+test LevelSpec--csOK--1 ... ok
+test LevelSpec--convert--1 ... ok
+
+7 of 7 tests succeeded
+###
+### test script 'test_Image_white_box.tcl' ...
+###
+test Image--construct-from-array--1 ... ok
+test Image--construct-UDT--1 ... ok
+test Image--construct-and-clear--1 ... ok
+test Image--default-construct--1 ... ok
+test Image--swap--1 ... ok
+test Image--copy--1 ... ok
+test Image--copy-on-write--1 ... ok
+test Image--copy-on-write--2 ... ok
+test Image--copy-on-write--3 ... ok
+test Image--assignment-to-self--1 ... ok
+test Image--type-convert--1 ... ok
+test Image--type-convert--2 ... ok
+test Image--type-convert--3 ... ok
+test Image--attach-detach--1 ... ok
+test Image--destruct--1 ... ok
+test Image--begin-end--1 ... ok
+test Image--beginw-endw--1 ... ok
+test Image--getMean--1 ... ok
+test Image--clear--1 ... ok
+test Image--plus-eq-scalar--1 ... ok
+test Image--minus-eq-scalar--1 ... ok
+test Image--mul-eq-scalar--1 ... ok
+test Image--div-eq-scalar--1 ... ok
+test Image--plus-eq-array--1 ... ok
+test Image--minus-eq-array--1 ... ok
+test Image--mul-eq-array--1 ... ok
+test Image--div-eq-array--1 ... ok
+test Image--plus-scalar--1 ... ok
+test Image--minus-scalar--1 ... ok
+test Image--mul-scalar--1 ... ok
+test Image--div-scalar--1 ... ok
+test Image--plus-array--1 ... ok
+test Image--minus-array--1 ... ok
+test Image--mul-array--1 ... ok
+test Image--div-array--1 ... ok
+test Image--emptyArea--1 ... ok
+test Image--mean--1 ... ok
+test Image--sum--1 ... ok
+test Image--sum--2 ... ok
+test Image--rangeOf--1 ... ok
+test Image--rangeOf--2 ... ok
+test Image--remapRange--1 ... ok
+test Image--squared--1 ... ok
+test Image--toPower--1 ... ok
+test Image--toPower--2 ... ok
+test Image--quadEnergy--1 ... ok
+test Image--overlay--1 ... ok
+test Image--rescale--1 ... ok
+test Image--rescale--2 ... ok
+test Image--rescale--3 ... ok
+test Image--zoomXY--1 ... ok
+test Image--zoomXY--2 ... ok
+test Image--zoomXY--3 ... ok
+test Image--zoomXY--4 ... ok
+test Image--crop--1 ... ok
+test Image--lowPass3x--1 ... ok
+test Image--lowPass3y--1 ... ok
+test Image--lowPass3--1 ... ok
+test Image--lowPass5x--1 ... ok
+test Image--lowPass5y--1 ... ok
+test Image--lowPass5--1 ... ok
+test Image--binomialKernel--1 ... ok
+test Image--sepFiltClean--1 ... ok
+test Image--orientedFilter--1 ... ok
+
+64 of 64 tests succeeded
+###
+### test script 'test_ShapeEstimator_blackbox.tcl' ...
+###
+
+=========================================================
+test 'aircrafts--1' ...
+
+running command './../../bin/test-ShapeEstimator  inputs/aircrafts.ppm '
+
+checking aircrafts.ppm-result.txt ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'balloons--1' ...
+
+running command './../../bin/test-ShapeEstimator  inputs/balloons.ppm '
+
+checking balloons.ppm-result.txt ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'elephants--1' ...
+
+running command './../../bin/test-ShapeEstimator  inputs/elephants.ppm '
+
+checking elephants.ppm-result.txt ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'faces--1' ...
+
+running command './../../bin/test-ShapeEstimator  inputs/faces.ppm '
+
+checking faces.ppm-result.txt ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'helis--1' ...
+
+running command './../../bin/test-ShapeEstimator  inputs/helis.ppm '
+
+checking helis.ppm-result.txt ... ok
+---------------------------------------------------------
+
+=========================================================
+test 'sailboats--1' ...
+
+running command './../../bin/test-ShapeEstimator  inputs/sailboats.ppm '
+
+checking sailboats.ppm-result.txt ... ok
+---------------------------------------------------------
+
+6 of 6 tests succeeded
+
+SUMMARY: ALL TESTS PASSED (126 of 126)
+8 of 8 tests succeeded (test_Raster_white_box.tcl)
+3 of 3 tests succeeded (test_ImageEqual.tcl)
+13 of 13 tests succeeded (test_ezvision_black_box.tcl)
+17 of 17 tests succeeded (test_vision_black_box.tcl)
+4 of 4 tests succeeded (test_Pixels_white_box.tcl)
+4 of 4 tests succeeded (test_retina_black_box.tcl)
+7 of 7 tests succeeded (test_LevelSpec_whitebox.tcl)
+64 of 64 tests succeeded (test_Image_white_box.tcl)
+6 of 6 tests succeeded (test_ShapeEstimator_blackbox.tcl)
+24.33user 11.47system 0:39.15elapsed 91%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (273417major+367276minor)pagefaults 0swaps
+[itti@dnt saliency]$
+
+##### Have a look at the section on 'iLab Neuromorphic Vision C++
+##### Toolkit Daily Diagnostics' at
+##### http://ilab.usc.edu/toolkit/documentation.shtml for the most
+##### up-to-date view of how things should look. This page is
+##### re-gerenated nightly by a script that does essentially the same
+##### thing as we did here, but on the current version of the code,
+##### plus some more.
+
+##### Good luck and enjoy!

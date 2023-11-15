@@ -1,0 +1,22 @@
+<scenes>
+<annotation>
+  <filename>berry1.png</filename>
+  <folder>../inputs</folder>
+  <source>Sample Input</source>
+  <description>Blackberry 1 Search</description>
+  <!-- <specs width="256" height="256" type="Scaled"/> -->
+  <object>
+    <name>Blackberry</name>
+    <id>1</id>
+    <description>Blackberry</description>
+    <polygon>
+      <pt><x>96</x><y>95</y></pt>
+      <pt><x>125</x><y>85</y></pt>
+      <pt><x>159</x><y>84</y></pt>
+      <pt><x>175</x><y>180</y></pt>
+      <pt><x>145</x><y>192</y></pt>
+      <pt><x>112</x><y>192</y></pt>
+    </polygon>
+  </object>
+</annotation>
+</scenes>

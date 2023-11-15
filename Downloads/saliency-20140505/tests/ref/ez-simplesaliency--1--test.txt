@@ -1,0 +1,38 @@
+0000000.00ms FOAradius            20
+0000000.00ms FoveaRadius          20
+0000000.00ms InputDims            320x240
+0000000.00ms ReadFrame            ../inputs/ezin000000.png
+0000000.00ms InputFrameSeries     frame 0
+0000030.00ms OutputFrameSeries    frame 0
+0000030.00ms WriteFloat           VCO000000.png
+0000030.00ms WriteFloat           VCO000000.pfm
+0000030.00ms WriteRGB             T000000.png
+0000030.00ms WriteRGB             T000000.pfm
+0000030.00ms ReadFrame            ../inputs/ezin000001.png
+0000030.00ms InputFrameSeries     frame 1
+0000060.00ms OutputFrameSeries    frame 1
+0000060.00ms WriteFloat           VCO000001.png
+0000060.00ms WriteFloat           VCO000001.pfm
+0000060.00ms WriteRGB             T000001.png
+0000060.00ms WriteRGB             T000001.pfm
+0000060.00ms ReadFrame            ../inputs/ezin000002.png
+0000060.00ms InputFrameSeries     frame 2
+0000090.00ms OutputFrameSeries    frame 2
+0000090.00ms WriteFloat           VCO000002.png
+0000090.00ms WriteFloat           VCO000002.pfm
+0000090.00ms WriteRGB             T000002.png
+0000090.00ms WriteRGB             T000002.pfm
+0000090.00ms ReadFrame            ../inputs/ezin000003.png
+0000090.00ms InputFrameSeries     frame 3
+0000120.00ms OutputFrameSeries    frame 3
+0000120.00ms WriteFloat           VCO000003.png
+0000120.00ms WriteFloat           VCO000003.pfm
+0000120.00ms WriteRGB             T000003.png
+0000120.00ms WriteRGB             T000003.pfm
+0000120.00ms ReadFrame            ../inputs/ezin000004.png
+0000120.00ms InputFrameSeries     frame 4
+0000150.00ms OutputFrameSeries    frame 4
+0000150.00ms WriteFloat           VCO000004.png
+0000150.00ms WriteFloat           VCO000004.pfm
+0000150.00ms WriteRGB             T000004.png
+0000150.00ms WriteRGB             T000004.pfm

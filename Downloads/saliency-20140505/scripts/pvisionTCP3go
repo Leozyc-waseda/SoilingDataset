@@ -1,0 +1,27 @@
+#!/bin/sh
+f="-fn 5x7"
+n="ibeo"
+r="ssh"
+p="21000"
+sl=""
+for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16; do
+    aterm $f -title "port $p" -e $r $n "pvisionTCP3 --ip-port=$p" &
+    sl="${sl}${n}:${p},"; p=`expr $p + 1`
+    sleep 1
+done
+sl=`echo $sl | sed -e s/,$//`
+
+sleep 2
+
+cmd="pvisionTCP3-master --fg-type=XC --framegrabber-dims=1920x1080 \
+--nofs --sdl-priority=0 --beowulf-slaves=${sl}"
+
+echo Running: $cmd
+
+$cmd
+
+# cleanup:
+$r $n killallmyprocs.pl
+sleep 2
+$r $n killallmyprocs.pl -9
+

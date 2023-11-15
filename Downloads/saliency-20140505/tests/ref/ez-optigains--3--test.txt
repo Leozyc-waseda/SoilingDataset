@@ -1,0 +1,11 @@
+0000000.00ms InputDims            0x0
+0000000.00ms InputFrameSeries     frame 0
+0000064.70ms CovertShift          (176,128) 8.532mV
+0000064.70ms OutputFrameSeries    frame 0
+0000064.70ms WriteRGB             T000000.pnm
+0000121.80ms CovertShift          (16,64) 7.172mV
+0000121.80ms OutputFrameSeries    frame 1
+0000121.80ms WriteRGB             T000001.pnm
+0000175.30ms CovertShift          (192,128) 6.983mV
+0000175.30ms OutputFrameSeries    frame 2
+0000175.30ms WriteRGB             T000002.pnm

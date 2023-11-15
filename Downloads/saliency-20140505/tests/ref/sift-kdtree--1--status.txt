@@ -1,0 +1,63 @@
+Raster::ReadFrame: reading raster file: ../inputs/berry3.png
+Raster::ReadFrame: reading raster file: ../inputs/berry1.png
+VisualObject::computeKeypoints: ../inputs/berry3.png: initializing ScaleSpace from 281x210 image...
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry3.png: Found 524 keypoints in ScaleSpace 0
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry3.png: Found 138 keypoints in ScaleSpace 1
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry3.png: Found 33 keypoints in ScaleSpace 2
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry3.png: Found 1 keypoints in ScaleSpace 3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry3.png: Found 0 keypoints in ScaleSpace 4
+VisualObject::computeKeypoints: ../inputs/berry3.png: Found total of 696 keypoints over all ScaleSpaces.
+VisualObject::computeKeypoints: ../inputs/berry1.png: initializing ScaleSpace from 400x300 image...
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 0.50 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found 343 keypoints in ScaleSpace 0
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 1.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found 62 keypoints in ScaleSpace 1
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 2.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found 19 keypoints in ScaleSpace 2
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 4.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found 8 keypoints in ScaleSpace 3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 1/3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 2/3
+ScaleSpace::findKeypoints: Processing octave 8.00 scale 3/3
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found 4 keypoints in ScaleSpace 4
+VisualObject::computeKeypoints: ../inputs/berry1.png: Found total of 436 keypoints over all ScaleSpaces.
+VisualObjectMatch::matchKDTree: Building KDTree for VisualObject '../inputs/berry3.png'...
+VisualObjectMatch::matchKDTree: KDTree for VisualObject '../inputs/berry3.png' complete.
+VisualObjectMatch::VisualObjectMatch: Got 20 KP matches (th=7) btw ../inputs/berry3.png and ../inputs/berry1.png
+test-SIFTimageMatch::main: Found 20 matches between ../inputs/berry3.png and ../inputs/berry1.png
+VisualObjectMatch::prune: After pruning by distance: total 0 outliers pruned.
+VisualObjectMatch::prune: After pruning by Hough: total 6 outliers pruned.
+VisualObjectMatch::prune: After pruning by affine: total 6 outliers pruned.
+test-SIFTimageMatch::main: Pruned 6 outlier matches.
+[testX]   [ -0.098 -0.858 ] [refX]   [ 266.206]
+[testY] = [  0.885 -0.116 ] [refY] + [-28.818]
+test-SIFTimageMatch::main: getKeypointAvgDist = 1.424445
+test-SIFTimageMatch::main: getAffineAvgDist = 0.437670
+test-SIFTimageMatch::main: getScore = 2.193427
+VisualObjectMatch::checkSIFTaffine: theta=97.009105deg sx=0.890285 sy=0.865340 shx=-0.012291 shy=-0.012645
+VisualObjectMatch::getMatchImage: r[281 210] t[400 300]
+Raster::WriteFrame: writing raster file: matches.pnm
+Raster::WriteFrame: writing raster file: fused.pnm

@@ -1,0 +1,78 @@
+/*!@file Script/ImageScript.H */
+
+// //////////////////////////////////////////////////////////////////// //
+// The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2000-2005   //
+// by the University of Southern California (USC) and the iLab at USC.  //
+// See http://iLab.usc.edu for information about this project.          //
+// //////////////////////////////////////////////////////////////////// //
+// Major portions of the iLab Neuromorphic Vision Toolkit are protected //
+// under the U.S. patent ``Computation of Intrinsic Perceptual Saliency //
+// in Visual Environments, and Applications'' by Christof Koch and      //
+// Laurent Itti, California Institute of Technology, 2001 (patent       //
+// pending; application number 09/912,225 filed July 23, 2001; see      //
+// http://pair.uspto.gov/cgi-bin/final/home.pl for current status).     //
+// //////////////////////////////////////////////////////////////////// //
+// This file is part of the iLab Neuromorphic Vision C++ Toolkit.       //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is free software; you can   //
+// redistribute it and/or modify it under the terms of the GNU General  //
+// Public License as published by the Free Software Foundation; either  //
+// version 2 of the License, or (at your option) any later version.     //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope  //
+// that it will be useful, but WITHOUT ANY WARRANTY; without even the   //
+// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      //
+// PURPOSE.  See the GNU General Public License for more details.       //
+//                                                                      //
+// You should have received a copy of the GNU General Public License    //
+// along with the iLab Neuromorphic Vision C++ Toolkit; if not, write   //
+// to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,   //
+// Boston, MA 02111-1307 USA.                                           //
+// //////////////////////////////////////////////////////////////////// //
+//
+// Primary maintainer for this file: Rob Peters <rjpeters at usc dot edu>
+// $HeadURL: svn://isvn.usc.edu/software/invt/trunk/saliency/src/Script/ImageScript.H $
+// $Id: ImageScript.H 11876 2009-10-22 15:53:06Z icore $
+//
+
+#ifndef SCRIPT_IMAGESCRIPT_H_DEFINED
+#define SCRIPT_IMAGESCRIPT_H_DEFINED
+
+#include "Util/Types.H"
+#include "tcl/conversions.h"
+
+struct Tcl_Interp;
+struct Tcl_ObjType;
+
+extern "C" int Bimage_Init(Tcl_Interp* interp);
+extern "C" int Fimage_Init(Tcl_Interp* interp);
+extern "C" int Cbimage_Init(Tcl_Interp* interp);
+extern "C" int Cfimage_Init(Tcl_Interp* interp);
+extern "C" int Raster_Init(Tcl_Interp* interp);
+
+class Dims;
+template <class T> class Image;
+template <class T> class PixRGB;
+
+namespace tcl
+{
+  tcl::obj aux_convert_from(Dims d);
+  tcl::obj aux_convert_from(Image<byte> img);
+  tcl::obj aux_convert_from(Image<float> img);
+  tcl::obj aux_convert_from(Image<PixRGB<byte> > img);
+  tcl::obj aux_convert_from(Image<PixRGB<float> > img);
+
+  Dims                  aux_convert_to(Tcl_Obj* obj, Dims*                 );
+  Image<byte>           aux_convert_to(Tcl_Obj* obj, Image<byte>*          );
+  Image<float>          aux_convert_to(Tcl_Obj* obj, Image<float>*         );
+  Image<PixRGB<byte> >  aux_convert_to(Tcl_Obj* obj, Image<PixRGB<byte> >* );
+  Image<PixRGB<float> > aux_convert_to(Tcl_Obj* obj, Image<PixRGB<float> >*);
+}
+
+// ######################################################################
+/* So things look consistent in everyone's emacs... */
+/* Local Variables: */
+/* indent-tabs-mode: nil */
+/* End: */
+
+#endif // SCRIPT_IMAGESCRIPT_H_DEFINED

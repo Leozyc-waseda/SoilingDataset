@@ -1,0 +1,85 @@
+#!/bin/sh
+export TDIR=/home/tmp/saliency-$$
+export PATH=${PATH}:/usr/bin/X11
+
+mkdir -p $TDIR
+cd $TDIR
+
+# get the code:
+/usr/bin/svn checkout --username anonsvn --password itRocks file:///home/svnroot/software/invt/trunk/saliency
+
+# go to the active directory:
+cd saliency
+
+# do a configure:
+err=0
+
+ok="OK"
+bad="<EM>BROKEN!</EM>"
+
+echo "<P class=\"sm\">Automatic object recognition benchmark started: " `date` "</P><UL>" > OREC-BUILD64.inc
+
+echo "<LI><A HREF=\"objrec-conf64.shtml\">./configure --enable-shlibs --enable-quietcompile</A> -- " >> OREC-BUILD64.inc
+echo `date` > OREC-CONFIGURE64.inc
+/usr/bin/time ./configure --enable-shlibs --enable-quietcompile >> OREC-CONFIGURE64.inc 2>&1
+if [ "0$?" -ne 0 ]; then err=1; msg=$bad; else msg=$ok; fi
+echo "$msg</LI>" >> OREC-BUILD64.inc
+
+# compile the benchmarks:
+echo "<LI><A HREF=\"objrec-make64.shtml\">make testrec</A> -- " >> OREC-BUILD64.inc
+echo `date` > OREC-MAKE64.inc
+/usr/bin/time make testrec >> OREC-MAKE64.inc 2>&1
+if [ "0$?" -ne 0 ]; then err=1; msg=$bad; else msg=$ok; fi
+echo "$msg</LI>" >> OREC-BUILD64.inc
+
+# run the detection benchmarks:
+echo "<LI><A HREF=\"objrec-det64.shtml\">make objdetbench</A> -- " >> OREC-BUILD64.inc
+echo `date` > OREC-DET64.inc
+/usr/bin/time make objdetbench >> OREC-DET64.inc 2>&1
+if [ "0$?" -ne 0 ]; then err=1; msg=$bad; else msg=$ok; fi
+echo "$msg</LI>" >> OREC-BUILD64.inc
+
+# run the recognition benchmarks:
+echo "<LI><A HREF=\"objrec-rec64.shtml\">make objrecbench</A> -- " >> OREC-BUILD64.inc
+echo `date` > OREC-REC64.inc
+/usr/bin/time make objrecbench >> OREC-REC64.inc 2>&1
+if [ "0$?" -ne 0 ]; then err=1; msg=$bad; else msg=$ok; fi
+echo "$msg</LI>" >> OREC-BUILD64.inc
+
+# that's it for our nightly build:
+echo "</UL>" >>  OREC-BUILD64.inc
+echo "<P class=\"sm\">Automatic benchmark finished: " `date` "</P>" >> OREC-BUILD64.inc
+
+# keep a copy of these outputs:
+FILES="OREC-CONFIGURE64.inc OREC-MAKE64.inc OREC-BUILD64.inc OREC-DET64.inc OREC-REC64.inc"
+
+# copy to desitnation on web server:
+DDIR="/lab/html/neo2/benchmark"
+/bin/cp -f $FILES $DDIR
+
+/bin/rm -rf ${DDIR}/objbenchdet
+/bin/rm -rf ${DDIR}/objbenchrec
+
+/bin/cp -ar doc/objbenchdet ${DDIR}
+/bin/cp -ar doc/objbenchrec ${DDIR}
+
+# send an email if there was some error:
+if [ "0$err" -ne 0 ]; then
+/bin/mail -s "Error in objrec benchmark - $dat" cvslog@iLab.usc.edu <<EOF
+Greetings -
+
+There was some error in the iLab Neuromorphic Vision C++ Toolkit
+object recognition benchmark our 64-bit server tonight.  If you get a
+chance, please see the logs at
+
+http://ilab.usc.edu/neo2/benchmark/index.shtml
+
+Thanks,
+
+  -- the iLab.usc.edu server
+EOF
+fi
+
+# cleanup:
+cd
+/bin/rm -rf $TDIR

@@ -1,0 +1,152 @@
+NUM_TOKEN_TYPES 6
+TOKEN_TYPE_0 {
+	NAME  new_target
+	NUM_TOKENS 6
+	TOKEN_0 {
+		NUM_TEXT_ITEMS 11
+		LOW   0
+		HIGH  6
+		TEXT_ITEM_0  I\ really\ don't\ like\ this\ object.
+		TEXT_ITEM_1  I\ don't\ like\ this\ object,\ but\ I\ will\ track\ it\ anyway.
+		TEXT_ITEM_2  This\ object\ is\ boe-ring
+		TEXT_ITEM_3  This\ is\ the\ worst\ object\ I\ have\ ever\ seen.
+		TEXT_ITEM_4  You\ must\ be\ kidding\ me.\ You\ call\ this\ a\ good\ object?
+		TEXT_ITEM_5  The\ saliency\ of\ this\ object\ is\ bee-yond\ hope.
+		TEXT_ITEM_6  My\ programming\ was\ not\ designed\ to\ process\ these\ sensations.
+    TEXT_ITEM_7  Could\ you\ please\ continue\ the\ petty\ bickering?\ I\ find\ it\ most\ intriguing.
+    TEXT_ITEM_8  You\ are\ right,\ sir.\ I\ do\ tend\ to\ babble.
+    TEXT_ITEM_9  Sensors\ show\ nothing\ out\ there.\ Absolutely\ nothing.\ (No\ intelligent\ life\ form\ of\ any\ kind)
+    TEXT_ITEM_10 Sensors\ show\ lifeforms\, but\ I\ am\ unable\ to\ ascertain\ whether\ they\ are\ awake\ or\ dorment.\ However\ their\ propulsion\ system\ is\ inactive\ so\ I\ would\ hypothesize\ that\ they\ are\ asleep.
+
+	}
+	TOKEN_1 {
+		NUM_TEXT_ITEMS 12 
+		LOW   16
+		HIGH  22
+		TEXT_ITEM_0  This\ is\ not\ one\ of\ my\ favorite\ objects!
+		TEXT_ITEM_1  I\ could\ care\ less\ about\ this\ object!
+		TEXT_ITEM_2  This\ object\ is\ not\ to\ my\ liking.
+		TEXT_ITEM_3  This\ object\ is\ not\ very\ salient.
+		TEXT_ITEM_4  I\ have\ seen\ more\ salient\ things\ on\ the\ back\ of\ my\ see-moss\ chip.
+		TEXT_ITEM_5  If\ you\ think\ this\ thing\ is\ salient,\ you\ must\ be\ smoking.
+		TEXT_ITEM_6  If\ you\ think\ this\ thing\ is\ salient,\ you\ must\ be\ joking.
+		TEXT_ITEM_7  Try\ to\ impress\ me\ a\ bit\ more
+    TEXT_ITEM_8  This\ is\ bogus.
+    TEXT_ITEM_9  I\ am\ detecting\ imperfections\ in\ the\ titanium\ casing\...\ temperature\ variations\ in\ the\ fuel\ manifold\...\ it\ is\ no\ more\ "real"\ to\ me\ now\ than\ it\ was\ a\ moment\ ago.
+    TEXT_ITEM_10 This\ is\ yet\ another\ example\ of\ how\ our\ saliency\ have\ random\ results.
+    TEXT_ITEM_11 I\ have\ encountered\ 1754\ non-human\ races\ in\ my\ 2\ years\ in\ I-LAB.
+	}
+	TOKEN_2 {
+		NUM_TEXT_ITEMS 12
+		LOW   32
+		HIGH  44
+		TEXT_ITEM_0  Hmmm\ I\ am\ slightly\ interested
+		TEXT_ITEM_1  This\ one\ is\ oh\ kay\ but\ you\ can\ do\ better
+		TEXT_ITEM_2  I\ am\ not\ too\ excited\ by\ this\ one
+		TEXT_ITEM_3  Why\ am\ I\ not\ surprised?
+		TEXT_ITEM_4  This\ one\ is\ just\ oh\ kay
+		TEXT_ITEM_5  This\ one\ is\ a\ bit\ interesting
+		TEXT_ITEM_6  That\ looks\ just\ so\ so
+		TEXT_ITEM_7  I've\ seen\ better,\ I've\ seen\ worse
+		TEXT_ITEM_8  You\ can\ do\ better\ than\ that
+    TEXT_ITEM_9  This\ has\ potential
+    TEXT_ITEM_10 I\ am\ superior,\ in\ many\ ways.\ But\ I\ would\ gladly\ give\ it\ up\ to\ be\ human.
+    TEXT_ITEM_11 It\ is\ interesting\ that\ people\ try\ to\ find\ meaningful\ patterns\ in\ things\ that\ are\ essentially\ random.\ I\ have\ noticed\ that\ the\ images\ they\ perceive\ sometimes\ suggest\ what\ they\ are\ thinking\ about\ at\ that\ particular\ moment.
+	}
+	TOKEN_3 {
+		NUM_TEXT_ITEMS 10
+		LOW   56
+		HIGH  76
+		TEXT_ITEM_0  I\ like\ this\ object\ very\ much!
+		TEXT_ITEM_1  Excellent.\ bigpause\ I\ like\ it!
+		TEXT_ITEM_2  Wonderful!
+		TEXT_ITEM_3  Too\ good!
+		TEXT_ITEM_4  This\ one\ looks\ pretty\ nice!
+		TEXT_ITEM_5  Great!
+		TEXT_ITEM_6  This\ object\ contains\ high\ concentrations\ of\ methane\, carbon\ monoxide\, and\ fluorine.
+    TEXT_ITEM_7  Most\ interesting.\ Could\ this\ be\ Human\ Object\ Number\ 663?
+    TEXT_ITEM_8  At\ the\ moment,\ I\ would\ find\ it\ difficult\ to\ choose.
+    TEXT_ITEM_9  Strange\ is\ not\ a\ sufficient\ adjective\ to\ describe\ the\ experience.
+	}
+	TOKEN_4 {
+		NUM_TEXT_ITEMS 7
+		LOW   86
+		HIGH  99
+		TEXT_ITEM_0  This\ is\ the\ best!
+		TEXT_ITEM_1  This\ is\ cray-zee!
+		TEXT_ITEM_2  O.\ My\ God!
+		TEXT_ITEM_3  Salient\ objects\ like\ this\ don't\ come\ every\ day!
+		TEXT_ITEM_4  Very\ cool!
+    TEXT_ITEM_5  Now\ we\ are\ talking!
+    TEXT_ITEM_6  Excuse\ me!\ What..\ does\ it\ feel\ like\ when\ a\ person\ is\ losing\ his\ mind?
+	}
+	TOKEN_5 {
+		NUM_TEXT_ITEMS 3
+		LOW   98
+		HIGH  100
+		TEXT_ITEM_0  Amazing!\ This\ is\ the\ best!
+		TEXT_ITEM_1  Wow!\ This\ is\ the\ best\ object\ ever!
+		TEXT_ITEM_2  Awesome!\ This\ is\ the\ most\ salient\ object\ I\ have\ ever\ seen!
+
+	}
+}
+TOKEN_TYPE_1 {
+	NAME  notrack_target
+	NUM_TOKENS 1
+	TOKEN_0 {
+		NUM_TEXT_ITEMS 3
+		LOW 0
+		HIGH 255
+		TEXT_ITEM_0  I\ couldn't\ track\ that\ thing.
+		TEXT_ITEM_1  This\ thing\ is\ giving\ me\ a\ headache.
+		TEXT_ITEM_2  Let\ me\ move\ own\ with\ my\ life.
+	}
+}
+TOKEN_TYPE_2 {
+	NAME  tiresome_target
+	NUM_TOKENS 1
+	TOKEN_0 {
+		NUM_TEXT_ITEMS 4
+		LOW 0
+		HIGH 255
+		TEXT_ITEM_0  that\ got\ tiresome.
+		TEXT_ITEM_1  I\ couldn't\ track\ that\ thing.
+		TEXT_ITEM_2  This\ thing\ is\ giving\ me\ a\ headache.
+		TEXT_ITEM_3  Let\ me\ move\ own\ with\ my\ life.
+	}
+}
+TOKEN_TYPE_3 {
+	NAME  nomove_target
+	NUM_TOKENS 1
+	TOKEN_0 {
+		NUM_TEXT_ITEMS 2
+		LOW 0
+		HIGH 255
+		TEXT_ITEM_0  that\ thing\ wasn't\ moving.
+		TEXT_ITEM_1  no\ move,\ no\ go.
+	}
+}
+TOKEN_TYPE_4 {
+	NAME  boring_target
+	NUM_TOKENS 1
+	TOKEN_0 {
+		NUM_TEXT_ITEMS 4
+		LOW 0
+		HIGH 255
+		TEXT_ITEM_0  that\ got\ way\ too\ boe-ring.
+		TEXT_ITEM_1  can\ you\ be\ more\ exciting?
+		TEXT_ITEM_2  I\ am\ not\ amused\ anymore
+		TEXT_ITEM_3  Believing\ oneself\ to\ be\ perfect\ is\ often\ the\ sign\ of\ a\ delusional\ mind.
+	}
+}
+TOKEN_TYPE_5 {
+	NAME  object_intro
+	NUM_TOKENS 1
+	TOKEN_0 {
+		NUM_TEXT_ITEMS 2
+		LOW 0
+		HIGH 255
+		TEXT_ITEM_0  this\ is\ a
+		TEXT_ITEM_1  this\ looks\ like\ a
+	}
+}

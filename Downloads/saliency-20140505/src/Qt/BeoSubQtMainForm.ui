@@ -1,0 +1,1791 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>BeoSubQtMainForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>BeoSubQt</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1001</width>
+            <height>673</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>BeoSub</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>false</bool>
+    </property>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>bottomfilename</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>740</x>
+                <y>10</y>
+                <width>190</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>saveDown</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>730</x>
+                <y>30</y>
+                <width>205</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Save bottom image</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>frontfilename</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>410</x>
+                <y>10</y>
+                <width>190</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>saveFront</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>400</x>
+                <y>30</y>
+                <width>206</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Save front image</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>saveUp</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>30</y>
+                <width>205</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Save top image</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>topfilename</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>80</x>
+                <y>10</y>
+                <width>190</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel2_2_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>360</x>
+                <y>600</y>
+                <width>30</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Dive</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>TsDisplay</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>310</x>
+                <y>600</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="focusPolicy">
+            <enum>NoFocus</enum>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QScrollBar">
+        <property name="name">
+            <cstring>DiveScroll</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>480</x>
+                <y>610</y>
+                <width>170</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="minValue">
+            <number>0</number>
+        </property>
+        <property name="maxValue">
+            <number>100</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+    </widget>
+    <widget class="QScrollBar">
+        <property name="name">
+            <cstring>FrontBScroll</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>131</x>
+                <y>530</y>
+                <width>170</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="minValue">
+            <number>0</number>
+        </property>
+        <property name="maxValue">
+            <number>100</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel2_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>640</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Orient</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>FrontBDisplay</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>310</x>
+                <y>520</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit12</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>440</x>
+                <y>520</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QScrollBar">
+        <property name="name">
+            <cstring>TsScroll</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>130</x>
+                <y>610</y>
+                <width>170</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="minValue">
+            <number>-100</number>
+        </property>
+        <property name="maxValue">
+            <number>100</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>BsDisplay</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>660</x>
+                <y>600</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel2_2_2_3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>360</x>
+                <y>640</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Pitch</string>
+        </property>
+    </widget>
+    <widget class="QScrollBar">
+        <property name="name">
+            <cstring>RearBScroll</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>480</x>
+                <y>530</y>
+                <width>170</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="minValue">
+            <number>0</number>
+        </property>
+        <property name="maxValue">
+            <number>100</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+    </widget>
+    <widget class="QScrollBar">
+        <property name="name">
+            <cstring>OrientScroll</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>130</x>
+                <y>650</y>
+                <width>170</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="minValue">
+            <number>-180</number>
+        </property>
+        <property name="maxValue">
+            <number>180</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LTDisplay</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>310</x>
+                <y>560</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>600</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Advance</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit16</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>440</x>
+                <y>560</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QScrollBar">
+        <property name="name">
+            <cstring>RTScroll</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>480</x>
+                <y>570</y>
+                <width>170</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="minValue">
+            <number>-100</number>
+        </property>
+        <property name="maxValue">
+            <number>100</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+    </widget>
+    <widget class="QScrollBar">
+        <property name="name">
+            <cstring>LTScroll</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>130</x>
+                <y>570</y>
+                <width>170</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="minValue">
+            <number>-100</number>
+        </property>
+        <property name="maxValue">
+            <number>100</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>TiltDisplay</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>660</x>
+                <y>640</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>RTDisplay</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>660</x>
+                <y>560</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>RearBDisplay</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>660</x>
+                <y>520</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>TurnDisplay</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>310</x>
+                <y>640</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>Label_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>490</y>
+                <width>230</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&lt;b&gt;Ballasts and Thrusters&lt;font size="+1"&gt;&lt;/font&gt;&lt;/b&gt;</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>410</y>
+                <width>70</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Heading =</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>370</y>
+                <width>70</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Pitch =</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel3_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>450</y>
+                <width>70</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Depth =</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>330</y>
+                <width>70</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Roll =</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>ImagePixmapLabel1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>50</y>
+                <width>320</width>
+                <height>240</height>
+            </rect>
+        </property>
+        <property name="backgroundMode">
+            <enum>NoBackground</enum>
+        </property>
+        <property name="scaledContents">
+            <bool>true</bool>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>160</x>
+                <y>370</y>
+                <width>60</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>90</x>
+                <y>330</y>
+                <width>60</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>90</x>
+                <y>370</y>
+                <width>60</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit3_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>160</x>
+                <y>410</y>
+                <width>60</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit4</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>90</x>
+                <y>450</y>
+                <width>60</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>90</x>
+                <y>410</y>
+                <width>60</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit1_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>160</x>
+                <y>330</y>
+                <width>60</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit4_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>160</x>
+                <y>450</y>
+                <width>60</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>Label_1_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>290</y>
+                <width>83</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&lt;b&gt;Compass&lt;font size="+1"&gt;&lt;/font&gt;&lt;/b&gt;</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>Label_1_2_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>90</x>
+                <y>290</y>
+                <width>50</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>current</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>Label_1_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>160</x>
+                <y>290</y>
+                <width>50</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>target</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit11</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>90</x>
+                <y>520</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel11</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>520</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Front Ballast =</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit15</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>90</x>
+                <y>560</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel15</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>560</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>L Thruster</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel16</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>360</x>
+                <y>560</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>R Thruster</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel12</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>360</x>
+                <y>520</y>
+                <width>80</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Rear Ballast =</string>
+        </property>
+    </widget>
+    <widget class="QScrollBar">
+        <property name="name">
+            <cstring>PitchScroll</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>480</x>
+                <y>650</y>
+                <width>170</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="minValue">
+            <number>-60</number>
+        </property>
+        <property name="maxValue">
+            <number>60</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+    </widget>
+    <widget class="QRadioButton">
+        <property name="name">
+            <cstring>PitchPID</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>250</x>
+                <y>380</y>
+                <width>20</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>radioButton1</string>
+        </property>
+    </widget>
+    <widget class="QRadioButton">
+        <property name="name">
+            <cstring>HeadingPID</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>250</x>
+                <y>350</y>
+                <width>20</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>radioButton1</string>
+        </property>
+    </widget>
+    <widget class="QRadioButton">
+        <property name="name">
+            <cstring>KILL</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>250</x>
+                <y>440</y>
+                <width>20</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>radioButton1</string>
+        </property>
+    </widget>
+    <widget class="QRadioButton">
+        <property name="name">
+            <cstring>DepthPID</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>250</x>
+                <y>410</y>
+                <width>20</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>radioButton1</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit11_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>270</x>
+                <y>380</y>
+                <width>70</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Pitch PID</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ButtonStop</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>710</x>
+                <y>520</y>
+                <width>280</width>
+                <height>150</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Stop
+Everything</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>ImagePixmapLabel2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>340</x>
+                <y>50</y>
+                <width>320</width>
+                <height>240</height>
+            </rect>
+        </property>
+        <property name="backgroundMode">
+            <enum>NoBackground</enum>
+        </property>
+        <property name="scaledContents">
+            <bool>true</bool>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LabelTaskControl_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>870</x>
+                <y>300</y>
+                <width>110</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>CPU temperature</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>CPUtemp</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>870</x>
+                <y>340</y>
+                <width>100</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>lineEditAdvance</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>770</x>
+                <y>330</y>
+                <width>60</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>lineEditStrafe</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>770</x>
+                <y>360</y>
+                <width>60</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>resetA</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>680</x>
+                <y>390</y>
+                <width>160</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>reset Attitude</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>GetDirections</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>680</x>
+                <y>430</y>
+                <width>160</width>
+                <height>41</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Get Directions from 
+Current to Goal</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel12_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>690</x>
+                <y>360</y>
+                <width>60</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Strafe</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ButtonTaskB</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>560</x>
+                <y>450</y>
+                <width>90</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Task B</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ButtonDecode</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>560</x>
+                <y>370</y>
+                <width>90</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Decode</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ButtonTaskC</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>560</x>
+                <y>490</y>
+                <width>90</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Task C</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LabelTaskControl</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>560</x>
+                <y>300</y>
+                <width>40</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Task</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ButtonTaskA</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>560</x>
+                <y>410</y>
+                <width>90</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Task A</string>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>DepthD</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>480</x>
+                <y>410</y>
+                <width>50</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>DepthP</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>360</x>
+                <y>410</y>
+                <width>50</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit11_2_3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>380</x>
+                <y>320</y>
+                <width>16</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>P</string>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>PitchD</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>480</x>
+                <y>380</y>
+                <width>50</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>DepthI</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>420</x>
+                <y>410</y>
+                <width>50</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>PitchI</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>420</x>
+                <y>380</y>
+                <width>50</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>PitchP</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>360</x>
+                <y>380</y>
+                <width>50</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit11_2_3_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>440</x>
+                <y>320</y>
+                <width>16</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>I</string>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>HeadingI</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>420</x>
+                <y>350</y>
+                <width>50</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>HeadingP</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>360</x>
+                <y>350</y>
+                <width>50</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit11_2_3_3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>500</x>
+                <y>320</y>
+                <width>16</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>D</string>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>HeadingD</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>480</x>
+                <y>350</y>
+                <width>50</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit11_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>270</x>
+                <y>350</y>
+                <width>87</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Heading PID</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit11_2_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>270</x>
+                <y>410</y>
+                <width>73</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Depth PID</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LineEdit11_2_2_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>270</x>
+                <y>440</y>
+                <width>99</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Use KillSwitch</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LabelTaskControl_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>870</x>
+                <y>370</y>
+                <width>110</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>indicator</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>indicator</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>870</x>
+                <y>400</y>
+                <width>100</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel12_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>690</x>
+                <y>330</y>
+                <width>60</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Advance</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel12_2_3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>690</x>
+                <y>300</y>
+                <width>60</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>turnopen</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ButtonGate</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>560</x>
+                <y>330</y>
+                <width>90</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Gate</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ButtonPic</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>860</x>
+                <y>430</y>
+                <width>120</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Pic?</string>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>to</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>770</x>
+                <y>300</y>
+                <width>60</width>
+                <height>20</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>ImagePixmapLabel3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>670</x>
+                <y>50</y>
+                <width>320</width>
+                <height>240</height>
+            </rect>
+        </property>
+        <property name="backgroundMode">
+            <enum>NoBackground</enum>
+        </property>
+        <property name="scaledContents">
+            <bool>true</bool>
+        </property>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>saveUp</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>saveImageUp()</slot>
+    </connection>
+    <connection>
+        <sender>saveFront</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>saveImageFront()</slot>
+    </connection>
+    <connection>
+        <sender>saveDown</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>saveImageDown()</slot>
+    </connection>
+    <connection>
+        <sender>ButtonGate</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>taskGate()</slot>
+    </connection>
+    <connection>
+        <sender>ButtonDecode</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>taskDecode()</slot>
+    </connection>
+    <connection>
+        <sender>ButtonTaskA</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>taskA()</slot>
+    </connection>
+    <connection>
+        <sender>ButtonTaskB</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>taskB()</slot>
+    </connection>
+    <connection>
+        <sender>ButtonTaskC</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>taskC()</slot>
+    </connection>
+    <connection>
+        <sender>ButtonStop</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>stopAll()</slot>
+    </connection>
+    <connection>
+        <sender>LTScroll</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>LThruster_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>RTScroll</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>RThuster_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>TsScroll</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>Thrusters_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>DiveScroll</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>dive_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>OrientScroll</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>Orient_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>PitchScroll</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>Pitch_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>FrontBScroll</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>FrontBallast_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>RearBScroll</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>RearBallast_valueChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>HeadingPID</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>HeadingPID_toggled()</slot>
+    </connection>
+    <connection>
+        <sender>PitchPID</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>PitchPID_toggled()</slot>
+    </connection>
+    <connection>
+        <sender>DepthPID</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>DepthPID_toggled()</slot>
+    </connection>
+    <connection>
+        <sender>KILL</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>KILL_toggled()</slot>
+    </connection>
+    <connection>
+        <sender>lineEditAdvance</sender>
+        <signal>returnPressed()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>advance_return()</slot>
+    </connection>
+    <connection>
+        <sender>lineEditStrafe</sender>
+        <signal>returnPressed()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>strafe_return()</slot>
+    </connection>
+    <connection>
+        <sender>resetA</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>resetAtt_return()</slot>
+    </connection>
+    <connection>
+        <sender>GetDirections</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>matchAndDirect()</slot>
+    </connection>
+    <connection>
+        <sender>to</sender>
+        <signal>returnPressed()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>turnopen_return()</slot>
+    </connection>
+    <connection>
+        <sender>ButtonPic</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubQt</receiver>
+        <slot>togglePic()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in implementation">QtUtil/ImageConvert.H</include>
+    <include location="global" impldecl="in implementation">qimage.h</include>
+    <include location="global" impldecl="in implementation">qpixmap.h</include>
+    <include location="local" impldecl="in implementation">Raster/Raster.H</include>
+    <include location="global" impldecl="in implementation">pthread.h</include>
+    <include location="global" impldecl="in implementation">dirent.h</include>
+    <include location="local" impldecl="in declaration">Component/ModelManager.H</include>
+    <include location="local" impldecl="in declaration">BeoSub/BeoSubOneBal.H</include>
+    <include location="local" impldecl="in declaration">Util/StringConversions.H</include>
+    <include location="local" impldecl="in declaration">Util/Angle.H</include>
+    <include location="local" impldecl="in declaration">Devices/JoyStick.H</include>
+    <include location="local" impldecl="in declaration">Parallel/pvisionTCP-defs.H</include>
+    <include location="local" impldecl="in declaration">Beowulf/Beowulf.H</include>
+    <include location="local" impldecl="in declaration">BeoSub/ColorTracker.H</include>
+    <include location="local" impldecl="in declaration">BeoSub/BeoSubTaskDecoder.H</include>
+    <include location="local" impldecl="in declaration">BeoSub/BeoSubCanny.H</include>
+    <include location="local" impldecl="in declaration">BeoSub/CannyModel.H</include>
+    <include location="local" impldecl="in declaration">BeoSub/BeoSubDB.H</include>
+    <include location="local" impldecl="in declaration">SIFT/VisualObject.H</include>
+    <include location="local" impldecl="in declaration">SIFT/VisualObjectDB.H</include>
+    <include location="local" impldecl="in declaration">SIFT/Keypoint.H</include>
+    <include location="local" impldecl="in implementation">BeoSubQtMainForm.ui.h</include>
+</includes>
+<variables>
+    <variable access="private">FILE *savePIDgain;</variable>
+    <variable access="public">bool joyflag;</variable>
+    <variable access="public">nub::soft_ref&lt;Beowulf&gt; itsBeo;</variable>
+    <variable access="public">TCPmessage smsg;</variable>
+    <variable access="public">TCPmessage rmsg;</variable>
+    <variable access="private">uint i;</variable>
+    <variable access="public">int counterDown;</variable>
+    <variable access="public">int counterFront;</variable>
+    <variable access="public">int counterUp;</variable>
+    <variable>int newVariable;</variable>
+    <variable access="public">nub::soft_ref&lt;BeoSubOneBal&gt; itsSub;</variable>
+    <variable>ModelManager manager;</variable>
+    <variable>pthread_t IMU_thread;</variable>
+    <variable access="public">Image&lt; PixRGB&lt;byte&gt; &gt; imup;</variable>
+    <variable access="public">Image&lt; PixRGB&lt;byte&gt; &gt; imfront;</variable>
+    <variable access="public">Image&lt; PixRGB&lt;byte&gt; &gt; imdown;</variable>
+    <variable access="public">nub::soft_ref&lt;BeoSubTaskDecoder&gt; itsDecoder;</variable>
+    <variable access="public">nub::soft_ref&lt;ColorTracker&gt; itsTracker1;</variable>
+    <variable access="public">nub::soft_ref&lt;ColorTracker&gt; itsTracker2;</variable>
+    <variable access="public">nub::soft_ref&lt;BeoSubCanny&gt; itsDetector;</variable>
+    <variable>std::list&lt;std::string&gt; topFiles;</variable>
+    <variable>std::list&lt;std::string&gt; frontFiles;</variable>
+    <variable>std::list&lt;std::string&gt; bottomFiles;</variable>
+    <variable access="public">bool takePic;</variable>
+</variables>
+<slots>
+    <slot>init( const nub::soft_ref&lt;BeoSubOneBal&gt; &amp; sub, const nub::soft_ref&lt;Beowulf&gt; &amp; beo, const nub::soft_ref&lt;BeoSubTaskDecoder&gt; &amp; decoder, const nub::soft_ref&lt;ColorTracker&gt; &amp; tracker1, const nub::soft_ref&lt;ColorTracker&gt; &amp; tracker2, const nub::soft_ref&lt;BeoSubCanny&gt; &amp; detector )</slot>
+    <slot>togglePic()</slot>
+    <slot>savePIDvalue()</slot>
+    <slot>HeadingPID_toggled()</slot>
+    <slot>PitchPID_toggled()</slot>
+    <slot>DepthPID_toggled()</slot>
+    <slot>KILL_toggled()</slot>
+    <slot>turnopen_return()</slot>
+    <slot>advance_return()</slot>
+    <slot>strafe_return()</slot>
+    <slot>resetAtt_return()</slot>
+    <slot>FrontBallast_valueChanged( int val )</slot>
+    <slot>RearBallast_valueChanged( int val )</slot>
+    <slot>LThruster_valueChanged( int val )</slot>
+    <slot>RThuster_valueChanged( int val )</slot>
+    <slot>Thrusters_valueChanged( int val )</slot>
+    <slot>dive_valueChanged( int val )</slot>
+    <slot>Orient_valueChanged( int val )</slot>
+    <slot>Pitch_valueChanged( int val )</slot>
+    <slot>timerEvent( QTimerEvent * e )</slot>
+    <slot>saveImageLog( const char * name, int count )</slot>
+    <slot>saveImageUp()</slot>
+    <slot>saveImageFront()</slot>
+    <slot>saveImageDown()</slot>
+    <slot>taskGate()</slot>
+    <slot>taskDecode()</slot>
+    <slot>taskA()</slot>
+    <slot>taskB()</slot>
+    <slot>taskC()</slot>
+    <slot>stopAll()</slot>
+    <slot>matchAndDirect()</slot>
+    <slot>parseMessage( TCPmessage &amp; rmsg )</slot>
+    <slot>displayFunc()</slot>
+    <slot>keyPressEvent( QKeyEvent * event )</slot>
+    <slot>keyReleaseEvent( QKeyEvent * event )</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

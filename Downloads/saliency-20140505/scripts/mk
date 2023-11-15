@@ -1,0 +1,25 @@
+#!/bin/sh
+# Trivial wrapper for make, to use all available processors on SMP machines.
+# Use as you would normally use make.
+
+# Find number of CPUs/cores:
+
+# Linux?
+if [ -f /proc/cpuinfo ]; then
+  n=`grep "^processor" /proc/cpuinfo | wc -l`
+# Mac OS X?
+elif [ -x /usr/sbin/system_profiler ]; then
+  n=`/usr/sbin/system_profiler SPHardwareDataType | \
+      grep "Total Number Of Cores" | awk '{ print $5 }'`
+# unknown os...
+else
+  echo "mk: WARNING: cannot determine number of CPUs/cores"
+  n=1
+fi
+
+# if 4 cores or more, add a few to really load them all at 100%
+if [ $n -ge 4 ]; then n=`expr $n \* 10 / 8`; fi
+
+# parallelize make:
+if [ $n -gt 1 ]; then op="-j $n"; fi
+make $op $*

@@ -1,0 +1,473 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>BeoSubMappingQtMainForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>BeoSubMappingQtMainForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>800</width>
+            <height>644</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>BeoSubMappingQtMainForm</string>
+    </property>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LabelLog</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>140</x>
+                <y>10</y>
+                <width>33</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&lt;b&gt;Log:&lt;/b&gt;</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>Log</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>40</y>
+                <width>300</width>
+                <height>120</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>save</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>670</x>
+                <y>530</y>
+                <width>90</width>
+                <height>80</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>save</string>
+        </property>
+    </widget>
+    <widget class="QListBox">
+        <property name="name">
+            <cstring>List</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>650</x>
+                <y>200</y>
+                <width>130</width>
+                <height>300</height>
+            </rect>
+        </property>
+        <property name="paletteForegroundColor">
+            <color>
+                <red>85</red>
+                <green>0</green>
+                <blue>255</blue>
+            </color>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LabelImage</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>390</x>
+                <y>10</y>
+                <width>48</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&lt;b&gt;Image:&lt;/b&gt;</string>
+        </property>
+    </widget>
+    <widget class="PoolImage">
+        <property name="name">
+            <cstring>poolImage</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>170</y>
+                <width>600</width>
+                <height>440</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>displayCoord</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>620</y>
+                <width>590</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LabelList</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>670</x>
+                <y>151</y>
+                <width>90</width>
+                <height>40</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&lt;b&gt;List of images:&lt;/b&gt;</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>loadAS</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>630</x>
+                <y>60</y>
+                <width>150</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Load angle and scale</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>load</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>630</x>
+                <y>110</y>
+                <width>150</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>load</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>restHeading</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>0</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>reset
+heading</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>test</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>490</x>
+                <y>470</y>
+                <width>120</width>
+                <height>90</height>
+            </rect>
+        </property>
+        <property name="backgroundMode">
+            <enum>PaletteBackground</enum>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+        <property name="scaledContents">
+            <bool>true</bool>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>displayImage</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>350</x>
+                <y>40</y>
+                <width>120</width>
+                <height>90</height>
+            </rect>
+        </property>
+        <property name="backgroundMode">
+            <enum>PaletteBackground</enum>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+        <property name="scaledContents">
+            <bool>true</bool>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>changeHeading</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>480</x>
+                <y>133</y>
+                <width>140</width>
+                <height>23</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>LabelImage_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>480</x>
+                <y>110</y>
+                <width>140</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>change heading</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>refresh</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>630</x>
+                <y>10</y>
+                <width>150</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>refresh</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>change2bottom</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>470</x>
+                <y>70</y>
+                <width>150</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>bottom</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>change2front</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>470</x>
+                <y>40</y>
+                <width>150</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>front</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>change2top</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>470</x>
+                <y>10</y>
+                <width>150</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>top</string>
+        </property>
+    </widget>
+</widget>
+<customwidgets>
+    <customwidget>
+        <class>PoolImage</class>
+        <header location="local">Qt/poolimage.h</header>
+        <sizehint>
+            <width>-1</width>
+            <height>-1</height>
+        </sizehint>
+        <container>0</container>
+        <sizepolicy>
+            <hordata>5</hordata>
+            <verdata>5</verdata>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+        <pixmap>image0</pixmap>
+        <slot access="public" specifier="">slot()</slot>
+        <slot access="public" specifier="">slot()</slot>
+        <slot access="public" specifier="">createIcon(int num)</slot>
+    </customwidget>
+</customwidgets>
+<images>
+    <image name="image0">
+        <data format="PNG" length="889">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000034049444154388db59531681c4714863f992d9ee08a3938c10ea4d80507a442e02d54488e0ba9f39114979022312ee2903421553acb3604ecca759242244d402904e742708db1ce10eecee090133868030aac20073b20c10e6441af38708af5493e620943ec0703bb336fbefddfdb376f667afd1e13bbbc72f9396fc07afddecccc04dcd9ee3c5f9b5f23f52938d82bf75e0be2bd27dbcf18fc3680f1e97c3051faa8fd88d0e49845435e0e49a44e51e65863c935c7d62ca239d42c99afde73cdb162193ccba86f089dc73a0d0648ff4e31916138fa91a2c800259e537652c18d84e24801a1de80e54565e8c1080c1c4416b0d3919c8029212f87c838033cf19cb03330a4db9eeeae07266a84685eb876dd102f4164145742d43803bce7f6484449ffa9a0ed6dd8fcc155a89a10cf1b24807ca41cfca9dc5b77343f317cfa99101ba5539e01b6354b5166c473b03390175065f5fd90664b5888c18d151358da5bc76c6e383abf38928b1172b54e58f353e00b9387bcccb106b242e83ef027d06b5f0a0bef7adcd82387c2e6cf059f5f9fe5c6d721207cb7e11105a753dc69c5b966e085f40f8f3186664b088dc72998b1e1f67d25ddf5148770eb4e9dc1c3cab7fbd4109b69f0b4e21aa4070a28367a11fe047ad393ee7a4c43685e118ae0988544aabd074a5ecaabc1559d82ad550eb1543995d270fba692ee561f1481d97766891b40308109f63cc5d440a572ec8f1413d4696f53293542181adcc873773d67e7d73af97e95581bcd929f571599cf585e54a28bc2c15f4a7beb981b5fc41487ca475705cc2c77d7c11d78ee7d95a1aa98869024c7e0a7ffde7f72ec8166ab8a6b73c3d17e9071eb4e9d700996af147cf36d8c090dde7b74acacb542924b9caf382f338cc0ca2ae00ddf6f387ebaef183c1456970437867c3f478ff464e7ef5dcfe0892536c2e9e97cb9578c529a35181c55c774e563416b119dadaa1ad2dd5335a621345b11fdaec7ab62024847d3a9380167fb198367105a7025844669b6840f3f48e83ecde0a80a37998fb10b19c925e83eb1844188d39474380d9ee9f57b55830f20794fb01644a87a6b500d09aa4a79a965018a0482f7900e95dc29debd423163183e56869c65fa9a73955d3873e57fda05a8eea8b7027ed3f05ebf37f32fbb768650f50de9620000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>List</sender>
+        <signal>selectionChanged(QListBoxItem*)</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>displayLog()</slot>
+    </connection>
+    <connection>
+        <sender>refresh</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>refreshImages()</slot>
+    </connection>
+    <connection>
+        <sender>refresh</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>createIcon()</slot>
+    </connection>
+    <connection>
+        <sender>load</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>loadList()</slot>
+    </connection>
+    <connection>
+        <sender>save</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>saveiconList()</slot>
+    </connection>
+    <connection>
+        <sender>loadAS</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>LoadAngleScale()</slot>
+    </connection>
+    <connection>
+        <sender>restHeading</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>resetAllHeading()</slot>
+    </connection>
+    <connection>
+        <sender>changeHeading</sender>
+        <signal>returnPressed()</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>changeTheHeading()</slot>
+    </connection>
+    <connection>
+        <sender>change2bottom</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>change_bottom()</slot>
+    </connection>
+    <connection>
+        <sender>change2front</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>change_front()</slot>
+    </connection>
+    <connection>
+        <sender>change2top</sender>
+        <signal>clicked()</signal>
+        <receiver>BeoSubMappingQtMainForm</receiver>
+        <slot>change_top()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in declaration">Image/Image.H</include>
+    <include location="local" impldecl="in declaration">Component/ModelManager.H</include>
+    <include location="local" impldecl="in declaration">Util/StringConversions.H</include>
+    <include location="local" impldecl="in declaration">Component/ModelManager.H</include>
+    <include location="local" impldecl="in declaration">Parallel/pvisionTCP-defs.H</include>
+    <include location="local" impldecl="in declaration">Beowulf/Beowulf.H</include>
+    <include location="local" impldecl="in implementation">Raster/Raster.H</include>
+    <include location="local" impldecl="in implementation">QtUtil/ImageConvert.H</include>
+    <include location="global" impldecl="in implementation">qimage.h</include>
+    <include location="global" impldecl="in implementation">qpixmap.h</include>
+    <include location="global" impldecl="in implementation">pthread.h</include>
+    <include location="global" impldecl="in implementation">dirent.h</include>
+    <include location="global" impldecl="in implementation">GL/gl.h</include>
+    <include location="global" impldecl="in implementation">GL/glu.h</include>
+    <include location="global" impldecl="in implementation">qpainter.h</include>
+    <include location="local" impldecl="in implementation">BeoSubMappingQtMainForm.ui.h</include>
+</includes>
+<variables>
+    <variable access="public">Image&lt; PixRGB&lt;byte&gt; &gt; img;</variable>
+    <variable access="private">int numItem;</variable>
+    <variable access="public">bool setSave;</variable>
+    <variable access="public">std::string prefix;</variable>
+</variables>
+<slots>
+    <slot>init()</slot>
+    <slot>change_bottom()</slot>
+    <slot>change_front()</slot>
+    <slot>change_top()</slot>
+    <slot>camera_return()</slot>
+    <slot>displayFunc()</slot>
+    <slot>timerEvent( QTimerEvent * e )</slot>
+    <slot>displayLog()</slot>
+    <slot>loadList()</slot>
+    <slot>refreshImages()</slot>
+    <slot>createIcon()</slot>
+    <slot>saveiconList()</slot>
+    <slot>LoadAngleScale()</slot>
+    <slot>resetAllHeading()</slot>
+    <slot>changeTheHeading()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>Qt/poolimage.h</includehint>
+</includehints>
+</UI>

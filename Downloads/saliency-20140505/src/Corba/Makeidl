@@ -1,0 +1,9 @@
+omniidl -I../ -C./         -bcxx -Wbh=SK.hh -Wbs=SK.cc -Wbkeep_inc_path -Wbuse_quotes ImageOrb.idl
+omniidl -I../ -C./Parallel -bcxx -Wbh=SK.hh -Wbs=SK.cc -Wbkeep_inc_path -Wbuse_quotes Parallel/CMap.idl
+omniidl -I../ -C./Objects  -bcxx -Wbh=SK.hh -Wbs=SK.cc -Wbkeep_inc_path -Wbuse_quotes Objects/CMap.idl
+omniidl -I../ -C./Objects  -bcxx -Wbh=SK.hh -Wbs=SK.cc -Wbkeep_inc_path -Wbuse_quotes Objects/BotControlServer.idl
+omniidl -I../ -C./Objects  -bcxx -Wbh=SK.hh -Wbs=SK.cc -Wbkeep_inc_path -Wbuse_quotes Objects/SceneRecServer.idl
+omniidl -I../ -C./Objects  -bcxx -Wbh=SK.hh -Wbs=SK.cc -Wbkeep_inc_path -Wbuse_quotes Objects/EchoImageServer.idl
+omniidl -I../ -C./Objects  -bcxx -Wbh=SK.hh -Wbs=SK.cc -Wbkeep_inc_path -Wbuse_quotes Objects/BotControl.idl
+omniidl -I../ -C./Objects  -bcxx -Wbh=SK.hh -Wbs=SK.cc -Wbkeep_inc_path -Wbuse_quotes Objects/SalGlasses.idl
+omniidl -I../ -C./Objects  -bcxx -Wbh=SK.hh -Wbs=SK.cc -Wbkeep_inc_path -Wbuse_quotes Objects/BotArmControl.idl

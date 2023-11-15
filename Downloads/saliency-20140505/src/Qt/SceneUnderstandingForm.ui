@@ -1,0 +1,725 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>SceneUnderstandingForm</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>SceneUnderstandingForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>763</width>
+            <height>784</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>7</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="caption">
+        <string>Bias Image</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QTabWidget">
+            <property name="name">
+                <cstring>tabDisp</cstring>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Original</string>
+                </attribute>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="ImageCanvas">
+                        <property name="name">
+                            <cstring>imgDisp</cstring>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout2</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer9</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>70</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>EvolveBrainButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Evolve Brain</string>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer3</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>110</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>runButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Run</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Epochs:</string>
+                    </property>
+                </widget>
+                <widget class="QSpinBox">
+                    <property name="name">
+                        <cstring>timesSpinBox</cstring>
+                    </property>
+                    <property name="maxValue">
+                        <number>1000</number>
+                    </property>
+                    <property name="minValue">
+                        <number>0</number>
+                    </property>
+                    <property name="value">
+                        <number>1</number>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer3_2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>161</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>GenScenepushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Generate
+Scene</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout3</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Dialog:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>dialogText</cstring>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout6</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Mesg:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>msgLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<menubar>
+    <property name="name">
+        <cstring>MenuBar</cstring>
+    </property>
+    <item text="&amp;File" name="fileMenu">
+        <action name="fileOpenAction"/>
+        <action name="fileOpen_WorkspaceAction"/>
+        <action name="fileSaveAsAction"/>
+        <separator/>
+        <separator/>
+        <action name="fileExitAction"/>
+    </item>
+    <item text="&amp;Edit" name="Edit">
+        <action name="editConfigureAction"/>
+        <item text="&amp;Configure" name="popupMenu_6" accel="">
+            <action name="editConfigureBias_ImageAction"/>
+            <action name="editConfigureScene_SettingsAction"/>
+            <action name="editConfigureTestAction"/>
+        </item>
+        <action name="editBias_SettingsAction"/>
+        <action name="editDescriptor_VecAction"/>
+        <action name="editBayes_NetworkAction"/>
+        <item text="&amp;Bayes Network" name="popupMenu_12" accel="">
+            <action name="editBayes_NetworkViewAction"/>
+            <action name="editBayes_NetworkLoad_NetworkAction"/>
+            <action name="editBayes_NetworkSave_NetworkAction"/>
+        </item>
+    </item>
+    <item text="&amp;View" name="View">
+        <action name="viewChannelsAction"/>
+        <action name="viewSMapAction"/>
+        <action name="viewTrajAction"/>
+    </item>
+</menubar>
+<toolbars>
+</toolbars>
+<customwidgets>
+    <customwidget>
+        <class>ImageCanvas</class>
+        <header location="local">Qt/ImageCanvas.h</header>
+        <sizehint>
+            <width>-1</width>
+            <height>-1</height>
+        </sizehint>
+        <container>0</container>
+        <sizepolicy>
+            <hordata>7</hordata>
+            <verdata>7</verdata>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+        <pixmap>image0</pixmap>
+        <signal>mousePressed(int x, int y)</signal>
+        <signal>mousePressEvent( QMouseEvent *e )</signal>
+        <slot access="public" specifier="">setImage(Image&lt;PixRGB&lt;byte&gt; &gt; &amp;img)</slot>
+    </customwidget>
+</customwidgets>
+<actions>
+    <action>
+        <property name="name">
+            <cstring>fileOpenAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image1</iconset>
+        </property>
+        <property name="text">
+            <string>Open</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Open...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+O</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Save As</string>
+        </property>
+        <property name="menuText">
+            <string>Save &amp;As...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileExitAction</cstring>
+        </property>
+        <property name="text">
+            <string>Exit</string>
+        </property>
+        <property name="menuText">
+            <string>E&amp;xit</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editConfigureAction</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="on">
+            <bool>false</bool>
+        </property>
+        <property name="text">
+            <string>Configure</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Configure</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editBias_SettingsAction</cstring>
+        </property>
+        <property name="text">
+            <string>&amp;Bias Settings</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Bias Settings</string>
+        </property>
+    </action>
+    <actiongroup>
+        <property name="name">
+            <cstring>viewActionGroup</cstring>
+        </property>
+        <property name="on">
+            <bool>false</bool>
+        </property>
+        <property name="text">
+            <string>View</string>
+        </property>
+        <property name="accel">
+            <string>Alt+F, S</string>
+        </property>
+        <property name="exclusive">
+            <bool>false</bool>
+        </property>
+        <property name="usesDropDown">
+            <bool>false</bool>
+        </property>
+        <action>
+            <property name="name">
+                <cstring>viewTrajAction</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>View Traj</string>
+            </property>
+            <property name="menuText">
+                <string>View &amp;Traj</string>
+            </property>
+            <property name="accel">
+                <string>Ctrl+T</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>viewSMapAction</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>View SMap</string>
+            </property>
+            <property name="accel">
+                <string>Ctrl+S</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>viewChannelsAction</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>view Channels</string>
+            </property>
+        </action>
+    </actiongroup>
+    <action>
+        <property name="name">
+            <cstring>editDescriptor_VecAction</cstring>
+        </property>
+        <property name="text">
+            <string>&amp;Descriptor Vec</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Descriptor Vec</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editBayes_NetworkAction</cstring>
+        </property>
+        <property name="text">
+            <string>&amp;Bayes Network</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Bayes Network</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editBayes_NetworkViewAction</cstring>
+        </property>
+        <property name="text">
+            <string>View</string>
+        </property>
+        <property name="menuText">
+            <string>View</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editBayes_NetworkLoad_NetworkAction</cstring>
+        </property>
+        <property name="text">
+            <string>Load Network</string>
+        </property>
+        <property name="menuText">
+            <string>Load Network</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editBayes_NetworkSave_NetworkAction</cstring>
+        </property>
+        <property name="text">
+            <string>Save Network</string>
+        </property>
+        <property name="menuText">
+            <string>Save Network</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editConfigureBias_ImageAction</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="on">
+            <bool>false</bool>
+        </property>
+        <property name="text">
+            <string>Bias Image</string>
+        </property>
+        <property name="menuText">
+            <string>Bias Image</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editConfigureScene_SettingsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Scene Settings</string>
+        </property>
+        <property name="menuText">
+            <string>Scene Settings</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editConfigureTrainAction</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="text">
+            <string>Train</string>
+        </property>
+        <property name="menuText">
+            <string>Train</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editConfigureTestAction</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="text">
+            <string>Test</string>
+        </property>
+        <property name="menuText">
+            <string>Test</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileOpen_WorkspaceAction</cstring>
+        </property>
+        <property name="text">
+            <string>Open &amp;Workspace</string>
+        </property>
+        <property name="menuText">
+            <string>Open &amp;Workspace</string>
+        </property>
+    </action>
+</actions>
+<images>
+    <image name="image0">
+        <data format="PNG" length="1002">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000003b149444154388dad945f4c5b551cc73fe7dc4b7b4bcba0762d45c43114323599ee6192609c51d883892ce083f1718b3ebb185f8dc91e972cf39d2d2a2f1af664b6f1e0fe3863a0718969700eb0c52142da0242a1bd6d696f7bcff101585203ceb8fd9ece39f99dcff9fe7edf939f88c562ec465f5f9fe609442c161362173c3e3eae7b7a7ac8e7f36432196cdbfe4f907c3e4f2291201e8fe338cec3737357e9e8e828aded1e229d650e1f2d51754b082110124c13a4dc5ea341eb9dc284c0558a853f3ce8cb0677ef500fde7d39d2596679e326597b8e9abb85d7a770ab16ab6983ec5a05b487a70e36f0f4e10afe408d6a558310980108478dba4a1e8233990c5d474b64ed39aa3a8fe5f3317fbf81dbd70bccfeb205947632fd74f6589c1c6ea2f70d03a58ba0c1f2c9bdc1b66de3b8256a6e11cbe7e3ee1d181b590124fe2693aeee08d223c82c3a2c24b7b874bec8f26288774f7bd054504aef0dde6e99c0eb83f9fb266323cb80a27fb0958141836044605a2ee5523393371cc646fee2da37195aa35d0c0c5b4859ac03d7e91712dcaac5adab3650a3ff9d08ef7dd8404bb48869e5d958b5b87dadc4c9a1464e9f0d0326df7ebd86bd2e310cb1bf62d384d59441f2d70a070e1c60e09489929b988681bdd9cc97170bcc4c65595f71f8e0e3301337fc24a7732467831875a47f289652b0be5e4151e6d07316c1b0c0340d8ab92023e76d66a6b2840e36d2fb7a13fee632475e6edc367ea98a90fb98b7dd6310ca0328a44761582e1bab41befabcc0ec940d28bc5e93b68e064cab84e1d9beaeb48934eac1f53b01c1b000fca496aa54b61a99fcde61662a4b4b4b23d1680be9d426173e4df3602a48ea411989a4fd590f52a8fd156b05ed9d350e3defe3cfdf4b4c7ce770ea7d3fb9f520afbe1620daeee5c26735d20b9b9cfb6811a754a439e4e5c5639a4caa1e5caf586bfc0197b78702005cb9b4cae4cd3267ce8638fe964bd72b393e39d74928d242617303a756a37f284447770dcdbffc6384a05a85de1306e9a52057c7527c7131c3c42d3f475eb2303c82d4fc3276d6811db37efeb148723082d9b08f79f97c1e5729109a9a28307cc622d2d6cdf52b2b24efe548dedb00142009862cfa879ee1a71f6cec928353511472fbf4389148b0b0e0c108081412458dfe21c9f11351e67e7358595468246d1d1e5e38a6e9e851bc39d84ab502a669331dafec0d8ec7e3e8cb06e1a881d727d1ae40180a434a8c9db129a54126ad48a7358c2b4c5352c8c374bcccdab2bb37d8719cba79fab8211f9df218e0582c261e95f8bfc04f1a1e8bc5c4dfe0a190172af6a9690000000049454e44ae426082</data>
+    </image>
+    <image name="image1">
+        <data format="PNG" length="210">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000009949444154388ded94410e85200c445f89c7367f61bc775d2848a42860ffced9548bbe8e13043e1d928177f481a123dc2b34f6f47a3de2b865a8843f4001982a0b3d5f62c58300aa1ad70550449ab9d507a773a8a4ba4f92a2df333c64c63bebbd82e5b8addecbcc7820eb4266c639745dfa80f36faf66c66fa19c3f882fb470ec05cdc0bed07893f68e171492635f686c3eeff6ba3c8fdd366dc4c0452c8781f8080000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>fileOpenAction</sender>
+        <signal>activated()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>fileOpen()</slot>
+    </connection>
+    <connection>
+        <sender>fileExitAction</sender>
+        <signal>activated()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>close()</slot>
+    </connection>
+    <connection>
+        <sender>editBias_SettingsAction</sender>
+        <signal>activated()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>showBiasSettings()</slot>
+    </connection>
+    <connection>
+        <sender>viewActionGroup</sender>
+        <signal>selected(QAction*)</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>configureView(QAction*)</slot>
+    </connection>
+    <connection>
+        <sender>imgDisp</sender>
+        <signal>mousePressed(int,int)</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>getDescriptor(int,int)</slot>
+    </connection>
+    <connection>
+        <sender>editDescriptor_VecAction</sender>
+        <signal>activated()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>showDescriptorVec()</slot>
+    </connection>
+    <connection>
+        <sender>GenScenepushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>genScene()</slot>
+    </connection>
+    <connection>
+        <sender>runButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>run()</slot>
+    </connection>
+    <connection>
+        <sender>editBayes_NetworkLoad_NetworkAction</sender>
+        <signal>activated()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>loadBayesNetwork()</slot>
+    </connection>
+    <connection>
+        <sender>editBayes_NetworkSave_NetworkAction</sender>
+        <signal>activated()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>saveBayesNetwork()</slot>
+    </connection>
+    <connection>
+        <sender>editBayes_NetworkViewAction</sender>
+        <signal>activated()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>viewBayesNetwork()</slot>
+    </connection>
+    <connection>
+        <sender>editConfigureBias_ImageAction</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>setBiasImage(bool)</slot>
+    </connection>
+    <connection>
+        <sender>EvolveBrainButton</sender>
+        <signal>pressed()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>evolveBrain()</slot>
+    </connection>
+    <connection>
+        <sender>editConfigureScene_SettingsAction</sender>
+        <signal>activated()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>showSceneSettings()</slot>
+    </connection>
+    <connection>
+        <sender>dialogText</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>submitDialog()</slot>
+    </connection>
+    <connection>
+        <sender>fileOpen_WorkspaceAction</sender>
+        <signal>activated()</signal>
+        <receiver>SceneUnderstandingForm</receiver>
+        <slot>fileOpenWorkspace()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in implementation">Raster/Raster.H</include>
+    <include location="local" impldecl="in implementation">QtUtil/ImageConvert.H</include>
+    <include location="global" impldecl="in implementation">qfiledialog.h</include>
+    <include location="global" impldecl="in implementation">qlineedit.h</include>
+    <include location="global" impldecl="in implementation">qimage.h</include>
+    <include location="global" impldecl="in implementation">qpixmap.h</include>
+    <include location="global" impldecl="in implementation">qmessagebox.h</include>
+    <include location="local" impldecl="in declaration">Image/Image.H</include>
+    <include location="local" impldecl="in declaration">Image/Pixels.H</include>
+    <include location="local" impldecl="in declaration">Image/DrawOps.H</include>
+    <include location="local" impldecl="in declaration">Image/CutPaste.H</include>
+    <include location="local" impldecl="in declaration">BiasSettingsDialog.h</include>
+    <include location="local" impldecl="in declaration">Component/ModelManager.H</include>
+    <include location="local" impldecl="in declaration">Neuro/StdBrain.H</include>
+    <include location="local" impldecl="in declaration">Neuro/SimulationViewerStd.H</include>
+    <include location="local" impldecl="in declaration">Neuro/VisualCortex.H</include>
+    <include location="local" impldecl="in declaration">Qt/ImageCanvas.h</include>
+    <include location="local" impldecl="in declaration">Neuro/SaliencyMap.H</include>
+    <include location="local" impldecl="in declaration">Image/ColorOps.H</include>
+    <include location="local" impldecl="in declaration">Media/SceneGenerator.H</include>
+    <include location="local" impldecl="in declaration">Channels/DescriptorVec.H</include>
+    <include location="local" impldecl="in declaration">Learn/Bayes.H</include>
+    <include location="local" impldecl="in declaration">Learn/SWIProlog.H</include>
+    <include location="local" impldecl="in declaration">DescriptorVecDialog.h</include>
+    <include location="local" impldecl="in declaration">BayesNetworkDialog.h</include>
+    <include location="local" impldecl="in declaration">SceneSettingsDialog.h</include>
+    <include location="local" impldecl="in declaration">SceneUnderstanding/SceneUnderstanding.H</include>
+    <include location="local" impldecl="in implementation">SIFT/Histogram.H</include>
+    <include location="local" impldecl="in implementation">Image/FilterOps.H</include>
+    <include location="local" impldecl="in implementation">Image/ShapeOps.H</include>
+    <include location="local" impldecl="in implementation">SceneUnderstandingForm.ui.h</include>
+</includes>
+<variables>
+    <variable>BayesNetworkDialog itsBayesNetworkDialog;</variable>
+    <variable>SceneSettingsDialog itsSceneSettingsDialog;</variable>
+    <variable>std::vector&lt;Point2D&gt; itsTargetsLoc;</variable>
+    <variable>DescriptorVec* itsDescriptorVec;</variable>
+    <variable>Image&lt; PixRGB&lt;byte&gt; &gt; itsOutputImg;</variable>
+    <variable>BiasSettingsDialog itsBiasSettingsDialog;</variable>
+    <variable>Image&lt; PixRGB&lt;byte&gt; &gt; itsImg;</variable>
+    <variable>ModelManager *itsMgr;</variable>
+    <variable access="private">bool itsViewTraj;</variable>
+    <variable access="private">bool itsViewSMap;</variable>
+    <variable access="private">bool itsViewChannels;</variable>
+    <variable>DescriptorVecDialog itsDescriptorVecDialog;</variable>
+    <variable>Bayes *itsBayesNetwork;</variable>
+    <variable>SWIProlog *itsProlog;</variable>
+    <variable>SceneGenerator *itsTrainScene;</variable>
+    <variable>SceneGenerator *itsTestScene;</variable>
+    <variable>Point2D itsCurrentAttention;</variable>
+    <variable>int itsCurrentObject;</variable>
+    <variable>SceneUnderstanding *itsSceneUnderstanding;</variable>
+</variables>
+<slots>
+    <slot>fileOpen()</slot>
+    <slot>fileSave()</slot>
+    <slot>fileExit()</slot>
+    <slot>showBiasSettings()</slot>
+    <slot>evolveBrain()</slot>
+    <slot>configureView( QAction * action )</slot>
+    <slot>setBias( int x, int y )</slot>
+    <slot>getDescriptor( int x, int y )</slot>
+    <slot>showDescriptorVec()</slot>
+    <slot>genScene()</slot>
+    <slot>run()</slot>
+    <slot>loadBayesNetwork()</slot>
+    <slot>saveBayesNetwork()</slot>
+    <slot>viewBayesNetwork()</slot>
+    <slot>setBiasImage( bool biasVal )</slot>
+    <slot>showSceneSettings()</slot>
+    <slot>submitDialog()</slot>
+    <slot>fileOpenWorkspace()</slot>
+</slots>
+<functions>
+    <function>init( ModelManager &amp; manager )</function>
+    <function>updateDisplay()</function>
+    <function>showTraj( nub::ref&lt;StdBrain&gt; &amp; brain )</function>
+    <function>showSMap( nub::ref&lt;StdBrain&gt; &amp; brain )</function>
+    <function>showChannels( nub::ref&lt;StdBrain&gt; &amp; brain )</function>
+    <function>classifyFovea( int x, int y )</function>
+</functions>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

@@ -1,0 +1,25 @@
+0000000.00ms FOAradius            21
+0000000.00ms FoveaRadius          21
+0000000.00ms InputDims            256x256
+0000000.00ms ReadFrame            testpic001.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000000.00ms TargetsRemaining     3
+0000067.20ms CovertShift          (128,128) 8.084mV
+0000067.20ms OutputFrameSeries    frame 0
+0000067.20ms WriteRGB             T000000.pnm
+0000113.10ms CovertShift          (80,112) 8.852mV
+0000113.10ms OutputFrameSeries    frame 1
+0000113.10ms WriteRGB             T000001.pnm
+0000175.80ms CovertShift          (48,192) 5.260mV
+0000175.80ms HitTargets           1
+0000175.80ms OutputFrameSeries    frame 2
+0000175.80ms WriteRGB             T000002.pnm
+0000250.50ms CovertShift          (208,192) 4.118mV
+0000250.50ms HitTargets           1
+0000250.50ms OutputFrameSeries    frame 3
+0000250.50ms WriteRGB             T000003.pnm
+0000329.30ms CovertShift          (192,64) 3.818mV
+0000329.30ms HitTargets           1
+0000329.30ms AllTargetsFound      
+0000329.30ms OutputFrameSeries    frame 4
+0000329.30ms WriteRGB             T000004.pnm

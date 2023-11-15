@@ -1,0 +1,98 @@
+/** \dir src/tcl
+
+   \brief core components for exposing c++ objects/functions to a tcl script interpreter
+
+   src/tcl offers a framework with which to easily create tcl wrappers
+   around c++ code. In a tcl script application (see tcl::script_app),
+   the program loads a series of "packages", each with its own
+   initialization function, and then starts reading and evaluating
+   commands from stdin. The package-initialization functions define
+   the commands that will be understood by the script interpreter.
+
+   According to the Tcl C API, these init functions must have names
+   like Packagename_Init(). In this c++ framework, Tcl::Pkg offers a
+   way to quickly set up such an init function. As an example, see the
+   definition of Dlist_Init() at the end of tcl/tclpkg-dlist.cc. Here,
+   the macro GVX_PKG_CREATE() is used to create a Tcl::Pkg (and the
+   macro additionally transparently creates a try/catch context, so
+   that exceptions can be translated into error codes to be returned
+   from the init function). Then there are a series of pkg->def()
+   calls that bind various c++ functions to tcl commands.
+
+   For most c++ functions, this binding happens seamlessly -- as long
+   as there are appropriate c++/tcl conversions defined for the types
+   of the function parameters and for the function's return type. The
+   converters for basic built-in types are defined in
+   tcl/conversions.h, and additional converters can be defined by the
+   user (see tcl/stdconversions.h for an example of extra converters
+   for std::string).
+
+   Finally, src/tcl offers some c++-friendly wrappers for native tcl
+   components. For example, tcl::list offers an interface to tcl list
+   values, complete with c++-style iterators, and with templatized
+   type conversions (e.g., so that you can say "give me the third
+   value from the list, as a 'double'"). There is also
+   tcl::interpreter, tcl::obj, tcl::dict, and tcl::regexp.
+
+   For more insight into the internals of what happens with
+   tcl::pkg::def(), see tcl::command, tcl::commandgroup,
+   tcl::dispatcher, and tcl::context. Basicaly, tcl::pkg::def()
+   creates a tcl::function object using the highly templatized
+   functions in tcl/makecmd.h. This tcl::function knows how to accept
+   a tcl::calll_context, translate the tcl argument types into their
+   c++ counterparts, then calls the native c++ function, then
+   translates the c++ return value back into a tcl result. The
+   tcl::function is used to create a tcl::command object becomes part
+   of a tcl::commandgroup which can potentially select among
+   overloaded tcl::command objects based on the number of arguments in
+   a given tcl command invocation.
+
+   Here is the dynamic view: it is tcl::commandgroup that is
+   responsible for actually registering a command with Tcl's low-level
+   C API. When a callback comes from that API saying that the user has
+   entered a command, control is first passed to
+   tcl::command_group::invoke_raw(), where we first try to find a
+   matching tcl::command overload, and then send control to
+   tcl::command::call(). There we forward control to the
+   tcl::dispatcher::dispatch(). In the standard case, this function
+   will create a tcl::call_context from the array of Tcl_Obj*'s that
+   we got from the low-level C API, and then call
+   tcl::function::invoke() with this tcl::call_context. Remember that
+   some templatized subclass of tcl::function is wrapping our native
+   c++ function. If our c++ function throws an exception, it will be
+   caught back in tcl::commandgroup::invoke_raw() and translated into
+   an error code and error message to the tcl interpreter. If our c++
+   function completes successfully, then its result will be returned
+   to the tcl interpreter via tcl::call_context::set_result().
+
+*/
+
+///////////////////////////////////////////////////////////////////////
+//
+// Copyright (c) 1998-2005
+// Rob Peters <rjpeters at usc dot edu>
+//
+// created: Wed Jul  6 14:23:50 PDT 2005
+// commit: $Id: README.dxy 11876 2009-10-22 15:53:06Z icore $
+// $HeadURL: svn://isvn.usc.edu/software/invt/trunk/saliency/src/tcl/README.dxy $
+//
+// --------------------------------------------------------------------
+//
+// This file is part of GroovX
+//   [http://ilab.usc.edu/rjpeters/groovx/]
+//
+// GroovX is free software; you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// GroovX is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with GroovX; if not, write to the Free Software Foundation,
+// Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
+//
+///////////////////////////////////////////////////////////////////////

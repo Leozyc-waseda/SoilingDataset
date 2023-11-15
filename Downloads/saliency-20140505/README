@@ -1,0 +1,144 @@
+        -*- mode: text; fill-column: 70; indent-tabs-mode: nil -*-
+             $Id: README 9395 2008-03-06 21:06:10Z lior $
+
+                   ------------------------------------
+                   iLab Neuromorphic Vision C++ Toolkit
+                   ------------------------------------
+
+        The iLab Neuromorphic Vision C++ Toolkit - Copyright (C)
+        2001-2005 by the University of Southern California (USC) and
+        iLab at USC.
+
+        Major portions of the iLab Neuromorphic Vision C++ Toolkit are
+        protected under the U.S. patent ``Computation of Intrinsic
+        Perceptual Saliency in Visual Environments, and Applications''
+        by Christof Koch and Laurent Itti, California Institute of
+        Technology, 2001 (patent pending; application number
+        09/912,225 filed July 23, 2001; see
+        http://pair.uspto.gov/cgi-bin/final/home.pl for current
+        status)
+
+        This file is part of the iLab Neuromorphic Vision C++ Toolkit.
+
+        The iLab Neuromorphic Vision C++ Toolkit is free software; you
+        can redistribute it and/or modify it under the terms of the
+        GNU General Public License as published by the Free Software
+        Foundation; either version 2 of the License, or (at your
+        option) any later version.
+
+        The iLab Neuromorphic Vision C++ Toolkit is distributed in the
+        hope that it will be useful, but WITHOUT ANY WARRANTY; without
+        even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+        PARTICULAR PURPOSE.  See the GNU General Public License for
+        more details.
+
+        You should have received a copy of the GNU General Public
+        License along with the iLab Neuromorphic Vision C++ Toolkit
+        (see the top-level file named COPYING); if not, write to the
+        Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+        Boston, MA 02111-1307 USA.
+
+
+============
+INTRODUCTION
+============
+
+This document provides a minimal introduction to building and using
+the iLab Neuromorphic Vision C++ Toolkit. For more information:
+
+        (1) see the file doc/input/programmer-notes.dxy,
+
+        (2) build the documentation with 'make doc', or
+
+        (3) read the online documentation at
+            http://ilab.usc.edu/toolkit/
+
+        (4) post a question on the iLab Forum at
+            http://ilab.usc.edu/cgi-bin/yabb/YaBB.pl
+
+
+================
+GETTING THE CODE
+================
+
+Daily snapshots from our subversion repository are available here:
+
+        http://ilab.usc.edu/toolkit/downloads.shtml
+
+The bottom of that page contains instructions for requesting full
+developer access to our subversion repository, if you intend to become
+a regular developer and contribute your changes back to the toolkit.
+
+
+=================
+BUILDING THE CODE
+=================
+
+The code (at least the core parts) should be compilable on most modern
+unix-like systems, including:
+
+        * Linux
+        * Mac OS X
+        * Windows with Cygwin (http://www.cygwin.com)
+
+The basic steps for building are simple:
+
+        ./configure
+        make core
+
+'make core' will build the just a few core neuromorphic vision
+applications. By default, programs are built directly in the bin/
+directory within your toolkit working directory -- so, unlike many
+software packages, there is no separate 'make install' step.
+
+To build all of the programs in the toolkit (there are currently 300+
+programs) you can do 'make all', but note that some of those programs
+require specific 3rd-party libraries that may not be installed by
+default on your system.
+
+Our main development platform is Linux; if you are building on Windows
+with Cygwin or on Mac OS X, be aware that these platforms receive less
+testing and the code may occasionally not build or run properly. Also,
+you will need to install some additional libraries that are not
+standard OS components on these systems (for Windows, you will need
+packages from Cygwin's "setup" utility; on Mac OS X, you will need an
+X11 installation including an X11 SDK, plus additional packages from
+Fink [http://fink.sourceforge.net]). For additional details, see the
+file doc/input/programmer-notes.dxy.
+
+================
+RUNNING THE CODE
+================
+
+The main neuromorphic vision program in the toolkit is
+bin/ezvision. Here is one simple example for using ezvision, which
+reads a series of raster files (--in=tests/ezframe#.pnm), generates an
+attention trajectory (-T), and displays the result in an onscreen X11
+window (--out=display).
+
+        ./bin/ezvision --in=tests/inputs/ezframe#.pnm -T --out=display
+
+You can also process movies:
+
+        ./bin/ezvision --in=tests/inputs/mpegclip1.mpg -T --out=display
+
+To save the output to PNG raster files (note that you can have
+multiple output destinations):
+
+        ./bin/ezvision --in=tests/inputs/mpegclip1.mpg -T \
+                --out=display \
+                --out=png
+
+To see all of ezvision's command-line options:
+
+        ./bin/ezvision --help
+
+For more examples, see http://ilab.usc.edu/toolkit/screenshots.shtml,
+or do the following to interactively run the examples on your own
+machine:
+
+        ./configure             # if not done previously
+        make core               # if not done previously
+        cd screenshots
+        ./build.tcl runner
+        ./rundemo.sh

@@ -1,0 +1,142 @@
+/** \dir src/CINNIC
+
+    \brief Contour integration classes and programs
+
+    This is an over view and documentation of the CINNIC classes and
+    files.
+
+    CINNICtest.C - This is the standard entry binary exec for
+    CINNIC. it makes calles to create the 4D kernal and then can
+    display the kernal properties if no command line is given or it
+    can call the full CINNIC alg. with proper command line args.
+
+	     example: CINNICtest input.pgm output_files configfile
+	     where input.pgm is a PGM file, ouput_files is a prefix for a
+	     file and its directory for all output files and configFile
+	     is a valid config file for CINNIC (see) contour.conf
+
+    cascadeHold.H - Holder for cascade energys. Is most likely depricated
+
+    readConfig.H/.C - A generic class for opening and parsing config files
+
+    CINNIC.H/.C - These are entry level methods into CINNIC. For
+    instance you can use this to view the neuron template
+    (Kernel). However, you will more than likely call RunSimpleIMage
+    which is a call to the main CINNIC loop. The image is
+    rescaled,filtered and in general pre-processed.
+
+	    PreImage - is responsible for setting group sizes.
+
+	    runImage - is the inner most loop of this class and calls
+	    contourRunMain which does the CINNIC neural
+	    implementations and processes results and writes most (but
+	    not all) of the results to disk. Results are writen as
+	    both image (e.g %s%s.max.out.%d.%d.%d.%d) and as a
+	    tab-delim file with more precise values
+	    (%s%s.table.out.txt) the later is used for precise
+	    analysis for instance Polat and Sagi 1993
+	    
+
+    contourRun.H/.C - This is the meat of the CINNIC package. This is
+    where the neurons operate on the orientation filtered
+    images. Group values are computered here as will as the fast
+    plasticity term. Much old code still exists for doing cascade in
+    CINNIC that is no longer used. It will not be discused. The flow
+    here is dedicated to iterating over the kernals and orientation
+    filtered images. The iterations are handled outside on CINNIC.H/.C
+    (i.e. methods this class will be called once for each
+    iteration). Many small methods exist here for handeling the
+    saliency map as well as sigmoidal functions and the various
+    storage matricses used in testing.
+
+		contourRunMain - Mainly resets verious data structures
+		at the first iteration then calls runImageSigmoid
+
+		runImageSigmoid - This is the out loop for the 6 layer
+		psuedo-convolution. It also controls the group supression
+		modifier. Here the change in a groups potential is detected 
+		from one iteration to the next. This adjusts the group 
+		supression. It next calls iterateConvolve which manages the
+		inner loop for the CINNIC pseudo convolution.
+
+		iterateConvolve - Simply decides if cascade should be used
+		calls convolveSimple which is the inner loop
+
+		convolveSimple - Is the inner loop. It manages the fast 
+		plasticity term for this neuron. This loop is i,j,k,l
+		while the outer loop is alpha,beta. Optimizations and
+		tests are used here to skip near zero values. THE TRICK
+		here is that the result is stored in the other neuron
+		(I had my reasons for doing it this way) that is each simple 
+		interaction is stored in the neuron that is in defined in
+		the outer loop. This means that the result is put into
+		beta,k,l while alpha,i,j is treated on the fly. beta,k,l and
+		alpha,i,j are reversed in the paper from what they are called 
+		here. 		
+
+		All potential is stored in the NeuronMatrix which has the
+		form matrix[iteration][beta][k][l]. This is of type
+		ContourNeuronProp.
+
+    contourNeuronProp.H - This is a basic class for holding the
+    propertie of each neuron. In essence it holds the potential of
+    each neuron. It was initially designed so that cascade values
+    could be tracked. Since it is imbedded in the code it has stayed
+    for a little while. It should be replaced at some point by a more
+    efficent data structure. Important methods are getCharge and
+    Charge.
+
+    contourNeuron.H/.C - This creates and then stores the generic
+    neuron template kernal in PropHold. This has a variety of crazy
+    experimental calculations that are used in the creation of the
+    CINNIC kernel. note that values of PropHold are stored in the 4D
+    neural matrix called FourDNeuralMap[i][j][k][l] where i and j are
+    the alpha/beta angles and k and l are the coords in each kernel
+    slice.
+
+    -----
+
+    Other semi-related classes:
+
+    CINNICstats - is a basic statistical anal. package.
+
+    CINNICstatsRun - executes some states used by CINNICstats
+
+    CINNICanova - an analysis of variance package
+
+    for dependency graphs:
+    rankdir: TB
+*/
+
+// $HeadURL: svn://isvn.usc.edu/software/invt/trunk/saliency/src/CINNIC/README.dxy $
+// $Id: README.dxy 5749 2005-10-19 08:15:48Z itti $
+
+// //////////////////////////////////////////////////////////////////// //
+// The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2001 by the //
+// University of Southern California (USC) and the iLab at USC.         //
+// See http://iLab.usc.edu for information about this project.          //
+// //////////////////////////////////////////////////////////////////// //
+// Major portions of the iLab Neuromorphic Vision Toolkit are protected //
+// under the U.S. patent ``Computation of Intrinsic Perceptual Saliency //
+// in Visual Environments, and Applications'' by Christof Koch and      //
+// Laurent Itti, California Institute of Technology, 2001 (patent       //
+// pending; application number 09/912,225 filed July 23, 2001; see      //
+// http://pair.uspto.gov/cgi-bin/final/home.pl for current status).     //
+// //////////////////////////////////////////////////////////////////// //
+// This file is part of the iLab Neuromorphic Vision C++ Toolkit.       //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is free software; you can   //
+// redistribute it and/or modify it under the terms of the GNU General  //
+// Public License as published by the Free Software Foundation; either  //
+// version 2 of the License, or (at your option) any later version.     //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope  //
+// that it will be useful, but WITHOUT ANY WARRANTY; without even the   //
+// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      //
+// PURPOSE.  See the GNU General Public License for more details.       //
+//                                                                      //
+// You should have received a copy of the GNU General Public License    //
+// along with the iLab Neuromorphic Vision C++ Toolkit; if not, write   //
+// to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,   //
+// Boston, MA 02111-1307 USA.                                           //
+// //////////////////////////////////////////////////////////////////// //

@@ -1,0 +1,29 @@
+0000000.00ms FOAradius            21
+0000000.00ms FoveaRadius          21
+0000000.00ms InputDims            384x256
+0000000.00ms ReadFrame            ../inputs/helis.ppm
+0000000.00ms InputFrameSeries     frame 0
+0000112.60ms CovertShift          (144,80) 3.630mV
+0000112.60ms ShapeEstimator       (144,80) RawVisualCortex:color [Shape]
+0000112.60ms OutputFrameSeries    frame 0
+0000112.60ms WriteRGB             T000000.pnm
+0000187.60ms CovertShift          (256,112) 4.722mV
+0000187.60ms ShapeEstimator       (256,112) RawVisualCortex:orientation [Shape]
+0000187.60ms OutputFrameSeries    frame 1
+0000187.60ms WriteRGB             T000001.pnm
+0000271.90ms CovertShift          (48,32) 3.778mV
+0000271.90ms ShapeEstimator       (48,32) RawVisualCortex:color [Shape]
+0000271.90ms OutputFrameSeries    frame 2
+0000271.90ms WriteRGB             T000002.pnm
+0000346.00ms CovertShift          (352,224) 4.325mV
+0000346.00ms ShapeEstimator       (352,224) RawVisualCortex:color [Shape]
+0000346.00ms OutputFrameSeries    frame 3
+0000346.00ms WriteRGB             T000003.pnm
+0000416.60ms CovertShift          (112,32) 4.534mV
+0000416.60ms ShapeEstimator       (112,32) RawVisualCortex:intensity [Shape]
+0000416.60ms OutputFrameSeries    frame 4
+0000416.60ms WriteRGB             T000004.pnm
+0000518.10ms CovertShift          (176,176) 2.727mV
+0000518.10ms ShapeEstimator       (176,176) RawVisualCortex:color [Shape]
+0000518.10ms OutputFrameSeries    frame 5
+0000518.10ms WriteRGB             T000005.pnm

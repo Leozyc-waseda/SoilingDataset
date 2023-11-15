@@ -1,0 +1,63 @@
+Source: saliency
+Section: user/science
+Priority: extra
+Maintainer: Laurent Itti <itti@pollux.usc.edu>
+Build-Depends: debhelper (>= 5), libosso-dev, libx11-dev, osso-af-settings
+Standards-Version: 3.7.2
+
+Package: saliency
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Maemo implementation of visual saliency algorithm
+ Saliency implements the bottom-up visual saliency model of Itti,
+ Koch & Niebur (IEEE PAMI, 1998) to run on the Nokia N810 Internet
+ Tablet. Given an input image or video stream, this neuromorphic vision
+ system attempts to predict which locations in the images will
+ automatically and unconsciously attract your attention towards them.
+XB-Maemo-Icon-26:
+ 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
+ TkSuQmCC

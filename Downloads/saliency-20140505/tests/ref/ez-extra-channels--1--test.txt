@@ -1,0 +1,92 @@
+0000000.00ms FOAradius            20
+0000000.00ms FoveaRadius          20
+0000000.00ms InputDims            320x240
+0000000.00ms ReadFrame            ../inputs/ezframe000000.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000025.00ms ReadFrame            ../inputs/ezframe000001.pnm
+0000025.00ms InputFrameSeries     frame 1
+0000041.00ms OutputFrameSeries    frame 100
+0000041.00ms WriteFloat           COcomposite-color-000100.pnm
+0000041.00ms WriteFloat           COcolor-000100.pnm
+0000041.00ms WriteFloat           SOrg-000100.pnm
+0000041.00ms WriteFloat           SOby-000100.pnm
+0000041.00ms WriteFloat           COsingle-opponent-color-000100.pnm
+0000041.00ms WriteFloat           SOr-g-000100.pnm
+0000041.00ms WriteFloat           SOg-r-000100.pnm
+0000041.00ms WriteFloat           SOb-y-000100.pnm
+0000041.00ms WriteFloat           SOy-b-000100.pnm
+0000041.00ms WriteFloat           SOr-000100.pnm
+0000041.00ms WriteFloat           SOg-000100.pnm
+0000041.00ms WriteFloat           SOb-000100.pnm
+0000041.00ms WriteFloat           SOy-000100.pnm
+0000041.00ms WriteFloat           COMultiColorBand-000100.pnm
+0000041.00ms WriteFloat           SOcband_0-000100.pnm
+0000041.00ms WriteFloat           SOcband_1-000100.pnm
+0000041.00ms WriteFloat           SOcband_2-000100.pnm
+0000041.00ms WriteFloat           SOcband_3-000100.pnm
+0000041.00ms WriteFloat           SOcband_4-000100.pnm
+0000041.00ms WriteFloat           SOcband_5-000100.pnm
+0000041.00ms WriteFloat           COIntensityBand-000100.pnm
+0000041.00ms WriteFloat           SOiband_0-000100.pnm
+0000041.00ms WriteFloat           SOiband_1-000100.pnm
+0000041.00ms WriteFloat           SOiband_2-000100.pnm
+0000041.00ms WriteFloat           SOPedestrian-000100.pnm
+0000050.00ms ReadFrame            ../inputs/ezframe000002.pnm
+0000050.00ms InputFrameSeries     frame 2
+0000075.00ms ReadFrame            ../inputs/ezframe000003.pnm
+0000075.00ms InputFrameSeries     frame 3
+0000081.30ms CovertShift          (16,80) 5.825mV
+0000082.00ms OutputFrameSeries    frame 101
+0000082.00ms WriteFloat           COcomposite-color-000101.pnm
+0000082.00ms WriteFloat           COcolor-000101.pnm
+0000082.00ms WriteFloat           SOrg-000101.pnm
+0000082.00ms WriteFloat           SOby-000101.pnm
+0000082.00ms WriteFloat           COsingle-opponent-color-000101.pnm
+0000082.00ms WriteFloat           SOr-g-000101.pnm
+0000082.00ms WriteFloat           SOg-r-000101.pnm
+0000082.00ms WriteFloat           SOb-y-000101.pnm
+0000082.00ms WriteFloat           SOy-b-000101.pnm
+0000082.00ms WriteFloat           SOr-000101.pnm
+0000082.00ms WriteFloat           SOg-000101.pnm
+0000082.00ms WriteFloat           SOb-000101.pnm
+0000082.00ms WriteFloat           SOy-000101.pnm
+0000082.00ms WriteFloat           COMultiColorBand-000101.pnm
+0000082.00ms WriteFloat           SOcband_0-000101.pnm
+0000082.00ms WriteFloat           SOcband_1-000101.pnm
+0000082.00ms WriteFloat           SOcband_2-000101.pnm
+0000082.00ms WriteFloat           SOcband_3-000101.pnm
+0000082.00ms WriteFloat           SOcband_4-000101.pnm
+0000082.00ms WriteFloat           SOcband_5-000101.pnm
+0000082.00ms WriteFloat           COIntensityBand-000101.pnm
+0000082.00ms WriteFloat           SOiband_0-000101.pnm
+0000082.00ms WriteFloat           SOiband_1-000101.pnm
+0000082.00ms WriteFloat           SOiband_2-000101.pnm
+0000082.00ms WriteFloat           SOPedestrian-000101.pnm
+0000100.00ms ReadFrame            ../inputs/ezframe000004.pnm
+0000100.00ms InputFrameSeries     frame 4
+0000123.00ms OutputFrameSeries    frame 102
+0000123.00ms WriteFloat           COcomposite-color-000102.pnm
+0000123.00ms WriteFloat           COcolor-000102.pnm
+0000123.00ms WriteFloat           SOrg-000102.pnm
+0000123.00ms WriteFloat           SOby-000102.pnm
+0000123.00ms WriteFloat           COsingle-opponent-color-000102.pnm
+0000123.00ms WriteFloat           SOr-g-000102.pnm
+0000123.00ms WriteFloat           SOg-r-000102.pnm
+0000123.00ms WriteFloat           SOb-y-000102.pnm
+0000123.00ms WriteFloat           SOy-b-000102.pnm
+0000123.00ms WriteFloat           SOr-000102.pnm
+0000123.00ms WriteFloat           SOg-000102.pnm
+0000123.00ms WriteFloat           SOb-000102.pnm
+0000123.00ms WriteFloat           SOy-000102.pnm
+0000123.00ms WriteFloat           COMultiColorBand-000102.pnm
+0000123.00ms WriteFloat           SOcband_0-000102.pnm
+0000123.00ms WriteFloat           SOcband_1-000102.pnm
+0000123.00ms WriteFloat           SOcband_2-000102.pnm
+0000123.00ms WriteFloat           SOcband_3-000102.pnm
+0000123.00ms WriteFloat           SOcband_4-000102.pnm
+0000123.00ms WriteFloat           SOcband_5-000102.pnm
+0000123.00ms WriteFloat           COIntensityBand-000102.pnm
+0000123.00ms WriteFloat           SOiband_0-000102.pnm
+0000123.00ms WriteFloat           SOiband_1-000102.pnm
+0000123.00ms WriteFloat           SOiband_2-000102.pnm
+0000123.00ms WriteFloat           SOPedestrian-000102.pnm

@@ -1,0 +1,70 @@
+<scenes>
+<annotation>
+  <filename>berry1.png</filename>
+  <folder>tests/inputs</folder>
+  <source>Sample Input</source>
+  <description>Blackberry 1 Search</description>
+  <!-- <specs width="256" height="256" type="Scaled"/> -->
+  <object>
+    <name>Blackberry</name>
+    <id>1</id>
+    <description>Blackberry</description>
+    <polygon>
+      <pt><x>96</x><y>95</y></pt>
+      <pt><x>125</x><y>85</y></pt>
+      <pt><x>159</x><y>84</y></pt>
+      <pt><x>175</x><y>180</y></pt>
+      <pt><x>145</x><y>192</y></pt>
+      <pt><x>112</x><y>192</y></pt>
+    </polygon>
+  </object>
+</annotation>
+
+<annotation>
+  <filename>berry2.png</filename>
+  <folder>tests/inputs</folder>
+  <source>Sample Input</source>
+  <description>Blackberry 2</description>
+  <object>
+    <name>Blackberry</name>
+    <id>2</id>
+    <description>Blackberry</description>
+    <polygon>
+      <pt><x>62</x><y>128</y></pt>
+      <pt><x>96</x><y>126</y></pt>
+      <pt><x>130</x><y>134</y></pt>
+      <pt><x>115</x><y>242</y></pt>
+      <pt><x>82</x><y>244</y></pt>
+      <pt><x>47</x><y>233</y></pt>
+    </polygon>
+  </object>
+</annotation>
+
+<annotation>
+  <filename>berry3.png</filename>
+  <folder>tests/inputs</folder>
+  <source>Sample Input</source>
+  <description>Blackberry 3 Search</description>
+  <object>
+    <name>Blackberry</name>
+    <id>3</id>
+    <description>Blackberry</description>
+    <polygon>
+      <pt><x>145</x><y>146</y></pt>
+      <pt><x>164</x><y>101</y></pt>
+      <pt><x>249</x><y>85</y></pt>
+      <pt><x>262</x><y>112</y></pt>
+      <pt><x>268</x><y>148</y></pt>
+      <pt><x>262</x><y>154</y></pt>
+      <pt><x>238</x><y>141</y></pt>
+      <pt><x>217</x><y>170</y></pt>
+      <pt><x>177</x><y>182</y></pt>
+      <pt><x>199</x><y>130</y></pt>
+      <pt><x>193</x><y>127</y></pt>
+      <pt><x>163</x><y>182</y></pt>
+      <pt><x>157</x><y>181</y></pt>
+    </polygon>
+  </object>
+</annotation>
+
+</scenes>

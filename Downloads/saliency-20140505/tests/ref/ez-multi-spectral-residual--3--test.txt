@@ -1,0 +1,11 @@
+0000000.00ms FOAradius            21
+0000000.00ms FoveaRadius          21
+0000000.00ms InputDims            256x256
+0000000.00ms ReadFrame            ../inputs/testpic001.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000033.40ms OutputFrameSeries    frame 0
+0000033.40ms WriteFloat           COMultiSpectralResidualChannel-000000.pnm
+0000033.40ms WriteFloat           srs_0-000000.pfm
+0000033.40ms WriteFloat           srs_1-000000.pfm
+0000033.40ms WriteFloat           srs_2-000000.pfm
+0000033.40ms WriteFloat           srs_3-000000.pfm

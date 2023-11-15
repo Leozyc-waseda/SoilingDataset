@@ -1,0 +1,6 @@
+Hello, My name is Sal and I am very pleased you want to know about my inner working.
+I am NuromorphicHead developed at the USC ILab laboratory. I run on
+a highly optimized version of the saliency model developed by Itti
+and colleagues. I attempt to find salient objects using this model and
+utter responses based on their salient values. I can also recognize
+objects. Thanks you for you attention.

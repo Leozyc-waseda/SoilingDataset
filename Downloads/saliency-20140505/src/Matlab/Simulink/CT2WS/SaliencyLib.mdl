@@ -1,0 +1,6806 @@
+Library {
+  Name			  "SaliencyLib"
+  Version		  7.1
+  MdlSubVersion		  0
+  SavedCharacterEncoding  "UTF-8"
+  LibraryType		  "BlockLibrary"
+  SaveDefaultBlockParams  on
+  SampleTimeColors	  off
+  LibraryLinkDisplay	  "none"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  Created		  "Wed Jul 16 12:02:44 2008"
+  Creator		  "bruce"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "bruce"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Wed Mar 11 16:35:30 2009"
+  RTWModifiedTimeStamp	  0
+  ModelVersionFormat	  "1.%<AutoIncrement:83>"
+  ConfigurationManager	  "None"
+  SimulationMode	  "normal"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  BlockDefaults {
+    Orientation		    "right"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      BusCreator
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
+    }
+    Block {
+      BlockType		      BusSelector
+      OutputAsBus	      off
+    }
+    Block {
+      BlockType		      Gain
+      Gain		      "1"
+      Multiplication	      "Element-wise(K.*u)"
+      ParamMin		      "[]"
+      ParamMax		      "[]"
+      ParameterDataTypeMode   "Same as input"
+      ParameterDataType	      "fixdt(1,16,0)"
+      ParameterScalingMode    "Best Precision: Matrix-wise"
+      ParameterScaling	      "[]"
+      ParamDataTypeStr	      "Inherit: Same as input"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Same as input"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Port		      "1"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      DataType		      "auto"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchByCopyingInsideSignal off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Math
+      Operator		      "exp"
+      OutputSignalType	      "auto"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Same as first input"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+    }
+    Block {
+      BlockType		      MATLABFcn
+      MATLABFcn		      "sin"
+      OutputDimensions	      "-1"
+      OutputSignalType	      "auto"
+      Output1D		      on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      "M-S-Function"
+      FunctionName	      "mlfile"
+      DisplayMFileStacktrace  on
+    }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      DataType		      "auto"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Product
+      Inputs		      "2"
+      Multiplication	      "Element-wise(.*)"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Same as first input"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Reference
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      CheckFcnCallInpInsideContextMsg off
+      SystemSampleTime	      "-1"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      MinMaxOverflowLogging   "UseLocalSettings"
+    }
+    Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Same as first input"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
+      Decimation	      "1"
+      SampleTime	      "0"
+      FixptAsFi		      off
+    }
+    Block {
+      BlockType		      Abs
+      ZeroCross		      on
+      SampleTime	      "-1"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Same as input"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+    }
+    Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit from 'Constant value'"
+      OutDataType	      "fixdt(1,16,0)"
+      ConRadixGroup	      "Use specified scaling"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+    }
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  System {
+    Name		    "SaliencyLib"
+    Location		    [15, 186, 820, 893]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    Block {
+      BlockType		      "M-S-Function"
+      Name		      "Level-2 M-file\nS-Function"
+      Ports		      [1, 1]
+      Position		      [65, 147, 160, 223]
+      FunctionName	      "extractlevelblock"
+      Parameters	      "br,bc,pl,bo"
+      MaskType		      "Extract Pyramid Level"
+      MaskDescription	      "Extracts one scale level from a multi-resolution pyramid\n(that previously was packed into a matrix)."
+      MaskHelp		      "For parameters are required.  Base rows and columns are the\ndimensions of the level 0 image.  The pyramid level is the\nresolution level that will be output. Base offset is normally\nzero, but if the input pyramid was obtained by extracting\nlevel n from a pyramid with level 0 dimensions given by the \nbase row and col parameter, then the base offset should be\nset to n to give the correct input pyramid dimensions."
+      MaskPromptString	      "base rows:|base cols:|pyramid level:|base offset:"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on"
+      MaskCallbackString      "|||"
+      MaskEnableString	      "on,on,on,on"
+      MaskVisibilityString    "on,on,on,on"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVarAliasString      ",,,"
+      MaskVariables	      "br=@1;bc=@2;pl=@3;bo=@4;"
+      MaskDisplay	      "fprintf('EXTRACT\\nLEVEL %s\\n(%s x %s)', get_param(gcb, 'pl'),get_param(gcb,'br'),get_param(gcb,'bc'))"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "332|500|2|0"
+      MaskTabNameString	      ",,,"
+    }
+    Block {
+      BlockType		      "M-S-Function"
+      Name		      "Level-2 M-file\nS-Function1"
+      Ports		      [1, 1]
+      Position		      [440, 284, 500, 346]
+      FunctionName	      "intensitypyramidblock"
+      Parameters	      "sr,sc,sl,bo"
+      MaskType		      "Multi-Resolution Image Pyramid"
+      MaskDescription	      "Constructs a multi-scale image pyramid from the input image\nand outputs this pyramid packed into a 2-D matrix."
+      MaskHelp		      "Four parameters (sr,sc,sl,bo) are required.\n\nsr and sc are the (nominal) row and column dimensions of the\ninput source image.\n\nsl is the desired number of levels for the output pyramid.\n\nbo is normally zero, but can be used to implicitly specify\nthe input image dimensions when the input is known to be\nitself a level bo image from a pyramid derived from a base\nimage with dimensions sr by sc."
+      MaskPromptString	      "source rows:|source cols:|levels:|base offset:"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on"
+      MaskCallbackString      "|||"
+      MaskEnableString	      "on,on,on,on"
+      MaskVisibilityString    "on,on,on,on"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVarAliasString      ",,,"
+      MaskVariables	      "sr=@1;sc=@2;sl=@3;bo=@4;"
+      MaskDisplay	      "fprintf('PYRAMID\\n(%s x %s)\\n%s LEVEL', get_param(gcb,'sr'),get_param(gcb,'sc'),get_param(gcb,'sl'))"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "332|500|8|0"
+      MaskTabNameString	      ",,,"
+    }
+    Block {
+      BlockType		      "M-S-Function"
+      Name		      "Level-2 M-file\nS-Function2"
+      Ports		      [1, 1]
+      Position		      [210, 154, 285, 196]
+      FunctionName	      "upsamplelevel"
+      Parameters	      "br,bc,fl,cl"
+      MaskType		      "Upsample Image Pyramid Level"
+      MaskDescription	      "Upsample a coarse resolution (higher) level image \nto the resolution of a finer (lower) level image by simple\npixel replication."
+      MaskHelp		      "PARAMETERS:\nbase row, cols - level 0 image dimensions for the input pyramid.\nfine level - the scale for the output image.\ncoarse level - the scale for the input image."
+      MaskPromptString	      "base rows:|base cols:|fine level:|coarse level:"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on"
+      MaskCallbackString      "|||"
+      MaskEnableString	      "on,on,on,on"
+      MaskVisibilityString    "on,on,on,on"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVarAliasString      ",,,"
+      MaskVariables	      "br=@1;bc=@2;fl=@3;cl=@4;"
+      MaskDisplay	      "fprintf('UPSAMPLE\\nLEVEL %s -> %s',get_param(gcb,'cl'),get_param(gcb,'fl'))"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "332|500|2|5"
+      MaskTabNameString	      ",,,"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem"
+      Ports		      [1, 1]
+      Position		      [315, 214, 415, 256]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Matrix Maximum"
+      MaskDescription	      "Outputs the value of the largest element in the input matrix."
+      MaskDisplay	      "disp('MATRIX\\nMAX')\nport_label('input',1,'IMG')\nport_label('output',1,'MAX')\n\n"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Subsystem"
+	Location		[493, 646, 991, 946]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [110, 103, 140, 117]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "MATLAB Fcn"
+	  Ports			  [1, 1]
+	  Position		  [210, 95, 270, 125]
+	  MATLABFcn		  "max(u(:))"
+	  Output1D		  off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [360, 103, 390, 117]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "MATLAB Fcn"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "MATLAB Fcn"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem1"
+      Tag		      "Color Map"
+      Ports		      [3, 5]
+      Position		      [45, 46, 150, 104]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Color Mapping"
+      MaskDescription	      "Maps conventional RGB color component images to \nintensity plus RGBY channels used by saliency algorithm."
+      MaskDisplay	      "disp('COLOR\\nMAPPING')\nport_label('input',1,'r')\nport_label('input',2','g')\nport_label('input',3,'b')\nport_label('output',1,'I')\nport_label('output',2,'R')\nport_label('output',3,'G')\nport_label('output',4','B')\nport_label('output',5,'Y')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Subsystem1"
+	Location		[60, 201, 1042, 954]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [45, 58, 75, 72]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In2"
+	  Position		  [50, 118, 80, 132]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In3"
+	  Position		  [50, 178, 80, 192]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Abs
+	  Name			  "Abs"
+	  Position		  [240, 540, 270, 570]
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Add"
+	  Ports			  [3, 1]
+	  Position		  [185, 29, 215, 61]
+	  Inputs		  "+++"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide"
+	  Ports			  [2, 1]
+	  Position		  [565, 67, 595, 98]
+	  Inputs		  "**"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide1"
+	  Ports			  [2, 1]
+	  Position		  [555, 207, 585, 238]
+	  Inputs		  "**"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide2"
+	  Ports			  [2, 1]
+	  Position		  [560, 342, 590, 373]
+	  Inputs		  "**"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide3"
+	  Ports			  [2, 1]
+	  Position		  [565, 427, 595, 458]
+	  Inputs		  "**"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain"
+	  Position		  [250, 30, 280, 60]
+	  Gain			  "1/3"
+	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  ParameterDataType	  "sfix(16)"
+	  ParameterScaling	  "2^0"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain1"
+	  Position		  [280, 110, 310, 140]
+	  Gain			  "0.5"
+	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  ParameterDataType	  "sfix(16)"
+	  ParameterScaling	  "2^0"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain2"
+	  Position		  [285, 285, 315, 315]
+	  Gain			  "0.5"
+	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  ParameterDataType	  "sfix(16)"
+	  ParameterScaling	  "2^0"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain3"
+	  Position		  [285, 435, 315, 465]
+	  Gain			  "0.5"
+	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  ParameterDataType	  "sfix(16)"
+	  ParameterScaling	  "2^0"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain4"
+	  Position		  [300, 540, 330, 570]
+	  Gain			  "0.5"
+	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  ParameterDataType	  "sfix(16)"
+	  ParameterScaling	  "2^0"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "MATLAB Fcn"
+	  Ports			  [1, 1]
+	  Position		  [435, 125, 495, 155]
+	  MATLABFcn		  "IScale(u)"
+	  Output1D		  off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [2, 1]
+	  Position		  [235, 115, 255, 135]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|++"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  Ports			  [2, 1]
+	  Position		  [325, 80, 345, 100]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|+-"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum2"
+	  Ports			  [2, 1]
+	  Position		  [235, 290, 255, 310]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|++"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum3"
+	  Ports			  [2, 1]
+	  Position		  [330, 220, 350, 240]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|+-"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum4"
+	  Ports			  [2, 1]
+	  Position		  [210, 440, 230, 460]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|++"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum5"
+	  Ports			  [2, 1]
+	  Position		  [330, 355, 350, 375]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|+-"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum6"
+	  Ports			  [2, 1]
+	  Position		  [190, 545, 210, 565]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|+-"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum7"
+	  Ports			  [2, 1]
+	  Position		  [405, 440, 425, 460]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|+-"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum8"
+	  Ports			  [2, 1]
+	  Position		  [470, 440, 490, 460]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|+-"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [685, 38, 715, 52]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out2"
+	  Position		  [690, 78, 720, 92]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out3"
+	  Position		  [680, 218, 710, 232]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out4"
+	  Position		  [675, 353, 705, 367]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out5"
+	  Position		  [670, 438, 700, 452]
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "MATLAB Fcn"
+	  SrcPort		  1
+	  Points		  [20, 0]
+	  Branch {
+	    Points		    [0, 75]
+	    Branch {
+	      Points		      [0, 135]
+	      Branch {
+		Points			[0, 85]
+		DstBlock		"Divide3"
+		DstPort			1
+	      }
+	      Branch {
+		DstBlock		"Divide2"
+		DstPort			1
+	      }
+	    }
+	    Branch {
+	      DstBlock		      "Divide1"
+	      DstPort		      1
+	    }
+	  }
+	  Branch {
+	    Points		    [0, -65]
+	    DstBlock		    "Divide"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Divide3"
+	  SrcPort		  1
+	  DstBlock		  "Out5"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum8"
+	  SrcPort		  1
+	  DstBlock		  "Divide3"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Sum7"
+	  SrcPort		  1
+	  DstBlock		  "Sum8"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Gain4"
+	  SrcPort		  1
+	  Points		  [80, 0]
+	  DstBlock		  "Sum7"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Abs"
+	  SrcPort		  1
+	  DstBlock		  "Gain4"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum6"
+	  SrcPort		  1
+	  DstBlock		  "Abs"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Divide2"
+	  SrcPort		  1
+	  DstBlock		  "Out4"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Divide1"
+	  SrcPort		  1
+	  DstBlock		  "Out3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum5"
+	  SrcPort		  1
+	  DstBlock		  "Divide2"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Sum3"
+	  SrcPort		  1
+	  DstBlock		  "Divide1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Divide"
+	  SrcPort		  1
+	  DstBlock		  "Out2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "Divide"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Sum4"
+	  SrcPort		  1
+	  DstBlock		  "Gain3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Gain3"
+	  SrcPort		  1
+	  Points		  [20, 0]
+	  Branch {
+	    DstBlock		    "Sum7"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Sum5"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  SrcBlock		  "Gain2"
+	  SrcPort		  1
+	  Points		  [20, 0]
+	  DstBlock		  "Sum3"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Sum2"
+	  SrcPort		  1
+	  DstBlock		  "Gain2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Gain1"
+	  SrcPort		  1
+	  Points		  [20, 0]
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Gain1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Add"
+	  SrcPort		  1
+	  DstBlock		  "Gain"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Gain"
+	  SrcPort		  1
+	  Points		  [110, 0]
+	  Branch {
+	    Points		    [0, 95]
+	    DstBlock		    "MATLAB Fcn"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Out1"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "In3"
+	  SrcPort		  1
+	  Points		  [0, 0]
+	  Branch {
+	    Points		    [0, 140]
+	    Branch {
+	      Points		      [0, 40]
+	      Branch {
+		Points			[0, 255; 395, 0]
+		DstBlock		"Sum8"
+		DstPort			2
+	      }
+	      Branch {
+		DstBlock		"Sum5"
+		DstPort			1
+	      }
+	    }
+	    Branch {
+	      DstBlock		      "Sum2"
+	      DstPort		      2
+	    }
+	  }
+	  Branch {
+	    Points		    [75, 0]
+	    Branch {
+	      Points		      [85, 0]
+	      DstBlock		      "Sum"
+	      DstPort		      2
+	    }
+	    Branch {
+	      Points		      [0, -130]
+	      DstBlock		      "Add"
+	      DstPort		      3
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "In2"
+	  SrcPort		  1
+	  Points		  [55, 0]
+	  Branch {
+	    Points		    [0, 105]
+	    Branch {
+	      Points		      [0, 220]
+	      Branch {
+		Points			[0, 130]
+		DstBlock		"Sum6"
+		DstPort			2
+	      }
+	      Branch {
+		DstBlock		"Sum4"
+		DstPort			1
+	      }
+	    }
+	    Branch {
+	      DstBlock		      "Sum3"
+	      DstPort		      1
+	    }
+	  }
+	  Branch {
+	    Points		    [0, 0]
+	    Branch {
+	      DstBlock		      "Sum"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, -80]
+	      DstBlock		      "Add"
+	      DstPort		      2
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  Points		  [25, 0]
+	  Branch {
+	    Points		    [0, 235]
+	    Branch {
+	      Points		      [0, 175]
+	      Branch {
+		Points			[0, 80]
+		DstBlock		"Sum6"
+		DstPort			1
+	      }
+	      Branch {
+		DstBlock		"Sum4"
+		DstPort			2
+	      }
+	    }
+	    Branch {
+	      DstBlock		      "Sum2"
+	      DstPort		      1
+	    }
+	  }
+	  Branch {
+	    Points		    [0, 0]
+	    Branch {
+	      Points		      [0, 25]
+	      DstBlock		      "Sum1"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, -30]
+	      DstBlock		      "Add"
+	      DstPort		      1
+	    }
+	  }
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem10"
+      Ports		      [1, 1]
+      Position		      [490, 524, 590, 566]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Multi-Scale Color Opponent Saliency Channel"
+      MaskDescription	      "Outputs a bus containing color opponent saliency maps for\nsix different center-surround scale pairs."
+      MaskPromptString	      "base rows:|base cols:"
+      MaskStyleString	      "edit,edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVarAliasString      ","
+      MaskVariables	      "bRows=@1;bCols=@2;"
+      MaskDisplay	      "fprintf('MULTI-SCALE\\nCOLOR OPP\\n(%s x %s)', get_param(gcb,'bRows'),get_param(gcb,'bCols'))"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "0|0"
+      MaskTabNameString	      ","
+      System {
+	Name			"Subsystem10"
+	Location		[-16, 267, 814, 916]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [45, 283, 75, 297]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem1"
+	  Ports			  [1, 1]
+	  Position		  [275, 137, 420, 193]
+	  SourceBlock		  "SaliencyLib/Subsystem9"
+	  SourceType		  "Single Resolution Color Opponent Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  br			  "bRows"
+	  bc			  "bCols"
+	  cl			  "2"
+	  sl			  "6"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics2to6norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem15"
+	  Ports			  [6, 1]
+	  Position		  [635, 226, 730, 369]
+	  SourceBlock		  "SaliencyLib/Subsystem15"
+	  SourceType		  "Unknown"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem2"
+	  Ports			  [1, 1]
+	  Position		  [280, 237, 425, 293]
+	  SourceBlock		  "SaliencyLib/Subsystem9"
+	  SourceType		  "Single Resolution Color Opponent Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  br			  "bRows"
+	  bc			  "bCols"
+	  cl			  "3"
+	  sl			  "6"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics3to6norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem3"
+	  Ports			  [1, 1]
+	  Position		  [290, 332, 435, 388]
+	  SourceBlock		  "SaliencyLib/Subsystem9"
+	  SourceType		  "Single Resolution Color Opponent Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  br			  "bRows"
+	  bc			  "bCols"
+	  cl			  "3"
+	  sl			  "7"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics3to7norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem4"
+	  Ports			  [1, 1]
+	  Position		  [290, 427, 435, 483]
+	  SourceBlock		  "SaliencyLib/Subsystem9"
+	  SourceType		  "Single Resolution Color Opponent Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  br			  "bRows"
+	  bc			  "bCols"
+	  cl			  "4"
+	  sl			  "7"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics4to7norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem5"
+	  Ports			  [1, 1]
+	  Position		  [290, 527, 435, 583]
+	  SourceBlock		  "SaliencyLib/Subsystem9"
+	  SourceType		  "Single Resolution Color Opponent Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  br			  "bRows"
+	  bc			  "bCols"
+	  cl			  "4"
+	  sl			  "8"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics4to7norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem9"
+	  Ports			  [1, 1]
+	  Position		  [285, 47, 430, 103]
+	  SourceBlock		  "SaliencyLib/Subsystem9"
+	  SourceType		  "Single Resolution Color Opponent Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  br			  "bRows"
+	  bc			  "bCols"
+	  cl			  "2"
+	  sl			  "5"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics2to5norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [765, 293, 795, 307]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  Points		  [145, 0; 0, -145]
+	  Branch {
+	    Points		    [0, -70]
+	    DstBlock		    "Subsystem9"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 20]
+	    Branch {
+	      DstBlock		      "Subsystem1"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, 100]
+	      Branch {
+		DstBlock		"Subsystem2"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 95]
+		Branch {
+		  DstBlock		  "Subsystem3"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, 95]
+		  Branch {
+		    DstBlock		    "Subsystem4"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 100]
+		    DstBlock		    "Subsystem5"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	  }
+	}
+	Line {
+	  Name			  "ics2to5norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Subsystem9"
+	  SrcPort		  1
+	  Points		  [140, 0; 0, 160]
+	  DstBlock		  "Subsystem15"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "ics2to6norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Subsystem1"
+	  SrcPort		  1
+	  Points		  [140, 0; 0, 95]
+	  DstBlock		  "Subsystem15"
+	  DstPort		  2
+	}
+	Line {
+	  Name			  "ics3to6norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Subsystem2"
+	  SrcPort		  1
+	  Points		  [120, 0; 0, 20]
+	  DstBlock		  "Subsystem15"
+	  DstPort		  3
+	}
+	Line {
+	  Name			  "ics3to7norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Subsystem3"
+	  SrcPort		  1
+	  Points		  [75, 0; 0, -50]
+	  DstBlock		  "Subsystem15"
+	  DstPort		  4
+	}
+	Line {
+	  Name			  "ics4to7norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Subsystem4"
+	  SrcPort		  1
+	  Points		  [100, 0; 0, -120]
+	  DstBlock		  "Subsystem15"
+	  DstPort		  5
+	}
+	Line {
+	  Name			  "ics4to7norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Subsystem5"
+	  SrcPort		  1
+	  Points		  [155, 0; 0, -195]
+	  DstBlock		  "Subsystem15"
+	  DstPort		  6
+	}
+	Line {
+	  SrcBlock		  "Subsystem15"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem11"
+      Ports		      [4, 1]
+      Position		      [640, 239, 740, 281]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Color Based Saliency Channel"
+      MaskDescription	      "Outputs saliency map based on multi-scale double color\nopponent center-surround differences in the input image."
+      MaskPromptString	      "base rows:|base cols:"
+      MaskStyleString	      "edit,edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVarAliasString      ","
+      MaskVariables	      "br=@1;bc=@2;"
+      MaskDisplay	      "fprintf('COLOR CHANNEL\\n(%s x %s)',get_param(gcb,'br'),get_param(gcb,'bc'))"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "332|500"
+      MaskTabNameString	      ","
+      System {
+	Name			"Subsystem11"
+	Location		[216, 258, 1030, 669]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [35, 73, 65, 87]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In2"
+	  Position		  [35, 103, 65, 117]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In3"
+	  Position		  [35, 138, 65, 152]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In4"
+	  Position		  [35, 178, 65, 192]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem10"
+	  Ports			  [1, 1]
+	  Position		  [330, 89, 430, 131]
+	  SourceBlock		  "SaliencyLib/Subsystem10"
+	  SourceType		  "Multi-Scale Color Opponent Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  bRows			  "br"
+	  bCols			  "bc"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem17"
+	  Ports			  [1, 1]
+	  Position		  [450, 89, 550, 131]
+	  LinkData {
+	    BlockName		    "Level-2 M-file\nS-Function6"
+	    DialogParameters {
+	      bo		      "L2off"
+	    }
+	  }
+	  SourceBlock		  "SaliencyLib/Subsystem17"
+	  SourceType		  "Cross-Scale Summation"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  brxs			  "br"
+	  bcxs			  "bc"
+	  L1off			  "2"
+	  L2off			  "3"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem5"
+	  Ports			  [1, 1]
+	  Position		  [590, 89, 690, 131]
+	  SourceBlock		  "SaliencyLib/Subsystem5"
+	  SourceType		  "Local Inhibition (Saliency Normalization)"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem8"
+	  Ports			  [4, 1]
+	  Position		  [115, 69, 275, 151]
+	  SourceBlock		  "SaliencyLib/Subsystem8"
+	  SourceType		  "Multi-Resolution Color Pyramid"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  br			  "br"
+	  bc			  "bc"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [730, 103, 760, 117]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem8"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem8"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem10"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem10"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem17"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem17"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem5"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem5"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In2"
+	  SrcPort		  1
+	  Points		  [15, 0; 0, -10]
+	  DstBlock		  "Subsystem8"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "In3"
+	  SrcPort		  1
+	  Points		  [15, 0; 0, -25]
+	  DstBlock		  "Subsystem8"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "In4"
+	  SrcPort		  1
+	  Points		  [30, 0]
+	  DstBlock		  "Subsystem8"
+	  DstPort		  4
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem12"
+      Ports		      [1, 1]
+      Position		      [525, 412, 710, 458]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Single Orientation Saliency Channel"
+      MaskDescription	      "Outputs saliency map based on multi-scale center-surround \nfeature orientation differences for a single, parametrically\nspecified orientation."
+      MaskPromptString	      "source rows:|source cols:|orientation angle:"
+      MaskStyleString	      "edit,edit,edit"
+      MaskTunableValueString  "on,on,on"
+      MaskCallbackString      "||"
+      MaskEnableString	      "on,on,on"
+      MaskVisibilityString    "on,on,on"
+      MaskToolTipString	      "on,on,on"
+      MaskVarAliasString      ",,"
+      MaskVariables	      "isr=@1;isc=@2;oa=@3;"
+      MaskDisplay	      "fprintf('ORIENTED CHANNEL (%s DEG)\\n(%s X %s)', get_param(gcb, 'oa'), get_param(gcb,'isr'),get_param(gcb,'isc'))"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "332|500|0"
+      MaskTabNameString	      ",,"
+      System {
+	Name			"Subsystem12"
+	Location		[31, 593, 1156, 842]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [65, 98, 95, 112]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Subsystem12"
+	  Ports			  [1, 1]
+	  Position		  [440, 84, 540, 126]
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskDisplay		  "disp('NORMALIZE')"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "Subsystem12"
+	    Location		    [821, 214, 1632, 931]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      Position		      [20, 288, 50, 302]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector"
+	      Ports		      [1, 6]
+	      Position		      [85, 216, 95, 394]
+	      ShowName		      off
+	      OutputSignals	      "ics2to5,ics2to6,ics3to6,ics3to7,ics4to7,ics4to8"
+	      Port {
+		PortNumber		1
+		Name			"<ics2to5>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<ics2to6>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		3
+		Name			"<ics3to6>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		4
+		Name			"<ics3to7>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		5
+		Name			"<ics4to7>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		6
+		Name			"<ics4to8>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem1"
+	      Ports		      [1, 1]
+	      Position		      [255, 149, 355, 191]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Local Inhibition (Saliency Normalization)"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics2to6norm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem15"
+	      Ports		      [6, 1]
+	      Position		      [565, 250, 665, 345]
+	      SourceBlock	      "SaliencyLib/Subsystem15"
+	      SourceType	      "Multi-Scale Image Bus Creator"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem2"
+	      Ports		      [1, 1]
+	      Position		      [255, 269, 355, 311]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Local Inhibition (Saliency Normalization)"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics3to6norm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem3"
+	      Ports		      [1, 1]
+	      Position		      [255, 384, 355, 426]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Local Inhibition (Saliency Normalization)"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics3to7norm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem4"
+	      Ports		      [1, 1]
+	      Position		      [255, 514, 355, 556]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Local Inhibition (Saliency Normalization)"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics4to7norm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem5"
+	      Ports		      [1, 1]
+	      Position		      [255, 44, 355, 86]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Local Inhibition (Saliency Normalization)"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics2to5nom"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem6"
+	      Ports		      [1, 1]
+	      Position		      [255, 604, 355, 646]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Local Inhibition (Saliency Normalization)"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics4to8norm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      Position		      [755, 293, 785, 307]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Line {
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      Points		      [15, 0]
+	      DstBlock		      "Bus\nSelector"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics2to5>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      1
+	      Points		      [20, 0; 0, -165]
+	      DstBlock		      "Subsystem5"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics2to6>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      2
+	      Points		      [40, 0; 0, -90]
+	      DstBlock		      "Subsystem1"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics3to6>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      3
+	      DstBlock		      "Subsystem2"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics3to7>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      4
+	      Points		      [140, 0]
+	      DstBlock		      "Subsystem3"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics4to7>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      5
+	      Points		      [100, 0; 0, 185]
+	      DstBlock		      "Subsystem4"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics4to8>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      6
+	      Points		      [40, 0; 0, 245]
+	      DstBlock		      "Subsystem6"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "ics2to5nom"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem5"
+	      SrcPort		      1
+	      Points		      [105, 0; 0, 195]
+	      DstBlock		      "Subsystem15"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "ics2to6norm"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem1"
+	      SrcPort		      1
+	      Points		      [80, 0; 0, 105]
+	      DstBlock		      "Subsystem15"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "ics3to6norm"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem2"
+	      SrcPort		      1
+	      DstBlock		      "Subsystem15"
+	      DstPort		      3
+	    }
+	    Line {
+	      Name		      "ics3to7norm"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem3"
+	      SrcPort		      1
+	      Points		      [90, 0; 0, -100]
+	      DstBlock		      "Subsystem15"
+	      DstPort		      4
+	    }
+	    Line {
+	      Name		      "ics4to7norm"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem4"
+	      SrcPort		      1
+	      Points		      [110, 0; 0, -215]
+	      DstBlock		      "Subsystem15"
+	      DstPort		      5
+	    }
+	    Line {
+	      Name		      "ics4to8norm"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem6"
+	      SrcPort		      1
+	      Points		      [135, 0; 0, -290]
+	      DstBlock		      "Subsystem15"
+	      DstPort		      6
+	    }
+	    Line {
+	      SrcBlock		      "Subsystem15"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem17"
+	  Ports			  [1, 1]
+	  Position		  [590, 84, 690, 126]
+	  SourceBlock		  "SaliencyLib/Subsystem17"
+	  SourceType		  "Cross-Scale Summation"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  brxs			  "isr"
+	  bcxs			  "isc"
+	  L1off			  "2"
+	  L2off			  "3"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Subsystem2"
+	  Ports			  [1, 1]
+	  Position		  [140, 79, 240, 131]
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskPromptString	  "source rows:|source cols:|levels|angle:"
+	  MaskStyleString	  "edit,edit,edit,edit"
+	  MaskTunableValueString  "on,on,on,on"
+	  MaskCallbackString	  "|||"
+	  MaskEnableString	  "on,on,on,on"
+	  MaskVisibilityString	  "on,on,on,on"
+	  MaskToolTipString	  "on,on,on,on"
+	  MaskVarAliasString	  ",,,"
+	  MaskVariables		  "sr=@1;sc=@2;pl=@3;a=@4;"
+	  MaskDisplay		  "fprintf('ORIENT\\nPYRAMID\\n%s',get_param(gcb,'a'))\nport_label('output',1,'PYR')\nport_label('input',1,'IMG')"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "isr|isc|8|oa"
+	  MaskTabNameString	  ",,,"
+	  System {
+	    Name		    "Subsystem2"
+	    Location		    [198, 531, 696, 831]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      Position		      [110, 103, 140, 117]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      "M-S-Function"
+	      Name		      "Level-2 M-file\nS-Function"
+	      Ports		      [1, 1]
+	      Position		      [215, 94, 270, 126]
+	      FunctionName	      "orientationpyramidblock"
+	      Parameters	      "sr,sc,pl,a"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      Position		      [360, 103, 390, 117]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Line {
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Level-2 M-file\nS-Function"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Level-2 M-file\nS-Function"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem5"
+	  Ports			  [1, 1]
+	  Position		  [755, 84, 855, 126]
+	  SourceBlock		  "SaliencyLib/Subsystem5"
+	  SourceType		  "Local Inhibition (Saliency Normalization)"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Subsystem7"
+	  Ports			  [1, 1]
+	  Position		  [305, 77, 410, 133]
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskDisplay		  "disp('C/S\\nCOMBINE')\nport_label('input',1,'PYR')\nport_label('output',1,'I-BUS')\n"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "Subsystem7"
+	    Location		    [650, 55, 1332, 953]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      Position		      [45, 73, 75, 87]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      BusCreator
+	      Name		      "Bus\nCreator"
+	      Ports		      [6, 1]
+	      Position		      [575, 75, 580, 160]
+	      ShowName		      off
+	      Inputs		      "6"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem1"
+	      Ports		      [1, 1]
+	      Position		      [260, 166, 385, 264]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,6"
+		  pl			  "6"
+		}
+		BlockName		"Level-2 M-file\nS-Function2"
+		DialogParameters {
+		  cl			  "6"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics2to6"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem2"
+	      Ports		      [1, 1]
+	      Position		      [265, 326, 390, 424]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function"
+		DialogParameters {
+		  Parameters		  "332,500,3"
+		  pl			  "3"
+		}
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,6"
+		  pl			  "6"
+		}
+		BlockName		"Level-2 M-file\nS-Function2"
+		DialogParameters {
+		  fl			  "3"
+		  cl			  "6"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics3to6"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem3"
+	      Ports		      [1, 1]
+	      Position		      [260, 31, 385, 129]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function"
+		DialogParameters {
+		  br			  "isr"
+		  bc			  "isc"
+		}
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,5"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics2to5"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem4"
+	      Ports		      [1, 1]
+	      Position		      [260, 461, 385, 559]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function"
+		DialogParameters {
+		  Parameters		  "332,500,3"
+		  pl			  "3"
+		}
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,7"
+		  pl			  "7"
+		}
+		BlockName		"Level-2 M-file\nS-Function2"
+		DialogParameters {
+		  fl			  "3"
+		  cl			  "7"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics3to7"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem5"
+	      Ports		      [1, 1]
+	      Position		      [265, 616, 390, 714]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function"
+		DialogParameters {
+		  Parameters		  "332,500,4"
+		  pl			  "4"
+		}
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,7"
+		  pl			  "7"
+		}
+		BlockName		"Level-2 M-file\nS-Function2"
+		DialogParameters {
+		  fl			  "4"
+		  cl			  "7"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics4to7"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem6"
+	      Ports		      [1, 1]
+	      Position		      [270, 756, 395, 854]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function"
+		DialogParameters {
+		  Parameters		  "332,500,4"
+		  pl			  "4"
+		}
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,8"
+		  pl			  "8"
+		}
+		BlockName		"Level-2 M-file\nS-Function2"
+		DialogParameters {
+		  fl			  "4"
+		  cl			  "8"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics4to8"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      Position		      [610, 113, 640, 127]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Line {
+	      Labels		      [0, 0]
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      Points		      [5, 0]
+	      Branch {
+		Points			[0, 135]
+		Branch {
+		  Points		  [0, 160]
+		  Branch {
+		    DstBlock		    "Subsystem2"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 135]
+		    Branch {
+		    DstBlock		    "Subsystem4"
+		    DstPort		    1
+		    }
+		    Branch {
+		    Points		    [0, 155]
+		    Branch {
+		    DstBlock		    "Subsystem5"
+		    DstPort		    1
+		    }
+		    Branch {
+		    Points		    [0, 140]
+		    DstBlock		    "Subsystem6"
+		    DstPort		    1
+		    }
+		    }
+		  }
+		}
+		Branch {
+		  DstBlock		  "Subsystem1"
+		  DstPort		  1
+		}
+	      }
+	      Branch {
+		DstBlock		"Subsystem3"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      Name		      "ics2to6"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem1"
+	      SrcPort		      1
+	      Points		      [50, 0; 0, -120]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "ics3to6"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem2"
+	      SrcPort		      1
+	      Points		      [70, 0; 0, -265]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      3
+	    }
+	    Line {
+	      Name		      "ics2to5"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem3"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "ics3to7"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem4"
+	      SrcPort		      1
+	      Points		      [110, 0; 0, -385]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nCreator"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "ics4to7"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem5"
+	      SrcPort		      1
+	      Points		      [135, 0; 0, -525]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      5
+	    }
+	    Line {
+	      Name		      "ics4to8"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem6"
+	      SrcPort		      1
+	      Points		      [150, 0; 0, -650]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      6
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [905, 98, 935, 112]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem2"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem7"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem7"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem12"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem17"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem5"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem5"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem12"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem17"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem13"
+      Ports		      [1, 1]
+      Position		      [635, 309, 735, 351]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Multi-Orientation Based Saliency Channel"
+      MaskDescription	      "Outputs saliency map based on multi-scale, multi-orientation\ncenter-surround feature orientation differences."
+      MaskPromptString	      "source rows:|source cols:"
+      MaskStyleString	      "edit,edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVarAliasString      ","
+      MaskVariables	      "sr=@1;sc=@2;"
+      MaskDisplay	      "fprintf('MULTI-ORIENTED\\nCHANNEL\\n(%s x %s)',get_param(gcb,'sr'),get_param(gcb,'sc'))"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "0|0"
+      MaskTabNameString	      ","
+      System {
+	Name			"Subsystem13"
+	Location		[43, 207, 815, 607]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [60, 63, 90, 77]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Add"
+	  Ports			  [4, 1]
+	  Position		  [495, 59, 530, 126]
+	  Inputs		  "++++"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem1"
+	  Ports			  [1, 1]
+	  Position		  [205, 127, 390, 173]
+	  SourceBlock		  "SaliencyLib/Subsystem12"
+	  SourceType		  "Single Orientation Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  isr			  "332"
+	  isc			  "500"
+	  oa			  "45"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem12"
+	  Ports			  [1, 1]
+	  Position		  [200, 47, 385, 93]
+	  SourceBlock		  "SaliencyLib/Subsystem12"
+	  SourceType		  "Single Orientation Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  isr			  "332"
+	  isc			  "500"
+	  oa			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem2"
+	  Ports			  [1, 1]
+	  Position		  [210, 217, 395, 263]
+	  SourceBlock		  "SaliencyLib/Subsystem12"
+	  SourceType		  "Single Orientation Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  isr			  "332"
+	  isc			  "500"
+	  oa			  "90"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem3"
+	  Ports			  [1, 1]
+	  Position		  [210, 297, 395, 343]
+	  SourceBlock		  "SaliencyLib/Subsystem12"
+	  SourceType		  "Single Orientation Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  isr			  "332"
+	  isc			  "500"
+	  oa			  "135"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem5"
+	  Ports			  [1, 1]
+	  Position		  [575, 74, 675, 116]
+	  SourceBlock		  "SaliencyLib/Subsystem5"
+	  SourceType		  "Local Inhibition (Saliency Normalization)"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [710, 88, 740, 102]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  Points		  [30, 0]
+	  Branch {
+	    DstBlock		    "Subsystem12"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 80]
+	    Branch {
+	      DstBlock		      "Subsystem1"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, 90]
+	      Branch {
+		DstBlock		"Subsystem2"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 80]
+		DstBlock		"Subsystem3"
+		DstPort			1
+	      }
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "Subsystem12"
+	  SrcPort		  1
+	  DstBlock		  "Add"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem1"
+	  SrcPort		  1
+	  Points		  [15, 0; 0, -65]
+	  DstBlock		  "Add"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Subsystem2"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -140]
+	  DstBlock		  "Add"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Subsystem3"
+	  SrcPort		  1
+	  Points		  [55, 0; 0, -205]
+	  DstBlock		  "Add"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "Add"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem5"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem5"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem14"
+      Ports		      [3, 1]
+      Position		      [620, 41, 730, 99]
+      ForegroundColor	      "red"
+      BackgroundColor	      "yellow"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Three Channel Saliency"
+      MaskDescription	      "Implements a three channel (intensity, orientation, color) \nsaliency map computaion based on the 1998 PAMI paper."
+      MaskPromptString	      "input rows:|input cols:"
+      MaskStyleString	      "edit,edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVarAliasString      ","
+      MaskVariables	      "inRows=@1;inCols=@2;"
+      MaskDisplay	      "fprintf('I-O-C CHANNEL\\nSALIENCY\\n(%s x %s)', get_param(gcb,'inRows'),get_param(gcb,'inCols'))\nport_label('input',1,'r')\nport_label('input',2,'g')\nport_label('input',3,'b')\nport_label('output',1,'SAL')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "332|500"
+      MaskTabNameString	      ","
+      System {
+	Name			"Subsystem14"
+	Location		[284, 513, 1442, 903]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [45, 133, 75, 147]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In2"
+	  Position		  [45, 188, 75, 202]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In3"
+	  Position		  [45, 243, 75, 257]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Add"
+	  Ports			  [3, 1]
+	  Position		  [820, 184, 850, 216]
+	  Inputs		  "+++"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain"
+	  Position		  [900, 185, 930, 215]
+	  Gain			  "1/3"
+	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  ParameterDataType	  "sfix(16)"
+	  ParameterScaling	  "2^0"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Subsystem1"
+	  Ports			  [3, 5]
+	  Position		  [220, 166, 325, 224]
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskDisplay		  "disp('COLOR\\nMAPPING')\nport_label('input',1,'r')\nport_label('input',2','g')\nport_label('input',3,'b')\nport_label('output',1,'I')\nport_label('output',2,'R')\nport_label('output',3,'G')\nport_label('output',4','B')\nport_label('output',5,'Y')"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "Subsystem1"
+	    Location		    [60, 201, 1042, 954]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      Position		      [45, 58, 75, 72]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In2"
+	      Position		      [50, 118, 80, 132]
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In3"
+	      Position		      [50, 178, 80, 192]
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Abs
+	      Name		      "Abs"
+	      Position		      [240, 540, 270, 570]
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Add"
+	      Ports		      [3, 1]
+	      Position		      [185, 29, 215, 61]
+	      Inputs		      "+++"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^-10"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide"
+	      Ports		      [2, 1]
+	      Position		      [565, 67, 595, 98]
+	      Inputs		      "**"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^-10"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide1"
+	      Ports		      [2, 1]
+	      Position		      [555, 207, 585, 238]
+	      Inputs		      "**"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^-10"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide2"
+	      Ports		      [2, 1]
+	      Position		      [560, 342, 590, 373]
+	      Inputs		      "**"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^-10"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide3"
+	      Ports		      [2, 1]
+	      Position		      [565, 427, 595, 458]
+	      Inputs		      "**"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^-10"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain"
+	      Position		      [250, 30, 280, 60]
+	      Gain		      "1/3"
+	      ParameterDataTypeMode   "Inherit via internal rule"
+	      ParameterDataType	      "sfix(16)"
+	      ParameterScaling	      "2^0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain1"
+	      Position		      [280, 110, 310, 140]
+	      Gain		      "0.5"
+	      ParameterDataTypeMode   "Inherit via internal rule"
+	      ParameterDataType	      "sfix(16)"
+	      ParameterScaling	      "2^0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain2"
+	      Position		      [285, 285, 315, 315]
+	      Gain		      "0.5"
+	      ParameterDataTypeMode   "Inherit via internal rule"
+	      ParameterDataType	      "sfix(16)"
+	      ParameterScaling	      "2^0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain3"
+	      Position		      [285, 435, 315, 465]
+	      Gain		      "0.5"
+	      ParameterDataTypeMode   "Inherit via internal rule"
+	      ParameterDataType	      "sfix(16)"
+	      ParameterScaling	      "2^0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain4"
+	      Position		      [300, 540, 330, 570]
+	      Gain		      "0.5"
+	      ParameterDataTypeMode   "Inherit via internal rule"
+	      ParameterDataType	      "sfix(16)"
+	      ParameterScaling	      "2^0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      MATLABFcn
+	      Name		      "MATLAB Fcn"
+	      Ports		      [1, 1]
+	      Position		      [435, 125, 495, 155]
+	      MATLABFcn		      "IScale(u)"
+	      Output1D		      off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum"
+	      Ports		      [2, 1]
+	      Position		      [235, 115, 255, 135]
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|++"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum1"
+	      Ports		      [2, 1]
+	      Position		      [325, 80, 345, 100]
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|+-"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum2"
+	      Ports		      [2, 1]
+	      Position		      [235, 290, 255, 310]
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|++"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum3"
+	      Ports		      [2, 1]
+	      Position		      [330, 220, 350, 240]
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|+-"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum4"
+	      Ports		      [2, 1]
+	      Position		      [210, 440, 230, 460]
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|++"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum5"
+	      Ports		      [2, 1]
+	      Position		      [330, 355, 350, 375]
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|+-"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum6"
+	      Ports		      [2, 1]
+	      Position		      [190, 545, 210, 565]
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|+-"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum7"
+	      Ports		      [2, 1]
+	      Position		      [405, 440, 425, 460]
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|+-"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum8"
+	      Ports		      [2, 1]
+	      Position		      [470, 440, 490, 460]
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|+-"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      Position		      [685, 38, 715, 52]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out2"
+	      Position		      [690, 78, 720, 92]
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out3"
+	      Position		      [680, 218, 710, 232]
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out4"
+	      Position		      [675, 353, 705, 367]
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out5"
+	      Position		      [670, 438, 700, 452]
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Line {
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      Points		      [25, 0]
+	      Branch {
+		Points			[0, 0]
+		Branch {
+		  Points		  [0, -30]
+		  DstBlock		  "Add"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, 25]
+		  DstBlock		  "Sum1"
+		  DstPort		  1
+		}
+	      }
+	      Branch {
+		Points			[0, 235]
+		Branch {
+		  DstBlock		  "Sum2"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, 175]
+		  Branch {
+		    DstBlock		    "Sum4"
+		    DstPort		    2
+		  }
+		  Branch {
+		    Points		    [0, 80]
+		    DstBlock		    "Sum6"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "In2"
+	      SrcPort		      1
+	      Points		      [55, 0]
+	      Branch {
+		Points			[0, 0]
+		Branch {
+		  Points		  [0, -80]
+		  DstBlock		  "Add"
+		  DstPort		  2
+		}
+		Branch {
+		  DstBlock		  "Sum"
+		  DstPort		  1
+		}
+	      }
+	      Branch {
+		Points			[0, 105]
+		Branch {
+		  DstBlock		  "Sum3"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, 220]
+		  Branch {
+		    DstBlock		    "Sum4"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 130]
+		    DstBlock		    "Sum6"
+		    DstPort		    2
+		  }
+		}
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "In3"
+	      SrcPort		      1
+	      Points		      [0, 0]
+	      Branch {
+		Points			[75, 0]
+		Branch {
+		  Points		  [0, -130]
+		  DstBlock		  "Add"
+		  DstPort		  3
+		}
+		Branch {
+		  Points		  [85, 0]
+		  DstBlock		  "Sum"
+		  DstPort		  2
+		}
+	      }
+	      Branch {
+		Points			[0, 140]
+		Branch {
+		  DstBlock		  "Sum2"
+		  DstPort		  2
+		}
+		Branch {
+		  Points		  [0, 40]
+		  Branch {
+		    DstBlock		    "Sum5"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 255; 395, 0]
+		    DstBlock		    "Sum8"
+		    DstPort		    2
+		  }
+		}
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Gain"
+	      SrcPort		      1
+	      Points		      [110, 0]
+	      Branch {
+		DstBlock		"Out1"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 95]
+		DstBlock		"MATLAB Fcn"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Add"
+	      SrcPort		      1
+	      DstBlock		      "Gain"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      DstBlock		      "Gain1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gain1"
+	      SrcPort		      1
+	      Points		      [20, 0]
+	      DstBlock		      "Sum1"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Sum2"
+	      SrcPort		      1
+	      DstBlock		      "Gain2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gain2"
+	      SrcPort		      1
+	      Points		      [20, 0]
+	      DstBlock		      "Sum3"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Gain3"
+	      SrcPort		      1
+	      Points		      [20, 0]
+	      Branch {
+		DstBlock		"Sum5"
+		DstPort			2
+	      }
+	      Branch {
+		DstBlock		"Sum7"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Sum4"
+	      SrcPort		      1
+	      DstBlock		      "Gain3"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Sum1"
+	      SrcPort		      1
+	      DstBlock		      "Divide"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Divide"
+	      SrcPort		      1
+	      DstBlock		      "Out2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Sum3"
+	      SrcPort		      1
+	      DstBlock		      "Divide1"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Sum5"
+	      SrcPort		      1
+	      DstBlock		      "Divide2"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Divide1"
+	      SrcPort		      1
+	      DstBlock		      "Out3"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Divide2"
+	      SrcPort		      1
+	      DstBlock		      "Out4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Sum6"
+	      SrcPort		      1
+	      DstBlock		      "Abs"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Abs"
+	      SrcPort		      1
+	      DstBlock		      "Gain4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gain4"
+	      SrcPort		      1
+	      Points		      [80, 0]
+	      DstBlock		      "Sum7"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Sum7"
+	      SrcPort		      1
+	      DstBlock		      "Sum8"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Sum8"
+	      SrcPort		      1
+	      DstBlock		      "Divide3"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Divide3"
+	      SrcPort		      1
+	      DstBlock		      "Out5"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "MATLAB Fcn"
+	      SrcPort		      1
+	      Points		      [20, 0]
+	      Branch {
+		Points			[0, -65]
+		DstBlock		"Divide"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 75]
+		Branch {
+		  DstBlock		  "Divide1"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, 135]
+		  Branch {
+		    DstBlock		    "Divide2"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 85]
+		    DstBlock		    "Divide3"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem11"
+	  Ports			  [4, 1]
+	  Position		  [585, 264, 685, 306]
+	  SourceBlock		  "SaliencyLib/Subsystem11"
+	  SourceType		  "Color Based Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  br			  "inRows"
+	  bc			  "inCols"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem13"
+	  Ports			  [1, 1]
+	  Position		  [575, 179, 675, 221]
+	  SourceBlock		  "SaliencyLib/Subsystem13"
+	  SourceType		  "Multi-Orientation Based Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  sr			  "inRows"
+	  sc			  "inCols"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem6"
+	  Ports			  [1, 1]
+	  Position		  [570, 109, 670, 151]
+	  LinkData {
+	    BlockName		    "Subsystem17/Level-2 M-file\nS-Function"
+	    DialogParameters {
+	      br		      "83"
+	      bc		      "125"
+	    }
+	    BlockName		    "Subsystem17/Level-2 M-file\nS-Function1"
+	    DialogParameters {
+	      sr		      "83"
+	      sc		      "125"
+	    }
+	    BlockName		    "Subsystem17/Level-2 M-file\nS-Function2"
+	    DialogParameters {
+	      sr		      "83"
+	      sc		      "125"
+	    }
+	    BlockName		    "Subsystem17/Level-2 M-file\nS-Function3"
+	    DialogParameters {
+	      sr		      "42"
+	      sc		      "63"
+	    }
+	    BlockName		    "Subsystem17/Level-2 M-file\nS-Function4"
+	    DialogParameters {
+	      sr		      "42"
+	      sc		      "63"
+	    }
+	    BlockName		    "Subsystem17/Level-2 M-file\nS-Function5"
+	    DialogParameters {
+	      br		      "83"
+	      bc		      "125"
+	    }
+	    BlockName		    "Subsystem17/Level-2 M-file\nS-Function6"
+	    DialogParameters {
+	      br		      "42"
+	      bc		      "63"
+	    }
+	    BlockName		    "Subsystem17/Level-2 M-file\nS-Function7"
+	    DialogParameters {
+	      br		      "42"
+	      bc		      "63"
+	    }
+	  }
+	  SourceBlock		  "SaliencyLib/Subsystem6"
+	  SourceType		  "Intensity Based Saliency Channel"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  isr			  "inRows"
+	  isc			  "inCols"
+	}
+	Block {
+	  BlockType		  ToWorkspace
+	  Name			  "To Workspace"
+	  Position		  [855, 15, 915, 45]
+	  VariableName		  "i_chan"
+	  MaxDataPoints		  "inf"
+	  SampleTime		  "-1"
+	  SaveFormat		  "Structure"
+	}
+	Block {
+	  BlockType		  ToWorkspace
+	  Name			  "To Workspace1"
+	  Position		  [855, 75, 915, 105]
+	  VariableName		  "o_chan"
+	  MaxDataPoints		  "inf"
+	  SampleTime		  "-1"
+	  SaveFormat		  "Structure"
+	}
+	Block {
+	  BlockType		  ToWorkspace
+	  Name			  "To Workspace2"
+	  Position		  [860, 125, 920, 155]
+	  VariableName		  "c_chan"
+	  MaxDataPoints		  "inf"
+	  SampleTime		  "-1"
+	  SaveFormat		  "Structure"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [990, 193, 1020, 207]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "Add"
+	  SrcPort		  1
+	  DstBlock		  "Gain"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Gain"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem13"
+	  SrcPort		  1
+	  Points		  [45, 0]
+	  Branch {
+	    Points		    [0, -110]
+	    DstBlock		    "To Workspace1"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Add"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  SrcBlock		  "Subsystem6"
+	  SrcPort		  1
+	  Points		  [25, 0]
+	  Branch {
+	    Points		    [0, -100]
+	    DstBlock		    "To Workspace"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [105, 0]
+	    DstBlock		    "Add"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Subsystem11"
+	  SrcPort		  1
+	  Points		  [70, 0]
+	  Branch {
+	    Points		    [0, -145]
+	    DstBlock		    "To Workspace2"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [45, 0]
+	    DstBlock		    "Add"
+	    DstPort		    3
+	  }
+	}
+	Line {
+	  SrcBlock		  "Subsystem1"
+	  SrcPort		  5
+	  Points		  [160, 0; 0, 85]
+	  DstBlock		  "Subsystem11"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "Subsystem1"
+	  SrcPort		  4
+	  Points		  [170, 0; 0, 85]
+	  DstBlock		  "Subsystem11"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Subsystem1"
+	  SrcPort		  3
+	  Points		  [180, 0; 0, 85]
+	  DstBlock		  "Subsystem11"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Subsystem1"
+	  SrcPort		  2
+	  Points		  [195, 0; 0, 85]
+	  DstBlock		  "Subsystem11"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In3"
+	  SrcPort		  1
+	  Points		  [60, 0; 0, -35]
+	  DstBlock		  "Subsystem1"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "In2"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Subsystem1"
+	  SrcPort		  1
+	  Points		  [205, 0]
+	  Branch {
+	    Points		    [0, 25]
+	    DstBlock		    "Subsystem13"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, -45]
+	    DstBlock		    "Subsystem6"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  Points		  [60, 0; 0, 35]
+	  DstBlock		  "Subsystem1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem15"
+      Ports		      [6, 1]
+      Position		      [395, 608, 495, 682]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Multi-Scale Image Bus Creator"
+      MaskDescription	      "Provides a standardized means of assembling a multi-scale\ncollection of images into a bus."
+      MaskDisplay	      "disp('X-SCALE BUS\\nCREATOR')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Subsystem15"
+	Location		[476, 279, 974, 579]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [70, 33, 100, 47]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics2to5norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In2"
+	  Position		  [70, 78, 100, 92]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics2to6norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In3"
+	  Position		  [70, 123, 100, 137]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics3to6norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In4"
+	  Position		  [70, 168, 100, 182]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics3to7norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In5"
+	  Position		  [70, 203, 100, 217]
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics4to7norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In6"
+	  Position		  [70, 243, 100, 257]
+	  Port			  "6"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  Port {
+	    PortNumber		    1
+	    Name		    "ics4to8norm"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  BusCreator
+	  Name			  "Bus\nCreator"
+	  Ports			  [6, 1]
+	  Position		  [240, 18, 255, 277]
+	  ShowName		  off
+	  Inputs		  "'ics2to5norm','ics2to6norm','ics3to6norm','ics3to7norm','ics4to7norm','ics4to8norm'"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [375, 143, 405, 157]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "Bus\nCreator"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "ics2to5norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  Points		  [120, 0]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "ics2to6norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In2"
+	  SrcPort		  1
+	  Points		  [120, 0]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  2
+	}
+	Line {
+	  Name			  "ics3to6norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In3"
+	  SrcPort		  1
+	  Points		  [120, 0]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  3
+	}
+	Line {
+	  Name			  "ics3to7norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In4"
+	  SrcPort		  1
+	  Points		  [120, 0]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  4
+	}
+	Line {
+	  Name			  "ics4to7norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In5"
+	  SrcPort		  1
+	  Points		  [120, 0]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  5
+	}
+	Line {
+	  Name			  "ics4to8norm"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In6"
+	  SrcPort		  1
+	  Points		  [120, 0]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  6
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem16"
+      Ports		      [1, 6]
+      Position		      [545, 614, 645, 676]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Multi-Scale Image Bus Selector"
+      MaskDescription	      "Provides a standardized connection to the bus created by\n\"X-SCALE BUS CREATOR\" and un-packs bus components to separate\noutputs."
+      MaskDisplay	      "disp('X-SCALE BUS\\nSELECTOR')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Subsystem16"
+	Location		[433, 403, 931, 703]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [50, 113, 80, 127]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  BusSelector
+	  Name			  "Bus\nSelector"
+	  Ports			  [1, 6]
+	  Position		  [215, 98, 220, 137]
+	  ShowName		  off
+	  OutputSignals		  "ics2to5norm,ics2to6norm,ics3to6norm,ics3to7norm,ics4to7norm,ics4to8norm"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [360, 28, 390, 42]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out2"
+	  Position		  [360, 58, 390, 72]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out3"
+	  Position		  [360, 93, 390, 107]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out4"
+	  Position		  [360, 128, 390, 142]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out5"
+	  Position		  [360, 158, 390, 172]
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out6"
+	  Position		  [360, 188, 390, 202]
+	  Port			  "6"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Bus\nSelector"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  1
+	  Points		  [60, 0; 0, -70]
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  2
+	  Points		  [75, 0; 0, -45]
+	  DstBlock		  "Out2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  3
+	  Points		  [110, 0; 0, -15]
+	  DstBlock		  "Out3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  4
+	  Points		  [60, 0; 0, 15]
+	  DstBlock		  "Out4"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  5
+	  Points		  [50, 0; 0, 40]
+	  DstBlock		  "Out5"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  6
+	  Points		  [40, 0; 0, 65]
+	  DstBlock		  "Out6"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem17"
+      Ports		      [1, 1]
+      Position		      [70, 394, 185, 456]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Cross-Scale Summation"
+      MaskDescription	      "Output is the sum of six input center-surround absolute\ndifference maps at three different scales. Scales are\ncombined by downsampling."
+      MaskPromptString	      "base rows:|base cols:|level one offset:|level two offset:"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on"
+      MaskCallbackString      "|||"
+      MaskEnableString	      "on,on,on,on"
+      MaskVisibilityString    "on,on,on,on"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVarAliasString      ",,,"
+      MaskVariables	      "brxs=@1;bcxs=@2;L1off=@3;L2off=@4;"
+      MaskDisplay	      "fprintf('X-SCALE\\nCOMBINE\\n(%s x %s)\\n%d-%d',get_param(gcb,'brxs'),get_param(gcb,'bcxs'),L1off,L2off)"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "322|500|0|0"
+      MaskTabNameString	      ",,,"
+      System {
+	Name			"Subsystem17"
+	Location		[730, 257, 1523, 1071]
+	Open			on
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [15, 378, 45, 392]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Add"
+	  Ports			  [6, 1]
+	  Position		  [630, 338, 665, 487]
+	  Inputs		  "++++++"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function"
+	  Ports			  [1, 1]
+	  Position		  [410, 127, 505, 203]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function"
+	  SourceType		  "Extract Pyramid Level"
+	  br			  "brxs"
+	  bc			  "bcxs"
+	  pl			  "2"
+	  bo			  "L1off"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function1"
+	  Ports			  [1, 1]
+	  Position		  [270, 134, 330, 196]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function1"
+	  SourceType		  "Multi-Resolution Image Pyramid"
+	  sr			  "brxs"
+	  sc			  "bcxs"
+	  sl			  "2"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function2"
+	  Ports			  [1, 1]
+	  Position		  [270, 249, 330, 311]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function1"
+	  SourceType		  "Multi-Resolution Image Pyramid"
+	  sr			  "brxs"
+	  sc			  "bcxs"
+	  sl			  "2"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function3"
+	  Ports			  [1, 1]
+	  Position		  [270, 484, 330, 546]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function1"
+	  SourceType		  "Multi-Resolution Image Pyramid"
+	  sr			  "brxs"
+	  sc			  "bcxs"
+	  sl			  "1"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function4"
+	  Ports			  [1, 1]
+	  Position		  [270, 369, 330, 431]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function1"
+	  SourceType		  "Multi-Resolution Image Pyramid"
+	  sr			  "brxs"
+	  sc			  "bcxs"
+	  sl			  "1"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function5"
+	  Ports			  [1, 1]
+	  Position		  [410, 242, 505, 318]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function"
+	  SourceType		  "Extract Pyramid Level"
+	  br			  "brxs"
+	  bc			  "bcxs"
+	  pl			  "2"
+	  bo			  "L1off"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function6"
+	  Ports			  [1, 1]
+	  Position		  [415, 362, 510, 438]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function"
+	  SourceType		  "Extract Pyramid Level"
+	  br			  "brxs"
+	  bc			  "bcxs"
+	  pl			  "1"
+	  bo			  "L2off"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function7"
+	  Ports			  [1, 1]
+	  Position		  [415, 477, 510, 553]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function"
+	  SourceType		  "Extract Pyramid Level"
+	  br			  "brxs"
+	  bc			  "bcxs"
+	  pl			  "1"
+	  bo			  "L2off"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem16"
+	  Ports			  [1, 6]
+	  Position		  [85, 354, 185, 416]
+	  SourceBlock		  "SaliencyLib/Subsystem16"
+	  SourceType		  "Multi-Scale Image Bus Selector"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [690, 408, 720, 422]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "Add"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function7"
+	  SrcPort		  1
+	  Points		  [40, 0; 0, -90]
+	  DstBlock		  "Add"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function6"
+	  SrcPort		  1
+	  DstBlock		  "Add"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function5"
+	  SrcPort		  1
+	  Points		  [40, 0; 0, 95]
+	  DstBlock		  "Add"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function"
+	  SrcPort		  1
+	  Points		  [105, 0]
+	  DstBlock		  "Add"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function3"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function7"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function4"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function6"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function2"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function5"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function1"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem16"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem16"
+	  SrcPort		  1
+	  Points		  [30, 0; 0, -195]
+	  DstBlock		  "Level-2 M-file\nS-Function1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem16"
+	  SrcPort		  2
+	  Points		  [65, 0]
+	  DstBlock		  "Level-2 M-file\nS-Function2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem16"
+	  SrcPort		  3
+	  Points		  [30, 0; 0, 20]
+	  DstBlock		  "Level-2 M-file\nS-Function4"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem16"
+	  SrcPort		  4
+	  Points		  [20, 0; 0, 125]
+	  DstBlock		  "Level-2 M-file\nS-Function3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem16"
+	  SrcPort		  5
+	  Points		  [10, 0; 0, 240; 380, 0; 0, -190]
+	  DstBlock		  "Add"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "Subsystem16"
+	  SrcPort		  6
+	  Points		  [0, 345; 415, 0; 0, -280]
+	  DstBlock		  "Add"
+	  DstPort		  6
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem18"
+      Ports		      [1, 1]
+      Position		      [665, 524, 765, 576]
+      AncestorBlock	      "SaliencyLib/Subsystem12/Subsystem2"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Orientation Image Pyramid"
+      MaskDescription	      "Outputs a multi-scale pyramid obtained by applying a Gabor \nkernel (with a parametrically specified orientation) to the\ninput image. The output pyramid is packed into a 2-D array."
+      MaskPromptString	      "source rows:|source cols:|levels|angle:"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on"
+      MaskCallbackString      "|||"
+      MaskEnableString	      "on,on,on,on"
+      MaskVisibilityString    "on,on,on,on"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVarAliasString      ",,,"
+      MaskVariables	      "sr=@1;sc=@2;pl=@3;a=@4;"
+      MaskDisplay	      "fprintf('ORIENT\\nPYRAMID\\n%s',get_param(gcb,'a'))\nport_label('output',1,'PYR')\nport_label('input',1,'IMG')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "isr|isc|8|oa"
+      MaskTabNameString	      ",,,"
+      System {
+	Name			"Subsystem18"
+	Location		[198, 531, 696, 831]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [110, 103, 140, 117]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  "M-S-Function"
+	  Name			  "Level-2 M-file\nS-Function"
+	  Ports			  [1, 1]
+	  Position		  [215, 94, 270, 126]
+	  FunctionName		  "orientationpyramidblock"
+	  Parameters		  "sr,sc,pl,a"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [360, 103, 390, 117]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem2"
+      Ports		      [1, 1]
+      Position		      [470, 189, 570, 231]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Intensity Pyramid (DEPRECATED)"
+      MaskDescription	      "Constructs a multi-scale image pyramid from the input matrix.\nAll of the pyramid levels are packed into a 2-D matrix. "
+      MaskDisplay	      "disp('INTENSITY\\nPYRAMID')\nport_label('output',1,'PYR')\nport_label('input',1,'IMG')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Subsystem2"
+	Location		[58, 687, 556, 987]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [110, 103, 140, 117]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "MATLAB Fcn"
+	  Ports			  [1, 1]
+	  Position		  [220, 95, 280, 125]
+	  MATLABFcn		  "IntensityPyramid"
+	  OutputDimensions	  "[499 500]"
+	  Output1D		  off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [360, 103, 390, 117]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "MATLAB Fcn"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "MATLAB Fcn"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem3"
+      Ports		      [1, 1]
+      Position		      [405, 36, 530, 134]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Cross Level Difference"
+      MaskDescription	      "Computes absolute difference of scale 2 and 5 levels of an \nimage pyramid (upsampling the scale 5 image)."
+      MaskPromptString	      "input rows|input cols"
+      MaskStyleString	      "edit,edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVarAliasString      ","
+      MaskVariables	      "isr=@1;isc=@2;"
+      MaskDisplay	      "\nport_label('input',1,'PYR')\nport_label('output',1,'IMG')\nfprintf('X-LEVEL DIFF\\n(%d X %d)', isr, isc)"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "0|0"
+      MaskTabNameString	      ","
+      System {
+	Name			"Subsystem3"
+	Location		[302, 289, 963, 601]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [55, 68, 85, 82]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Abs
+	  Name			  "Abs"
+	  Position		  [480, 70, 510, 100]
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function"
+	  Ports			  [1, 1]
+	  Position		  [150, 37, 245, 113]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function"
+	  SourceType		  "Extract Pyramid Level"
+	  br			  "isr"
+	  bc			  "isc"
+	  pl			  "2"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function1"
+	  Ports			  [1, 1]
+	  Position		  [155, 147, 250, 223]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function"
+	  SourceType		  "Extract Pyramid Level"
+	  br			  "isr"
+	  bc			  "isc"
+	  pl			  "5"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function2"
+	  Ports			  [1, 1]
+	  Position		  [290, 164, 365, 206]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function2"
+	  SourceType		  "Upsample Image Pyramid Level"
+	  br			  "isr"
+	  bc			  "isc"
+	  fl			  "2"
+	  cl			  "5"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Subtract"
+	  Ports			  [2, 1]
+	  Position		  [405, 67, 435, 98]
+	  Inputs		  "+-"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [555, 78, 585, 92]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function1"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function2"
+	  SrcPort		  1
+	  Points		  [20, 0]
+	  DstBlock		  "Subtract"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Subtract"
+	  SrcPort		  1
+	  DstBlock		  "Abs"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function"
+	  SrcPort		  1
+	  DstBlock		  "Subtract"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  Points		  [10, 0]
+	  Branch {
+	    Points		    [0, 110]
+	    DstBlock		    "Level-2 M-file\nS-Function1"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Level-2 M-file\nS-Function"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Abs"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem4"
+      Ports		      [1, 1]
+      Position		      [80, 277, 135, 343]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Average of Local Maxima"
+      MaskDescription	      "Outputs average value of local maxima in the input image."
+      MaskDisplay	      "disp('AVG\\nLOCAL\\nMAX')\n"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Subsystem4"
+	Location		[594, 658, 1092, 958]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [110, 103, 140, 117]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "MATLAB Fcn1"
+	  Ports			  [1, 1]
+	  Position		  [210, 95, 270, 125]
+	  MATLABFcn		  "LocalMaxStats"
+	  Output1D		  off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [360, 103, 390, 117]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "MATLAB Fcn1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "MATLAB Fcn1"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem5"
+      Ports		      [1, 1]
+      Position		      [250, 304, 350, 346]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Local Inhibition (Saliency Normalization)"
+      MaskDescription	      "Scales input image based on difference of the global maximum \nand the average of the local maxima."
+      MaskDisplay	      "disp('LOCAL\\nINHIBIT')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Subsystem5"
+	Location		[145, 460, 868, 929]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [30, 128, 60, 142]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant"
+	  Position		  [350, 325, 380, 355]
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide"
+	  Ports			  [2, 1]
+	  Position		  [220, 127, 250, 158]
+	  Inputs		  "*/"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Math
+	  Name			  "Math\nFunction"
+	  Ports			  [1, 1]
+	  Position		  [435, 255, 465, 285]
+	  Operator		  "square"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Product"
+	  Ports			  [2, 1]
+	  Position		  [515, 137, 545, 168]
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem"
+	  Ports			  [1, 1]
+	  Position		  [105, 299, 205, 341]
+	  SourceBlock		  "SaliencyLib/Subsystem"
+	  SourceType		  "Matrix Maximum"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem4"
+	  Ports			  [1, 1]
+	  Position		  [305, 237, 360, 303]
+	  SourceBlock		  "SaliencyLib/Subsystem4"
+	  SourceType		  "Average of Local Maxima"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [2, 1]
+	  Position		  [390, 260, 410, 280]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|-+"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [580, 148, 610, 162]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [0, 185]
+	    DstBlock		    "Subsystem"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Divide"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Subsystem"
+	  SrcPort		  1
+	  Points		  [25, 0; 0, -50; -35, 0; 0, -120]
+	  DstBlock		  "Divide"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Divide"
+	  SrcPort		  1
+	  Points		  [35, 0]
+	  Branch {
+	    DstBlock		    "Subsystem4"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Product"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Subsystem4"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Math\nFunction"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Math\nFunction"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -110]
+	  DstBlock		  "Product"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Product"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem6"
+      Ports		      [1, 1]
+      Position		      [625, 144, 725, 186]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Intensity Based Saliency Channel"
+      MaskDescription	      "Outputs a saliency map based on mulit-scale center-surround \nintensity differences in the input image."
+      MaskPromptString	      "source rows:|source cols:"
+      MaskStyleString	      "edit,edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVarAliasString      ","
+      MaskVariables	      "isr=@1;isc=@2;"
+      MaskDisplay	      "fprintf('INTENSITY CHANNEL\\n(%s X %s)', get_param(gcb,'isr'),get_param(gcb,'isc'))"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "256|256"
+      MaskTabNameString	      ","
+      System {
+	Name			"Subsystem6"
+	Location		[218, 333, 1343, 582]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [65, 98, 95, 112]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function1"
+	  Ports			  [1, 1]
+	  Position		  [140, 74, 200, 136]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function1"
+	  SourceType		  "Multi-Resolution Image Pyramid"
+	  sr			  "isr"
+	  sc			  "isc"
+	  sl			  "8"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Subsystem12"
+	  Ports			  [1, 1]
+	  Position		  [440, 84, 540, 126]
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskDisplay		  "disp('NORMALIZE')"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "Subsystem12"
+	    Location		    [500, 93, 1316, 810]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      Position		      [20, 298, 50, 312]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector"
+	      Ports		      [1, 6]
+	      Position		      [85, 216, 95, 394]
+	      ShowName		      off
+	      OutputSignals	      "ics2to5,ics2to6,ics3to6,ics3to7,ics4to7,ics4to8"
+	      Port {
+		PortNumber		1
+		Name			"<ics2to5>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<ics2to6>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		3
+		Name			"<ics3to6>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		4
+		Name			"<ics3to7>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		5
+		Name			"<ics4to7>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		6
+		Name			"<ics4to8>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem1"
+	      Ports		      [1, 1]
+	      Position		      [255, 149, 355, 191]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics2to6norm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem15"
+	      Ports		      [6, 1]
+	      Position		      [565, 255, 660, 340]
+	      SourceBlock	      "SaliencyLib/Subsystem15"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem2"
+	      Ports		      [1, 1]
+	      Position		      [255, 269, 355, 311]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics3to6norm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem3"
+	      Ports		      [1, 1]
+	      Position		      [255, 384, 355, 426]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics3to7norm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem4"
+	      Ports		      [1, 1]
+	      Position		      [255, 514, 355, 556]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics4to7norm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem5"
+	      Ports		      [1, 1]
+	      Position		      [255, 44, 355, 86]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics2to5nom"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem6"
+	      Ports		      [1, 1]
+	      Position		      [255, 604, 355, 646]
+	      SourceBlock	      "SaliencyLib/Subsystem5"
+	      SourceType	      "Unknown"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData "off"
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Port {
+		PortNumber		1
+		Name			"ics4to8norm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      Position		      [725, 293, 755, 307]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Line {
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics2to5>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      1
+	      Points		      [20, 0; 0, -165]
+	      DstBlock		      "Subsystem5"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics2to6>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      2
+	      Points		      [40, 0; 0, -90]
+	      DstBlock		      "Subsystem1"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics3to6>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      3
+	      DstBlock		      "Subsystem2"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics3to7>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      4
+	      Points		      [140, 0]
+	      DstBlock		      "Subsystem3"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics4to7>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      5
+	      Points		      [100, 0; 0, 185]
+	      DstBlock		      "Subsystem4"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<ics4to8>"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      6
+	      Points		      [40, 0; 0, 245]
+	      DstBlock		      "Subsystem6"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "ics2to5nom"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem5"
+	      SrcPort		      1
+	      Points		      [105, 0; 0, 195]
+	      DstBlock		      "Subsystem15"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "ics2to6norm"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem1"
+	      SrcPort		      1
+	      Points		      [80, 0; 0, 105]
+	      DstBlock		      "Subsystem15"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "ics3to6norm"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem2"
+	      SrcPort		      1
+	      DstBlock		      "Subsystem15"
+	      DstPort		      3
+	    }
+	    Line {
+	      Name		      "ics3to7norm"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem3"
+	      SrcPort		      1
+	      Points		      [90, 0; 0, -100]
+	      DstBlock		      "Subsystem15"
+	      DstPort		      4
+	    }
+	    Line {
+	      Name		      "ics4to7norm"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem4"
+	      SrcPort		      1
+	      Points		      [110, 0; 0, -215]
+	      DstBlock		      "Subsystem15"
+	      DstPort		      5
+	    }
+	    Line {
+	      Name		      "ics4to8norm"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem6"
+	      SrcPort		      1
+	      Points		      [135, 0; 0, -290]
+	      DstBlock		      "Subsystem15"
+	      DstPort		      6
+	    }
+	    Line {
+	      SrcBlock		      "Subsystem15"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem17"
+	  Ports			  [1, 1]
+	  Position		  [590, 84, 690, 126]
+	  SourceBlock		  "SaliencyLib/Subsystem17"
+	  SourceType		  "Cross-Scale Summation"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  brxs			  "322"
+	  bcxs			  "500"
+	  L1off			  "0"
+	  L2off			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem5"
+	  Ports			  [1, 1]
+	  Position		  [755, 84, 855, 126]
+	  SourceBlock		  "SaliencyLib/Subsystem5"
+	  SourceType		  "Local Inhibition (Saliency Normalization)"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Subsystem7"
+	  Ports			  [1, 1]
+	  Position		  [305, 77, 410, 133]
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskDisplay		  "disp('C/S\\nCOMBINE')\nport_label('input',1,'PYR')\nport_label('output',1,'I-BUS')\n"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "Subsystem7"
+	    Location		    [748, 117, 1430, 1015]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      Position		      [45, 73, 75, 87]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      BusCreator
+	      Name		      "Bus\nCreator"
+	      Ports		      [6, 1]
+	      Position		      [575, 75, 580, 160]
+	      ShowName		      off
+	      Inputs		      "6"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem1"
+	      Ports		      [1, 1]
+	      Position		      [260, 166, 385, 264]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,6"
+		  pl			  "6"
+		}
+		BlockName		"Level-2 M-file\nS-Function2"
+		DialogParameters {
+		  cl			  "6"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Cross Level Difference"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      isr		      "isr"
+	      isc		      "isc"
+	      Port {
+		PortNumber		1
+		Name			"ics2to6"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem2"
+	      Ports		      [1, 1]
+	      Position		      [265, 326, 390, 424]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function"
+		DialogParameters {
+		  Parameters		  "332,500,3"
+		  pl			  "3"
+		}
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,6"
+		  pl			  "6"
+		}
+		BlockName		"Level-2 M-file\nS-Function2"
+		DialogParameters {
+		  fl			  "3"
+		  cl			  "6"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Cross Level Difference"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      isr		      "isr"
+	      isc		      "isc"
+	      Port {
+		PortNumber		1
+		Name			"ics3to6"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem3"
+	      Ports		      [1, 1]
+	      Position		      [260, 31, 385, 129]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function"
+		DialogParameters {
+		  br			  "isr"
+		  bc			  "isc"
+		}
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,5"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Cross Level Difference"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      isr		      "isr"
+	      isc		      "isc"
+	      Port {
+		PortNumber		1
+		Name			"ics2to5"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem4"
+	      Ports		      [1, 1]
+	      Position		      [260, 461, 385, 559]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function"
+		DialogParameters {
+		  Parameters		  "332,500,3"
+		  pl			  "3"
+		}
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,7"
+		  pl			  "7"
+		}
+		BlockName		"Level-2 M-file\nS-Function2"
+		DialogParameters {
+		  fl			  "3"
+		  cl			  "7"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Cross Level Difference"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      isr		      "isr"
+	      isc		      "isc"
+	      Port {
+		PortNumber		1
+		Name			"ics3to7"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem5"
+	      Ports		      [1, 1]
+	      Position		      [265, 616, 390, 714]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function"
+		DialogParameters {
+		  Parameters		  "332,500,4"
+		  pl			  "4"
+		}
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,7"
+		  pl			  "7"
+		}
+		BlockName		"Level-2 M-file\nS-Function2"
+		DialogParameters {
+		  fl			  "4"
+		  cl			  "7"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Cross Level Difference"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      isr		      "isr"
+	      isc		      "isc"
+	      Port {
+		PortNumber		1
+		Name			"ics4to7"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Subsystem6"
+	      Ports		      [1, 1]
+	      Position		      [270, 756, 395, 854]
+	      LinkData {
+		BlockName		"Level-2 M-file\nS-Function"
+		DialogParameters {
+		  Parameters		  "332,500,4"
+		  pl			  "4"
+		}
+		BlockName		"Level-2 M-file\nS-Function1"
+		DialogParameters {
+		  Parameters		  "332,500,8"
+		  pl			  "8"
+		}
+		BlockName		"Level-2 M-file\nS-Function2"
+		DialogParameters {
+		  fl			  "4"
+		  cl			  "8"
+		}
+	      }
+	      SourceBlock	      "SaliencyLib/Subsystem3"
+	      SourceType	      "Cross Level Difference"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      isr		      "isr"
+	      isc		      "isc"
+	      Port {
+		PortNumber		1
+		Name			"ics4to8"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      Position		      [610, 113, 640, 127]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Line {
+	      Labels		      [0, 0]
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      Points		      [5, 0]
+	      Branch {
+		Points			[0, 135]
+		Branch {
+		  Points		  [0, 160]
+		  Branch {
+		    DstBlock		    "Subsystem2"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 135]
+		    Branch {
+		    DstBlock		    "Subsystem4"
+		    DstPort		    1
+		    }
+		    Branch {
+		    Points		    [0, 155]
+		    Branch {
+		    DstBlock		    "Subsystem5"
+		    DstPort		    1
+		    }
+		    Branch {
+		    Points		    [0, 140]
+		    DstBlock		    "Subsystem6"
+		    DstPort		    1
+		    }
+		    }
+		  }
+		}
+		Branch {
+		  DstBlock		  "Subsystem1"
+		  DstPort		  1
+		}
+	      }
+	      Branch {
+		DstBlock		"Subsystem3"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      Name		      "ics2to6"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem1"
+	      SrcPort		      1
+	      Points		      [50, 0; 0, -120]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "ics3to6"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem2"
+	      SrcPort		      1
+	      Points		      [70, 0; 0, -265]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      3
+	    }
+	    Line {
+	      Name		      "ics2to5"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem3"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "ics3to7"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem4"
+	      SrcPort		      1
+	      Points		      [110, 0; 0, -385]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nCreator"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "ics4to7"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem5"
+	      SrcPort		      1
+	      Points		      [135, 0; 0, -525]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      5
+	    }
+	    Line {
+	      Name		      "ics4to8"
+	      Labels		      [0, 0; 0, 0]
+	      SrcBlock		      "Subsystem6"
+	      SrcPort		      1
+	      Points		      [150, 0; 0, -650]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      6
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [905, 98, 935, 112]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function1"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem7"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem7"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem12"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem17"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem5"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem5"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem12"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem17"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem7"
+      Ports		      [2, 1]
+      Position		      [240, 407, 340, 458]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Color Opponent Pair Differences"
+      MaskDescription	      "Computes multi-scale center-surround differences \nfor color opponent pairs."
+      MaskPromptString	      "base rows:|base cols:|center level:|surround level:"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on"
+      MaskCallbackString      "|||"
+      MaskEnableString	      "on,on,on,on"
+      MaskVisibilityString    "on,on,on,on"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVarAliasString      ",,,"
+      MaskVariables	      "br=@1;bc=@2;cl=@3;sl=@4;"
+      MaskDisplay	      "fprintf('COLOR OPP\\n(%s x %s)\\n(%s -> %s)', get_param(gcb, 'br'), get_param(gcb, 'bc'), get_param(gcb, 'cl'), get_param(gcb, 'sl'))"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "332|500|2|5"
+      MaskTabNameString	      ",,,"
+      System {
+	Name			"Subsystem7"
+	Location		[183, 309, 1094, 860]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [35, 83, 65, 97]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In2"
+	  Position		  [30, 353, 60, 367]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Abs
+	  Name			  "Abs"
+	  Position		  [750, 95, 780, 125]
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function"
+	  Ports			  [1, 1]
+	  Position		  [125, 52, 220, 128]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function"
+	  SourceType		  "Extract Pyramid Level"
+	  br			  "br"
+	  bc			  "bc"
+	  pl			  "cl"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function1"
+	  Ports			  [1, 1]
+	  Position		  [135, 162, 230, 238]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function"
+	  SourceType		  "Extract Pyramid Level"
+	  br			  "br"
+	  bc			  "bc"
+	  pl			  "sl"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function2"
+	  Ports			  [1, 1]
+	  Position		  [460, 349, 535, 391]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function2"
+	  SourceType		  "Upsample Image Pyramid Level"
+	  br			  "br"
+	  bc			  "bc"
+	  fl			  "cl"
+	  cl			  "sl"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function3"
+	  Ports			  [1, 1]
+	  Position		  [125, 322, 220, 398]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function"
+	  SourceType		  "Extract Pyramid Level"
+	  br			  "br"
+	  bc			  "bc"
+	  pl			  "cl"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function4"
+	  Ports			  [1, 1]
+	  Position		  [130, 432, 225, 508]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function"
+	  SourceType		  "Extract Pyramid Level"
+	  br			  "br"
+	  bc			  "bc"
+	  pl			  "sl"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Subtract"
+	  Ports			  [2, 1]
+	  Position		  [385, 82, 415, 113]
+	  Inputs		  "+-"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Subtract1"
+	  Ports			  [2, 1]
+	  Position		  [380, 352, 410, 383]
+	  Inputs		  "-+"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Subtract2"
+	  Ports			  [2, 1]
+	  Position		  [655, 92, 685, 123]
+	  Inputs		  "+-"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^-10"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [830, 103, 860, 117]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function"
+	  SrcPort		  1
+	  DstBlock		  "Subtract"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  Points		  [10, 0]
+	  Branch {
+	    Points		    [0, 110]
+	    DstBlock		    "Level-2 M-file\nS-Function1"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Level-2 M-file\nS-Function"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Subtract1"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function3"
+	  SrcPort		  1
+	  Points		  [100, 0; 0, -255]
+	  DstBlock		  "Subtract"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "In2"
+	  SrcPort		  1
+	  Points		  [10, 0]
+	  Branch {
+	    DstBlock		    "Level-2 M-file\nS-Function3"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 110]
+	    DstBlock		    "Level-2 M-file\nS-Function4"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function1"
+	  SrcPort		  1
+	  Points		  [115, 0; 0, 160]
+	  DstBlock		  "Subtract1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function4"
+	  SrcPort		  1
+	  Points		  [65, 0; 0, -95]
+	  DstBlock		  "Subtract1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Abs"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subtract"
+	  SrcPort		  1
+	  DstBlock		  "Subtract2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function2"
+	  SrcPort		  1
+	  Points		  [50, 0; 0, -255]
+	  DstBlock		  "Subtract2"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Subtract2"
+	  SrcPort		  1
+	  DstBlock		  "Abs"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem8"
+      Ports		      [4, 1]
+      Position		      [70, 509, 230, 591]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Multi-Resolution Color Pyramid"
+      MaskDescription	      "Outputs a bus containing multi-resolution pyramids for each\nof the four input color channel images."
+      MaskPromptString	      "base rows:|base cols:"
+      MaskStyleString	      "edit,edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVarAliasString      ","
+      MaskVariables	      "br=@1;bc=@2;"
+      MaskDisplay	      "fprintf('COLOR PYRAMID\\n(%s x %s)', get_param(gcb, 'br'), get_param(gcb, 'bc'))\nport_label('input', 1, 'R')\nport_label('input', 2', 'G')\nport_label('input', 3, 'B')\nport_label('input', 4, 'Y')\nport_label('output', 1, 'CLRPY')\n"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "332|500"
+      MaskTabNameString	      ","
+      System {
+	Name			"Subsystem8"
+	Location		[-55, 292, 614, 833]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [70, 73, 100, 87]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In2"
+	  Position		  [75, 178, 105, 192]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In3"
+	  Position		  [80, 283, 110, 297]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In4"
+	  Position		  [90, 398, 120, 412]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  BusCreator
+	  Name			  "Bus\nCreator"
+	  Ports			  [4, 1]
+	  Position		  [410, 200, 415, 305]
+	  ShowName		  off
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function1"
+	  Ports			  [1, 1]
+	  Position		  [175, 49, 235, 111]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function1"
+	  SourceType		  "Multi-Resolution Image Pyramid"
+	  sr			  "332"
+	  sc			  "500"
+	  sl			  "8"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function2"
+	  Ports			  [1, 1]
+	  Position		  [180, 154, 240, 216]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function1"
+	  SourceType		  "Multi-Resolution Image Pyramid"
+	  sr			  "332"
+	  sc			  "500"
+	  sl			  "8"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function3"
+	  Ports			  [1, 1]
+	  Position		  [185, 259, 245, 321]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function1"
+	  SourceType		  "Multi-Resolution Image Pyramid"
+	  sr			  "332"
+	  sc			  "500"
+	  sl			  "8"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Level-2 M-file\nS-Function4"
+	  Ports			  [1, 1]
+	  Position		  [195, 374, 255, 436]
+	  SourceBlock		  "SaliencyLib/Level-2 M-file\nS-Function1"
+	  SourceType		  "Multi-Resolution Image Pyramid"
+	  sr			  "332"
+	  sc			  "500"
+	  sl			  "8"
+	  bo			  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [510, 248, 540, 262]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "In4"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function4"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In3"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In2"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Level-2 M-file\nS-Function1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function1"
+	  SrcPort		  1
+	  Points		  [75, 0; 0, 135]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function2"
+	  SrcPort		  1
+	  Points		  [60, 0; 0, 55]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function3"
+	  SrcPort		  1
+	  Points		  [70, 0; 0, -25]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Level-2 M-file\nS-Function4"
+	  SrcPort		  1
+	  Points		  [65, 0; 0, -115]
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "Bus\nCreator"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem9"
+      Ports		      [1, 1]
+      Position		      [285, 512, 430, 568]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Single Resolution Color Opponent Saliency Channel"
+      MaskDescription	      "Outputs a color opponent based saliency map for a\nparametrically specified pair of center and surround \nresolution scales."
+      MaskPromptString	      "base rows:|base cols:|center level:|surround level:"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on"
+      MaskCallbackString      "|||"
+      MaskEnableString	      "on,on,on,on"
+      MaskVisibilityString    "on,on,on,on"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVarAliasString      ",,,"
+      MaskVariables	      "br=@1;bc=@2;cl=@3;sl=@4;"
+      MaskDisplay	      "fprintf('CLR LEVEL\\n(%s x %s)\\n%s -> %s',get_param(gcb, 'br'),get_param(gcb, 'bc'),get_param(gcb,'cl'),get_param(gcb,'sl'))\nport_label('input', 1, 'CLRPY')\nport_label('output', 1, 'CPAIR')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "332|500|2|5"
+      MaskTabNameString	      ",,,"
+      System {
+	Name			"Subsystem9"
+	Location		[161, 104, 1133, 576]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [30, 163, 60, 177]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  BusSelector
+	  Name			  "Bus\nSelector"
+	  Ports			  [1, 4]
+	  Position		  [135, 116, 140, 219]
+	  ShowName		  off
+	  OutputSignals		  "signal1,signal2,signal3,signal4"
+	  Port {
+	    PortNumber		    1
+	    Name		    "<signal1>"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	  Port {
+	    PortNumber		    2
+	    Name		    "<signal2>"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	  Port {
+	    PortNumber		    3
+	    Name		    "<signal3>"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	  Port {
+	    PortNumber		    4
+	    Name		    "<signal4>"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem1"
+	  Ports			  [2, 1]
+	  Position		  [385, 182, 485, 233]
+	  SourceBlock		  "SaliencyLib/Subsystem7"
+	  SourceType		  "Color Opponent Pair Differences"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  br			  "br"
+	  bc			  "bc"
+	  cl			  "cl"
+	  sl			  "sl"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem2"
+	  Ports			  [1, 1]
+	  Position		  [560, 189, 660, 231]
+	  SourceBlock		  "SaliencyLib/Subsystem5"
+	  SourceType		  "Local Inhibition (Saliency Normalization)"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem5"
+	  Ports			  [1, 1]
+	  Position		  [555, 104, 655, 146]
+	  SourceBlock		  "SaliencyLib/Subsystem5"
+	  SourceType		  "Local Inhibition (Saliency Normalization)"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Subsystem7"
+	  Ports			  [2, 1]
+	  Position		  [385, 97, 485, 148]
+	  SourceBlock		  "SaliencyLib/Subsystem7"
+	  SourceType		  "Color Opponent Pair Differences"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  br			  "br"
+	  bc			  "bc"
+	  cl			  "cl"
+	  sl			  "sl"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [2, 1]
+	  Position		  [710, 115, 730, 135]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|++"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [770, 118, 800, 132]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Bus\nSelector"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "<signal1>"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  1
+	  Points		  [95, 0; 0, -20]
+	  DstBlock		  "Subsystem7"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "<signal2>"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  2
+	  Points		  [120, 0; 0, -20]
+	  DstBlock		  "Subsystem7"
+	  DstPort		  2
+	}
+	Line {
+	  Name			  "<signal3>"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  3
+	  Points		  [225, 0]
+	  DstBlock		  "Subsystem1"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "<signal4>"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  4
+	  Points		  [110, 0; 0, 15]
+	  DstBlock		  "Subsystem1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Subsystem7"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem5"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem1"
+	  SrcPort		  1
+	  DstBlock		  "Subsystem2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem5"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Subsystem2"
+	  SrcPort		  1
+	  Points		  [55, 0]
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+      }
+    }
+  }
+}

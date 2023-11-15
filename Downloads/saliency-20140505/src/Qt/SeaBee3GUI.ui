@@ -1,0 +1,3931 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>SeaBee3MainDisplayForm</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>SeaBee3MainDisplayForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>970</width>
+            <height>750</height>
+        </rect>
+    </property>
+    <property name="paletteForegroundColor">
+        <color>
+            <red>255</red>
+            <green>255</green>
+            <blue>255</blue>
+        </color>
+    </property>
+    <property name="paletteBackgroundColor">
+        <color>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </color>
+    </property>
+    <property name="caption">
+        <string>SeaBee3 Main Display</string>
+    </property>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox9_4</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>720</x>
+                <y>530</y>
+                <width>240</width>
+                <height>190</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Thruster Current</string>
+        </property>
+        <widget class="QFrame">
+            <property name="name">
+                <cstring>frame3</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>220</width>
+                    <height>160</height>
+                </rect>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
+                </color>
+            </property>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Raised</enum>
+            </property>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>ThrusterCurrentMeterCanvas4</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>90</x>
+                        <y>10</y>
+                        <width>16</width>
+                        <height>120</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>ThrusterCurrentMeterCanvas5</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>110</x>
+                        <y>10</y>
+                        <width>16</width>
+                        <height>120</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>ThrusterCurrentMeterCanvas2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>50</x>
+                        <y>10</y>
+                        <width>16</width>
+                        <height>120</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>ThrusterCurrentMeterCanvas3</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>70</x>
+                        <y>10</y>
+                        <width>16</width>
+                        <height>120</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>ThrusterCurrentMeterCanvas6</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>130</x>
+                        <y>10</y>
+                        <width>16</width>
+                        <height>120</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>130</y>
+                        <width>16</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>30</x>
+                        <y>130</y>
+                        <width>16</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>1</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_2_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>50</x>
+                        <y>130</y>
+                        <width>16</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>2</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_2_3</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>70</x>
+                        <y>130</y>
+                        <width>16</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>3</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_2_4</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>90</x>
+                        <y>130</y>
+                        <width>16</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>4</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_2_5</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>110</x>
+                        <y>130</y>
+                        <width>16</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>5</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_2_6</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>130</x>
+                        <y>130</y>
+                        <width>16</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>6</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_2_7</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>150</x>
+                        <y>130</y>
+                        <width>16</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>255</red>
+                        <green>255</green>
+                        <blue>255</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>7</string>
+                </property>
+            </widget>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>ThrusterCurrentMeterCanvas7</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>150</x>
+                        <y>10</y>
+                        <width>16</width>
+                        <height>120</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel1_3</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>175</x>
+                        <y>95</y>
+                        <width>25</width>
+                        <height>16</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>144</red>
+                        <green>144</green>
+                        <blue>144</blue>
+                    </color>
+                </property>
+                <property name="font">
+                    <font>
+                        <family>Helvetica [Adobe]</family>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>.5A</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel1_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>175</x>
+                        <y>50</y>
+                        <width>25</width>
+                        <height>16</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>144</red>
+                        <green>144</green>
+                        <blue>144</blue>
+                    </color>
+                </property>
+                <property name="font">
+                    <font>
+                        <family>Helvetica [Adobe]</family>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>1A</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel1</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>175</x>
+                        <y>10</y>
+                        <width>25</width>
+                        <height>16</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>144</red>
+                        <green>144</green>
+                        <blue>144</blue>
+                    </color>
+                </property>
+                <property name="font">
+                    <font>
+                        <family>Helvetica [Adobe]</family>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>3A</string>
+                </property>
+            </widget>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>ThrusterCurrentMeterCanvas1</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>30</x>
+                        <y>10</y>
+                        <width>16</width>
+                        <height>120</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>ThrusterCurrentMeterCanvas0</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>10</y>
+                        <width>16</width>
+                        <height>120</height>
+                    </rect>
+                </property>
+            </widget>
+        </widget>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox1</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>720</x>
+                <y>10</y>
+                <width>240</width>
+                <height>510</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Sensor Readings</string>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox9_3</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>180</y>
+                    <width>150</width>
+                    <height>160</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>Internal Pressure</string>
+            </property>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>field_int_press</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>130</y>
+                        <width>130</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>30</red>
+                        <green>253</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="font">
+                    <font>
+                        <pointsize>12</pointsize>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+                <property name="frame">
+                    <bool>false</bool>
+                </property>
+                <property name="cursorPosition">
+                    <number>1</number>
+                </property>
+                <property name="alignment">
+                    <set>AlignHCenter</set>
+                </property>
+            </widget>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>IPressureCanvas</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>20</y>
+                        <width>130</width>
+                        <height>110</height>
+                    </rect>
+                </property>
+            </widget>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>ExtPressAuto</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>160</x>
+                    <y>400</y>
+                    <width>60</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="font">
+                <font>
+                    <family>Helvetica [Adobe]</family>
+                </font>
+            </property>
+            <property name="text">
+                <string>Auto
+Scale</string>
+            </property>
+            <property name="checked">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QSpinBox">
+            <property name="name">
+                <cstring>IntPressMax</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>160</x>
+                    <y>189</y>
+                    <width>50</width>
+                    <height>17</height>
+                </rect>
+            </property>
+            <property name="paletteForegroundColor">
+                <color>
+                    <red>255</red>
+                    <green>255</green>
+                    <blue>255</blue>
+                </color>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>71</blue>
+                </color>
+            </property>
+            <property name="font">
+                <font>
+                    <family>Helvetica [Adobe]</family>
+                </font>
+            </property>
+            <property name="maxValue">
+                <number>10000</number>
+            </property>
+        </widget>
+        <widget class="QSpinBox">
+            <property name="name">
+                <cstring>IntPressMin</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>160</x>
+                    <y>310</y>
+                    <width>50</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="paletteForegroundColor">
+                <color>
+                    <red>255</red>
+                    <green>255</green>
+                    <blue>255</blue>
+                </color>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>71</blue>
+                </color>
+            </property>
+            <property name="font">
+                <font>
+                    <family>Helvetica [Adobe]</family>
+                </font>
+            </property>
+            <property name="maxValue">
+                <number>10000</number>
+            </property>
+        </widget>
+        <widget class="QSpinBox">
+            <property name="name">
+                <cstring>ExtPressMax</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>160</x>
+                    <y>350</y>
+                    <width>50</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="paletteForegroundColor">
+                <color>
+                    <red>255</red>
+                    <green>255</green>
+                    <blue>255</blue>
+                </color>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>71</blue>
+                </color>
+            </property>
+            <property name="font">
+                <font>
+                    <family>Helvetica [Adobe]</family>
+                </font>
+            </property>
+            <property name="maxValue">
+                <number>10000</number>
+            </property>
+        </widget>
+        <widget class="QSpinBox">
+            <property name="name">
+                <cstring>ExtPressMin</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>160</x>
+                    <y>470</y>
+                    <width>50</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="paletteForegroundColor">
+                <color>
+                    <red>255</red>
+                    <green>255</green>
+                    <blue>255</blue>
+                </color>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>71</blue>
+                </color>
+            </property>
+            <property name="font">
+                <font>
+                    <family>Helvetica [Adobe]</family>
+                </font>
+            </property>
+            <property name="maxValue">
+                <number>10000</number>
+            </property>
+        </widget>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox6</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>150</width>
+                    <height>160</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>Heading</string>
+            </property>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>CompassCanvas</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>20</y>
+                        <width>130</width>
+                        <height>110</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>field_heading</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>130</y>
+                        <width>130</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>30</red>
+                        <green>253</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="font">
+                    <font>
+                        <pointsize>12</pointsize>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+                <property name="frame">
+                    <bool>false</bool>
+                </property>
+                <property name="alignment">
+                    <set>AlignHCenter</set>
+                </property>
+            </widget>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>IntPressAuto</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>160</x>
+                    <y>240</y>
+                    <width>60</width>
+                    <height>40</height>
+                </rect>
+            </property>
+            <property name="font">
+                <font>
+                    <family>Helvetica [Adobe]</family>
+                </font>
+            </property>
+            <property name="text">
+                <string>Auto
+Scale</string>
+            </property>
+            <property name="checked">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox10</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>340</y>
+                    <width>150</width>
+                    <height>160</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>External Pressure</string>
+            </property>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>EPressureCanvas</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>20</y>
+                        <width>130</width>
+                        <height>110</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>field_ext_press</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>130</y>
+                        <width>130</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>30</red>
+                        <green>253</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="font">
+                    <font>
+                        <pointsize>12</pointsize>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+                <property name="frame">
+                    <bool>false</bool>
+                </property>
+                <property name="cursorPosition">
+                    <number>1</number>
+                </property>
+                <property name="alignment">
+                    <set>AlignHCenter</set>
+                </property>
+            </widget>
+        </widget>
+    </widget>
+    <widget class="ImageCanvas">
+        <property name="name">
+            <cstring>ImageDisplay0_2_2</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>25</x>
+                <y>25</y>
+                <width>290</width>
+                <height>240</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>desired_heading_field_2_3</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>430</x>
+                <y>190</y>
+                <width>60</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>0</string>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>desired_heading_field_2_2</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>430</x>
+                <y>260</y>
+                <width>60</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>0</string>
+        </property>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox10_2</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>559</y>
+                <width>701</width>
+                <height>160</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Controls</string>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox2</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>290</x>
+                    <y>30</y>
+                    <width>390</width>
+                    <height>100</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>Pose Settings</string>
+            </property>
+            <widget class="QButtonGroup">
+                <property name="name">
+                    <cstring>buttonGroup1</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>20</y>
+                        <width>190</width>
+                        <height>70</height>
+                    </rect>
+                </property>
+                <property name="title">
+                    <string>Control</string>
+                </property>
+                <widget class="QRadioButton">
+                    <property name="name">
+                        <cstring>radio_manual</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>21</y>
+                            <width>110</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Manual</string>
+                    </property>
+                    <property name="checked">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QRadioButton">
+                    <property name="name">
+                        <cstring>radio_auto</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>41</y>
+                            <width>80</width>
+                            <height>16</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Auto</string>
+                    </property>
+                </widget>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>desired_speed_field</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>320</x>
+                        <y>60</y>
+                        <width>60</width>
+                        <height>20</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>desired_depth_field</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>320</x>
+                        <y>40</y>
+                        <width>60</width>
+                        <height>20</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_3_2_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>210</x>
+                        <y>20</y>
+                        <width>105</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>Desired Heading:</string>
+                </property>
+                <property name="alignment">
+                    <set>AlignVCenter|AlignRight</set>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_2_2_3_2_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>210</x>
+                        <y>40</y>
+                        <width>92</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>Desired Depth:</string>
+                </property>
+                <property name="alignment">
+                    <set>AlignVCenter|AlignRight</set>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_2_2_3_2_2_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>210</x>
+                        <y>60</y>
+                        <width>93</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>Desired Speed:</string>
+                </property>
+                <property name="alignment">
+                    <set>AlignVCenter|AlignRight</set>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>desired_heading_field</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>320</x>
+                        <y>20</y>
+                        <width>60</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+        </widget>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox4</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>30</y>
+                    <width>230</width>
+                    <height>100</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>PID Output Values</string>
+            </property>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_3_2_2_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>20</x>
+                        <y>25</y>
+                        <width>119</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Heading Output:</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_3_2_2_2_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>20</x>
+                        <y>55</y>
+                        <width>119</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Depth Output:</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>heading_output_field</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>130</x>
+                        <y>20</y>
+                        <width>70</width>
+                        <height>23</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>38</red>
+                        <green>255</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+                <property name="alignment">
+                    <set>AlignHCenter</set>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>depth_output_field</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>130</x>
+                        <y>51</y>
+                        <width>70</width>
+                        <height>23</height>
+                    </rect>
+                </property>
+                <property name="paletteForegroundColor">
+                    <color>
+                        <red>0</red>
+                        <green>255</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>0</red>
+                        <green>0</green>
+                        <blue>0</blue>
+                    </color>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+                <property name="alignment">
+                    <set>AlignHCenter</set>
+                </property>
+            </widget>
+        </widget>
+    </widget>
+    <widget class="QTabWidget">
+        <property name="name">
+            <cstring>tabWidget3</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>10</y>
+                <width>700</width>
+                <height>550</height>
+            </rect>
+        </property>
+        <property name="paletteForegroundColor">
+            <color>
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+            </color>
+        </property>
+        <property name="paletteBackgroundColor">
+            <color>
+                <red>0</red>
+                <green>0</green>
+                <blue>0</blue>
+            </color>
+        </property>
+        <widget class="QWidget">
+            <property name="name">
+                <cstring>tab</cstring>
+            </property>
+            <attribute name="title">
+                <string>Main Display</string>
+            </attribute>
+            <widget class="QFrame">
+                <property name="name">
+                    <cstring>frame4</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>55</x>
+                        <y>10</y>
+                        <width>595</width>
+                        <height>495</height>
+                    </rect>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>48</red>
+                        <green>48</green>
+                        <blue>48</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Raised</enum>
+                </property>
+                <widget class="ImageCanvas">
+                    <property name="name">
+                        <cstring>ImageDisplay1</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>300</x>
+                            <y>5</y>
+                            <width>290</width>
+                            <height>240</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="ImageCanvas">
+                    <property name="name">
+                        <cstring>ImageDisplay2</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>5</x>
+                            <y>250</y>
+                            <width>290</width>
+                            <height>240</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="ImageCanvas">
+                    <property name="name">
+                        <cstring>ImageDisplay3</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>300</x>
+                            <y>250</y>
+                            <width>290</width>
+                            <height>240</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="ImageCanvas">
+                    <property name="name">
+                        <cstring>ImageDisplay0</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>5</x>
+                            <y>5</y>
+                            <width>290</width>
+                            <height>240</height>
+                        </rect>
+                    </property>
+                </widget>
+            </widget>
+        </widget>
+        <widget class="QWidget">
+            <property name="name">
+                <cstring>TabPage</cstring>
+            </property>
+            <attribute name="title">
+                <string>Movement Controller</string>
+            </attribute>
+            <widget class="QFrame">
+                <property name="name">
+                    <cstring>frame4_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>60</x>
+                        <y>10</y>
+                        <width>300</width>
+                        <height>495</height>
+                    </rect>
+                </property>
+                <property name="paletteBackgroundColor">
+                    <color>
+                        <red>48</red>
+                        <green>48</green>
+                        <blue>48</blue>
+                    </color>
+                </property>
+                <property name="frameShape">
+                    <enum>StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Raised</enum>
+                </property>
+                <widget class="ImageCanvas">
+                    <property name="name">
+                        <cstring>MovementDisplay0</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>5</x>
+                            <y>5</y>
+                            <width>290</width>
+                            <height>240</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="ImageCanvas">
+                    <property name="name">
+                        <cstring>MovementDisplay1</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>5</x>
+                            <y>250</y>
+                            <width>290</width>
+                            <height>240</height>
+                        </rect>
+                    </property>
+                </widget>
+            </widget>
+        </widget>
+        <widget class="QWidget">
+            <property name="name">
+                <cstring>tab</cstring>
+            </property>
+            <attribute name="title">
+                <string>PID Tuning</string>
+            </attribute>
+            <widget class="QGroupBox">
+                <property name="name">
+                    <cstring>groupBox9_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>180</x>
+                        <y>10</y>
+                        <width>140</width>
+                        <height>171</height>
+                    </rect>
+                </property>
+                <property name="title">
+                    <string>Depth Constants</string>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2_3_2_2_3_3_2</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>92</y>
+                            <width>20</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>I</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2_3_2_2_3_2_2</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>18</x>
+                            <y>65</y>
+                            <width>20</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>P</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>field_depth_i</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>48</x>
+                            <y>95</y>
+                            <width>30</width>
+                            <height>23</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>0</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>field_depth_d</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>48</x>
+                            <y>125</y>
+                            <width>30</width>
+                            <height>23</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>0</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>field_depth_k</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>48</x>
+                            <y>36</y>
+                            <width>30</width>
+                            <height>23</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>0</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2_3_2_2_3_2_4_2_2</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>33</y>
+                            <width>20</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>K</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2_3_2_2_3_4_2</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>18</x>
+                            <y>125</y>
+                            <width>20</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>D</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>field_depth_p</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>48</x>
+                            <y>65</y>
+                            <width>30</width>
+                            <height>23</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>1</string>
+                    </property>
+                </widget>
+            </widget>
+            <widget class="QGroupBox">
+                <property name="name">
+                    <cstring>groupBox11</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>400</y>
+                        <width>210</width>
+                        <height>110</height>
+                    </rect>
+                </property>
+                <property name="title">
+                    <string>Data Logger</string>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_4_2</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>60</x>
+                            <y>60</y>
+                            <width>34</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>8</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>Stop</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_4_3</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>110</x>
+                            <y>60</y>
+                            <width>34</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>8</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>Erase</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_4_3_2</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>160</x>
+                            <y>60</y>
+                            <width>34</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>8</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>Save</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_4</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>10</x>
+                            <y>60</y>
+                            <width>34</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>8</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>Record</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>recordButton</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>10</x>
+                            <y>20</y>
+                            <width>40</width>
+                            <height>40</height>
+                        </rect>
+                    </property>
+                    <property name="paletteForegroundColor">
+                        <color>
+                            <red>255</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>112</red>
+                            <green>114</green>
+                            <blue>116</blue>
+                        </color>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>20</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>◉</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>stopButton</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>60</x>
+                            <y>20</y>
+                            <width>40</width>
+                            <height>40</height>
+                        </rect>
+                    </property>
+                    <property name="paletteForegroundColor">
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>0</blue>
+                        </color>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>112</red>
+                            <green>114</green>
+                            <blue>116</blue>
+                        </color>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>20</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>▣</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>eraseButton</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>110</x>
+                            <y>20</y>
+                            <width>40</width>
+                            <height>40</height>
+                        </rect>
+                    </property>
+                    <property name="paletteForegroundColor">
+                        <color>
+                            <red>0</red>
+                            <green>26</green>
+                            <blue>255</blue>
+                        </color>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>112</red>
+                            <green>114</green>
+                            <blue>116</blue>
+                        </color>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>20</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>✂</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>saveButton</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>160</x>
+                            <y>20</y>
+                            <width>40</width>
+                            <height>40</height>
+                        </rect>
+                    </property>
+                    <property name="paletteForegroundColor">
+                        <color>
+                            <red>68</red>
+                            <green>255</green>
+                            <blue>0</blue>
+                        </color>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>112</red>
+                            <green>114</green>
+                            <blue>116</blue>
+                        </color>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>20</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>✍</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_4_4</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>10</x>
+                            <y>80</y>
+                            <width>70</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>8</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>Data Points</string>
+                    </property>
+                </widget>
+                <widget class="QLCDNumber">
+                    <property name="name">
+                        <cstring>dataLoggerLCD</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>70</x>
+                            <y>80</y>
+                            <width>111</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="paletteForegroundColor">
+                        <color>
+                            <red>110</red>
+                            <green>190</green>
+                            <blue>52</blue>
+                        </color>
+                    </property>
+                </widget>
+            </widget>
+            <widget class="QGroupBox">
+                <property name="name">
+                    <cstring>groupBox9</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>20</x>
+                        <y>10</y>
+                        <width>140</width>
+                        <height>171</height>
+                    </rect>
+                </property>
+                <property name="title">
+                    <string>Heading Constants</string>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2_3_2_2_3_2_4_2</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>22</x>
+                            <y>28</y>
+                            <width>20</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>K</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2_3_2_2_3_2</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>60</y>
+                            <width>20</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>P</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2_3_2_2_3_3</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>22</x>
+                            <y>87</y>
+                            <width>20</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>I</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2_3_2_2_3_4</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>120</y>
+                            <width>20</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>D</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>field_heading_i</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>50</x>
+                            <y>90</y>
+                            <width>30</width>
+                            <height>23</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>0</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>field_heading_k</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>50</x>
+                            <y>31</y>
+                            <width>30</width>
+                            <height>23</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>0</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>field_heading_d</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>50</x>
+                            <y>120</y>
+                            <width>30</width>
+                            <height>23</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>0</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>field_heading_p</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>50</x>
+                            <y>60</y>
+                            <width>30</width>
+                            <height>23</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>1</string>
+                    </property>
+                </widget>
+            </widget>
+        </widget>
+        <widget class="QWidget">
+            <property name="name">
+                <cstring>TabPage</cstring>
+            </property>
+            <attribute name="title">
+                <string>Mapping</string>
+            </attribute>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>MapCanvas</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>10</y>
+                        <width>400</width>
+                        <height>400</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="QGroupBox">
+                <property name="name">
+                    <cstring>groupBox15</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>8</x>
+                        <y>414</y>
+                        <width>401</width>
+                        <height>101</height>
+                    </rect>
+                </property>
+                <property name="title">
+                    <string>Export Map</string>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_5</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>10</x>
+                            <y>60</y>
+                            <width>72</width>
+                            <height>31</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Map Name:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>MapName</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>90</x>
+                            <y>60</y>
+                            <width>131</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>SaveMapBtn</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>260</x>
+                            <y>60</y>
+                            <width>130</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Save Map</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>LoadMapBtn</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>260</x>
+                            <y>20</y>
+                            <width>131</width>
+                            <height>31</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Load Map</string>
+                    </property>
+                </widget>
+            </widget>
+            <widget class="QGroupBox">
+                <property name="name">
+                    <cstring>groupBox12</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>420</x>
+                        <y>0</y>
+                        <width>270</width>
+                        <height>360</height>
+                    </rect>
+                </property>
+                <property name="title">
+                    <string>Competition Objects</string>
+                </property>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>PlatformBtn</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>120</x>
+                            <y>30</y>
+                            <width>120</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Platform</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>PlatformPic</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>50</x>
+                            <y>20</y>
+                            <width>20</width>
+                            <height>38</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>image0</pixmap>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>GatePic</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>60</y>
+                            <width>41</width>
+                            <height>26</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>image1</pixmap>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>GateBtn</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>120</x>
+                            <y>60</y>
+                            <width>120</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Gate</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>PipePic</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>90</y>
+                            <width>40</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>image2</pixmap>
+                    </property>
+                    <property name="scaledContents">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>PipeBtn</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>120</x>
+                            <y>90</y>
+                            <width>120</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Pipe</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>BuoyPic</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>50</x>
+                            <y>120</y>
+                            <width>35</width>
+                            <height>35</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>image3</pixmap>
+                    </property>
+                    <property name="scaledContents">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>FlareBtn</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>120</x>
+                            <y>120</y>
+                            <width>120</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Flare</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>BinPic</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>10</x>
+                            <y>160</y>
+                            <width>100</width>
+                            <height>44</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>image4</pixmap>
+                    </property>
+                    <property name="scaledContents">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>BarbwirePic</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>50</x>
+                            <y>210</y>
+                            <width>37</width>
+                            <height>41</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>image5</pixmap>
+                    </property>
+                    <property name="scaledContents">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>MachineGunNestPic</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>50</x>
+                            <y>260</y>
+                            <width>33</width>
+                            <height>36</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>image6</pixmap>
+                    </property>
+                    <property name="scaledContents">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>OctagonSurfacePic</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>300</y>
+                            <width>51</width>
+                            <height>50</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>image7</pixmap>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>BinBtn</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>120</x>
+                            <y>161</y>
+                            <width>120</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Bin</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>OctagonSurfaceBtn</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>120</x>
+                            <y>311</y>
+                            <width>120</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Octagon Surface</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>MachineGunNestBtn</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>120</x>
+                            <y>260</y>
+                            <width>120</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Machine Gun Nest</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>BarbwireBtn</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>120</x>
+                            <y>210</y>
+                            <width>120</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Barbwire</string>
+                    </property>
+                </widget>
+            </widget>
+            <widget class="QGroupBox">
+                <property name="name">
+                    <cstring>groupBox13</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>420</x>
+                        <y>360</y>
+                        <width>270</width>
+                        <height>150</height>
+                    </rect>
+                </property>
+                <property name="title">
+                    <string>Placed Objects</string>
+                </property>
+                <widget class="QComboBox">
+                    <property name="name">
+                        <cstring>ObjectList</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>10</x>
+                            <y>20</y>
+                            <width>250</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2_3</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>10</x>
+                            <y>80</y>
+                            <width>50</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Y-Coord</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>MapObjectY</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>70</x>
+                            <y>80</y>
+                            <width>56</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_6</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>10</x>
+                            <y>50</y>
+                            <width>51</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>X-Coord</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel2_4</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>150</x>
+                            <y>80</y>
+                            <width>35</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Y-Var</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>MapObjectX</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>70</x>
+                            <y>50</y>
+                            <width>56</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>MapObjectVarX</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>201</x>
+                            <y>50</y>
+                            <width>60</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>MapObjectVarY</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>201</x>
+                            <y>80</y>
+                            <width>60</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1_7</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>150</x>
+                            <y>50</y>
+                            <width>36</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>X-Var</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>DeleteBtn</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>171</x>
+                            <y>111</y>
+                            <width>90</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Delete</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>PlaceBtn</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>110</y>
+                            <width>90</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Update</string>
+                    </property>
+                </widget>
+            </widget>
+        </widget>
+        <widget class="QWidget">
+            <property name="name">
+                <cstring>TabPage</cstring>
+            </property>
+            <attribute name="title">
+                <string>SeaBee Injector</string>
+            </attribute>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>BriefcaseFoundBtn</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>18</x>
+                        <y>374</y>
+                        <width>181</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>BriefcaseFound</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>BombingRunBtn</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>18</x>
+                        <y>334</y>
+                        <width>181</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>BombingRunDone</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>ContourFoundBoxesBtn</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>18</x>
+                        <y>294</y>
+                        <width>181</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>ContourFoundBoxes</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>BarbwireDoneBtn</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>18</x>
+                        <y>254</y>
+                        <width>181</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>BarbwireDone</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>ContourFoundBarbwireBtn</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>18</x>
+                        <y>214</y>
+                        <width>181</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>ContourFoundBarbwire</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>FlareDoneBtn</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>18</x>
+                        <y>174</y>
+                        <width>181</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>FlareDone</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>GateFoundBtn</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>18</x>
+                        <y>54</y>
+                        <width>181</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>GateFound</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>InitDoneBtn</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>18</x>
+                        <y>14</y>
+                        <width>181</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>InitDone</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>GateDoneBtn</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>18</x>
+                        <y>94</y>
+                        <width>181</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>GateDone</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>ContourFoundFlareBtn</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>18</x>
+                        <y>134</y>
+                        <width>181</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>ContourFoundFlare</string>
+                </property>
+            </widget>
+        </widget>
+        <widget class="QWidget">
+            <property name="name">
+                <cstring>TabPage</cstring>
+            </property>
+            <attribute name="title">
+                <string>Color Picker</string>
+            </attribute>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel1_8</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>70</x>
+                        <y>330</y>
+                        <width>53</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>&lt;h2&gt;File:&lt;/h2&gt;</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>colorFileLoadText</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>71</x>
+                        <y>360</y>
+                        <width>230</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>ColorPickLoadBut</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>310</x>
+                        <y>360</y>
+                        <width>50</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Load</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_3_2_2_5</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>360</x>
+                        <y>120</y>
+                        <width>30</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>H2:</string>
+                </property>
+                <property name="alignment">
+                    <set>AlignVCenter|AlignRight</set>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_3_2_2_4</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>360</x>
+                        <y>100</y>
+                        <width>30</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>H1:</string>
+                </property>
+                <property name="alignment">
+                    <set>WordBreak|AlignVCenter|AlignRight</set>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_3_2_2_4_3</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>370</x>
+                        <y>70</y>
+                        <width>80</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>Mean</string>
+                </property>
+                <property name="alignment">
+                    <set>WordBreak|AlignVCenter|AlignRight</set>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_3_2_2_7</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>370</x>
+                        <y>160</y>
+                        <width>20</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>V:</string>
+                </property>
+                <property name="alignment">
+                    <set>AlignVCenter|AlignRight</set>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_3_2_2_6</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>370</x>
+                        <y>140</y>
+                        <width>20</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>S:</string>
+                </property>
+                <property name="alignment">
+                    <set>AlignVCenter|AlignRight</set>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>v_mean_val</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>400</x>
+                        <y>160</y>
+                        <width>60</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>h1__mean_val</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>400</x>
+                        <y>100</y>
+                        <width>60</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>h2_mean_val</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>400</x>
+                        <y>120</y>
+                        <width>60</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>s_mean_val</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>400</x>
+                        <y>140</y>
+                        <width>60</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>AvgColorImg</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>400</x>
+                        <y>190</y>
+                        <width>130</width>
+                        <height>130</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel2_3_2_2_4_3_2</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>470</x>
+                        <y>70</y>
+                        <width>60</width>
+                        <height>22</height>
+                    </rect>
+                </property>
+                <property name="font">
+                    <font>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>Std Dev</string>
+                </property>
+                <property name="alignment">
+                    <set>WordBreak|AlignVCenter|AlignRight</set>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>h1_std_val</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>470</x>
+                        <y>100</y>
+                        <width>60</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>h2_std_val</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>470</x>
+                        <y>120</y>
+                        <width>60</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>v_std_val</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>470</x>
+                        <y>160</y>
+                        <width>60</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>s_std_val</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>470</x>
+                        <y>140</y>
+                        <width>60</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>0</string>
+                </property>
+            </widget>
+            <widget class="ImageCanvas">
+                <property name="name">
+                    <cstring>ColorPickerImg</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>70</x>
+                        <y>80</y>
+                        <width>290</width>
+                        <height>240</height>
+                    </rect>
+                </property>
+            </widget>
+        </widget>
+    </widget>
+</widget>
+<toolbars>
+</toolbars>
+<customwidgets>
+    <customwidget>
+        <class>ImageCanvas</class>
+        <header location="local">Qt/ImageCanvas.h</header>
+        <sizehint>
+            <width>-1</width>
+            <height>-1</height>
+        </sizehint>
+        <container>0</container>
+        <sizepolicy>
+            <hordata>7</hordata>
+            <verdata>7</verdata>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+        <pixmap>image8</pixmap>
+        <signal>mousePressed(int x, int y, int button)</signal>
+        <signal>mousePressEvent( QMouseEvent *e )</signal>
+        <slot access="public" specifier="">setImage(Image&lt;PixRGB&lt;byte&gt; &gt; &amp;img)</slot>
+    </customwidget>
+</customwidgets>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="2844">789c6d955953dc4610c7dff9145bcc1b956aeb3e2a9507b02d6917f0828f983895075dcb62076360b1bd4ae5bb47f3ef9ed1880a5d2be9a7eeed9ebe9617478bab8bf3c5d18b83c75dbdbb6917edb67e581c754fb7b7fb3ffffaed9f83433f5f84d9228d17c1e12f0787aa59b40b154641effb9a4938eca2047cad39f2b4805bb0af05fc3b3808736f03de80532de01e5c6b0177e0460bb8d61c074994c25e6dc159d4783df40adca55e1683afc07ddc44acdf0a8f82ef237e12c5b1d769bedc81e3b4ce717e857c92244ed8bfea85333ebf6a0dfb6c8ff326699c4b7d52e6c4977cfed69c26491786e0b7e02c6902e63fc079d2051178ad39f3d230e0fafcb49c815f83fd3412fda965e8d50d38c9a2b485def028e0cf60fc8163cdf926ef72aedf07cd755e4719e74be07a64ae07fad184759fe7b07f058e2cbf11de08ffb0ccfdffaeb9f5ea38607d044eea5cea9180b3ba16fec2ac05fc11dcd79b80cffb5273173651c0f9e5e0b889a53e2be144f89b702af53c0727567f269c0adf83d32613fb47e15cf8019c8dccf9ec846be13be126e079fe6a99fb7309ce477bf6772bdc8a3e00d756ff046e9b5ef49f34f75eb39178efc1611b043c7fa1e64dd4f901e69dde81e32e08783f4ec089e54c3814de8353a357ca32f7731036f6c79659ef0b47a2bfb0cc7a0f9c59fba5b0b12f2db3be02e7960be198f97247ca919a1a6aa91ba5a70d5dd3966ee8337de1cda4db51bed21dee77f48deee9811e47b91f65474ff49d7ef00ed29e06c89e8ee964bc9f8cb2c7670fdd4b7ac5db49059554d172bcf2a70069a9462e692596a7236b292095b5d6f702f667d672697d2ce1bf9437fcb6b496af258eab2be589239c3f8bbe147de54428715dd11bf1397972e32fedd5f85c43533af99ac8059e27cba94a95f553c99d9fdd732e1da9ec49f4d3c5f8b914cbb7631ff4db01be87f1f91d3a33c5794f1ff83f927dcbe71f66f9e9eb47bae2df66fb963d0c38e5f4cd8a3e89cfb5f48e2b647a5a39f9cd7bf45cdcae9ecd723735e4fb60eba4cf7de654bec2dc94e449c463589bfece678927cd9798feacc6d37c96626b72e64a71b5fcf1fb81e3b390eccd898f61178a7d44b1f5598a4753d5412a3b20c78452a74a53ef8a312fed29431c9d63ae68e6d3dd11d3d36a36c9a7b25da553c3e56c1656cff6c8ec70693b64faf07f3d321b3eedc6d2d9f7b5f830333c55cabc5b3d9b10732e9dcda014269ba76cca689acf29e689dd928256aab63e4d5ce3659a6b37f7f56c2addcd345b3cafe7d2d6dff5c6efdca99baa58491fdc6d9e2c0b395f35abd5f48b379f4fe3b7b4191bb219a946b590ce5e3bd5ab8dbab6b2553787fffe7af01fc4ac7608</data>
+    </image>
+    <image name="image1">
+        <data format="XPM.GZ" length="5585">789c7597596fe4380ec7dffb5304cdb7c642535576f9c0621f72dff7dd837d20652b47e74e25a964b0df7d69fe599ebe264282fc4c99a27849fee3cbdcd9def6dc973f3e3d4f787215e7e2253fcd7d695e6e6fdffffcef7ffefaf439abe786c5dca8c8e7469ffff5e9338de7e21c8d63312e52c7e1015c665563fce89c576dc7b26bdc147559dafbfb1d17a3a22d4d4e36bfc88b548ab1188fcba2aa3ae66fc655595685c99f8ceb7254dafaf26ccc2ab7f9a170ae2a5b8f577bae8d3f9c9bdaf6139e9cdbdaf44b32169d3fb6f5b0be5a5b0f4cbed77139a8463e7fc7785832ece3797095d7b61fbe311e5535e7b6de9b73c3d1f4af18e75562f8ebdeb8a85a86bde6bf524a2ed9f801acf36dbfb40aae470cff15ceb90c8d979d2b813fc8385623f843cc1f65538d3d5ef3ce5c43ff31b81e0be21f8d5b75a7f9872d7e65aa876c7236ff5403d587fddf83eb02f6c857e3a1cecf4c7ee69cf97e4e9c0b467ead196775e9bc6e9cd795fbab756ec5f28f6dffddea1edf57e3a21eb3d92b03e71afae401cca368f685a1b16ecffdb300e62c5afcb93466d567f68781730dffcbb173f4fd2e82594ba6e368feafa46a2aec07fe10b51ff9067b44e7c3bf2bce55847fe08fa8fe80ff605fe4c2e75b3e574d3dc0fe233be7b5e55bd8708e6cfe923be356d9e41cc03c12e4df7ecf967fe1d0b98cb63e9d1a277d1ff251c7bafa00fbe3033017624ceccc11f97ceadc44c4efdd78a8f1453c0e9c23ea4126c6a36e98be67e70af94767ce5e3f51c03c86fd5c39d7b05f0a6786ffc4f2abd67cab2dbf989d2bf7df96b3c0ff3182353e58bf7666c43b343d9b3de1dcb98de87f0bcec9d9ea47a3a5c3e66f3ab3e71bf69bf3d0e3b7e69c22ecbb07cbb8b1f5c8eab91eabbda84fd837d6f511ef43e7d9fbab60c91ad87fe69c37967f02fb0bf507fc796d5cd6c9fb15e4250fbc1e6e9d67f62e81d53eeb47c1ea57bbd3a881ffee9dcbc6ec11abc7bad6f9a89fa6679c2788977a07fa2937963ad658ef06cc39fa0521fe22dce0bcb2fad26a8d2dea05f634cac8bf1763cd77f43f417e6bb769711e3cf58cf9c887a4fa61bff98f07758bfca1121c072df663f5a6de19797ceec0925ad4d71138662df267db78c4deffe8dcb946bf091367463f61bcafdd0debf1d438e3b1d713d6cf543fce87e39e11efcc39875cac7f71ae6cf117ec47b5b93d07e058b688bff50fed4e458bf8e0fd52e5a877cb67dd8df7cf90c0b16ae13f76e6047f5f18d7dc783cb09eb68716fdf4d45912faa39db7dcb51bd4b3d50b8b0c04f709ec5f624ce8d7e39eadfec4f28d636c13fc77eb9cc074d833f2dffabd063f25f4f3a59e21776e0609f715eb4f5a8d29219f11ff56e588c7b2f310ebc961cfc8874be3a40c7d75cf88ef917396d09fcd7f3298cde713e72cc1ffcbce7942bc6cff329491a01f55e0d97cc99df38478ad388ff1be2cf78cf3daf257b515385fc21558e5e83fdcb3bd1f53cf783f3a17908769cf903ff68c7cb07cd36ee6fa42d9b3cddf9f38cfde979ef1feb573e9fce15c39cf3bd760b1fba2e43a507febceb5a03e6ec0fd7aab3d43df82f36cbd77e7d97a77cebe5eb0f876ddd0f9d879367fd17936ffc499c164f92cc58c03ec2b1b71c67eaa9e31bf6e1298113f9606e75f580237adebc7fada5ddd3ff0672382fb68c89cb5039bbeb173037f09f6dfc421cee760fd4492b2e5235bfec741ccfd7e64f71b95669093f573a5ccef471bce25ee1f64f7afa8b72d9fbfe95c44d41fe465ac713f11f39f92761863bb0fe8e549200ff63d10533368d0af2c3f95460dfa89d9ab34829c26ce7ebeb2d59352e6f26be7d97967f74d259d61faacbf357a61f7f3defca954faf96df789a6d627f0cf96738df98cf9ac72f4b317e7d820be560f8d05c4d8fa874a23ceb730766e1a8b57b0ef152597b3f9a31d340972b6fb789be980bfad9eda71374c6ef5dd163ac0839ed17f2d3efa3956fa7965fda1ad9421b778b7d232ce4ba99d05e715db7d422f5f11e70b9b3fda4607ecb37ed7b6dd13b3efd5b9c5f922e0d43d30b6f3260dba27f6bedd0fd2280d719e90c52765dd30f9c439078be5a352eee78ded2f15dd30b678a45219e749722efdbcc07a95caf17ed533e6ef3acfe65f38577ebe407fdd3d31b9f5e7c4dd307d56df499421bf7416c8c9e29b62378ccdbfa94d0dce07ba726efd3c99f68c7e68f5adcdc499b79d1338e43d27f4ebfd4920fd65ffcbf684ed7f093134a10d295c84cb70a5cfaec3b770136ec35db80f0fe1313c85e730092fe135bc75effea871a6e9bb35a6e13d7c8479d5b3a063312c85e5b01256c35a580f1b61336c85edb01376c35ed80f07e13010ce1c1b33db68a6b17ba2e33a1ca9a6e370a27f4fc359380f5fc3200cc3286421ff618c4331d388bd8672a60fda5ddf547557a1d6458998842235d452a20bbafc5e1f5dd1357dc3ae7b8dbd9ed95fbaa15b1d77744f0ff4484ff44c137aa1577aa329bdff68217dd03c2db846d7e1be23fb6f41352dd2122dd30aadd21aadd3066dd2166dd3ce4f7b85be5ddaa37d3ad89f40631f5b52efdf682cdfe9908ee8984ee894cee89cbed2e0777a4cd7904694514e632ac2e5df1a3d0e4781555349957e3ce8bf7a4314bd2336bfd7c5ad96c3055ff2155ff337bee1db2e12c89e3e0e977cc7f7fcc08ffcc4cf3ce117f5f794a6bfd8b5436ffcca6f3ce577fee0795ee0455e0a65a7c73512dd84055ee6155ee5355ee70ddee4ad5f35b96ddbbcc3bbbcc7fb7cc0877cc4c714c2d5cc2a8fcc029ff0299ff1397fd52f33fddaf8075d997e278db9e0b2bb914b90ee64ef7ea26a9b221ec89eee7cd626702197bfd71472b9926bf92637722b77722f0faae551a3786db574ed71a0ef343ec9b34c7e6799bcc8abbcc954dee543e66541166549966545563bd3c2429f6d3ceb0ab849cb9aaccbc64fde9fcaa67e5d6dc9b6ecc8aeecc9be1cc8a11cf1c9acaa5c13f9af3fb15e48722c27bf58772a67722e5ff58ba2bb25677c22f9dfbabeafb07e50af71acf7e052aa5e571d43c46d22ea01da86cb98f62722de417ed0f7531750ad9ffff7ef4fff07c15f4696</data>
+    </image>
+    <image name="image2">
+        <data format="XPM.GZ" length="3041">789c55955b53d54810c7dff914a7e8376babcd249999a4b6f6013c202aa85c44746b1fe6164141ee0a58fbdd77f2ef498e5ba74e0e3fbaa7efd379fe6c71f27e6ff1ecf9daed9dbb3b0b8b70ea6e16cfe2fdc5c5e3dffffcf56b6dbdae17ca2e546316f5fa1f6bebac176141bad3d18491298e6cb4edba38b273e0ce449ba0ff15ec8c321d78171c6cd3c11ec19e494daa455feca5aeed618fdf8007636c05fd89bdb590ef8f6c95351d98cec04d8e5043fe4dd85656e2bd02b79d7706f112d89ade0cd07f00e76c9cc4bb09eedb6c12e703d88d19821538647f888f4fc1b16d6b89bf02271db4035f0b670f2d388187bef762bf1eb9ab5a5d231eda17b6da8a3d25dcf5521fda062be30deae718dcd841fa41a87fd76add4a7d0ec0da5823fec59f7695177f7760637d89ef27d8ea41a35e740fee5adf48be3fc05ef72df2a30fe0d0f6923f3d8263f62ff3f3b9700e0972d4ab4bf938ea4d49d8f920f65e8edc576d2af57f2f9ce3957a7e29dc06998fa7c229a01e84faf72adbefc188b7af9ba844ff16ac5d0822df021ba7bcf0b1b0afa202f7e02eeb8bff3d70efdb887ad14d611b3d58e2f33e0f14f4cf0bbb28f3b804871cafc80d38b646c97c07611fa3f407f5eb93ef23e2e38bc231493e1d78c872a9dfbbc25ecebb583825b97f9723bb4ae72b02f68583f4cb25e15025e9ff2158e5f81af027e1a044ce1be0da8728f7b9119ee4f402dc843a893fe49bbbd726e4e342619da41e6fc1796124d48b5f83ad8e8ddcd756387449fce1febb4ea716fd62cc8beb831fc04ef27399657eb10ff2b415395d170e03f263cc6fee7612a6dd99651e4fc0290c83e48f7abb21aa41f6c730b3cc13f6a3cff56dc4dea670964bbf86c275e1b7859b41f27f05563a35b0ef445f65b9d4cbcf2cf3676796f34f855b61da28ac07b9af1fc17596cbbef95e588b3da699457fafb019a4fe925f33c9f97266c8f7ef0a4ffab82fdee84ae69d302fde6b53cb3c637ffba46b25f5bc2fdcd7723f307f41e9584bbe9887905f484aea7150b857e20ffe83d5aed8df0177ba53520fcc57e875a8e5fd715238d672bf518fe07412ff847a84a0bd92fb897d1986cc52ef9dc2b1c8d1bf58cd72ecb7d866b9d413fb3bafcb24f1d211d81b5518f73d465397f8b14fe2606ab1cfb7851b9133fa99aa89e9a1705bcb3ec67d4ccab4e53cf65daab35cce639f24637203c098a7648d298c7d98ba99b70bdbc2781fa47e96239fe466f9b2705718fb37f9990f67ae657e9898f2d3e50ffe9afe33fee26f577e69d22f5f379f9d9e6ef51cbf45df73e0c8a9d899bdc839d877ffb33ff0173ee533fecadff89c2ff87bd11b3f97f22b76e4fef0155ff30ddff21ddff30ffec90fd9d7e36c7df591f97de20ddee417bce42ddee697bcc3aff835bfe15ddee3b7fc6eb23dc627fb8ef7f9800ff9289f58e6e7073ee68f7cc29ff83357acb8e666ca46f6276b366cb9cbba47f9dcf859e66f9f432072e42950a434e9d3405fe894cee82b7da373682ee16b0b3e8fe982bed3255d8d552af93ed135ddd02dddd13dfda09fd0935378d2033dd2d3aa3e636cb4419bf48296b445dbf49276e855d6dec2899e5ed31bda1db396fa4fdda53dcaf5a077f49ef6e9800ee908d6cfe9031d4b17e7f971abaed3473aa14ff4992a525453432d6932abfa94bebbd57c8d5fb239a78efa9c647e9738ff7b7fe7395c3da7897c72c14597dc20d3b8ca77ca613af3fb644fbee77ad26aa2e719a6d5b4ae2675fddf3fd7fe03d07eabc5</data>
+    </image>
+    <image name="image3">
+        <data format="XPM.GZ" length="20322">789cbd9cd792e548929eefe729da06776334ec81068cc68bd45aeba4f122243452cb35be3b3dfd77a0baa7676787c2d8a7abbbbe02e0e1e1e12a0227ebdffef6dbede9d16f7ffbb7bfbcbcaad7d6fc661af5fcdbdfecdb387efdf7fff1dffefd2f7f4dd3dfe8df6815a5bfc57ffd2f7ff96b50ff667e0b1293da7cc5ec996dea735cef99ddc21d385be50973c3ec8953e6f687d35516e739f3c01c650958bf33a769946abe3e82b322671eef98f35825ac8fcec06991657cbf036755eef8fe5be6223609eba753e632d631aeaf845dc2fa9a75705a66accf78cf5cd175e83f81335bf0fdfa8d59c579ccd7cd1a385925783e5ab8608e9975922686f986d92545caf351d0d7d1f82c7fc2fc1dcddff2fd09b34f748aebb09fcfcadcb37e169c6705db6b7afae16c45f6e0ebd3a3b02e783c5330474984f94d1398ae477cbd648e4903b6d7f400ce8cccff034ce329d6ff4eb828787ed3337392af8af287eb43e634af4a963f5e3367b4e22c5fe7e0f979b321ac4b5ebffa7e61cc9ffd2fcbf318f30d4fc085a930fe0b7391e705cfbf7e13b625af4f780c2e5cc5f60d2f98cb85cf857dc5fa295eafac4a72ac67007b54c5aaacf8fe53615f613df698555288ffec0a97f08ff00c5cae14af4778291c81cd37b38ea388ed1b1c81e7e78343e14afc2b059347b03dea0330ad00db5bb3ff64263211e2751f3c3f1f1c0893447e1eeb6968c5f8f900f6b2f3f5a903933d797d1b0d2e9292ed155e81cb54f1fceb5766472bc6f15a1b7091956c2f8deb3ed22b7e3ec07afac427bc1e2de6ef491fd6df6f0b17c81f8d122e213f807c5f1415ec2bcf97b9e2fb0dfb5bbe8a9308f966079cae12d667bc02933cbedff37ae71131dbabd6c23ae7f509afc165a5982dfb2f258718fe1d9c0ad33f3c9f27f02ccfdf089b9cfdd7439fb85015e6c7f19e276471c437db8bd25f51713cd447c2a6c27ab27df2ec27a3f17c2b7051566cbff658d854bc9efe51d8572cbfe1fc408be5913f1ad823a778667b362398e205f773bce7451ec9f5cd85d97f5ab95eae105ff54a3842bc8687c25ee37ef6e7bca4e711ffefe0329678bc17360afec8f525ff893f96dfb03fe72a51c8afcd97b041fe0ccec094d1d85e96f37fae6313235f3560aa787cbf8f855dcafe3566601a91f557b09f2eaa8af5af71dd503d637f70253857b8bf11267fc4fa71fdc82ddd8ff1cf85633c1f6c81b322837fc1be3657c88f0dfccf9605e2ad795998f5d585b051f00779be8a61ef06eb41b383bf0e988fa3fa017fc57cdc22ef53b8c27821fcd7558566fd1ace2fb9a7f5e3ebea41b842bd68301f5f960afecfeb5faca8c2b23d9a4f30a55bc45b2d9c1688c74838437d192fc1458cfc1e3c824b8df92ab64f11c52a667fe8cfc1147fccf53798ea0feb373c80295eb09e164cf6c3758edf224e5cc25ca7607a1efe7d265c62bdfb993dea9792e7c9fe3cfe88f92631b544cc1fc259847e624d980ccafe5481ab95e2f80c0f84ad813cf6f7229def1fbf8529e098d71766fdc70d611d217eeec1546f113f065c7a85fe89e3b1c8285ef8ba179ef365df0857a81f1efa65e431ec0f3dd693d277897cf606a6f887feec9f459e508666ffc3f83ffd1dd617eb470909f966b8142ee06f81065731ec33427e9164318fa726f0b2fec7e0d2219ff4dc0f146562125e8f4198cc87f5c7f3556915f2f52db8a294c0d7d9bf0bca37d2efcd6c21afc6fd8ae20df1bf2f9ca33e0c5760ead830bf6de102f1382a30c503fa21d85b51fc21be395e0b5acd15cf47c7c26e85eb5f0bb33d5ac49fa6fa07ff78154ea0bf9f8433c9a78170817c58bf089729fc55ae6729fa91ee46d8e73c7e80f5a56e14f1e1df8415ea5987f825ef433deb4f854bc5f9ce623e86f233ea19eea7ec8efaddf4c2558afc9e80a97e219fc13f0cd53fe60ef9c1507d617ddd897082fa58231ee96ef8671d2dccfedd73fd29481be483e65258c6f7d7c20a5cab8591bfb6852df63f1ef986f27b817a077b59ca476c9f31079729eadd84f5b3a40ffaf903616a01d97fb8fe162e56c8072dece15223f5a90093bfb13dbb5258a13f99607f37fbf774225c807b2f5c22ff0fd0d7c71efba311fe41fd1bf2bb0ec114b0ac5f8bfce729c3223fec082baccfa8852dfaa111f1e8a9feb0fdd586b0413c4e4760d20ffa1f0b97e0e15c586bf617bf2b6c35dbdbf2fde58ae297e5db064cfd19fae70b306500f41f676092cfeb399d0b57b087e6f99711b547d8ef8d60b23fe26d074cfd1dd6f75958f6d75d05a6f943fe3eb8521afb9f5bb0d216f1c1f5a28c29bfb3bdba4f709ea2bfd47bc205ecaf203fa60cc8fa0c3bc20afde284f9c6b37d9a09ac5686af0fecdf25451fecd5419f249df7bba1708178d5fbc23ec3fe2400537e83bd8fc07904ff73c7c231f4ef1e8433ecf7bb27b08a0cdbafe7782a53b227e20bd7d3dc62bede804b85fe43c1dea9b216f98de3a9cc285e500fbf857584fd642eec6396e71498e299d93830e567d4b35d30ed8f982dec9191fd98a7bd85d93eee54985210dba71416fd7ace2f654efaf0fad6adb0817e3e11b631fa9775618f7a5a633d7fea2bebdb44c2498cf5d760b21fea19ec95170afbbb60035c96e8dfdb0f30f523e81fe1dfb95ac15f8227610a20d66fe61cf39bde850b83fd00fc23d72b8bf5823f14e400d80f5a30d52bf67fe38553d85f6d813387fd597702267f62f901ecf9b3ff477c40ff823c9cd95d2d8cfdcd9eb047ff57cb78345ff4f3f27c1581ad8c4ff907faac0b7bac770dff28c85f995bd18fe6cff23de495343f9c87c01fa95b917880fd684288575b0b7bf4abe32398ea17fcf16061f8d3ae708af553b04749f3c17e70251c29b6775008579ab9bb1276c89f3df42f693d515f5e842baca71279ca18f60707ffaae222c2791ef4aba8ffc1fede094b7e68bfc05924f509f1515106443d95eb73bf57cbf52a917a9d084bfdee7785ad61f913e2a922fd91cf6b6183781bce16467e45bcd1ee12e72783128e705ed17d09e709fc1ff955d1fe07f900fea42862d8bf6c2a6c908f9a3b30d56f9cbf887cb227ea35d657d3fe158cfcabc9bf59ff2e102e911fdd97b0c17eca207e348dcfd7db0b61e97f03d843933fa07fd9172ed05f8c46d8c01f1acc4fd3fab2fd2df28999f38d43fe34640ff8c3205cc23e2dc633a41fe20ffa1beab851ef91ef4d954b3f7f2eec34d60beb49bb33f8579b0bcff9fc46d859b667380a7b8bfdabe843f906fcb830e2674b38c27505ffb77115a15ec33eb64a10ff8315d6d0cf3d0b5b7023d7e7fcdebc0a5bf85788fa6ae7f1c327e148f86161f45f6e61963760be2eb131f21fe2d7517ec4f9e29170867eb953c21af137cafd2a427ceb2f6163900ff2992dcf3fc4fc9c8ea1cf80fae0e7f8ee3b618ffe7380bff8c4c52c5fa11efa4cce1f1cfa153fc7efb02b2cf6f4afc20efee72e1746ff8ffaef17fbf5c209ec6338beab15d53fe49310bcd43305ae3cead7388169bd58fff005ac338b7e171cc52bf47743206c70bed81d8369ff84f3f57d30c9473d5a5f18f6bd02ab58fa53e81791fed8cf70beade2b85821de0ec1b422ec9f7a07ac62e4375508a7e88f8c11a600e6f8c178f16c1fb5269c599c6f77c2a5457ee3fc5451bb80f3847e0b4cfec3ebdf5e09cb79590ffd13d207fbf973e112e307d7c206f5c28b7c8a4fe80f7b523b29ef7f94f0ecbfef60b21fce330ec0f37c43c84bcdcaa1fec15eb4fbc67ed76b30e983fe6700d3fcb17fd8112e2ce2fb5498428ee777bc30f27d26ac1cf467ffab72d297d7c71d0957d2af6c0b5b70077fcbb315f6830ef6fb39c0c47c5ec15a43be7b11b6c258bf821a74c4d30d382dd02f590f5609fcbbad8465feedbbb0c4bbfb107688f7499ed7cee17dc61e98ec8bfd3ad6bf8c23d9ef60bd28dbc738bf813e5440e04fe3b830d6f359d880c356d83a8c0f7dca793d07d8a78ad315f2dd3738c9d0bfbb07e11cf9a6bb04eb1cfe3e5ae102eb39b885f97983f555c90afdb5d2c216f319cfc0e42f789f097b2a13c11e03ef872a9dae908fc7123cfb57b32b5cc1bffcbdb092783b13f632ffeb85512fe53ad9835921bf99c4a0feaa46d8a2df57adb08bb1ff417c9b59bf00fe63667f6fde85459ffa5358c3dfeb9385d93e460bcb7a0581b073d8ff6d2f0c7de0bfc6c4584f037d2dd50bf4b7d0cf2619ce1b3b2d9c637d95119ee7eb842dce1f945f18e721e5c23c5efb2decb0ff7117609dc23f6c262cebab72e11cf9713c142e253fec096bb1572c2cfeece7ebc6e1fdfab3b077d057f499ed316d2fcce319ee172b17c72bb6a7f914a682c7cfc39fdd6c0f83f1dcac7f3fb3c67a8cc8778e1c02efb3de845387fc2ce399caa3ff857e3e2e71bee8600f4ff994f5b7c8bf9eec83f71595b0c178cd83b0050fc88f9ee205fa59e104f3ed581fda4d2af85b7bb630ecf9222cf66b0330c503fab9463877bc3e8efd454591427ed211384e60cff61a9c1411ce2f2a30f92beafb09d864b057702b2cf26bb6af8a131f239e3d388d51bfec3698f4c579d23778b6bf9e3987fd1bce6f2aa1f884fce785d17f77c291ec8f63e118f9cebd83497ff4efa760b237eaf3917086f106ae2f2a8d33d8a7df04271af9a2b9002fe33f09cbf875b030af9757e0793dad5c27ff42feed854b877a25e31b0d7f9bb6848d477f83f967b47d867e783e8b2dceb33bcc27a37c8ffde41578d6d73af01c5fed9bb0d85b6f096b8c37dd081b8f7e7257d8799c878a3c1b79d88ffb3995537cf075bb0227899cbf3e081bd40f3f0a3be4a31ef6c9c95eb0cf9170e1508fd4c2386ff1c2a5c7fbee7761ed719e7e2e6c3cf6bb9f60bbf2882f8e5f5524f2fed36f098b3e6d0926fbf0f8fe5958d64b650ba33e46c215ae075f338b7eb5b0857d83044cf663ff6f61cf32a9707ed51e082bf07027ec90df27c4076d18c57f3be10afa74af33637cf525ac600fbbbf30db6b381636f0bf51f4a1f546fd98eff7587f0bfb95644fec0fee85138ffe03f981fa0facbfd6c21af9d9c2bed5bc9eee5c58f435bbc2a2afd916d6e01ef989120ee2c19c2c8c7a720926ff63f69fc206f5501f2d8cfab603a67881bf225ffc6cef51cfef84c51e7a4dd88b7d78bfa1683b81f86b61ff9ff287fe3f5c18f9a813167913d647dbdcc37f90df6978d8576f2e8cf7499067c8fee0cf85916fecc2ec5fd3ad700af993c8b39987bf60fd687fbfc27936e2939653f6d3d0c7cefabab785b1ff3d1216ff686e17c6f90bf4b58bbf78e118faf54638413e71bc1f506ede3fbb43f09cdf4c2b5ce07dee702f3cbfcf857e8ef4c3fe714f58ec3721df38d207f557e4533ca2df98af8b7ec381b0e817c40be3fb531fc229d816c21978b2c215eced902f7de4e1bf1dfcc9c7f2bed2231e7d5246c87798af9fd7bb2d8423b00f16467f36df1f8355ba30cfc7ec08271eef172e8453f074275c405fcbf1a057b1bc3fd5ebe0595eb3b330bebfd80827b8ae3e1786fd3e84653cbd219cc13f7b255c8a7fb27fe888b6c338ef88854bacf770089ec79f94b08cdfef2f8cfda05918e773afc2a9e877bf30ce2b7e5dc7feed4458d657250be37dda8e7029f1b6212ceb3f7d0b2bf0e88535b8c7fd94ce22bccfb814cec5df61df78d1ef7d61d6e7ec5578d6ef63617c5f2d17967c13560b637c2d2cfa863bc2a26f0dfd12d207e7072b61f9bec5900b2b9c070d3578d63754c2a25ff0b630f40984453ff5be30f4591316ff0c9db0f88bdd1516fdc763e1d9deb33e62ef9af3b14ea9a1c4f96f2a9c45d86f67c2153884ffa78bfdf4c2d047ee9ff50b2261d12fb4c2b33fdc0b8b7e96fb3b9dcdf5ab3912cee43c31152ec161015ec6df109eed638465fc60252ce35b25acc47ff5c2787ebedf8107cc27a7fc8bfa972c8cf391123c8fa762e1d99f3e8545feb42e2ceb31ad095b70cbfda82ea8df453dc5f52289908f86583897f1115fc5a2ff97b0c80fb7848df0b6b08c6790efca38477e0e37c1cbf3a9b03c3f19e1d93ef0e72a89a1df047b56f3f5fe00ec22b10fee57f3f510f655f3750bfd2900d1dff40398da1ff4cfb09f21c6fb41ac87a5f1b1bf15762b911f0b8bfc01f674945f510f0e8573acafda152e917ff5b17025f1520b1bc447cffb49b35af653a5b07c1f40af84653feaee842dfa0f978113f9be96e5f8303ffb53d4cb4cb8447c74c3c2381fe2f83231f53318cf80690389fd4427ac303fc3f9d124b37ccdfb3b93c65af43b00533ce27c93eba5c912877c67787f6e72f2479c67ae8463701b096bd8c7717f658a44dea774d0b74c0ad8bfd910aee47d7728acc04dbb30de073e096be1dd8579bc8efdc354b1ec1f2dec5591bfe0fc724d38c1f986bf1416fbb45c9f8c227d600fe8f7e38f789fcbfd9e31645f9c8773ff662cd913df871b8465be6a4f58ce6bfd97b087be9ee3cdfcf817f77b3dc73f057f04ffe84761e9f7db7de11ceb6b3f854bd873781736d0df9e095bf84fcbf6b1d13c1f0bf9d1bc7e5d2faca1bf99d9e179cdfd808d693cec7fd85f6d9264b047970a17884f7b275c811daea789bcdfe8399fdb8cc6c7f787ee8553ccd737c285ac1fe73b9bfffc00028f77205c8afc7d61f93efc30dfefc04aaea711fc4b9d0b27580f03fef93a07ce07a785e12f987f91c612ffb84efb3fcc5fb37f5b45f381bfac8465fdcdbbb0c3fa34097896a7ce84459f86df575a4df643bfdf2c8c7ee1149ca688cf8efdd51ab217ec57092b3c5fff62f49b89b0158e843dfcd9c4e07425f1cbfd076d5f2ab1c785b082ffd58fc21af2ea9d99c51f6f8565fe6e00937c7c1ffc4a58e6af8e8533791fc5e72b96f63fb2de89f0ac2fe43992879f4fd8149ee51d088b3c75242cfd9de77c439b5923df9f84ff7af217f8cf89b03caf79be6e45f6807f7e096bd8c33e081ba9379db0ccdf67605a3fe877282cfd6fcbebe9a81e483f300a57a877be1716fb9b0b6107ffa8e5fa2cdf431ed503ccafa985c57ecd3938957ebcbd5f18fbd13761b147cfeb49e554235e9c03a72bacbf2f67c6fd6e252ccfdb0fe1b9ff3b16167d5be847fda8d497bd85319f6f6187f97be89f2efef4201cc17feda5702c7cbe30ea6b2c2cfa688e2f97cde3db2bf0fcfcf0259c88bc9b85914f39df38aa878897ce0b3bc4630fffc9677bd985253e3685235c777bc2329e66ff744522e7a31efe55d07c71fe75213ccff75a58e6675e8553b1ffd9c2383fe6fd8d2b13d90f3bf85399c6d067f8144e45fef3c2b0d7cbc2f8f99c1be10cd7eb6961d453aee7ae5afc674d58e6df7fce2cf6e98413f1cf7161e8f32a2cfab89d85a1cfb5b0e8636e17463e873f2bcaffe8c75af0b25e4fc2b3fdf28531bf5238137b3f2d0cfbbc2d8cf3e27561e9ef5bcef74e93fd713e057fa00d1ad6b7ab85c5fecdfac298cf83f03cfee3c2b047bb30ec11094b3f6cee16467d87ff99653d9e84459f7673617cffa2114ec16dbb30f4998433e8efe285614fbf30f479169ef5bb5f18f61a84657f66e07f76797e252ccfdbf78571ff95b03cefe08f3ff502fdc4c7c2b8ff52589e778db0ec175db430f4eb17c67927e2cdd3faa27ec0de546f249f9d0a27522fe4fec59e9db0c86b778465bfdcb3bdfc6ad6bfdb1516fd1aae3ffea73ea0df7c1396f5e83f8473a9ff3bc2f37cb6854be957b8bff3313d0f79efc2f2bce67ceb13ca1fe8679cb0e857df08e7525f5e1646fddb1296f309cdfe41e658c9cf433c08cb7e59df0a27520fb78567f9af0be3fb1bf375d9ef75bf18fd1eec95d180905708e7727e75bd30de4fcdd70b91bf252cfb1d570bcbfe4663fe39c9c7fef37a66e917d784c51ef5967021f61b17c6785e58f653ddd6c2b01ffbbb2fc8fe907f2a5cc87a717cfa725e2f3d0a8b3df585b03cdfa7c2b9e4ef5c7896c7f1e22bd21ff7270bc37e837029f7b37f7b35dbbb8f85e57ecdf1e4297f893ead702ef747334b7f73225c497dc7786679be169e9fbf1796fd9de6f8f614bf92ff56c225ec7ff63a7fc2e05ff9fce15ec59f7f78dfff67d93a34fcb1a10b7d58874dd8865dd88743388653f8103ed2ff9fc2e7f0257c0ddfc2f7f083eefc0cbfc26f7a66edef65ffd285a4af871b74d766b8156e873be16eb817ee8707e16178141e8727e16978169e8717e16578155e8737e16d7817de87ab300ae33009d3300bf35f73fb936c151661491a6461457f1c042ad081096ce0021fd44113b44117f4c1108cc1143c048fc153f01cbc04aff4c48fdec17f243b78fbf95df01e7c049fc157f01dac05ebc146b0196c05dbc14eb01bec05fbc14170181c05c7c149701a9c05e7c14570195c05d7c14d701bdc05f7c18a475864ffb27410856b411c24411a64411e14411954b45481524a2ba3ac72caab9a7ed7a85675aa57831ad5a41ed4a37a52cfea45bdaa37b2e7ba7afffd5a8681fa207be4ea537da96fb5a6d6d586da545b6a5beda85db5a7f6d5813a5447ea98fe7fa24ed5993a5717ea525da96b75a36ed59dba572b15a998345764d1ec976cf5fef3e3b7e45299ca55a14a55699a86565a6ba3ad76daeb5a37bad59deef5a0473de907fda89ff4b37ed1affa4dbfeb0ffda9bff4b75ed3ebb00cdbfbc73fd7f486ded45b7a5befe85dbda7f7f5813ed447fa589fe8537da6cff585bed457fcb9d0d7fa46dfea3b7d4fdbc148c73ad1a9ce74ae0bfdf315e690ecf2bdc8cec3ca0446196d8cb1c6196f6ad398d674a6378319cd641ee8f3b87c9eccb37931afe6cdbc9b0ff369beccb75933eb66c36c9a2db34ddef82d7ea2827bb36376cd9ed93707e6d01c996373624ecd9939371724f9d25c91b46b73636e97cf9db9a75f2b1399d82426353f3f205e98d25436b4b4ffb75a6467d6586b9df5b6b68d6d6d677b3bd8d14ef6c13eda2796726d9fe9f3c29f67fb6adfe8cfeeec3b7d3eeca7fdb2df76cdaedb0dbb69b7ecb6ddb1bbb37fdb3dbb6f0feca13db2c7f6c49eda337b6e2feca5bdb2d72ce99525fffef323fdd6bed1e7c6deda3b7b6f5736b2b14d6c6a7ffeda8002b2d5a72d6de54247bdacd3ce38eb9cf3ae768d6b45df3f7f5e7f2cf323db5cbbcef56e70a39bdc837b744feed9bdb8d7e09e6bda9b7b771feed37db96fb7e6d6dd86db745b6edb358b2de44316bf81d5dd8e7d763b3fd2692526b7ebf6dcbe3b7087eec81dbb1377eace44f6b9bb7097eeca5dbb1b77ebeedc3d6d2c2f5d444f9124d1f29a3f8b6c92fa6bc427179b5797b89fbf602377852b5de543cf3ee895d7de78eb9df7bef68d6f498bf647e77f51f623e911f9cef77ef0a39ffc837ff44ffe9965bff857ffe6dffd87fff45ffedbafd1136f7e1dd27e59973eff4036dd1391ec6792bde137fd16c9def63b7ed7efb1ec3dbfef0ffca13ff2c7fec49ffa335ea31f8f9eadfdf2f7bafe4e32c9263f7ff2e7fec25ffa2b7fed6f48f6adbf63d9f77ee5231ffbc4a7fee72f2528c822b7b0c2bf2cfbda97beaac33aa855ad6b53db1a67adf7b5afebbaa9dbbaabfb7aa847d7d6139e83d47afa4f65dfd60ff563fd543fd72ff56bfd56bfd71fdca77cd65ff577bd56afd71bf566bd556fff78c81f35fec32cfe5efe93c8dea977ebbd7abf3ea80feba3fa98659fd4a7f5597d5e5fd497f5557d5ddffc5fc9beadefeafb7a55a3bf8aeba44eebacce597651dfd4e53f96fd7bcbfc1a8d64bfb81d5fd655fdd4844dd0a84637a6b1ff4876e3ecd33fd4eff6cfb2f9f3d878fbdcd44dd3b44dd7f4cdd08ccdd43cfc3f95fd48cdcc53ad9ae7e6a5796ddeb8277c6f3e9acfe6abf9f6e98f9f346bcdfaff99ec6683656f365bcd76b3c3b2779bbd66bf39680e9ba3e6b839694e9bf5e6ec9ff8ddcd920b661fa43f6bce59f64573d95c35d7cd4d730b9b3477cd7db36aa2266e92266db226ff7b2dffb764174dd9546dc8fbaca055ad6e4d6b5bd7fab66e9bb66dbbb6f7ebf5f41343ff54368dde0e944feeec633bb653fbd03eb64fed73fbd2726d68dfdaf7f6a3fd6cbfdaef76ad5d6f37dacd76abdda66cb5c8f8532cfe3e275eb53bf6bddd6df7dafdf6a03d6c8fdae3f6a43d65d9afed597bde5eb497ed557bdddeb4b7ed9d79b1efbfcbb1ff5c36d5e57a6aefdb551bb5719bb4699bb5b9d8a468cbe6a1adbab00b3ad5e9ce74b6739defea76a7ed5cdbe47f8cc945f68fa52fed7bd7746dd7757d37746337750fdd63f7d43d1b961ddc772fdd6bf7d6bd771fdd67f7d57d776bdd7ab7d16d765bdd3675108fc8b78b8d7ff4bda69cfe642ebb9d6eb7dbebf6bb83eeb03bea8ebb93ee54ef7467ddb9fa449d27e917eaabbbecaebaebeea6bbedeebafb6ed545d43d5cfed4f8d993ffb496aff6a98bbba44bbbaccbbba22bbbaa0ffba057bd0ef1fe993a43bbdb9bdef6aef77ddd377ddb777ddf0ffdd84ffd43ffd83ff5cffd4bffdabff1e7bdffe89ffd59ffd97ff5dffd5abfde6ff49bfd56bfddeff4bbfd5ebfdf1fd0ce608d65af076feabd3fec8ffae3fea43fedcffaf3fea2bfecafdc7a7fdddff4b7fd9dbee9effb551ff531fdbaef933eedb33eef8bbeecab211c82410d7a30831ddce083fb70cbce7aab81027d68876ee8876118876978181e87a7e17978195e87b7e1dd0df6aaf1c307c56b4ebfbc7d1d3e87afe17b581bd6878d6173d81ab6879d6177d81bf68703929d856b733ff8f3190e87a3e17838194e87b3e17cb8182e87abe17ab8196e87bbe17e580dd1100fc990d2af88fe9b0df9500ce5508de1188c6ad4a319ede8463fd6b4a3fa259b77723f89716cc76eecc7611cc7697c181fc7a7f1797c195fc7b7f17dfc183fc7aff17b5ca3dfad8f1be3e6b8356e8f3be3eeb837ee8f07e3e178341c8cc7a1a55dc3faeff769bff68e34c6890fc8554fc7b3f17cbc182fc7abf17abc196fc7bbf1deac8d2bfa5d34c66332a66336e6633196633585533029da7ff08ee18f7b40fe642a5671984e7a32232592c94d9e124a33b55337f5d3308dd3343d4c8fd313fdf7797a995ea7b7e97dfa983ea7afe97b5a9b7ef60b1b7f944da3e5b277cb8228584debd3fa783c6d4c9bd3d6b43ded4cbbd3deb43f1d4c87d3d1743c9d4ca7d3d9743e5d4c97d3d5743ddd4cb7d35dafa77bdac366648d6cde2ffff57ffed7bffc2f508da43f</data>
+    </image>
+    <image name="image4">
+        <data format="XPM.GZ" length="10417">789cbd9a5b73e2381085dff32ba8e82db5a501cccdb5b50f8161804c3271329399245bfb606cc8fd6a0249b6f6bfaffa48088c6125390b9c4a52dfd86de9b8bb259b9a4f3b85d3e0a0b0f3692b1985a3aba8105d86cf859df8e5eeeeedcfbffef87b6bbb542c162a9542a35e286fffb6b5cd2b85a8c08af880efc12512f1d1085c26e1f835b84a02f7c135127808ae93c05db05f8c4bb81e7fd52cafd7543c507c090e35df68f6c017e0980466c4a532091c823d123193c72b241c1f807d61a701be02879adf1597141f6af6c123cd21781fdcd7e71f6bc6f9ec4eb33cff4571599dff43b3bc7ea419e733f82f4553e6078a3dc50f9afb608ce75585dd21f8b3e2b2e223704df3f7295765fe4b8a3dc90cf9f6ea9ab966e493f5155714c35fa54f02a39e2a1109d7af818724f0376294931cff115c2281bf80cb245cef89b8e193c00938248111df884888df23f68b24701b5c228111ef9749e031d82381bf822b245c1ff5e9e30346bec22209e757c17ed41fcaebb7c0a1e69e6639deade2487187b85f8eab4359df31d89b32bbd53cc0f137c535c90cfdd7af92c0a8f77e8d047e268eca2430ea39f248b85e03ec93c0bbe090049e80fb247000c607ec836312f8143c20613cf889eb241cff096e90701cfd3da89070bc0cae92c045708d04f6c07512e2d1ff8306098cfe1e964860f4cbb04c42fc19d82381eb601428f804ec93c0e7e09004fe058e4960dcdfe1800446bd0ef191eb29670685ea6f9f473ce6033e5c381afe47ec05bf143157fcda38ca7ccc0dbfe577fc7ec91c96eb9a3fc85ee54f567ae6091f8979bdf0b1650469c25ff91b7f17b1f631bbbcc95bfcb3c3ccda5cd6ed17878811ef8879b978d9e5dd1c31afbc27f2623fb3bddc5ebe3acc6b22eef11bdf77cc4bd7312f532f2e9974cfcbb4c65c63a85f5cbc1ce4f0123be66577235eda1bca4bd3d90bf96f39e6457af9663d46c20fc5bc0e9d6a5fd6985b4c80bc1c39ccaccd8f1dbd8c737ae98898b6634c8b7fb7ce0b7939cce5e5d8f91ee7f14feb984b5e5cbd508dc5396bcc252f01f697757bf9817a71cb4b33578df59cfa25515e66557922469ecc2950fc531da71a5bf4f28b9f2e893a9b9b577721e63c75b68ca09fe28297d29c971375ce448d15289557e6c5e395a59a9e912cf172269eecb21193d4bcd235565c31caecaa41a65f56c5b4577a5915f1312fcd85de377b91bd7f345731a69876a6c64c5ec6620db3f312a4e615a7d63e3b2f3db1269beff23426c995175ac7c6462fe91aeb38d6987c862959dce5766e2fcbf64a9bbcd8f5cbec0e05d679f958bfd879f9585ee4338c4b8db9af6379f3d271ecfd20b3bffcff35b66cdf5fcf9adcc5f3d83a6bcc7e1d9bcccdcbb6c666fd32c1fbfe7af392a7c6829c7b657adf5f4fefe7a931bb7e19a762dcfac5decb749d9fe6c5657fa1da8f9dd764db7e59bd8e99bcac372f8b35e6d2fb9bda2bbbb9f6976aae75ec51bcfbcb7ff1f8fdd2889a3a63ccdf859791887cd6a3d479b824a2a18ffb781e1bf13de328b3abd23b4f8f71e1c514b3a76716397af92abc74c4bc92792f6c595e665ee43ae6ea45ecfbc2cb74dc27161a6212fd3d8c2962312f89312fbb292f9d542e5779995d9572d962fd9917a3ff8c17ebbce4a931b397745e7af379b1ae317b2fe39c5e3a1fad31a397c4ae5f58c46275dc322f6c30f7beef631d337a61c3b9f77d5963462f2cd2effbd91aab8b3bdf164a84a67f1376a1c758d62fe7ec12674ea3c40fbbd247e53d4ed7585d5e5745a9dfa9183f93973335b3f991da7333cb7a3189bcc40b7931295b6376312df13c567398591e2f8bfb8b795edd4c5d9a84ef61d8b583973c797911f38a9ce7e5ea3f50fd623fb384dd6c202f625eec36478df59c6a2c4f5ef67987dd39f78b7b5d361dbd649f61cc11d9671893e4f7c9ee79b975aab1cdf47e90d95f6c62365163f9d6e43cfed37ba57966ee35b69fd92bcdf35a7c4eb68b71f57220ff4f157b10fbaa5975f6286b8c3d594608b167b957b2c42166249f2dd98bc3cca2ed7f7edffa178fe8b13a</data>
+    </image>
+    <image name="image5">
+        <data format="XPM.GZ" length="7981">789c6d98d96e1c3b0e86eff31446747730d0e9bdbb30980b2fed7db7933819cc05c9aaf2beb7d7c1bcfba8f853ecea9c03c38ebf964471a79c3fff583a3bdc5bfae3cf2fcf339a5dca925cd0d3d21fe5cbededc7bffff3afff7ef9da1f2d0dba4bfd4e77a9f7f51f5fbe86e525590aa342cabe344c37ca35f19875fd5bc3e39e54c34ad75f9407e56080f51d7035ec17ca0fcac3aae8d5ba7fa03caa46901fb695c724c5a4e188f57125fd8eeeff6e5cf6753ddc2b17a58c06ca3d70457dd5270e8da53fd6f3a571d51f36cc79bdc6ba88b3eacb3f9c49e5fd04d71db3c7e4d5dd7e57f9c519fe3b74eeabbc3d67e8db771e2957c63dd81ba00f55e540e5f386b39ee76b673dcfc7cef0dfa333f43d32ae208fd68ccd7efa70567bf9d259e3c3cfcea5f29bb3fa9bdf9d35bee13533ee8b27cef0cfaeb3fa47e04f4afe453c2e9dd51e3a74463c1e9c553f593136ffd3bbb3ca8f6bceeabff8e1acf940d119f1b876567de2ba33f4299c912f9bce9aff31aff7901ff4e8acfac57b67e893f5ed23fef1cd19f93575c6f95365ae8a21f4ef1af340fdcf6c2c038d57b872d678c983b3ee8f0799877abfac3be3fe4763cb372167b59fbe39abfcb0665c0dd47f61625c0f543ef79ca1ff2d38c78b26ce8877df38fb6f6a6cfea10367c4bfe3acf243613cc07e3e57968ae03fb970867d4fc68c75be77c6faaeb1f9871f9cf57eb975863d597e097f13fa5d598d86ea1f5e369e8c502fafc6c510f1fc957904fb2a63c2f9b8ef8c783c38a31ff6328fd05fbe1bf350f38fa6cec8ffe88cfcee386b3c42d6c7ec8f887f55f248f39f9e8cab31faf796725d8d479077e68cfe71633c19e1fe75e3024cfbc684fc64cd8f4927ed873ced97936e351c233f2e8d47639cd77e3ee9c9b8403fc0f95eda8ffc3a361e61be49301e8fe1df4fe57e3598c07f2bc6c331faeb4f67f4a33767ad3f7976c6bcbc331ee13cef3be3bcf683c92031ea49fd331955bd89eac7abc68389f623b97146fc7f190f27c8cf9133e685c67732aefa902757ce88c791f16002ffdc39c31e9def9349d52b54be54c6763e3e19db7e82be8510e63b7d1a578478415faaba05e23f73567be28671bfd0fdfce48cfe81787162e41bf24178c878bf9c83933cf86fcb19f6ac3ac3fedab887fd41fbeba46461f433ac97656df640df8a58b03e00571d82ffaf9cd11f969d55ff7866dc357f5c396bbe06ede7933aedc7bcdc32b6759e39a39fe87c2b3a654d1a3fd906a7f388a7e643d12dc7847a3a35ae09fe3a7246fcf4bd54f46520f0ff005cd68c7ea4f95e0c9a06a1f2578d6b86beafcee8c7b6bfea30ea49f3a1180a0bde375d70298cfa1a1b57f07fdc32ae19f58df5515932de2f27c615cec76b675d277d8f154d83c6fcbd00a7f3c88f75e30af9c33a7f8a49d207fdf835b3c07fbbc625237fbe19578cf90bff16d22bf1fe3b06a7f398af3abf0a4a8c79c4c625f423e8cf9c76e8fa3db8ccf976692c605e332e4dde9d33e697be57d2f35e04fd47e741919605f186bc34ae4ae42f1933d64370463f3b75c6fb4febb3a8f3ba3c3a63fee93ca24e49902ffabea36e599488f79e3199bf569dd1bf2e8c191c355fa857a612d5fd77c645897c7931e612f9a7f38cfa65af423edf191725f2e3de19efb93d67f87f6a4cb6aefea3814885f7db3338ad231f35bf69584eb0ce6367f8f7a77151a27f1e3ac35f9b99b19fb4ffd248d28b40f5390297a9832b47e3d48155dea67181fb09fa8d852ab527e2fc38ef0f67ce78ff3c1a1790cf8533ea15fa4ed2fd88c7d87802963567bcef3f8ced7cd07aa642a4867d645cd6d017fe2952bcd0cff68c4d1eaf38c31fd7ce8827d6c9e5f5c1495fcde7581b9bbc78eb8cfb0e9cd11fc09cce23df9e9d513fb533e637ec917254693ce53333ec8d3f8cc7d02f649ee03c693f4aedc0cec79dccd82f3367cc977d67c47fdbd8f4e12ab3ddbfec8c7eaefd2cfdf9d8a9516fa5711ff238188f6abca7ce9d11cf9133ea6dc3788cfde1d619f31bf7d765af46fdbf3ba37e768c87d02756c62330bd3a23bf6ae3b1e93b75c6fb42e70377923dc88f91f1c0ce9f1b0fa18f6c38439f6d63bb8f5f9cf53dc0b7ce788f693d7137db13778dedfe706e3c307dae9c915f1fcea8d799f110ebf2e28cff4fb930367dc2d019f7ed3b43bef607eee5fb8e66ceb86fc5d8e4477246fd748c4d7ebc71c6df0327ce785f1c3ba35ee0df7ebe9fd819f78971be2f38a35fe6fd2363cd571e647f1ecd628814394afaad4cbfe12b44499f917e373ff3bf6224f609e53db03d7d89efa3d6199c6a7656b1d6d3ec52a5f5b32d8b5b1a90fdcead7bcfe345bc8c57f13adeb43e6de914f968061fa8fce66c685991f735741befe27d7c888ff1293edbdef9dd668deb25adcff9b7ef597c89aff12dbec78ff819971724e49f2b91dd5f6d0fb3e9937d7f1e57e35a9c2669eb71c3ad9fc5cdb815b7e34edcc579d78bfc366e6c4ff7ccbdb117f7934e8dac8378e8f13b8ac7f1249ec66ff17bcbc6b985fc9be6cda91ff12cd9f696be7ec65fb1e3fa77632ff6e3200ee3286936b791d5225ac8999c47e3385149458821641b02050e12ca50c5b55087f3e63c72dd326f2e27d837878b7019ae92856fe13adc84db7c4bb80bf7e121d93d0d8fe109e7dd4669f9ba95a3e139ccc24be3abf01adec27bf8d0cf67e1332c8732693b0d2b298f35561ec77986b6eda3b01a9a08be8769580f1bd81536c356d80e3b8de56137ec994d731b17bd64ff86fd70100e55aba3701c4e728687d3f02d166af9f7f0236792dbc87f93f11ccec24fcdd1f7f02b7452a6687cc347e8869edad70f8330cc9afc6d3d9acd6114c661128af8a681f35c2626a1c657ef54a57c758fb4fcd5f6984aa59ace4393a16f7441977485d88613baa61bbad53bee4c2b711be77d23c75365d23d35517fa7477aa2678f0ad38c5e1aadc275ea1ef34ccab25a5d28afd12bbd51533953faa04f5ace7ea7155aa5b5c68734a5f5f609f46dd766de13993669ab91942cd9a61df7d52eedd13e1da41b0ee9888e5b1ae49c5859a8e524914ee894bea9afbed30f3ac36ad2ea27fda28ede90fe626e59683594629deb265724533fcc92854dac0634ccf54a231a53aace30a52289599c08b2d07324c50ad93e646256498f2c5ce67ae58aeb261a71cae77cd1eafe7ad3620d69b535325336343e49672ef92ac5dd6a35acf275e3f5f4f90ddfb6fdee719c7752d398eff85eabade0077ecc6bd4e7a75439cd0dcf3cf3a9e4dd6e412feb60fcc2afdc74ac377ee78fb09f6fe74fbed1bc9af232dfb5e61fb5ea31f741bb815778d52af791d7f27e9ef23a6f3455c89bbcc5db2d6f21727fd327788777f95dcfecf13e1fe4fce1433ed21ba67ccc275e712d9b7eabc766ed9c4fb527bff3357fb3bc4bdd8fbff38fa606938567542fc8b1cee9b396ad5313ffe45fc927e91477d22c34bf870bee5a36f4b8bff05670fdbcb673259cf3808798ab3c9aaff098279a0def29b2452b86bffb7ede49298521a0fb0949ce1389cbfc21d24423fdf15f49ed3e9ae77d9e439c6b44cee9542e9a0c924bb90a1b392a722d379a596f722b7771962bd0759bdb98e710f1addccb43e3abf40eb9f2be31934779526fddcbb3ccdabd216be1b9da7cd2d4a9c84bfc91347b953779978f5cebf229cbb2a27df443565bde6ee7122dcc6dbb495e7847d6d26b2177219269d2ea4d2d5fb78ae20529f6d25ac82fef17b1f58a940dd9e44bada867d98ad9c2f677bbdfb7e2f85b95357ace643b75f66928c25af23bfd6597e758cbf7ed95f68de99d4547b223bbbc2f7baef35cafec396ee5c45cce6f1337c5715f0ee4508ed26b555a3b7f7b692df4d5c5b7a157bb774ef11c98cff9d64babf5c6e496ac79dd2e76036aedfacb4bebebfffef9e5ff3fa1cbd3</data>
+    </image>
+    <image name="image6">
+        <data format="XPM.GZ" length="2969">789c5d95594f2b471085dff91516f586a2bab32f8af26036c365b5592e10e56166ba073060c0d86c51fe7bda756ada4e64d9d6e7aeaeae3aa77afc63a377757ad4dbf8b1f636ab66f74dafb9aba6bd0d337f7afafaf3af3ffe5e5b0f8b5e14f7c228ed45ebbfadadd375afe9515eda366e16cc21b80de25c784f398c259e73cfb1f050b8b24d5249be4f659364c256d9c656f8a0e304f98e3c4b3eda526ee3567813ecea2924fedb7329eb95679cdf7aae8527ca619c08fff49c4abe9967f43b508ee250e2cf3da3de4dcf928fe7ca711c08f73dcb7e7ef78cfdbf846ba717fa9b759c223e503609ea3ff12cfed0b3b24da0c708eccf9b7886bfa49c683f63e1c696a991f867e53a45be336163cb4cfaa181728578baf02c7e72a15ca7a8b7dbdfa4e23fef0b5b5b64e027e53243bd9970eb58f4a7dd051781cd33e873a55c64c87f2a1cd93cc7fcc9bc14b14d73e833f78cfede84132717f4f8504e0bf8b5ab9ce598cf443875eb321f24f51799db2ffa502a9cdbb8c07d89840b1b97e8e752b8b45189fa6e852bb78efe6e846b1b96e8e756392a91bf166e1c23ffa1b0b14105ffb695c30afeb0b075ebe8cf2887caf182cbc81984f93b566e2bd1975fc06e3ffa177fcad8b435fab902db40f94b3835a646bd7d655be3be1f7ac67d92fb58e6a6a9313f5fcab646ffe24f59b87c98a73bcff01ff596c634e81ff556a66e304f37ca4d83fb28f7db85d70df49379295b531be8f1b0e02a700c7f1ae1b0092c9e0f23b0290df23f2a5706cf8b0fcfe8f75eb9c63a89ff55e4f6c3efc8b33caff8d5b33caf58fcaae2c64db4700a76f9a18f3c2faac4c50bf38e7066dc84c9badc9f2a3739eae773e5c2a21e797e57855bc7fd9e2a1716fdc9bc554ead16f3710176f1b83f079e311f77ca85c57d433d8dc95af8d328e716f3550a1b93639dad67d40f7daddb0f7d63655de77bcff007f5b73efed333fc083d43cf6bcf98d777e52edfab67ec97ffa33ae8e259e6a50e4dda42ff6de5acc5ff4fe0197ecaff511d99a4857e8972da8a5ec39967ac9f28eb7efaf68c75795ed771174f43cfb82fa49c81873326aeb8e6860dd7c359f762cb2ddff21ddff318fb9824d67fcbe7033ff2134ff8995ff815e7bb17f92ca4ef29bff18ce7fceea23f90cffd3ac65bf38ef993bff89bfbeeb5c95bbc8dfabad3e41bd13bbccb0317b5c7fbfc73595f77aed676c0877ce4ceecbbcf633e19ceba7ef1eef2f1290f7924a79ef1f9e2d7d53e7ce4055f4acc807ff115ce59d545a2c67ccd371cb8a839871c718c1396f5a16b4e38e58c731737e1823fa477eaea5b51ad245ee422a28a6ad56b250eb1d49021eb4e9c534bb774b7ac077d68dc03ddf319d1a2031ad3c38ad3b4a2f3981ee989264e8f113dd30bbd2e555deae7ce9cd21b2dfcecd384e6f4beaccdeb076da7f4e1141bb90e3ee98bbed519b8e87d7367f669d3651bd1166dd34ea741e7bcaf6f87761795b9b8011f74d52f1d401cedd13efd747d8ee8800e573dd41d63dc5b3aa6934565bc49a73c75fb865e77cd88e73b9dd1b98b1ad0055df2f67ffcd119c67397aee85a3cb8a1405cee66825675a690228a29a194b2ff9d37ee32aefff3fbdabfece5b800</data>
+    </image>
+    <image name="image7">
+        <data format="XPM.GZ" length="8703">789c6d98d952234b0e86effb2988d6dd89893cb66b8f89b968f6a59b9d0633311752950da6d9c16c13f3ee93252955598620c0feacaccc94f44b99e6efbf96cef67f2dfdf5f7b7a7677c9ed54bf5253e2efdd5cc6f6edefffd9f7ffdf7dbf76cb894264ba32c5f1a7dffc7b7ef902ed54b905469960e997fb79cd65993d52de371cbd9201fa625f361e06cca7cc43cccd39498f79847f9a8c878be13e624cfb282ed0f818b8aed327f961719cf0f897239426699bfcc299bf0f353e63a9f963c3f4e98a7859f92f947cbedec95f873ce9c1724fec088b9289a91ec7f3b7022fead072e65bf1bcc653149797d3a085cc97a3bcc5531117ff043b81c240df349e0429e677f732a8795f83f544e125e0fd89f7c52a6953c0fca59cef9a293c015cf0703e6695968fe383fc5b02c4af68f4e954be4e7f15eb94a249e73e6a4ac0af1b751ae753fcfcc59d9a0c4e70f735e3645c2f3ef2a4fd4fece5c548344e2b1652c7aaa98cb6a88c2abc6e26fad3cd2e76f8d450fcbcc55789e7e298f8461c358fcbb534ef479d66781667f534e747f5960147d9072aaf17a65a62a4d259e37ca5a3fb8c95c5779caf123f1a7a97292f12bcc93aa24d12f2a5729fb4f17ccd360775bca15c97c97ca48ac3ff7b3e572e059e27fad4c19e7075f8ca5be584f5e7d3a9e5e946be278bb37638e972b8cb9be81e35326d544987e1a4b3ed698d36077abc6a2578e5799e14079aa3c248e37b07eca3c30727f2a0be333e551cdf1765cef5eddc37ac0f6b172524bbdec29a7c28eebbbacbc3d65fb8e72564b3eb8be4bc45ce6238e7f59635973fc1debcf5743554bfd4a7c268835c78ba6ca544b7c647f53ac6bf197f5540d3c8b5e2f949b5af2cff5d5aa5bf95eb991f16ed758ec1bc63cbf5b31e678b907e5898edf0cdcb07f8efb8daf86a98c47c79cd040e6c3a7c0321e1e8d39fe34561e36a2ef2be6d4b38c77c612ff1b63e91fdc2fab8c460dc79fb87ff96a491ace8f5b534ec5ee3e8c45ff5c0f5561f65be54ced1bc6523f3363a907897749b9f29631e7979e8c25bf57ca6523f915ff7c75eaf86563a997b17229ebc30f63a98f2be54ae607ee176d75eb7ab7ca3a1e87ca95ec1747c6a2c77b63a9c73b656c38ff8efb7d45b6deaeb1f89318f3785853469d8f8c454f47c6a2976565d2f55e8cc5cee755db5d345e85b1d87f2b93ace7243f4d789e568ce57c93f1136f16bded1b4b7fe0f3a19a06a69131ebcf6d2b4f942f94a713d1f3a9b1e8b531667de2b3703d90f1c4f9f1dd4dc7bb57631e0f2bc27ebce89bf3d3762f9dffd158f45c2a0f75fc8eb1dcaf3abbe87d5f792476e4fedc764bb163a2ac76c88dd94e1363a917ee97be5b26ca0363a917eec7bebb2ad35c3955fb817226cfc38331eb0fc55fdf7d27a2df1763d167632cf5f4aa9c8bdd893fb967d14ba35c28e7c672bfe0fb20169ee5be73692c7a7d542e95cf8da5bf1e2857c2541a4bbf653dfad342c7c3aab1e8f546599f774363b1e781a7729ead29a3d841f259d9f834b08c871d651def4e038b9df68da53ede954918b85efc694632de1d1a8bfdc958f47ea65cab7ddd58ec99b1e85bd6a3607767c6522f0363d1fba672a3f61363a9a75363d13bf7f7f6f4143b55c6a2f76be5893eff662ccf8bff4d60b8559e0abba9b1d45b6a2c7a123d34cd40ecb069ccf5e0247e93301f5e184bfd3d1bcb7de348d89ebf571eaafdda58ec95b1dce724fed3f03c16ca435d3f3796f55f8dc59f7d63a9e73b6399ff5979240c1fc6727e3d184bfdf279e76f0f23ddefcc58e63b3696e7cf8de5bcdc534ec4eec6c6727e713f6f6f1b6287c03a1e2e8d65be91b19c6fa09ceaf8b9b18caf8de5fe26fb1f19a3b19c9f957226f6836763393f578da59fbc29e7ca9cdff636a4fb43659dcf752cfd8a8ce53cdd55ced50ec613d9cf573f0efc2fb6af0edbf7fa2979961fb181d8fc18b4f1fca47f25fd04db1f59393c2723babf5fad2c6beb2b84f9c30a32aefbabebfa5f5dc976ddad11d68e771a7b1a5b75df107ceb560e119095c238fe85e0af8eaa5de3266eea2edca59bb92bf7c75dbb1b4fb7eeceddbb076f7df4f6a76ee5789dc86f0879924fcc5be48c3cbbb97b71afeecdbdbb0ff7c3cfbcec56fcaaab6ecdadbb0db7e9b6dcb6db713fdd2fb7dbcb1074be05af257a8b7be05ceeb97d77e00edd91dff7b13b71bfbd7fa7eecc8dddb91bb8a17f3772894b5de6ffe6ae70e58276208a30f45712ad68bc2bff818f1d685c4306bb3d75f379cbc8ef26018af312658a42f4e2d56d8627a87d26646d8aadb2a7581ff21e1a9868064c13dd085d093fe5710a53b880cb28eed0f7a5a77d79e6c867ec085c5070a47fdeab69cff60833b8f24fddf84c584d2eaef27955d5ea33fcf99423adb6e05388a64fce35dcf8f56efb5ef43a41d71720de23ff4ee10eeefb2b492ed5a7388b7bf0d09f27b6c6baed3a46ac16770d8fb19ac33beb11ba323c81f7a7eb78fd5c74da8a7fc208c90ccce1055e7b3b812e7a5d1dc01bbcbbec73de17b46771e9fbc97bfd801fb0dcf7ba9727d41ccc6005e6ec61dddfb1cd164646fdbdbf1f5885b5be2e2c7a514f8475d8f055bf10b5aed3870cf7e6e98df63b7c741bfd1edb8ee9fa9eaeb4095bb0fd396ad1bb1337841df809bf7c35f4fb98e4e90376612fae6a898d9d4f215215ecc33cde799c191f9903388423388613f80d7bd1c9126adc7f02a770662b9bcffd5eee47ddb95798f5bb7014c5318ce11c06308411249042e620aeb036677e4c0ec5e78a082a37fdcea0f47d750e5554afc1df1adebc18fc3d1d096b6c7082d3af7a065ee065afde21f8d4eb8a677e9fc7305bac25ee53739ce115fec16bbcc15bbcc37b7c8877a9ca1fe3233e75f90d3be9f2a4b33dc19f367a5d94e3f7b08dcf38c7177cc5377cc70ffcb1a89b36c2b88c2b9f4e8e8595da731657dd2354deab312ba00a2ad5c8ace13a6ee0266ee136eee0cf7e84f88919fe82a6a714ee6a5ddff3b1d9e5bf7bb8efcf555dbdcd5794ad1a76f0000ff1088ff1047f7fd111db194ef12c567fd4cb67bcd2a574061cbb33eb2d75fb699c07af89731ce0104798c8f9d5eb52c8f36c63ba78d2c84a6d5e7c946a590f3377f1b9d7e9ba959b618e056cfb77fdbb58a7881acba0bdaeab74f564dde8122b72f29c8fe6711c0357730fa8c8478830de45b477747b4454c7dec86b7763099f51e3ef3eac011f87c5be07920937263bf3fb1dbef59c26348d63d1692ff4679eafa60b585f3891c651665122ddaa27523176be7bd51eb6f1373543a7bdf61dee06e5b81b6cf3d6e56ecfc7b0b699fc3b19db46b7df73b4d64fe8927a1529a74a3835b82b48cf3fa72bfaa32a6a33731df4d7c588aef9663367dfba33c7abc1ddd30dddb27aa32a0cdaeb62c0ef8ee98eeed5bf76a53dfebb902f8e52bda83e7aa0477a72b3287f76c3e8dd614591353dd39c5ee8957b6ad565a2573595f4e0ee137a73edfd2da5f7cfbd39f6c99e90583fd307fde098623cbacb4bc851f7197cd032adf494f4b94774b72dbd85d3aabf8d96b4b6a8d4050544950d6fb4e636711622d3cf5157b98bdfaeb89a3e685d54dbd68fff5de8a4f2cd479f3aa20ddab42ed13fd570e1fb13f677cd394737a52ddaf66b55d27da2ce64b1f6af53da71439cc511ebbe29869d2dde617bfaf27eb93b1f979ff40b67b44b7bb44f0774484774ecd6e8847ebb5b3aa533bf9bf157df2ffacae87fcfed9f69fc7a4ce734a0a1ef3f237f37fda08452cafcdf9c0a5fa325adf89b474395f9d9bbd77e95a7bec6e2ef768b6a5da8bef05d338a4ae7d1172be937ac4e373633f51410c725529f7d9384c59d7595faa99e3eeda5ff5f8928dbdcd1e2ff0a7c15ffcef36ea5ae53c53a8cab62519db1af5d47efffd7a47beafbfffef9edff8f8dc11a</data>
+    </image>
+    <image name="image8">
+        <data format="PNG" length="1002">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000003b149444154388dad945f4c5b551cc73fe7dc4b7b4bcba0762d45c43114323599ee6192609c51d883892ce083f1718b3ebb185f8dc91e972cf39d2d2a2f1af664b6f1e0fe3863a0718969700eb0c52142da0242a1bd6d696f7bcff101585203ceb8fd9ece39f99dcff9fe7edf939f88c562ec465f5f9fe609442c161362173c3e3eae7b7a7ac8e7f36432196cdbfe4f907c3e4f2291201e8fe338cec3737357e9e8e828aded1e229d650e1f2d51754b082110124c13a4dc5ea341eb9dc284c0558a853f3ce8cb0677ef500fde7d39d2596679e326597b8e9abb85d7a770ab16ab6983ec5a05b487a70e36f0f4e10afe408d6a558310980108478dba4a1e8233990c5d474b64ed39aa3a8fe5f3317fbf81dbd70bccfeb205947632fd74f6589c1c6ea2f70d03a58ba0c1f2c9bdc1b66de3b8256a6e11cbe7e3ee1d181b590124fe2693aeee08d223c82c3a2c24b7b874bec8f26288774f7bd054504aef0dde6e99c0eb83f9fb266323cb80a27fb0958141836044605a2ee5523393371cc646fee2da37195aa35d0c0c5b4859ac03d7e91712dcaac5adab3650a3ff9d08ef7dd8404bb48869e5d958b5b87dadc4c9a1464e9f0d0326df7ebd86bd2e310cb1bf62d384d59441f2d70a070e1c60e09489929b988681bdd9cc97170bcc4c65595f71f8e0e3301337fc24a7732467831875a47f289652b0be5e4151e6d07316c1b0c0340d8ab92023e76d66a6b2840e36d2fb7a13fee632475e6edc367ea98a90fb98b7dd6310ca0328a44761582e1bab41befabcc0ec940d28bc5e93b68e064cab84e1d9beaeb48934eac1f53b01c1b000fca496aa54b61a99fcde61662a4b4b4b23d1680be9d426173e4df3602a48ea411989a4fd590f52a8fd156b05ed9d350e3defe3cfdf4b4c7ce770ea7d3fb9f520afbe1620daeee5c26735d20b9b9cfb6811a754a439e4e5c5639a4caa1e5caf586bfc0197b78702005cb9b4cae4cd3267ce8638fe964bd72b393e39d74928d242617303a756a37f284447770dcdbffc6384a05a85de1306e9a52057c7527c7131c3c42d3f475eb2303c82d4fc3276d6811db37efeb148723082d9b08f79f97c1e5729109a9a28307cc622d2d6cdf52b2b24efe548dedb00142009862cfa879ee1a71f6cec928353511472fbf4389148b0b0e0c108081412458dfe21c9f11351e67e7358595468246d1d1e5e38a6e9e851bc39d84ab502a669331dafec0d8ec7e3e8cb06e1a881d727d1ae40180a434a8c9db129a54126ad48a7358c2b4c5352c8c374bcccdab2bb37d8719cba79fab8211f9df218e0582c261e95f8bfc04f1a1e8bc5c4dfe0a190172af6a9690000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>PlaceBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>moveObject()</slot>
+    </connection>
+    <connection>
+        <sender>GateFoundBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>sendGateFound()</slot>
+    </connection>
+    <connection>
+        <sender>GateDoneBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>sendGateDone()</slot>
+    </connection>
+    <connection>
+        <sender>desired_depth_field</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>updateDesiredDepth()</slot>
+    </connection>
+    <connection>
+        <sender>ImageDisplay1</sender>
+        <signal>mousePressed(int,int,int)</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>ToggleCamera1()</slot>
+    </connection>
+    <connection>
+        <sender>PipeBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>addPipe()</slot>
+    </connection>
+    <connection>
+        <sender>GateBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>addGate()</slot>
+    </connection>
+    <connection>
+        <sender>PlatformBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>addPlatform()</slot>
+    </connection>
+    <connection>
+        <sender>field_depth_p</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>updateDepthPID()</slot>
+    </connection>
+    <connection>
+        <sender>field_depth_d</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>updateDepthPID()</slot>
+    </connection>
+    <connection>
+        <sender>field_depth_k</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>updateDepthPID()</slot>
+    </connection>
+    <connection>
+        <sender>OctagonSurfaceBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>addOctagonSurface()</slot>
+    </connection>
+    <connection>
+        <sender>BinBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>addBin()</slot>
+    </connection>
+    <connection>
+        <sender>ImageDisplay0</sender>
+        <signal>mousePressed(int,int,int)</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>Image1Click(int,int,int)</slot>
+    </connection>
+    <connection>
+        <sender>ImageDisplay0</sender>
+        <signal>mousePressed(int,int,int)</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>ToggleCamera0()</slot>
+    </connection>
+    <connection>
+        <sender>field_depth_i</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>updateDepthPID()</slot>
+    </connection>
+    <connection>
+        <sender>field_heading_d</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>updateHeadingPID()</slot>
+    </connection>
+    <connection>
+        <sender>FlareBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>addFlare()</slot>
+    </connection>
+    <connection>
+        <sender>ContourFoundBoxesBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>sendContourFoundBoxes()</slot>
+    </connection>
+    <connection>
+        <sender>desired_heading_field</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>updateDesiredHeading()</slot>
+    </connection>
+    <connection>
+        <sender>InitDoneBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>sendInitDone()</slot>
+    </connection>
+    <connection>
+        <sender>FlareDoneBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>sendFlareDone()</slot>
+    </connection>
+    <connection>
+        <sender>ContourFoundFlareBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>sendContourFoundFlare()</slot>
+    </connection>
+    <connection>
+        <sender>radio_auto</sender>
+        <signal>clicked()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>autoClicked()</slot>
+    </connection>
+    <connection>
+        <sender>BriefcaseFoundBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>sendBriefcaseFound()</slot>
+    </connection>
+    <connection>
+        <sender>ContourFoundBarbwireBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>sendContourFoundBarbwire()</slot>
+    </connection>
+    <connection>
+        <sender>desired_speed_field</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>updateDesiredSpeed()</slot>
+    </connection>
+    <connection>
+        <sender>field_heading_i</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>updateHeadingPID()</slot>
+    </connection>
+    <connection>
+        <sender>ObjectList</sender>
+        <signal>activated(int)</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>selectObject(int)</slot>
+    </connection>
+    <connection>
+        <sender>MachineGunNestBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>addMachineGunNest()</slot>
+    </connection>
+    <connection>
+        <sender>radio_manual</sender>
+        <signal>clicked()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>manualClicked()</slot>
+    </connection>
+    <connection>
+        <sender>field_heading_p</sender>
+        <signal>returnPressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>updateHeadingPID()</slot>
+    </connection>
+    <connection>
+        <sender>DeleteBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>deleteObject()</slot>
+    </connection>
+    <connection>
+        <sender>BombingRunBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>sendBombingRunDone()</slot>
+    </connection>
+    <connection>
+        <sender>BarbwireDoneBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>sendBarbwireDone()</slot>
+    </connection>
+    <connection>
+        <sender>SaveMapBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>saveMap()</slot>
+    </connection>
+    <connection>
+        <sender>LoadMapBtn</sender>
+        <signal>pressed()</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>loadMap()</slot>
+    </connection>
+    <connection>
+        <sender>ColorPickerImg</sender>
+        <signal>mousePressed(int,int,int)</signal>
+        <receiver>SeaBee3MainDisplayForm</receiver>
+        <slot>clickColorPickerImg(int,int,int)</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in declaration">Component/ModelManager.H</include>
+    <include location="local" impldecl="in declaration">Image/Image.H</include>
+    <include location="local" impldecl="in declaration">Image/PixelsTypes.H</include>
+    <include location="local" impldecl="in declaration">Qt/SeaBee3GUICommunicator.H</include>
+    <include location="global" impldecl="in declaration">list</include>
+    <include location="local" impldecl="in declaration">GUI/SimpleMeter.H</include>
+    <include location="local" impldecl="in declaration">Util/MathFunctions.H</include>
+    <include location="local" impldecl="in declaration">Robots/SeaBeeIII/MapperI.H</include>
+    <include location="local" impldecl="in declaration">Image/CutPaste.H</include>
+    <include location="local" impldecl="in declaration">Raster/PngParser.H</include>
+    <include location="local" impldecl="in declaration">Raster/GenericFrame.H</include>
+    <include location="local" impldecl="in declaration">Image/Point2D.H</include>
+    <include location="global" impldecl="in declaration">IceUtil/Mutex.h</include>
+    <include location="local" impldecl="in declaration">Ice/RobotSimEvents.h</include>
+    <include location="global" impldecl="in declaration">queue</include>
+    <include location="local" impldecl="in implementation">SeaBee3GUI.ui.h</include>
+</includes>
+<forwards>
+    <forward>class SeaBee3GUICommunicator;</forward>
+</forwards>
+<variables>
+    <variable>std::vector&lt;ImageIceMod::QuadrilateralIce&gt; itsFwdRectangles;</variable>
+    <variable>std::vector&lt;Point2D&lt;int&gt; &gt; itsRectangles;</variable>
+    <variable>std::vector&lt;MapperI::MapObject&gt; mapObjects;</variable>
+    <variable>SimpleMeter *currentMeter7;</variable>
+    <variable>SimpleMeter *currentMeter6;</variable>
+    <variable>SimpleMeter *currentMeter5;</variable>
+    <variable>SimpleMeter *currentMeter4;</variable>
+    <variable>SimpleMeter *currentMeter3;</variable>
+    <variable>SimpleMeter *currentMeter2;</variable>
+    <variable>SimpleMeter *currentMeter1;</variable>
+    <variable>SimpleMeter *currentMeter0;</variable>
+    <variable>nub::soft_ref&lt;SeaBee3GUICommunicator&gt; GUIComm;</variable>
+    <variable>ModelManager *itsMgr;</variable>
+    <variable>std::list&lt;int&gt; headingHist;</variable>
+    <variable>std::list&lt;int&gt; extPressHist;</variable>
+    <variable>std::list&lt;int&gt; intPressHist;</variable>
+    <variable>IceUtil::Mutex itsDataMutex;</variable>
+    <variable>int selectedIndex;</variable>
+    <variable>Image&lt;PixRGB&lt;byte &gt; &gt; MapImage;</variable>
+    <variable>Point2D&lt;float&gt; itsSalientPoint;</variable>
+    <variable>std::list&lt;float&gt; itsRectAngles;</variable>
+    <variable>std::list&lt;float&gt; itsRectRatios;</variable>
+    <variable>int itsCompositeHeading;</variable>
+    <variable>int itsCompositeDepth;</variable>
+    <variable>std::vector&lt;ImageIceMod::SensorVote&gt; itsSensorVotes;</variable>
+    <variable>int itsCurrentHeading;</variable>
+    <variable>int itsCurrentDepth;</variable>
+    <variable>Image&lt;PixH2SV2&lt;float&gt; &gt; itsConvert;</variable>
+</variables>
+<slots>
+    <slot>pushFwdRectangle( ImageIceMod::QuadrilateralIce quad )</slot>
+    <slot>pushRectRatio( float r )</slot>
+    <slot>pushContourPoint( Point2D&lt;int&gt; p )</slot>
+    <slot>setSalientPoint( Point2D&lt;float&gt; p )</slot>
+    <slot>Image1Click( int a, int b, int c )</slot>
+    <slot>init( ModelManager * mgr )</slot>
+    <slot>setImage( Image&lt;PixRGB&lt;byte&gt; &gt; &amp; img, std::string cameraID )</slot>
+    <slot>ToggleCamera0()</slot>
+    <slot>ToggleCamera1()</slot>
+    <slot>ToggleCamera2()</slot>
+    <slot>ToggleCamera3()</slot>
+    <slot>ToggleCamera( std::string cameraID, bool active )</slot>
+    <slot>registerCommunicator( nub::soft_ref&lt;SeaBee3GUICommunicator&gt; c )</slot>
+    <slot>setJSAxis( int axis, float val )</slot>
+    <slot>setSensorValues( int heading, int pitch, int roll, int intPressure, int extPressure, int headingValue, int depthValue )</slot>
+    <slot>updateDesiredHeading()</slot>
+    <slot>updateDesiredDepth()</slot>
+    <slot>updateDesiredSpeed()</slot>
+    <slot>updateHeadingPID()</slot>
+    <slot>updateDepthPID()</slot>
+    <slot>manualClicked()</slot>
+    <slot>autoClicked()</slot>
+    <slot>sendInitDone()</slot>
+    <slot>sendGateFound()</slot>
+    <slot>sendGateDone()</slot>
+    <slot>sendContourFoundFlare()</slot>
+    <slot>sendFlareDone()</slot>
+    <slot>sendContourFoundBarbwire()</slot>
+    <slot>sendBarbwireDone()</slot>
+    <slot>sendContourFoundBoxes()</slot>
+    <slot>sendBombingRunDone()</slot>
+    <slot>sendBriefcaseFound()</slot>
+    <slot>addPlatform()</slot>
+    <slot>addGate()</slot>
+    <slot>addPipe()</slot>
+    <slot>addFlare()</slot>
+    <slot>addBin()</slot>
+    <slot>addBarbwire()</slot>
+    <slot>addMachineGunNest()</slot>
+    <slot>addOctagonSurface()</slot>
+    <slot>selectObject( int index )</slot>
+    <slot>refreshMapImage()</slot>
+    <slot>moveObject()</slot>
+    <slot>deleteObject()</slot>
+    <slot>saveMap()</slot>
+    <slot>loadMap()</slot>
+    <slot>loadColorPickerImg()</slot>
+    <slot>clickColorPickerImg( int x, int y, int but )</slot>
+</slots>
+<functions>
+    <function>setSensorVotes( std::vector&lt;ImageIceMod::SensorVote&gt; votes )</function>
+    <function>setCompositeHeading( int heading )</function>
+    <function>setCompositeDepth( int depth )</function>
+    <function>pushRectAngle( float a )</function>
+    <function returnType="Image&lt;PixRGB&lt;byte&gt;&gt;">makeCompassImage( int heading )</function>
+    <function>setThrusterMeters( int zero, int one, int two, int three, int four, int five, int six, int seven )</function>
+</functions>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+    <includehint>Qt/ImageCanvas.h</includehint>
+</includehints>
+</UI>

@@ -1,0 +1,143 @@
+/*      -*- mode: text; fill-column: 70; indent-tabs-mode: nil -*-
+   $Id: howto-using-emacs-tags.dxy 6364 2006-03-14 18:50:59Z rjpeters $
+*/
+
+/** \page howto-using-emacs-tags HOWTO Use emacs with the TAGS facility
+
+- For the impatient or the forgetful (like myself)
+  - build a TAGS file using <tt>make TAGS</tt>
+  - do a tags search in emacs using <tt>Esc-x tags-search RETURN</tt>
+  - cycle through search hits using <tt>Esc-,</tt> (<tt>Esc-COMMA</tt>)
+  - find a tag definition using <tt>Esc-x find-tag RETURN</tt> or
+    simply <tt>Esc-.</tt> (<tt>Esc-PERIOD</tt>)
+
+
+\note This HOWTO was originally written around svn revision 6588 of
+the toolkit, around March 2006; if you are reading this later and find
+discrepancies between this HOWTO and the latest code, please either:
+fix the HOWTO and commit a change back through svn, or post a comment
+to http://ilab.usc.edu/forum/ mentioning the problem.
+
+<!--############################################################--><hr>
+
+\section making-tags Making a TAGS file
+
+Often with a large source codebase like the iLab Neuromorphic Vision
+C++ Toolkit (<tt>wc `./devscripts/list-sources.sh`</tt> currently
+shows 354,849 lines of C++ code) it is easy to forget, or simply be
+unfamiliar with, the far reaches of the source code. One easy way to
+help you keep the entire codebase under your thumb is to use the TAGS
+facility of emacs.
+
+A TAGS file is just an index of all of the source files in the
+project, which allows emacs to do global searches through the entire
+source code. To build a TAGS file, just do
+
+\verbatim
+make TAGS
+\endverbatim
+
+Internally, that just calls
+
+\verbatim
+etags -o TAGS `./devscripts/list-sources.sh`
+\endverbatim
+
+You can build custom TAGS files similarly; for example you could make
+a TAGS file with only the headers from src/Image:
+
+\verbatim
+etags -o IMAGE_H_TAGS src/Image/?*.H
+\endverbatim
+
+\section tags-search Using TAGS to search
+
+For this example, let's say we're trying to hunt down the code behind
+the <tt>--maxnorm-type</tt> option. You need to know that in the code,
+all options are defined without the leading double-dash. So, in emacs
+you would type
+
+\verbatim
+Esc-x tags-search RETURN "maxnorm-type"
+\endverbatim
+
+(WITH the quotes around "maxnorm-type", since we are looking for a C
+string literal in the source code, which will have quotes around
+it). Emacs will ask you which TAGS file to load; just point it to
+path/to/saliency/TAGS. Then it should take you straight to line 114 of
+src/Channel/ChannelOpts.C (if it takes you somewhere else first, you
+can do <tt>Esc-,</tt> to cycle through subsequent search hits until
+you find the one you want). There you see that the
+<tt>--maxnorm-type</tt> command-line option is implemented by a
+ModelOptionDef named <tt>OPT_MaxNormType</tt>. Also you see that the
+parameter type underlying this option is MaxNormType because the
+definition contains <tt>MODOPT_ARG(MaxNormType)</tt> (which says that
+the command-line option needs an argument of type
+<tt>MaxNormType</tt>).
+
+\section find-tag Using TAGS to find the definition of a tag
+
+Next, we can do two things: we can hunt down <tt>MaxNormType</tt>, and
+we can look for uses of <tt>OPT_MaxNormType</tt>. First, we can look
+for the definition of <tt>MaxNormType</tt> by using (in emacs)
+
+\verbatim
+Esc-x find-tag RETURN MaxNormType
+\endverbatim
+
+In general, you can use <tt>Esc-x find-tag</tt> to find the definition
+of any class, struct, enum, function, global variable, or macro. An
+equivalent shorthand is
+
+\verbatim
+Esc-. MaxNormType     (that's Esc-PERIOD MaxNormType)
+\endverbatim
+
+That should take you straight to the definition of <tt>enum
+MaxNormType</tt> around line 49 of src/Image/fancynorm.H. There you
+see the <tt>VCXNORM_SURPRISE</tt> enumerant. We can do another search
+for that value with
+
+\verbatim
+Esc-x tags-search RETURN VCXNORM_SURPRISE
+\endverbatim
+
+That should take you first to around line 536 of
+src/Neuro/VisualCortex.C. To see subsequent search hits, do
+
+\verbatim
+Esc-,     (that's Esc-COMMA)
+\endverbatim
+
+A few lines down in src/Neuro/VisualCortex.C you see that
+<tt>itsOutput</tt> is multiplied by <tt>itsOutputFactor</tt>. Let's
+say we want to find out which command-line option controls
+<tt>itsOutputFactor</tt>. If you scroll back up toward the top of the
+file, you'll see that <tt>itsOutputFactor</tt> is associated with
+<tt>OPT_VisualCortexOutputFactor</tt>. We can find the definition of
+that option using
+
+\verbatim
+Esc-x find-tag RETURN OPT_VisualCortexOutputFactor
+\endverbatim
+
+Or, if you put emacs's cursor on top of the word you want to search
+for (in this case, OPT_VisualCortexOutputFactor), you can just do
+
+\verbatim
+Esc-x find-tag RETURN RETURN
+\endverbatim
+
+since emacs will by default search for the word under point. Even
+shorter would be just
+
+\verbatim
+Esc-. RETURN
+\endverbatim
+
+Anyway, that will take you to around line 92 of
+src/Channel/ChannelOpts.C, where you see that
+<tt>OPT_VisualCortexOutputFactor</tt> is controlled by
+<tt>--vcx-outfac</tt>.
+
+*/

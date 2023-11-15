@@ -1,0 +1,84 @@
+// mainpage.dxy -- The front page (mainpage) of the Doxygen documentation
+
+// //////////////////////////////////////////////////////////////////// //
+// The iLab Neuromorphic Vision C++ Toolkit - Copyright (C) 2001 by the //
+// University of Southern California (USC) and the iLab at USC.         //
+// See http://iLab.usc.edu for information about this project.          //
+// //////////////////////////////////////////////////////////////////// //
+// Major portions of the iLab Neuromorphic Vision Toolkit are protected //
+// under the U.S. patent ``Computation of Intrinsic Perceptual Saliency //
+// in Visual Environments, and Applications'' by Christof Koch and      //
+// Laurent Itti, California Institute of Technology, 2001 (patent       //
+// pending; filed July 23, 2001, following provisional applications     //
+// No. 60/274,674 filed March 8, 2001 and 60/288,724 filed May 4, 2001).//
+// //////////////////////////////////////////////////////////////////// //
+// This file is part of the iLab Neuromorphic Vision C++ Toolkit.       //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is free software; you can   //
+// redistribute it and/or modify it under the terms of the GNU General  //
+// Public License as published by the Free Software Foundation; either  //
+// version 2 of the License, or (at your option) any later version.     //
+//                                                                      //
+// The iLab Neuromorphic Vision C++ Toolkit is distributed in the hope  //
+// that it will be useful, but WITHOUT ANY WARRANTY; without even the   //
+// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      //
+// PURPOSE.  See the GNU General Public License for more details.       //
+//                                                                      //
+// You should have received a copy of the GNU General Public License    //
+// along with the iLab Neuromorphic Vision C++ Toolkit; if not, write   //
+// to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,   //
+// Boston, MA 02111-1307 USA.                                           //
+// //////////////////////////////////////////////////////////////////// //
+//
+// Primary maintainer for this file: Laurent Itti <itti@usc.edu>
+// $Id: mainpage.dxy 6359 2006-03-13 01:47:10Z rjpeters $
+//
+
+
+
+/*!
+
+\mainpage
+
+Welcome to the iLab Neuromorphic Vision C++ Toolkit. This toolkit is
+being developed at USC and Caltech to provide a comprehensive suite of
+C++ classes for image processing, biologically-inspired computational
+vision, hardware interfacing, and parallel processing on Linux beowulf
+clusters. Among the executables included in the distribution are our
+bottom-up, saliency-based visual attention model (single-CPU and
+beowulf versions), models of contour integration in primary visual
+cortex, models of object recognition in inferotemporal cortex, and our
+beobots quad-CPU autonomous neuromorphic robot code. Please see the <A
+HREF="README">README</A> for installation and compilation
+instructions.
+
+The main program to use is called <B>ezvision</B> in the saliency/bin/
+directory.
+
+See the <a href="README">README</a> and \ref programmer-notes
+"programmer notes" for detailed information on building and using the
+programs in the toolkit.
+
+Here are links to several key classes in the toolkit:
+
+- Image
+- ModelComponent
+- ModelManager
+- ChannelBase
+- VisualCortex
+- Brain
+- InputFrameSeries
+- OutputFrameSeries
+
+Other pages of interest:
+
+- \ref modelbuilding "building models using components of this toolkit"
+- \ref howto-scripting
+
+To further help you navigate the source tree, see the available <A
+HREF="http://ilab.usc.edu/cgi-bin/secure/viewcvs.cgi/trunk/saliency/">
+viewcvs browser</A> (use the same username and password as you used to
+access this page) which, despite the "cvs" in its name, browses our
+subversion (svn) source code repository.
+
+*/

@@ -1,0 +1,195 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>ModelManagerWizard</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>ModelManagerWizard</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>791</width>
+            <height>534</height>
+        </rect>
+    </property>
+    <property name="paletteBackgroundColor">
+        <color>
+            <red>234</red>
+            <green>233</green>
+            <blue>232</blue>
+        </color>
+    </property>
+    <property name="caption">
+        <string>Model Manager Configuration Wizard</string>
+    </property>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>cancelButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>11</x>
+                <y>498</y>
+                <width>80</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Cancel</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>nextButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>600</x>
+                <y>500</y>
+                <width>80</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Next &gt;</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>backButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>500</x>
+                <y>500</y>
+                <width>80</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&lt; Back</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>finishButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>700</x>
+                <y>500</y>
+                <width>80</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Finish</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>460</y>
+                <width>450</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="font">
+            <font>
+                <family>Helvetica</family>
+            </font>
+        </property>
+        <property name="text">
+            <string>For more information about an option, right click it and select &lt;b&gt;What's this?&lt;/b&gt;</string>
+        </property>
+    </widget>
+    <widget class="QListBox">
+        <property name="name">
+            <cstring>listbox</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>11</x>
+                <y>11</y>
+                <width>240</width>
+                <height>481</height>
+            </rect>
+        </property>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>listbox</sender>
+        <signal>currentChanged(QListBoxItem*)</signal>
+        <receiver>ModelManagerWizard</receiver>
+        <slot>showFrame(QListBoxItem*)</slot>
+    </connection>
+    <connection>
+        <sender>cancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ModelManagerWizard</receiver>
+        <slot>handleCancelButton()</slot>
+    </connection>
+    <connection>
+        <sender>backButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ModelManagerWizard</receiver>
+        <slot>handleBackButton()</slot>
+    </connection>
+    <connection>
+        <sender>nextButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ModelManagerWizard</receiver>
+        <slot>handleNextButton()</slot>
+    </connection>
+    <connection>
+        <sender>finishButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ModelManagerWizard</receiver>
+        <slot>handleFinishButton()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in declaration">Component/ModelManager.H</include>
+    <include location="local" impldecl="in declaration">Component/ModelOptionDef.H</include>
+    <include location="global" impldecl="in declaration">qscrollview.h</include>
+    <include location="local" impldecl="in declaration">Component/ParamMap.H</include>
+    <include location="global" impldecl="in implementation">algorithm</include>
+    <include location="global" impldecl="in implementation">qwhatsthis.h</include>
+    <include location="global" impldecl="in implementation">qcheckbox.h</include>
+    <include location="global" impldecl="in implementation">qlineedit.h</include>
+    <include location="local" impldecl="in implementation">Util/StringConversions.H</include>
+    <include location="global" impldecl="in declaration">map</include>
+    <include location="global" impldecl="in implementation">qerrormessage.h</include>
+    <include location="local" impldecl="in implementation">ModelManagerWizard.ui.h</include>
+</includes>
+<forwards>
+    <forward>class QErrorMessage;</forward>
+    <forward>class ModelManagerWizardItem;</forward>
+</forwards>
+<variables>
+    <variable access="private">QErrorMessage* errBox;</variable>
+    <variable access="private">QScrollView* currentSv;</variable>
+    <variable access="private">std::map&lt;const ModelOptionCateg*, ModelManagerWizardItem&gt; categs;</variable>
+    <variable access="private">std::map&lt;const QWidget*, const ModelOptionDef*&gt; itsWidgetOptions;</variable>
+    <variable access="private">ModelManager* mgr;</variable>
+    <variable access="private">ParamMap backupMap;</variable>
+</variables>
+<slots>
+    <slot>init( ModelManager &amp; manager )</slot>
+    <slot>refreshOptions( void )</slot>
+    <slot>showFrame( QListBoxItem * item )</slot>
+    <slot>handleCancelButton( void )</slot>
+    <slot>handleBackButton( void )</slot>
+    <slot>handleNextButton( void )</slot>
+    <slot>handleFinishButton( void )</slot>
+    <slot>handleCheckBox( bool b )</slot>
+    <slot>handleLineEdit( void )</slot>
+    <slot>refreshAndSelect(QString sel, const ModelOptionDef* def)</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

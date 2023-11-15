@@ -1,0 +1,25 @@
+#ifndef ImageOrb_IDL
+#define ImageOrg_IDL
+
+struct ImageOrb {
+	short width;
+	short height;
+	short pix_size;
+	sequence<octet> data;
+};
+
+struct Point2DOrb {
+	short i;
+	short j;
+};
+
+struct DimsOrb {
+	short ww;
+	short hh;
+};
+
+#endif
+
+
+
+

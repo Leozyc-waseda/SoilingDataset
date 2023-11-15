@@ -1,0 +1,7 @@
+#<ModuleName>  <Module> <Extra params>
+Envision build/obj/NeovisionII/ObjDet/EnvObjDetBrain.so --logverb=Error
+Exhaustive build/obj/NeovisionII/ObjDet/ExhaustiveObjDetBrain.so
+Random build/obj/NeovisionII/ObjDet/RandomObjDetBrain.so
+SaliencyFancy build/obj/NeovisionII/ObjDet/SaliencyObjDetBrain.so --timestep=30ms --vc-chans=CIO --maxnorm-type=Fancy --logverb=Error
+SaliencyMaxNorm build/obj/NeovisionII/ObjDet/SaliencyObjDetBrain.so --timestep=30ms --vc-chans=CIO --maxnorm-type=Maxnorm --logverb=Error
+Surprise build/obj/NeovisionII/ObjDet/SaliencyObjDetBrain.so --timestep=30ms --vc-type=Surp --vc-chans=CIO --maxnorm-type=Surprise --gabor-intens=20.0 --display-map=VCO --display-map-factor=1e11 --vcx-outfac=5.0e-9 --logverb=Error

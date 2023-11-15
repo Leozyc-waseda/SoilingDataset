@@ -1,0 +1,568 @@
+<?xml version='1.0'?>
+<!--Define the internal DTD subset-->
+<!DOCTYPE object[
+	<!ELEMENT object (Entity+)>
+	<!ELEMENT Entity (name,flag,outgoing_edges,property*)>
+	<!ELEMENT name (#PCDATA)>
+	<!ELEMENT flag (#PCDATA)>
+	<!ELEMENT outgoing_edges (isa,includes,part_of,contains,similar,related)>
+	<!ELEMENT isa (edge*)>
+	<!ELEMENT includes (edge*)>
+	<!ELEMENT part_of (edge*)>
+	<!ELEMENT contains (edge*)>
+	<!ELEMENT similar (edge*)>
+	<!ELEMENT related (edge*)>
+	<!ELEMENT edge (other,co_occur)>
+	<!ELEMENT other (#PCDATA)>
+	<!ELEMENT co_occur (#PCDATA)>
+	<!ELEMENT property (prop*)>
+	<!ELEMENT prop (#PCDATA)>
+]>
+<object>
+	<Entity>
+		<name>HumanRO</name>
+		<flag>0</flag>
+		<outgoing_edges>
+			<isa>
+			</isa>
+			<includes>
+				<edge>
+					<other>HandRO</other>
+					<co_occur>1</co_occur>
+				</edge>
+				<edge>
+					<other>FaceRO</other>
+					<co_occur>1</co_occur>
+				</edge>
+				<edge>
+					<other>LegRO</other>
+					<co_occur>1</co_occur>
+				</edge>
+			        <edge>
+					<other>Car</other>
+					<co_occur>0.5</co_occur>
+				</edge>
+				<edge>
+					<other>House</other>
+					<co_occur>0.8</co_occur>
+				</edge>
+				<edge>
+					<other>Lights</other>
+					<co_occur>0.8</co_occur>
+				</edge>
+			</includes>
+			<part_of>
+			</part_of>
+			<contains>
+			</contains>
+			<similar>
+			</similar>
+			<related>
+				<edge>
+					<other>Human</other>
+					<co_occur>1</co_occur>
+				</edge>
+				<edge>
+					<other>HumanRA</other>
+					<co_occur>1</co_occur>
+				</edge>
+			</related>
+		</outgoing_edges>
+	</Entity>
+<Entity>
+	<name>HandRO</name>
+	<flag>0</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</isa>
+		<includes>
+			<edge>
+				<other>Ball</other>
+				<co_occur>0.8</co_occur>
+			</edge>
+			<edge>
+				<other>Leaf</other>
+				<co_occur>0.6</co_occur>
+			</edge>
+			<edge>
+				<other>Pen</other>
+				<co_occur>0.6</co_occur>
+			</edge>
+			<edge>
+				<other>Bottle</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>
+				<other>Plate</other>
+				<co_occur>1</co_occur>
+			</edge></includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+			<edge>
+				<other>Hand</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>
+				<other>HandRA</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Small</prop>
+	</property>
+</Entity>
+<Entity>
+	<name>LegRO</name>
+	<flag>0</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</isa>
+		<includes>
+			<edge>
+				<other>Shoe</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+			<edge>
+				<other>Leg</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>
+				<other>LegRA</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Small</prop>
+	</property>
+</Entity>
+<Entity>
+	<name>FaceRO</name>
+	<flag>0</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</isa>
+		<includes>
+			<edge>
+				<other>Hat</other>
+				<co_occur>0.4</co_occur>
+			</edge>
+			<edge>
+				<other>Bottle</other>
+				<co_occur>0.8</co_occur>
+			</edge>
+			<edge>
+				<other>Plate</other>
+				<co_occur>0.8</co_occur>
+			</edge>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Small</prop>
+	</property>
+</Entity>
+	
+<Entity>
+	<name>Ball</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HandRO</other>
+				<co_occur>0.8</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+</Entity>
+	
+<Entity>
+	<name>Pen</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HandRO</other>
+				<co_occur>0.6</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+</Entity>
+<Entity>
+	<name>Shoe</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>LegRO</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+</Entity>
+<Entity>
+	<name>Bottle</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HandRO</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>
+				<other>FaceRO</other>
+				<co_occur>0.8</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+</Entity>	
+<Entity>
+	<name>Plate</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HandRO</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>	
+				<other>FaceRO</other>
+				<co_occur>0.8</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+</Entity>	
+
+<Entity>
+	<name>Hat</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>FaceRO</other>
+				<co_occur>0.4</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+</Entity>
+
+<Entity>
+	<name>Car</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>0.5</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Big</prop>
+	</property>
+</Entity>
+
+<Entity>
+	<name>House</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>0.8</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Big</prop>
+	</property>
+</Entity>
+
+<Entity>
+	<name>Lights</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>0.8</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Big</prop>
+	</property>
+</Entity>
+<Entity>
+	<name>Lights</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>0.8</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Big</prop>
+	</property>
+</Entity>
+
+<Entity>
+	<name>Campus_information_maps</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>0.1</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Big</prop>
+	</property>
+</Entity>
+
+<Entity>
+	<name>Fire_plug</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>0.2</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Big</prop>
+	</property>
+</Entity>
+
+<Entity>
+	<name>Handicap_sign</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>0.3</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Big</prop>
+	</property>
+</Entity>
+
+<Entity>
+	<name>Coke</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>0.8</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+	<property>
+	        <prop>Small</prop>
+	</property>
+</Entity>
+
+<Entity>
+	<name>Null</name>
+	<flag>0</flag>
+	<outgoing_edges>
+		<isa>			
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+</Entity>
+			
+</object>

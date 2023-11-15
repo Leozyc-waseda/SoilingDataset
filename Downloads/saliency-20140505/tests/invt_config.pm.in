@@ -1,0 +1,82 @@
+# -*- perl -*-
+
+# $Id: invt_config.pm.in 6324 2006-02-23 19:54:36Z rjpeters $
+# $HeadURL: svn://isvn.usc.edu/software/invt/trunk/saliency/tests/invt_config.pm.in $
+
+# DON'T MODIFY this file execpt as "invt_config.pm.in" (if you're
+# looking at invt_config.pm, then that file is generated from
+# invt_config.pm.in by the configure script; any changes to
+# invt_config.pm itself will be lost).
+
+# Here we just hold configure-time information that is needed by the
+# test suite.
+
+package invt_config;
+
+require Exporter;
+
+@ISA = qw(Exporter);
+
+use Cwd 'realpath';
+
+use strict;
+
+sub make_absolute {
+
+    my $dir=$_[0];
+
+    if ($dir =~ m|^/|) {
+	# ok, it's already an absolute path; return as is
+	return $dir;
+    }
+    else {
+
+	# it's a relative path; assuming it's relative to the
+	# top-level build directory, let's make it absolute:
+
+	return realpath('@abs_top_builddir@' . "/$dir");
+    }
+}
+
+# About srcdir and builddir: under "normal" conditions (where you
+# unpack the a tarball or get an svn checkout and then do a
+# ./configure within that directory) your srcdir and builddir will
+# be the same. Given that, the difference between abs_srcdir and
+# abs_top_srcdir is just as it sounds -- abs_top_srcdir will be
+# something like /path/to/saliency, while abs_srcidr will be
+# something like /path/to/saliency/tests, i.e. pointing to the
+# "tests" subdirectory that this script lives in.
+
+# Thus, to point at files that live in the svn repo itself and are not
+# built/installed (such as scripts in bin/, or test scripts in
+# tests/), you want to prefix with $invt_config::abs_top_srcdir. On
+# the other hand, for files that get installed to a location specified
+# by --prefix or --exec-prefix, you want to prefix with
+# $invt_config::prefix or $invt_config::exec_prefix.
+
+$invt_config::abs_srcdir       = realpath('@abs_srcdir@');
+$invt_config::abs_top_srcdir   = realpath('@abs_top_srcdir@');
+$invt_config::abs_builddir     = realpath('@abs_builddir@');
+$invt_config::abs_top_builddir = realpath('@abs_top_builddir@');
+
+$invt_config::CC = '@CC@';
+$invt_config::CXX = '@CXX@';
+
+# Check if --prefix was a relative or absolute path; if relative, then
+# we need to fix it up since we're sitting in the 'tests' directory
+# which is one level below where the configure script was run
+$invt_config::prefix           = make_absolute('@prefix@');
+
+# Have to go through this machination because the configure script
+# will set exec_prefix to a literal "${prefix}" if --exec-prefix is
+# not given on the configure script command-line; however since
+# "${prefix}" is in Makefile syntax, we need to trap that and
+# re-interpret it here
+if ('@exec_prefix@' eq '${prefix}') {
+    $invt_config::exec_prefix = make_absolute($invt_config::prefix);
+}
+else {
+    $invt_config::exec_prefix = make_absolute('@exec_prefix@');
+}
+
+1;

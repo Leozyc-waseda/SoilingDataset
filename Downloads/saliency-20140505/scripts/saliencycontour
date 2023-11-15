@@ -1,0 +1,59 @@
+#!/bin/bash
+#this script handels everything for overlaying the threshold contour on top of the image
+#it takes in the path to image file, and generates a .png version of the same image with
+#the same size overlayed with a contour of saliency map. This script calls ezvision and uses
+#ImageMagick to handle image processing, notice that in order to make it work you need to
+#set the correct path to ezvision
+conversion=256
+ezvisionFolder="$HOME/saliency/bin"
+tempFolder=""
+treshval=(250 220 190 160 130 100 70 40)
+color=("#ff0000" "#ff8800" "#ffff00" "#ffff88" "#88ffff" "#00ffff" "#0088ff" "#0000ff")
+        originalfilename=$1
+        fwe=`echo $originalfilename | sed 's/\....//'`
+        smfn=$fwe"-S000000.png"
+        tpgfn="$fwe-tpg.png"
+        echo $fwe
+        echo $smfn
+        set -- `identify $originalfilename`
+        size=$3
+        convert $originalfilename $tpgfn
+        saliencypostfix="-SM000000.png"
+        echo "calling ezvision on the image to generate the saliency map"
+        `$ezvisionFolder/ezvision --in=$tpgfn --save-salmap --out=png:$fwe --maxnorm-type=FancyOne`
+        osm="$fwe$saliencypostfix"
+        rsm=`echo $osm | sed 's/\.png'/-rs\.png/`
+        convert -resize "$size!" $osm $rsm
+        echo "y" | rm $osm
+        for j in 0 1 2 3 4 5 6 7
+        do
+          c=$j
+                    threshfilename="$fwe-thresh-${treshval[c]}.png"
+                edgefilename=`echo $threshfilename | sed 's/\.png/-edge\.png/'`
+                colorededgefilename=`echo $edgefilename | sed 's/\.png/-colored\.png/'`
+                tranedgefilename=`echo $edgefilename | sed 's/\.png/-tr\.png/'`
+                echo "${treshval[c]}"
+                echo "${color[c]}"
+                echo "generating threshold file for $rsm with threshold ${treshval[j]} :- $threshfilename"
+                convert -threshold $[${treshval[j]}*conversion] $rsm $threshfilename
+                echo "generating edge file for $threshfilename :- $edgefilename"
+                convert -edge 1 $threshfilename $edgefilename
+                echo "colorising $edgefilename"
+                convert -fill ${color[j]} -opaque white $edgefilename $colorededgefilename
+                echo "genetating transparent background for $edgefilename :- $tranedgefilename"
+                convert -transparent "#000000" $colorededgefilename $tranedgefilename
+                echo "removing the edgefile : $edgefilename"
+                echo "y" | rm $threshfilename
+                echo "y" | rm $edgefilename
+                echo "y" | rm $colorededgefilename
+                echo "overlaying the transparent background edge file on original image $originalfilename :- $destinationfilepath"
+                convert  $tpgfn $tranedgefilename -gravity center -composite -format png -quality 90 $destinationfilepath$tpgfn
+                echo "removing the transparent background edge file : $tranedgefilename"
+                echo "y" | rm $tranedgefilename
+                echo
+
+        done
+        echo "y" | rm $rsm
+
+
+

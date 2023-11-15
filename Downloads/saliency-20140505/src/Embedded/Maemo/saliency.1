@@ -1,0 +1,64 @@
+.TH saliency 1 "March 28, 2009" "version 1.0" "USER COMMANDS"
+.SH NAME
+meamovision \- Maemo (Nokia N810) implementation of Itti, Koch and
+Niebur (1998) visual saliency algorithm
+.SH SYNOPSIS
+.B saliency
+.SH DESCRIPTION
+Saliency implements the bottom-up visual saliency model of Itti,
+Koch & Niebur (IEEE PAMI, 1998) to run on the Nokia N810 Internet
+Tablet. Given an input image or video stream, this neuromorphic vision
+system attempts to predict which locations in the images will
+automatically and unconsciously attract your attention towards them.
+.PP
+In this biologically-inspired system, each input image is decomposed
+into a set of multiscale neural ``feature maps'' which extract local
+spatial discontinuities in the modalities of color, intensity and
+orientation. Each feature map is endowed with non-linear spatially
+competitive dynamics, so that the response of a neuron at a given
+location in a map is modulated by the activity in neighboring
+neurons. Such contextual modulation, also inspired from recent
+neurobiological findings, has proven remarkably efficient at
+extracting salient targets from cluttered backgrounds. All feature
+maps are then combined into a unique scalar ``saliency map'' which
+encodes for the salience of a location in the scene irrespectively of
+the particular feature which detected this location as conspicuous. A
+winner-take-all neural network then detects the point of highest
+salience in the map at any given time, and draws the focus of
+attention towards this location. In order to allow the focus of
+attention to shift to the next most salient target, the currently
+attended target is transiently inhibited in the saliency map (a
+mechanism, ``inhibition-of-return'' which has been extensively studied
+in human psychophysics). The interplay between winner-take-all and
+inhibition-of-return ensures that the saliency map is scanned in order
+of decreasing saliency by the focus of attention, and generates the
+model's output in the form of spatio-temporal attentional scanpaths.
+.PP
+The algorithm implemented in saliency combines low-level visual
+analysis along dimensions of intensity, color, orientation, flicker
+and notion to give rise to a saliency map which highlights the
+locations in the video most likely to attact human attention and gaze.
+.SH OPTIONS
+None
+.SH EXAMPLES
+The final saliency map is shown next to the video being captured. The
+little cyan square indicates the most salient location.  Press the
+square key at the center of the cursor keypad to exit the application.
+.SH EXIT STATUS
+Always success. Press the square key at the center of the cursor
+keypad to exit the application.
+.SH AUTHOR
+Copyright (c) 2009 by Laurent Itti (itti@pollux.usc.edu)
+.SH SEE ALSO
+http://iLab.usc.edu
+.PP
+L. Itti, C. Koch, E. Niebur, A Model of Saliency-Based Visual
+Attention for Rapid Scene Analysis, IEEE Transactions on Pattern
+Analysis and Machine Intelligence, Vol. 20, No. 11, pp. 1254-1259, Nov
+1998. http://ilab.usc.edu/publications/Itti_etal98pami.html
+.PP
+Core integer-only saliency algorithm implemented by Robert J. Peters,
+see: R. J. Peters, L. Itti, Applying computational tools to predict
+gaze direction in interactive visual environments, ACM Transactions on
+Applied Perception, Vol. 5, No. 2, p. Article 8, 2008.
+http://ilab.usc.edu/publications/Peters_Itti08tap.html

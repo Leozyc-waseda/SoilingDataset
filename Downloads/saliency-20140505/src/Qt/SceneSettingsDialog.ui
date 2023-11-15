@@ -1,0 +1,1056 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>SceneSettingsDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>SceneSettingsDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>550</width>
+            <height>324</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Scene Settings</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QGroupBox" row="0" column="0">
+            <property name="name">
+                <cstring>groupBox1</cstring>
+            </property>
+            <property name="title">
+                <string>Training Scene Settings</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLineEdit" row="1" column="1" rowspan="1" colspan="6">
+                    <property name="name">
+                        <cstring>itsTrainingTargetObject</cstring>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="0" column="1" rowspan="1" colspan="6">
+                    <property name="name">
+                        <cstring>itsTrainingSceneType</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Scene Type:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>textLabel2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Target Object:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="0">
+                    <property name="name">
+                        <cstring>textLabel7</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Target Color:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="0">
+                    <property name="name">
+                        <cstring>textLabel4</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Color:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="6" column="2">
+                    <property name="name">
+                        <cstring>itsTrainingRotation</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="6" column="0">
+                    <property name="name">
+                        <cstring>textLabel5_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Rotation:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="7" column="0">
+                    <property name="name">
+                        <cstring>textLabel5</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Pixel Noise:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="7" column="2">
+                    <property name="name">
+                        <cstring>itsTrainingNoise</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="4" column="0">
+                    <property name="name">
+                        <cstring>textLabel6</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Background Color:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="5" column="0">
+                    <property name="name">
+                        <cstring>textLabel3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Illumination:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="5">
+                    <property name="name">
+                        <cstring>textLabel10</cstring>
+                    </property>
+                    <property name="text">
+                        <string>B:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="3" column="6">
+                    <property name="name">
+                        <cstring>itsTrainingColorB</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="5">
+                    <property name="name">
+                        <cstring>textLabel10_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>B:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="1">
+                    <property name="name">
+                        <cstring>textLabel8_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>R:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="4" column="3">
+                    <property name="name">
+                        <cstring>textLabel9_2_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>G:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="3">
+                    <property name="name">
+                        <cstring>textLabel9_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>G:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="4" column="4">
+                    <property name="name">
+                        <cstring>itsTrainingBackColorG</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="3">
+                    <property name="name">
+                        <cstring>textLabel9</cstring>
+                    </property>
+                    <property name="text">
+                        <string>G:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="2" column="4">
+                    <property name="name">
+                        <cstring>itsTrainingTargetColorG</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="3" column="4">
+                    <property name="name">
+                        <cstring>itsTrainingColorG</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="4" column="5">
+                    <property name="name">
+                        <cstring>textLabel10_2_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>B:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="2" column="6">
+                    <property name="name">
+                        <cstring>itsTrainingTargetColorB</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="4" column="2">
+                    <property name="name">
+                        <cstring>itsTrainingBackColorR</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="4" column="1">
+                    <property name="name">
+                        <cstring>textLabel8_2_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>R:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="4" column="6">
+                    <property name="name">
+                        <cstring>itsTrainingBackColorB</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="3" column="2">
+                    <property name="name">
+                        <cstring>itsTrainingColorR</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="1">
+                    <property name="name">
+                        <cstring>textLabel8</cstring>
+                    </property>
+                    <property name="text">
+                        <string>R:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="5" column="2">
+                    <property name="name">
+                        <cstring>itsTrainingLum</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="2" column="2">
+                    <property name="name">
+                        <cstring>itsTrainingTargetColorR</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget class="QGroupBox" row="0" column="1">
+            <property name="name">
+                <cstring>groupBox1_2</cstring>
+            </property>
+            <property name="title">
+                <string>Testing Scene Settings</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLineEdit" row="1" column="1" rowspan="1" colspan="6">
+                    <property name="name">
+                        <cstring>itsTestingTargetObject</cstring>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="0" column="1" rowspan="1" colspan="6">
+                    <property name="name">
+                        <cstring>itsTestingSceneType</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>textLabel1_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Scene Type:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>textLabel2_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Target Object:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="0">
+                    <property name="name">
+                        <cstring>textLabel7_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Target Color:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="0">
+                    <property name="name">
+                        <cstring>textLabel4_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Color:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="6" column="2">
+                    <property name="name">
+                        <cstring>itsTestingRotation</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="6" column="0">
+                    <property name="name">
+                        <cstring>textLabel5_2_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Rotation:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="7" column="0">
+                    <property name="name">
+                        <cstring>textLabel5_3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Pixel Noise:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="7" column="2">
+                    <property name="name">
+                        <cstring>itsTestingNoise</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="4" column="0">
+                    <property name="name">
+                        <cstring>textLabel6_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Background Color:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="5" column="0">
+                    <property name="name">
+                        <cstring>textLabel3_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Illumination:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="5">
+                    <property name="name">
+                        <cstring>textLabel10_3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>B:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="3" column="6">
+                    <property name="name">
+                        <cstring>itsTestingColorB</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="5">
+                    <property name="name">
+                        <cstring>textLabel10_2_3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>B:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="1">
+                    <property name="name">
+                        <cstring>textLabel8_2_3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>R:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="4" column="3">
+                    <property name="name">
+                        <cstring>textLabel9_2_2_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>G:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="3">
+                    <property name="name">
+                        <cstring>textLabel9_2_3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>G:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="4" column="4">
+                    <property name="name">
+                        <cstring>itsTestingBackColorG</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="3">
+                    <property name="name">
+                        <cstring>textLabel9_3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>G:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="2" column="4">
+                    <property name="name">
+                        <cstring>itsTestingTargetColorG</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="3" column="4">
+                    <property name="name">
+                        <cstring>itsTestingColorG</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="4" column="5">
+                    <property name="name">
+                        <cstring>textLabel10_2_2_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>B:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="2" column="6">
+                    <property name="name">
+                        <cstring>itsTestingTargetColorB</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="4" column="2">
+                    <property name="name">
+                        <cstring>itsTestingBackColorR</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="4" column="1">
+                    <property name="name">
+                        <cstring>textLabel8_2_2_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>R:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="4" column="6">
+                    <property name="name">
+                        <cstring>itsTestingBackColorB</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="3" column="2">
+                    <property name="name">
+                        <cstring>itsTestingColorR</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="1">
+                    <property name="name">
+                        <cstring>textLabel8_3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>R:</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="5" column="2">
+                    <property name="name">
+                        <cstring>itsTestingLum</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="2" column="2">
+                    <property name="name">
+                        <cstring>itsTestingTargetColorR</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>30</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                    <property name="maxLength">
+                        <number>3</number>
+                    </property>
+                    <property name="inputMask">
+                        <string>###; </string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget class="QLayoutWidget" row="1" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>Layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>Horizontal Spacing2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>buttonOk</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>buttonCancel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>buttonOk</sender>
+        <signal>clicked()</signal>
+        <receiver>SceneSettingsDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>buttonCancel</sender>
+        <signal>clicked()</signal>
+        <receiver>SceneSettingsDialog</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>itsTrainingSceneType</tabstop>
+    <tabstop>itsTrainingTargetObject</tabstop>
+    <tabstop>itsTrainingTargetColorR</tabstop>
+    <tabstop>itsTrainingTargetColorG</tabstop>
+    <tabstop>itsTrainingTargetColorB</tabstop>
+    <tabstop>itsTrainingLum</tabstop>
+    <tabstop>itsTrainingColorR</tabstop>
+    <tabstop>itsTrainingColorG</tabstop>
+    <tabstop>itsTrainingColorB</tabstop>
+    <tabstop>itsTrainingRotation</tabstop>
+    <tabstop>itsTrainingNoise</tabstop>
+    <tabstop>itsTrainingBackColorR</tabstop>
+    <tabstop>itsTrainingBackColorG</tabstop>
+    <tabstop>itsTrainingBackColorB</tabstop>
+    <tabstop>buttonOk</tabstop>
+    <tabstop>buttonCancel</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in declaration">Media/SceneGenerator.H</include>
+    <include location="local" impldecl="in implementation">SceneSettingsDialog.ui.h</include>
+</includes>
+<variables>
+    <variable>SceneGenerator *itsTestScene;</variable>
+    <variable>SceneGenerator *itsTrainScene;</variable>
+</variables>
+<slots>
+    <slot>accept()</slot>
+</slots>
+<functions>
+    <function>init( SceneGenerator * trainScene, SceneGenerator * testScene )</function>
+</functions>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

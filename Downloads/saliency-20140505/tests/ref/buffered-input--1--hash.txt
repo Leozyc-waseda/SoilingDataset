@@ -1,0 +1,3 @@
+000000  62936f89  0  % buffered-input (Image<PixRGB<byte>>)
+000001  c9825ef0  0  % buffered-input (Image<PixRGB<byte>>)
+000002  ecfa7c13  0  % buffered-input (Image<PixRGB<byte>>)

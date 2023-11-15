@@ -1,0 +1,103 @@
+# -*- shell-script -*-
+#
+# mexopts.sh  Shell script for configuring the MEX-file creation script mex.
+#
+# mexopts.sh is created automatically from mexopts.sh.in. Please make any 
+# changes in mexopts.sh.in, otherwise they will be lost.
+#
+# This is a modified version of the original file cxxopts.sh for the
+# Saliency program suite. The changes are in the Linux section of this
+# script.  Compiler and linker flags are set by the configure script used
+# to generate a 'mexopts.sh' file from the 'mexopts.sh.in' template file.
+#
+# This file is part of the iLab Neuromorphic Vision C++ Toolkit.
+#
+# It can be copied and modified as long as the copyright of Mathworks Inc.
+# is acknowledged.
+#
+# Primary maintainer for this file: Dirk Walther <walther@caltech.edu>
+# $Id: mexopts.sh.in 14533 2011-02-18 07:25:13Z itti $
+#
+################
+
+# Set variables that are configured by 
+CONFIG_CXX='@CXX@'
+CONFIG_DEFS='@DEFS@'
+CONFIG_CPPFLAGS='@CPPFLAGS@'
+CONFIG_CXXFLAGS='@CXXFLAGS@'
+CONFIG_LDFLAGS='@LDFLAGS@'
+CONFIG_LIBS='@LIBS@'
+CONFIG_ADDINC='@ADDINC@'
+
+TMW_ROOT="$MATLAB"
+MFLAGS=''
+MLIBS="-L$TMW_ROOT/bin/$Arch -lmx -lmex"
+case "$Arch" in
+    Undetermined)
+#----------------------------------------------------------------------------
+# Change this line if you need to specify the location of the MATLAB
+# root directory.  The cmex script needs to know where to find utility
+# routines so that it can determine the architecture; therefore, this
+# assignment needs to be done while the architecture is still
+# undetermined.
+#----------------------------------------------------------------------------
+	MATLAB="$MATLAB"
+	;;
+    glnx86|glnxa64)
+#----------------------------------------------------------------------------
+# This section has been adapted for compilation of .mex functions 
+# within the SALIENCY program suite.
+
+	RPATH="-Wl,--rpath-link,$TMW_ROOT/extern/lib/$Arch,--rpath-link,$TMW_ROOT/bin/$Arch"
+
+	CXX=$CONFIG_CXX
+	CXXFLAGS="$CONFIG_DEFS $CONFIG_CPPFLAGS $CONFIG_ADDINC $CONFIG_CXXFLAGS -fPIC -pthread"
+	CXXLIBS="$RPATH $CONFIG_LDFLAGS $MLIBS $CONFIG_LIBS"
+	CXXOPTIMFLAGS="-O -DNDEBUG"
+	CXXDEBUGFLAGS="-g"
+
+	#if [ -s /usr/local/matlab/extern/lib/glnx86/libstdc++.a ]; then
+	#    LIBSTDCxx="/usr/local/matlab/extern/lib/glnx86/libstdc++.a"
+	#elif [ -s /lab/local/matlab/extern/lib/glnx86/libstdc++.a ]; then
+	#    LIBSTDCxx="/lab/local/matlab/extern/lib/glnx86/libstdc++.a"
+	#else
+	#    LIBSTDCxx=`$CXX -print-file-name=libstdc++.so`
+	#fi
+
+	LIBSTDCxx=`$CXX -print-file-name=libstdc++.so`
+        CXXLIBS="$CXXLIBS $LIBSTDCxx -lgcc_s"
+
+	CC=$CXX
+	CFLAGS=$CXXFLAGS
+	CLIBS=$CXXLIBS
+	COPTIMFLAGS=$CXXOPTIMFLAGS
+	CDEBUGFLAGS=$CXXDEBUGFLAGS
+
+	LD="$COMPILER"
+	LDFLAGS="-pthread -shared -Wl,--version-script,$TMW_ROOT/extern/lib/$Arch/$MAPFILE"
+	LDOPTIMFLAGS='-O'
+	LDDEBUGFLAGS='-g'
+#
+	POSTLINK_CMDS=':'
+#----------------------------------------------------------------------------
+	;;
+esac
+#############################################################################
+#
+# Architecture independent lines:
+#
+#     Set and uncomment any lines which will apply to all architectures.
+#
+#----------------------------------------------------------------------------
+#           CC="$CC"
+#           CFLAGS="$CFLAGS"
+#           COPTIMFLAGS="$COPTIMFLAGS"
+#           CDEBUGFLAGS="$CDEBUGFLAGS"
+#           CLIBS="$CLIBS"
+#
+#           LD="$LD"
+#           LDFLAGS="$LDFLAGS"
+#           LDOPTIMFLAGS="$LDOPTIMFLAGS"
+#           LDDEBUGFLAGS="$LDDEBUGFLAGS"
+#----------------------------------------------------------------------------
+#############################################################################

@@ -1,0 +1,13 @@
+0000000.00ms FOAradius            21
+0000000.00ms FoveaRadius          21
+0000000.00ms InputDims            256x256
+0000000.00ms ReadFrame            ../inputs/testpic001.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000033.40ms OutputFrameSeries    frame 0
+0000033.40ms WriteFloat           SRS-000000.pfm
+0000033.40ms WriteGray            SRS-input000000.pnm
+0000033.40ms WriteFloat           SRS-rescaled-input000000.pfm
+0000033.40ms WriteFloat           SRS-logmagnitude000000.pfm
+0000033.40ms WriteFloat           SRS-phase000000.pfm
+0000033.40ms WriteFloat           SRS-spectral-residual000000.pfm
+0000033.40ms WriteFloat           SRS-proto-saliency000000.pfm

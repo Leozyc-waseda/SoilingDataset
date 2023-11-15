@@ -1,0 +1,34 @@
+% {key aliases} is_on_event reference format
+% format (= default):
+% {key alt1 alt2} <logical = 0> 
+% <function or field name = key> <format_string = %.1f>
+{x} 0 '@(x) getX(x.xy)'
+{y} 0 '@(x) getY(x.xy)'
+{pd pupil diam} 
+{status stat} 0 'status' %d
+{vel velocity} 
+{targetx} 1 '@(e) getX(cell2mat({e.target}))' %.1f
+{targety} 1 '@(e) getY(cell2mat({e.target}))' %.1f
+{amp ampl amplitude} 1 
+{dx} 1 
+{dy} 1 
+{pvel peakvel} 1 
+{intersac} 1 {time_to_next_saccade}
+{apup avgpup averagepup} 1
+{spup stdpup stdevpup} 1
+{dur duration} 1
+{interval interval_msecs} 1
+{bfix_dur bdur} 1
+{afix_dur adur} 1
+{timeon} 1
+{timeoff} 1
+{typenum} 1 '' %d 
+{region} 0 '' %d	
+{atface} 0 '' %d  % kind of hacked
+{ateyes} 0 '' %d
+{atmouth} 0 '' %d
+{atbody} 0 '' %d
+{atman} 0 '' %d
+{atwoman} 0 '' %d
+{atbackground} 0 '' %d
+

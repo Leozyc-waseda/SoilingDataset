@@ -1,0 +1,36 @@
+0000000.00ms FOAradius            20
+0000000.00ms FoveaRadius          20
+0000000.00ms InputDims            320x240
+0000000.00ms ReadFrame            ../inputs/ezin000000.png
+0000000.00ms InputFrameSeries     frame 0
+0000116.90ms CovertShift          (32,128) 3.412mV
+0000166.70ms OutputFrameSeries    frame 0
+0000166.70ms WriteRGB             T000000.png
+0000166.70ms ReadFrame            ../inputs/ezin000001.png
+0000166.70ms InputFrameSeries     frame 1
+0000186.80ms CovertShift          (32,128) 5.283mV
+0000240.50ms CovertShift          (32,128) 6.792mV
+0000283.70ms CovertShift          (192,112) 8.646mV
+0000324.10ms CovertShift          (128,128) 8.759mV
+0000333.40ms OutputFrameSeries    frame 1
+0000333.40ms WriteRGB             T000001.png
+0000333.40ms ReadFrame            ../inputs/ezin000002.png
+0000333.40ms InputFrameSeries     frame 2
+0000366.50ms CovertShift          (128,128) 7.742mV
+0000415.10ms CovertShift          (128,128) 6.405mV
+0000471.20ms CovertShift          (128,128) 5.450mV
+0000500.00ms OutputFrameSeries    frame 2
+0000500.00ms WriteRGB             T000002.png
+0000500.00ms ReadFrame            ../inputs/ezin000003.png
+0000500.00ms InputFrameSeries     frame 3
+0000533.90ms CovertShift          (128,128) 4.627mV
+0000604.40ms CovertShift          (128,128) 4.161mV
+0000666.70ms OutputFrameSeries    frame 3
+0000666.70ms WriteRGB             T000003.png
+0000666.70ms ReadFrame            ../inputs/ezin000004.png
+0000666.70ms InputFrameSeries     frame 4
+0000675.20ms CovertShift          (48,160) 4.400mV
+0000741.30ms CovertShift          (48,160) 4.905mV
+0000802.50ms CovertShift          (128,144) 5.370mV
+0000833.40ms OutputFrameSeries    frame 4
+0000833.40ms WriteRGB             T000004.png

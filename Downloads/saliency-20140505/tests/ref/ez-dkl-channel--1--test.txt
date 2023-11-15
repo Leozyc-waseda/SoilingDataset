@@ -1,0 +1,111 @@
+0000000.00ms FOAradius            20
+0000000.00ms FoveaRadius          20
+0000000.00ms InputDims            320x240
+0000000.00ms ReadFrame            ../inputs/ezframe000000.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000025.00ms ReadFrame            ../inputs/ezframe000001.pnm
+0000025.00ms InputFrameSeries     frame 1
+0000041.00ms OutputFrameSeries    frame 100
+0000041.00ms WriteFloat           CODKLcolor-000100.pnm
+0000041.00ms WriteFloat           SRdcolor-0-000100.pnm
+0000041.00ms WriteFloat           SRdcolor-1-000100.pnm
+0000041.00ms WriteFloat           SRdcolor-2-000100.pnm
+0000041.00ms WriteFloat           SRdcolor-3-000100.pnm
+0000041.00ms WriteFloat           SRdcolor-4-000100.pnm
+0000041.00ms WriteFloat           SRdcolor-5-000100.pnm
+0000041.00ms WriteFloat           SRdcolor-6-000100.pnm
+0000041.00ms WriteFloat           SRdcolor-7-000100.pnm
+0000041.00ms WriteFloat           SRdcolor-8-000100.pnm
+0000041.00ms WriteFloat           SOdcolor-000100.pnm
+0000041.00ms WriteFloat           SRkcolor-0-000100.pnm
+0000041.00ms WriteFloat           SRkcolor-1-000100.pnm
+0000041.00ms WriteFloat           SRkcolor-2-000100.pnm
+0000041.00ms WriteFloat           SRkcolor-3-000100.pnm
+0000041.00ms WriteFloat           SRkcolor-4-000100.pnm
+0000041.00ms WriteFloat           SRkcolor-5-000100.pnm
+0000041.00ms WriteFloat           SRkcolor-6-000100.pnm
+0000041.00ms WriteFloat           SRkcolor-7-000100.pnm
+0000041.00ms WriteFloat           SRkcolor-8-000100.pnm
+0000041.00ms WriteFloat           SOkcolor-000100.pnm
+0000041.00ms WriteFloat           SRlcolor-0-000100.pnm
+0000041.00ms WriteFloat           SRlcolor-1-000100.pnm
+0000041.00ms WriteFloat           SRlcolor-2-000100.pnm
+0000041.00ms WriteFloat           SRlcolor-3-000100.pnm
+0000041.00ms WriteFloat           SRlcolor-4-000100.pnm
+0000041.00ms WriteFloat           SRlcolor-5-000100.pnm
+0000041.00ms WriteFloat           SRlcolor-6-000100.pnm
+0000041.00ms WriteFloat           SRlcolor-7-000100.pnm
+0000041.00ms WriteFloat           SRlcolor-8-000100.pnm
+0000041.00ms WriteFloat           SOlcolor-000100.pnm
+0000050.00ms ReadFrame            ../inputs/ezframe000002.pnm
+0000050.00ms InputFrameSeries     frame 2
+0000050.10ms CovertShift          (80,112) 12.436mV
+0000075.00ms ReadFrame            ../inputs/ezframe000003.pnm
+0000075.00ms InputFrameSeries     frame 3
+0000082.00ms OutputFrameSeries    frame 101
+0000082.00ms WriteFloat           CODKLcolor-000101.pnm
+0000082.00ms WriteFloat           SRdcolor-0-000101.pnm
+0000082.00ms WriteFloat           SRdcolor-1-000101.pnm
+0000082.00ms WriteFloat           SRdcolor-2-000101.pnm
+0000082.00ms WriteFloat           SRdcolor-3-000101.pnm
+0000082.00ms WriteFloat           SRdcolor-4-000101.pnm
+0000082.00ms WriteFloat           SRdcolor-5-000101.pnm
+0000082.00ms WriteFloat           SRdcolor-6-000101.pnm
+0000082.00ms WriteFloat           SRdcolor-7-000101.pnm
+0000082.00ms WriteFloat           SRdcolor-8-000101.pnm
+0000082.00ms WriteFloat           SOdcolor-000101.pnm
+0000082.00ms WriteFloat           SRkcolor-0-000101.pnm
+0000082.00ms WriteFloat           SRkcolor-1-000101.pnm
+0000082.00ms WriteFloat           SRkcolor-2-000101.pnm
+0000082.00ms WriteFloat           SRkcolor-3-000101.pnm
+0000082.00ms WriteFloat           SRkcolor-4-000101.pnm
+0000082.00ms WriteFloat           SRkcolor-5-000101.pnm
+0000082.00ms WriteFloat           SRkcolor-6-000101.pnm
+0000082.00ms WriteFloat           SRkcolor-7-000101.pnm
+0000082.00ms WriteFloat           SRkcolor-8-000101.pnm
+0000082.00ms WriteFloat           SOkcolor-000101.pnm
+0000082.00ms WriteFloat           SRlcolor-0-000101.pnm
+0000082.00ms WriteFloat           SRlcolor-1-000101.pnm
+0000082.00ms WriteFloat           SRlcolor-2-000101.pnm
+0000082.00ms WriteFloat           SRlcolor-3-000101.pnm
+0000082.00ms WriteFloat           SRlcolor-4-000101.pnm
+0000082.00ms WriteFloat           SRlcolor-5-000101.pnm
+0000082.00ms WriteFloat           SRlcolor-6-000101.pnm
+0000082.00ms WriteFloat           SRlcolor-7-000101.pnm
+0000082.00ms WriteFloat           SRlcolor-8-000101.pnm
+0000082.00ms WriteFloat           SOlcolor-000101.pnm
+0000083.00ms CovertShift          (224,64) 13.019mV
+0000100.00ms ReadFrame            ../inputs/ezframe000004.pnm
+0000100.00ms InputFrameSeries     frame 4
+0000123.00ms OutputFrameSeries    frame 102
+0000123.00ms WriteFloat           CODKLcolor-000102.pnm
+0000123.00ms WriteFloat           SRdcolor-0-000102.pnm
+0000123.00ms WriteFloat           SRdcolor-1-000102.pnm
+0000123.00ms WriteFloat           SRdcolor-2-000102.pnm
+0000123.00ms WriteFloat           SRdcolor-3-000102.pnm
+0000123.00ms WriteFloat           SRdcolor-4-000102.pnm
+0000123.00ms WriteFloat           SRdcolor-5-000102.pnm
+0000123.00ms WriteFloat           SRdcolor-6-000102.pnm
+0000123.00ms WriteFloat           SRdcolor-7-000102.pnm
+0000123.00ms WriteFloat           SRdcolor-8-000102.pnm
+0000123.00ms WriteFloat           SOdcolor-000102.pnm
+0000123.00ms WriteFloat           SRkcolor-0-000102.pnm
+0000123.00ms WriteFloat           SRkcolor-1-000102.pnm
+0000123.00ms WriteFloat           SRkcolor-2-000102.pnm
+0000123.00ms WriteFloat           SRkcolor-3-000102.pnm
+0000123.00ms WriteFloat           SRkcolor-4-000102.pnm
+0000123.00ms WriteFloat           SRkcolor-5-000102.pnm
+0000123.00ms WriteFloat           SRkcolor-6-000102.pnm
+0000123.00ms WriteFloat           SRkcolor-7-000102.pnm
+0000123.00ms WriteFloat           SRkcolor-8-000102.pnm
+0000123.00ms WriteFloat           SOkcolor-000102.pnm
+0000123.00ms WriteFloat           SRlcolor-0-000102.pnm
+0000123.00ms WriteFloat           SRlcolor-1-000102.pnm
+0000123.00ms WriteFloat           SRlcolor-2-000102.pnm
+0000123.00ms WriteFloat           SRlcolor-3-000102.pnm
+0000123.00ms WriteFloat           SRlcolor-4-000102.pnm
+0000123.00ms WriteFloat           SRlcolor-5-000102.pnm
+0000123.00ms WriteFloat           SRlcolor-6-000102.pnm
+0000123.00ms WriteFloat           SRlcolor-7-000102.pnm
+0000123.00ms WriteFloat           SRlcolor-8-000102.pnm
+0000123.00ms WriteFloat           SOlcolor-000102.pnm

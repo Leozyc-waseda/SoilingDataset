@@ -1,0 +1,111 @@
+0000000.00ms FOAradius            20
+0000000.00ms FoveaRadius          20
+0000000.00ms InputDims            320x240
+0000000.00ms ReadFrame            ../inputs/ezframe000000.pnm
+0000000.00ms InputFrameSeries     frame 0
+0000035.00ms ReadFrame            ../inputs/ezframe000001.pnm
+0000035.00ms InputFrameSeries     frame 1
+0000041.00ms OutputFrameSeries    frame 100
+0000041.00ms WriteFloat           COorientation-000100.pnm
+0000041.00ms WriteFloat           SOori_0-000100.pnm
+0000041.00ms WriteFloat           SOori_1-000100.pnm
+0000041.00ms WriteFloat           SOori_2-000100.pnm
+0000041.00ms WriteFloat           SOori_3-000100.pnm
+0000041.00ms WriteFloat           COLJunction-000100.pnm
+0000041.00ms WriteFloat           SOjunction_10100000-000100.pnm
+0000041.00ms WriteFloat           SOjunction_00101000-000100.pnm
+0000041.00ms WriteFloat           SOjunction_00001010-000100.pnm
+0000041.00ms WriteFloat           SOjunction_10000010-000100.pnm
+0000041.00ms WriteFloat           COTJunction-000100.pnm
+0000041.00ms WriteFloat           SOjunction_10001010-000100.pnm
+0000041.00ms WriteFloat           SOjunction_10100010-000100.pnm
+0000041.00ms WriteFloat           SOjunction_10101000-000100.pnm
+0000041.00ms WriteFloat           SOjunction_00101010-000100.pnm
+0000041.00ms WriteFloat           COXJunction-000100.pnm
+0000041.00ms WriteFloat           SOjunction_10101010-000100.pnm
+0000041.00ms WriteFloat           SOjunction_01010101-000100.pnm
+0000041.00ms WriteFloat           COEndPoint-000100.pnm
+0000041.00ms WriteFloat           SOjunction_10000000-000100.pnm
+0000041.00ms WriteFloat           SOjunction_00100000-000100.pnm
+0000041.00ms WriteFloat           SOjunction_00001000-000100.pnm
+0000041.00ms WriteFloat           SOjunction_00000010-000100.pnm
+0000070.00ms ReadFrame            ../inputs/ezframe000002.pnm
+0000070.00ms InputFrameSeries     frame 2
+0000078.30ms CovertShift          (144,128) 6.488mV
+0000082.00ms OutputFrameSeries    frame 101
+0000082.00ms WriteFloat           COorientation-000101.pnm
+0000082.00ms WriteFloat           SOori_0-000101.pnm
+0000082.00ms WriteFloat           SOori_1-000101.pnm
+0000082.00ms WriteFloat           SOori_2-000101.pnm
+0000082.00ms WriteFloat           SOori_3-000101.pnm
+0000082.00ms WriteFloat           COLJunction-000101.pnm
+0000082.00ms WriteFloat           SOjunction_10100000-000101.pnm
+0000082.00ms WriteFloat           SOjunction_00101000-000101.pnm
+0000082.00ms WriteFloat           SOjunction_00001010-000101.pnm
+0000082.00ms WriteFloat           SOjunction_10000010-000101.pnm
+0000082.00ms WriteFloat           COTJunction-000101.pnm
+0000082.00ms WriteFloat           SOjunction_10001010-000101.pnm
+0000082.00ms WriteFloat           SOjunction_10100010-000101.pnm
+0000082.00ms WriteFloat           SOjunction_10101000-000101.pnm
+0000082.00ms WriteFloat           SOjunction_00101010-000101.pnm
+0000082.00ms WriteFloat           COXJunction-000101.pnm
+0000082.00ms WriteFloat           SOjunction_10101010-000101.pnm
+0000082.00ms WriteFloat           SOjunction_01010101-000101.pnm
+0000082.00ms WriteFloat           COEndPoint-000101.pnm
+0000082.00ms WriteFloat           SOjunction_10000000-000101.pnm
+0000082.00ms WriteFloat           SOjunction_00100000-000101.pnm
+0000082.00ms WriteFloat           SOjunction_00001000-000101.pnm
+0000082.00ms WriteFloat           SOjunction_00000010-000101.pnm
+0000105.00ms ReadFrame            ../inputs/ezframe000003.pnm
+0000105.00ms InputFrameSeries     frame 3
+0000123.00ms OutputFrameSeries    frame 102
+0000123.00ms WriteFloat           COorientation-000102.pnm
+0000123.00ms WriteFloat           SOori_0-000102.pnm
+0000123.00ms WriteFloat           SOori_1-000102.pnm
+0000123.00ms WriteFloat           SOori_2-000102.pnm
+0000123.00ms WriteFloat           SOori_3-000102.pnm
+0000123.00ms WriteFloat           COLJunction-000102.pnm
+0000123.00ms WriteFloat           SOjunction_10100000-000102.pnm
+0000123.00ms WriteFloat           SOjunction_00101000-000102.pnm
+0000123.00ms WriteFloat           SOjunction_00001010-000102.pnm
+0000123.00ms WriteFloat           SOjunction_10000010-000102.pnm
+0000123.00ms WriteFloat           COTJunction-000102.pnm
+0000123.00ms WriteFloat           SOjunction_10001010-000102.pnm
+0000123.00ms WriteFloat           SOjunction_10100010-000102.pnm
+0000123.00ms WriteFloat           SOjunction_10101000-000102.pnm
+0000123.00ms WriteFloat           SOjunction_00101010-000102.pnm
+0000123.00ms WriteFloat           COXJunction-000102.pnm
+0000123.00ms WriteFloat           SOjunction_10101010-000102.pnm
+0000123.00ms WriteFloat           SOjunction_01010101-000102.pnm
+0000123.00ms WriteFloat           COEndPoint-000102.pnm
+0000123.00ms WriteFloat           SOjunction_10000000-000102.pnm
+0000123.00ms WriteFloat           SOjunction_00100000-000102.pnm
+0000123.00ms WriteFloat           SOjunction_00001000-000102.pnm
+0000123.00ms WriteFloat           SOjunction_00000010-000102.pnm
+0000140.00ms ReadFrame            ../inputs/ezframe000004.pnm
+0000140.00ms InputFrameSeries     frame 4
+0000142.50ms CovertShift          (176,128) 6.077mV
+0000164.00ms OutputFrameSeries    frame 103
+0000164.00ms WriteFloat           COorientation-000103.pnm
+0000164.00ms WriteFloat           SOori_0-000103.pnm
+0000164.00ms WriteFloat           SOori_1-000103.pnm
+0000164.00ms WriteFloat           SOori_2-000103.pnm
+0000164.00ms WriteFloat           SOori_3-000103.pnm
+0000164.00ms WriteFloat           COLJunction-000103.pnm
+0000164.00ms WriteFloat           SOjunction_10100000-000103.pnm
+0000164.00ms WriteFloat           SOjunction_00101000-000103.pnm
+0000164.00ms WriteFloat           SOjunction_00001010-000103.pnm
+0000164.00ms WriteFloat           SOjunction_10000010-000103.pnm
+0000164.00ms WriteFloat           COTJunction-000103.pnm
+0000164.00ms WriteFloat           SOjunction_10001010-000103.pnm
+0000164.00ms WriteFloat           SOjunction_10100010-000103.pnm
+0000164.00ms WriteFloat           SOjunction_10101000-000103.pnm
+0000164.00ms WriteFloat           SOjunction_00101010-000103.pnm
+0000164.00ms WriteFloat           COXJunction-000103.pnm
+0000164.00ms WriteFloat           SOjunction_10101010-000103.pnm
+0000164.00ms WriteFloat           SOjunction_01010101-000103.pnm
+0000164.00ms WriteFloat           COEndPoint-000103.pnm
+0000164.00ms WriteFloat           SOjunction_10000000-000103.pnm
+0000164.00ms WriteFloat           SOjunction_00100000-000103.pnm
+0000164.00ms WriteFloat           SOjunction_00001000-000103.pnm
+0000164.00ms WriteFloat           SOjunction_00000010-000103.pnm

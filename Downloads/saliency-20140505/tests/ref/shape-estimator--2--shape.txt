@@ -1,0 +1,29 @@
+0000000.00ms FOAradius            21
+0000000.00ms FoveaRadius          21
+0000000.00ms InputDims            384x256
+0000000.00ms ReadFrame            ../inputs/balloons.ppm
+0000000.00ms InputFrameSeries     frame 0
+0000106.00ms CovertShift          (160,160) 4.017mV
+0000106.00ms ShapeEstimator       (160,160) SaliencyMap [Shape]
+0000106.00ms OutputFrameSeries    frame 0
+0000106.00ms WriteRGB             T000000.pnm
+0000188.90ms CovertShift          (352,48) 4.181mV
+0000188.90ms ShapeEstimator       (352,48) SaliencyMap [Shape]
+0000188.90ms OutputFrameSeries    frame 1
+0000188.90ms WriteRGB             T000001.pnm
+0000255.40ms CovertShift          (64,48) 5.128mV
+0000255.40ms ShapeEstimator       (64,48) SaliencyMap [Shape]
+0000255.40ms OutputFrameSeries    frame 2
+0000255.40ms WriteRGB             T000002.pnm
+0000317.20ms CovertShift          (176,48) 5.465mV
+0000317.20ms ShapeEstimator       (176,48) SaliencyMap [Shape]
+0000317.20ms OutputFrameSeries    frame 3
+0000317.20ms WriteRGB             T000003.pnm
+0000392.50ms CovertShift          (320,128) 4.129mV
+0000392.50ms ShapeEstimator       (320,128) SaliencyMap [Shape]
+0000392.50ms OutputFrameSeries    frame 4
+0000392.50ms WriteRGB             T000004.pnm
+0000506.90ms CovertShift          (352,176) 2.267mV
+0000506.90ms ShapeEstimator       (352,176) SaliencyMap [Shape]
+0000506.90ms OutputFrameSeries    frame 5
+0000506.90ms WriteRGB             T000005.pnm

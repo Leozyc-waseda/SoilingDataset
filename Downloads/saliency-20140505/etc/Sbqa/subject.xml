@@ -1,0 +1,201 @@
+<?xml version='1.0'?>
+		
+<!--Define the internal DTD subset-->
+<!DOCTYPE subject[
+	<!ELEMENT subject (Entity+)>
+	<!ELEMENT Entity (name,flag,outgoing_edges)>
+	<!ELEMENT name (#PCDATA)>
+	<!ELEMENT flag (#PCDATA)>
+	<!ELEMENT outgoing_edges (isa,includes,part_of,contains,similar,related)>
+	<!ELEMENT isa (edge*)>
+	<!ELEMENT includes (edge*)>
+	<!ELEMENT part_of (edge*)>
+	<!ELEMENT contains (edge*)>
+	<!ELEMENT similar (edge*)>
+	<!ELEMENT related (edge*)>
+	<!ELEMENT edge (other,co_occur)>
+	<!ELEMENT other (#PCDATA)>
+	<!ELEMENT co_occur (#PCDATA)>
+	<!ELEMENT property (prop*)>
+	<!ELEMENT prop (#PCDATA)>
+]>
+
+<subject>
+<Entity>
+	<name>Human</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+		</isa>
+		<includes>
+			<edge>
+				<other>Man</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+			<edge>
+				<other>Hand</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>
+				<other>Leg</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>
+				<other>Face</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+			<edge>
+				<other>HumanRO</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>
+				<other>HumanRA</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</related>
+	</outgoing_edges>
+</Entity>
+
+<Entity>
+	<name>Man</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+			<edge>
+				<other>Human</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+</Entity>
+
+<Entity>
+	<name>Hand</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+			<edge>
+				<other>Human</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+			<edge>
+				<other>HandRO</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>
+				<other>HandRA</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</related>
+	</outgoing_edges>
+</Entity>
+<Entity>
+	<name>Leg</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+			<edge>
+				<other>Human</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+			<edge>
+				<other>LegRO</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>
+				<other>LegRA</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</related>
+	</outgoing_edges>
+</Entity>
+
+<Entity>
+	<name>Face</name>
+	<flag>1</flag>
+	<outgoing_edges>
+		<isa>
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+			<edge>
+				<other>Human</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+			<edge>
+				<other>FaceRO</other>
+				<co_occur>1</co_occur>
+			</edge>
+			<edge>
+				<other>FaceRA</other>
+				<co_occur>1</co_occur>
+			</edge>
+		</related>
+	</outgoing_edges>
+</Entity>
+
+<Entity>
+	<name>Null</name>
+	<flag>0</flag>
+	<outgoing_edges>
+		<isa>			
+		</isa>
+		<includes>
+		</includes>
+		<part_of>
+		</part_of>
+		<contains>
+		</contains>
+		<similar>
+		</similar>
+		<related>
+		</related>
+	</outgoing_edges>
+</Entity>
+		
+</subject>
